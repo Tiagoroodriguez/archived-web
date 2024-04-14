@@ -1,0 +1,18 @@
+.guia-container {
+    margin-inline: 50px;
+    overflow: hidden;
+}
+
+.mensaje-talles {
+    text-align: center;
+    margin: 20px;
+    font-size: medium;
+    text-transform: uppercase;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .guia-container {
+        margin-inline: 20px;
+    }
+}

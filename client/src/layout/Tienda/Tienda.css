@@ -1,0 +1,45 @@
+.tienda{
+    margin: auto 50px;
+  }
+  
+.mensaje-container {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    text-align: center;
+}
+
+.tienda-filtros {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    border-bottom: 1px solid rgba(49, 49, 49, 0.596);
+}
+
+  
+.productos-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+  
+@media (max-width: 768px) {
+    .productos-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .tienda-filtros{
+        overflow-y: auto;
+        height: 70px;
+        border-bottom: 1px solid rgba(49, 49, 49, 0.596);
+        scrollbar-width: none;
+    }
+
+    .tienda {
+        margin-inline: 20px;
+    }
+}

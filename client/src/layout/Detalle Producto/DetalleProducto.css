@@ -1,0 +1,188 @@
+.detalle-container {
+    margin-inline: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+/*-------------------------------------------------------------*/
+.img-container {
+    width: 60%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    aspect-ratio: 3/4;
+}
+.img {
+    aspect-ratio: 3/4;
+    width: 100%;
+    overflow: hidden;
+}
+.img img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/*-------------------------------------------------------------*/
+.informacion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 40%;
+    height: max-content;
+    position: sticky;
+    top: 19%;
+}
+
+.informacion-dp {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+
+}
+
+.nombre-producto {
+    font-size: x-large;
+}
+
+.precio-producto {
+    font-size: xx-large;
+    font-weight: bold;
+}
+/*-------------------------------------------------------------*/
+.division {
+    width: 100%;
+    height: 1px;
+    background: rgba(49, 49, 49, 0.596);
+}
+/*-------------------------------------------------------------*/
+.talles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.talle-seleccionado {
+    font-size: small;
+    text-transform: uppercase;
+}
+.talles-container {
+    display: flex;
+    gap: 5px;
+}
+.boton-talle {
+    border-radius: 0;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border: solid 1px var(--color-secundario);
+    cursor: pointer;
+    background: none;
+}
+.boton-talle:hover {
+    border: solid 1px #932b21;
+}
+.boton-talle:focus {
+    border: solid 1px #932b21;
+}
+/*-------------------------------------------------------------*/
+.cantiadad {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.cantidad-text {
+    font-size: small;
+    text-transform: uppercase;
+}
+.cantiadad input {
+    width: 60px;
+    height: 25px;
+    border-radius: 0;
+    border: none;
+    border: solid 1px var(--color-secundario);
+    background: none;
+}
+
+.cantiadad input:focus{
+    outline: none;
+    border: solid 1px #932b21;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/*-------------------------------------------------------------*/
+.agregar-carrito {
+    display: flex;
+    width: 100%;
+    height: 40px;
+      
+    cursor: pointer;
+  
+    justify-content: center;
+    align-items: center;
+      
+  
+    background: linear-gradient(to bottom right, #d43c2e, #932b21);
+    color: #FFFFFF;
+    outline: transparent;
+    border: none;
+  
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+}
+.agregar-carrito a {
+    text-decoration: none;
+    text-transform: uppercase;
+    background: none;
+    font-size: small;
+}
+
+.agregar-carrito:not([disabled]):focus {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(247, 68, 68, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+  
+.agregar-carrito:not([disabled]):hover {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 71, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+/*-------------------------------------------------------------*/
+@media (max-width: 768px) {
+    .detalle-container {
+        margin-bottom: 50px ;
+        margin-inline: 30px;
+        flex-direction: column;
+    }
+
+    .img-container {
+        display: flex;
+        aspect-ratio:unset;
+        width: 100%;
+        overflow: scroll;
+        gap:0;
+        scroll-snap-type: x mandatory;
+
+        
+    }
+    .img {
+        width: 100%;
+        object-fit: cover;
+        overflow:unset;
+        scroll-snap-align: center;
+    }
+    .informacion-container {
+        width: 100%;
+    }
+}

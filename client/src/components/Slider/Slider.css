@@ -1,0 +1,36 @@
+.slider-container {
+    width: 100%;
+    height: auto;
+    place-content: center;
+
+}
+
+.slider-frame {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto 0;
+}
+
+.slider-frame ul {
+    display: flex;
+    padding: 0;
+    width: 500%;
+
+    animation: slide 50s infinite linear;
+}
+
+.slider-frame li {
+    list-style: none;
+    width: 100%;
+}
+
+.slider-frame img {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+@keyframes slide {
+    0% {margin-left: 0%;}
+    100% {margin-left: -400%;}
+}

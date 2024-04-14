@@ -1,0 +1,40 @@
+.boton-normal-container {
+    display: flex;
+    width: auto;
+}
+  
+.boton-normal {
+    display: flex;
+    padding: 5px 15px;
+    margin-right: 5px;
+    cursor: pointer;
+  
+    justify-content: center;
+    align-items: center;
+      
+  
+    background: none;
+    border-radius: 5px;
+    border: none;
+    outline: 1px solid rgba(49, 49, 49, 0.596);
+  
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+}
+      
+.boton-normal:not([disabled]):focus {
+    background: rgba(239, 71, 71, 0.5);
+    outline: 1px solid rgba(255, 105, 105, 0.685); 
+}
+    
+.boton-normal:not([disabled]):hover {
+    background: rgba(239, 71, 71, 0.5);
+    outline: 1px solid rgba(255, 105, 105, 0.685);
+}
+
+.boton-normal::selection{
+    background: rgba(239, 71, 71, 0.5);
+    outline: 1px solid rgba(255, 105, 105, 0.685);
+}

@@ -1,0 +1,21 @@
+.tabla-container {
+    width: 100%;
+    padding-inline: 50px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 50px;
+}
+.titulo {
+    font-size: x-large;
+    text-transform: uppercase;
+    background: none;
+}
+.tabla-fila {
+    text-align: center;
+}
+
+.tabla-fila td {
+    padding: 8px;
+    line-height: 20px;
+    border-top: solid 1px rgba(49, 49, 49, 0.596)
+}

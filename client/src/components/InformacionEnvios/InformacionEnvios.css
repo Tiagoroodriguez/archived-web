@@ -1,0 +1,39 @@
+.info-container {
+    height: 300px;
+    display: flex;
+    margin-inline: 50px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.info {
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.info i {
+    font-size: 50px;
+    text-align: center;
+}
+
+.linea {
+    background: var(--color-secundario);
+    height: 100px;
+    width: 2px;
+}
+
+@media (max-width: 768px) {
+    .info {
+        display: none;
+    }
+    .linea {
+        display: none;
+    }
+
+    .celu {
+        display: flex;
+        
+    }
+}
