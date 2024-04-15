@@ -11,6 +11,7 @@ export function Inicio() {
     <>
       <main>
         <Slider />
+        <div> Nose si esta funcionando </div>
         <Nosotros />
         <InformacionEnvios />
       </main>
