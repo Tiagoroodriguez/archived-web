@@ -10,8 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin:
-      'https://archived-web-git-master-tiagoroodriguezs-projects.vercel.app',
+    origin: 'archived-web-six.vercel.app',
     credentials: true,
   })
 );
