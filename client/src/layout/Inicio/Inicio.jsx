@@ -1,7 +1,6 @@
 import { InformacionEnvios } from '../../components/InformacionEnvios/InformacionEnvios';
 import { Slider } from '../../components/Slider/Slider';
 
-import { Nosotros } from '../../components/Nosotros/Nosotros';
 import { useAuth } from '../../context/AuthContext';
 
 export function Inicio() {
@@ -11,8 +10,7 @@ export function Inicio() {
     <>
       <main>
         <Slider />
-        <div> Nose si esta funcionando </div>
-        <Nosotros />
+        <div className='pruebas'> Nose si esta funcionando </div>
         <InformacionEnvios />
       </main>
     </>
