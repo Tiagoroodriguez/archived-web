@@ -1,3 +1,4 @@
+import Bento from '../../components/Bento/Bento';
 import { InformacionEnvios } from '../../components/InformacionEnvios/InformacionEnvios';
 import { Slider } from '../../components/Slider/Slider';
 
@@ -10,7 +11,7 @@ export function Inicio() {
     <>
       <main>
         <Slider />
-        <div className='pruebas'> Nose si esta funcionando </div>
+        <Bento />
         <InformacionEnvios />
       </main>
     </>
