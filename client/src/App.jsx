@@ -15,7 +15,7 @@ import ProductosForm from './layout/ProductosForm/ProductosForm';
 import ProteccionRutas from './ProteccionRutas';
 import styled from 'styled-components';
 import { ProductProvider } from './context/ProductContext';
-import { Header } from './components/Header/Header';
+import Header from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 
 const Background = styled.div`
