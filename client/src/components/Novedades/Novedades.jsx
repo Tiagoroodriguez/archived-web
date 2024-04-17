@@ -1,50 +1,30 @@
 import { Producto } from '../Producto/Producto';
 import { BotonColor } from '../BotonColor/BotonColor';
 import './Novedades.css';
+import { useEffect } from 'react';
+import { useProduct } from '../../context/ProductContext';
 
 export function Novedades() {
-    return (
-        <section className='novedades-section'>
-            <div className="mensaje-container">
-                <p>"No somos una marca, somos un movimiento"</p>
-            </div>
+  const { getProducts, products } = useProduct();
 
-            <div className="novedades-container">
-                <Producto 
-                nombreProducto="Lacosting" 
-                categoriaProducto="Remera oversize"
-                precioProducto={"20.000"}
-                imagenProducto="download.webp"
-                />
+  useEffect(() => {
+    getProducts();
+  }, []);
 
-                <Producto 
-                nombreProducto="Destroy" 
-                categoriaProducto="Remera oversize"
-                precioProducto={"20.000"}
-                imagenProducto="download.webp"
-                />
+  return (
+    <section className='novedades-section'>
+      <div className='mensaje-container'>
+        <p>No somos una marca, somos un movimiento</p>
+      </div>
 
-                <Producto 
-                nombreProducto="Archived" 
-                categoriaProducto="Remera oversize"
-                precioProducto={"40.000"}
-                imagenProducto="download.webp"
-                />
-
-                <Producto 
-                nombreProducto="Lover" 
-                categoriaProducto="Remera oversize"
-                precioProducto={"10.000"}
-                imagenProducto="download.webp"
-                />
-                
-            </div>
-
-            <BotonColor
-            textoBoton="Ver todos los productos"
-            linkBoton="tienda"
-            />
-
-        </section>
-    )
+      <article className='novedades-container'>
+        {products.map((product) => (
+          <Producto
+            key={product._id}
+            producto={product}
+          />
+        ))}
+      </article>
+    </section>
+  );
 }

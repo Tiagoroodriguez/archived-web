@@ -2,10 +2,10 @@ import './Slider.css';
 
 export function Slider() {
   return (
-    <section>
+    <section className='slider-section'>
       <div className='slider-container'>
         <div className='slider-frame'>
-          <ul>
+          <ul className='slider-list'>
             <li>
               <img
                 src='/images/slider/scarface.webp'
