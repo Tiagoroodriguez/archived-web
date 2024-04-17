@@ -11,12 +11,11 @@ function Header() {
   const handleClick = () => {
     setClicked(!clicked); // Cambiamos el estado local al hacer clic en el icono
   };
-
   return (
     <header>
       <nav className='nav-container'>
-        <div>
-          <ul className={clicked ? 'nav-bar active' : 'nav-bar'}>
+        <div className='nav-link'>
+          <ul className={clicked ? 'nav-bar active links' : 'nav-bar links'}>
             <li>
               <Link to='/'>Inicio</Link>
             </li>
@@ -52,6 +51,7 @@ function Header() {
                 </li>
               </>
             )}
+            <li className='mobile-cuenta'>Carrito</li>
           </ul>
         </div>
 
@@ -62,12 +62,15 @@ function Header() {
           <i className={clicked ? 'bi bi-x-lg' : 'bi bi-list'}></i>
         </div>
 
-        <Link to='/'>
+        <Link
+          to='/'
+          className='nav-logo'
+        >
           <LogoTexto />
         </Link>
 
-        <div>
-          <ul className='nav-bar'>
+        <div className='nav-cuenta'>
+          <ul className='nav-bar cuenta'>
             {isAuthenticated ? (
               <>
                 <li>
@@ -94,6 +97,9 @@ function Header() {
                 </li>
               </>
             )}
+            <li>
+              <i className='bi bi-cart4'></i>
+            </li>
           </ul>
         </div>
       </nav>
