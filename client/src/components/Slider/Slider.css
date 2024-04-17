@@ -27,7 +27,6 @@
 .slider-frame img {
     width: 100%;
     aspect-ratio: 16/9;
-    filter: brightness(50%);
 }
 
 @keyframes slide {
@@ -52,12 +51,14 @@
 }
 
 /* Media Query for Mobile Devices */
+/*
 @media only screen and (max-width: 600px) {
 
     .slider-text {
         font-size: 1.5rem;
         width: 100%;
-        top: 35%; /* Ajusta la posición vertical del texto */
-        transform: translate(-50%, -50%) scale(0.8); /* Ajusta la escala del texto */
+        top: 35%; Ajusta la posición vertical del texto 
+        transform: translate(-50%, -50%) scale(0.8); Ajusta la escala del texto
     }
-}*/
+}
+*/
