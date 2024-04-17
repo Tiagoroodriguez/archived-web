@@ -28,7 +28,6 @@ header {
 
 @keyframes adjust-header {
     to {
-        background: rgba(0, 0, 0, 0.253);
         backdrop-filter: blur(20px);
     }
 }
@@ -50,11 +49,11 @@ header {
 .nav-bar li a {
     text-decoration: none;
     font-size: 15px;
-    color: #fff;
-    transition: 0.3s ease-in-out;
+    transition: 0.2s ease-in-out;
+    text-transform: uppercase;
 }
 .nav-bar li a:hover{
-    color: var(--color-secundario);
+    font-weight: bold;
     text-decoration: underline;
 }
 
@@ -74,7 +73,6 @@ header {
 }
   
 .mobile i {
-    color: #fff;
     align-items: center;
 }
 

@@ -1,7 +1,8 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './DetalleProducto.css';
 import { InformacionEnvios } from '../../components/InformacionEnvios/InformacionEnvios';
+import { Boton } from '../../components/Boton/Boton';
 import { useProduct } from '../../context/ProductContext';
 
 export function DetalleProducto() {
@@ -68,9 +69,10 @@ export function DetalleProducto() {
               <input type='number'></input>
             </div>
 
-            <button className='agregar-carrito'>
-              <Link to='#'>Agregar al carrito</Link>
-            </button>
+            <Boton
+              type='sudmit'
+              textBoton='Agregar al carrito'
+            />
           </div>
         </section>
       )}

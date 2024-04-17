@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
 import './ProductosForm.css';
-import { BotonRojo } from '../../components/BotonRojo/BotoRojo';
+import { Boton } from '../../components/Boton/Boton';
 import { useProduct } from '../../context/ProductContext';
 
 function ProductosForm() {
@@ -67,7 +67,7 @@ function ProductosForm() {
           {...register('cant_xxl')}
         />
         <div className='boton-container'>
-          <BotonRojo
+          <Boton
             textBoton='Guardar'
             type='sudmit'
           />
