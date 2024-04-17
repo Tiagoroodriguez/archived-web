@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../context/AuthContext';
 
-import { BotonRojo } from '../../components/BotonRojo/BotoRojo';
+import { Boton } from '../../components/Boton/Boton';
 
 import './IniciarSesion.css';
 
@@ -64,7 +64,7 @@ export function IniciarSesion() {
               <p className='error'>Contraseña es requerida</p>
             )}
 
-            <BotonRojo
+            <Boton
               type='sudmit'
               textBoton='Iniciar sesion'
             />

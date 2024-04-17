@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
-import { BotonRojo } from '../../components/BotonRojo/BotoRojo';
+import { Boton } from '../../components/Boton/Boton';
 
 import './CrearCuenta.css';
 
@@ -90,7 +90,7 @@ export function CrearCuenta() {
               <p className='error'>La contraseña es requerida</p>
             )}
 
-            <BotonRojo
+            <Boton
               type='sudmit'
               textBoton='Crear cuenta'
             />

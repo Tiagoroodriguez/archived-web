@@ -2,8 +2,8 @@ footer {
     bottom: 0;
     width: 100%;
     height: auto;
-    border-top: 1px solid rgba(49, 49, 49, 0.596);
-    background: var(--color-primario);
+    border-top: 1px solid var(--color-secundario);
+    background: none;
     overflow: hidden;
 }
 .desktop-footer {
@@ -51,7 +51,15 @@ footer {
 
 .suscribirse input:focus {
     outline: none;
-    border-bottom: solid 1px #932b21;
+    border-bottom: solid 1px var(--color-texto);
+}
+
+.final {
+    background: var(--color-texto);
+    color: #fbfbff;
+    padding: 10px;
+    text-align: center;
+    font-size: small;
 }
 
 @media (max-width: 768px) {
