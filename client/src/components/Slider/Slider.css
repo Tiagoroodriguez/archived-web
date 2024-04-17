@@ -2,7 +2,6 @@
     width: 100%;
     height: auto;
     place-content: center;
-
 }
 
 .slider-frame {
@@ -28,9 +27,37 @@
 .slider-frame img {
     width: 100%;
     aspect-ratio: 16/9;
+    filter: brightness(50%);
 }
 
 @keyframes slide {
     0% {margin-left: 0%;}
     100% {margin-left: -400%;}
 }
+/*
+.slider-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.slider-text p {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 600px) {
+
+    .slider-text {
+        font-size: 1.5rem;
+        width: 100%;
+        top: 35%; /* Ajusta la posición vertical del texto */
+        transform: translate(-50%, -50%) scale(0.8); /* Ajusta la escala del texto */
+    }
+}*/

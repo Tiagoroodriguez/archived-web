@@ -58,6 +58,15 @@ header {
     text-decoration: underline;
 }
 
+.links {
+    justify-content: flex-start;
+}
+.cuenta {
+    justify-content: flex-end;
+}
+
+
+
 /*------------------------------------------------------------------------------------------*/
 
 .mobile {
@@ -74,15 +83,33 @@ header {
 }
 
 /*------------------------------------------------------------------------------------------*/
+.nav-cuenta{
+    width: 500px;
+}
+
+.nav-logo {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-link {
+    width: 500px;
+}
+/*------------------------------------------------------------------------------------------*/
 
 @media screen and (max-width: 769px) {
-    .nav-container {
+    header {
         display: flex;
-        justify-content: flex-end;
+    }
+    .nav-container {
         padding-inline: 20px;
+        display:block;
+        width: 100%;
     }
     .mobile-cuenta {
         display: block;
+        font-size: 15px;
     }
 
     .mobile-cuenta-primero {
@@ -108,11 +135,16 @@ header {
     .nav-bar.active {
         left: 0;
     }
+
+    .nav-logo {
+        justify-content: flex-end;
+        width: 100%;
+    }
   
     .nav-bar li {
       margin-bottom: 15px;
     }
-  
+
     .mobile {
       display: block;
     }
