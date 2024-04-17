@@ -7,9 +7,7 @@
     color: var(--color-texto);
 }
 :root {
-    --color-primario: #101415;
-    --color-secundario: rgb(139, 138, 138);
-    --color-texto: #FBFBFB;
-    --color-rojo: #932b21;
-    
+    --color-primario: #f5ecd8;
+    --color-secundario: #301e129f;
+    --color-texto: #452B1A;
 }
