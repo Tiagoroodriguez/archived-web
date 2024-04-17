@@ -1,4 +1,4 @@
-import { BotonColor } from '../../components/BotonColor/BotonColor';
+import { Boton } from '../../components/Boton/Boton';
 import './Contacto.css';
 
 export function Contacto() {
@@ -28,12 +28,11 @@ export function Contacto() {
 
             <label>Mensaje</label>
             <textarea className='contenido'></textarea>
+            <Boton
+              type='sudmit'
+              textBoton='Enviar'
+            />
           </div>
-
-          <BotonColor
-            textoBoton='Enviar'
-            linkBoton='#'
-          />
         </form>
       </section>
     </>

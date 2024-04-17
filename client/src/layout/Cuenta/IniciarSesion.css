@@ -36,7 +36,8 @@
 }
 
 .iniciar-sesion-cambio a:hover {
-    color:#932b21;
+    color:var(--color-secundario);
+    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
