@@ -1,12 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 header {
-    top: 0;
-    width:100%;
-    z-index: 1000;
-    overflow: hidden;
     position: sticky;
+    top:0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/*------------------------------------------------------------------------------------------*/
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 50px;
+
     background: transparent;
-    backdrop-filter: blur(10px);
-   
+    
     animation: adjust-header linear both;
     animation-timeline: scroll();
     animation-range: 0 100px;
@@ -19,242 +33,97 @@ header {
     }
 }
 
+/*------------------------------------------------------------------------------------------*/
 
-.desktop-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "search logo cuenta";
-    background: none;
-    height: 70px;
-    margin: 0px 50px;
-}
-
-.desktop-header-logo {
-    display: flex;
-    align-self: center;
-    justify-self: center;
-    grid-area: logo;
-    background: none;
-}
-.desktop-header-logo a {
-    text-decoration: none;
-}
-
-.search-container {
-    display: flex;
-    align-self: center;
-    justify-self: self-start;
-    grid-area: search;
-    background: none;
-}
-
-.search-container input[type="text"] {
-    padding: 8px 20px 8px 8px; 
-    font-size: 14px;
-    border: none;
-    border-bottom: 1px solid var(--color-secundario);
-    background: none;
-    width: 150px;
-    color: #fff;
-}
-
-.search-container input[type="text"]:focus {
-    outline: none;
-    border-bottom: 1px solid #ffff;
-}
-
-.search-container i {
-    color: #fff;
-    position: relative;
-    align-self: center;
-    right: 18px;
-    cursor: pointer;  
-    background: none; 
-}
- 
-
-.desktop-header-cuenta {
-    display: flex;
-    align-self: center;
-    justify-self: self-end;
-    color: #fff;
-    grid-area: cuenta;
-    background: none;
-}
-.desktop-header-cuenta-item {
-    padding: 15px;
+.nav-bar {
     display: flex;
     align-items: center;
-    background: none;
+    justify-content: center;
+    gap: 25px;
 }
-
-.desktop-header-cuenta a {
+  
+.nav-bar li {
+    list-style: none;
+    position: relative;
+}
+  
+.nav-bar li a {
     text-decoration: none;
+    font-size: 15px;
     color: #fff;
-    font-size: small;
+    transition: 0.3s ease-in-out;
 }
-.desktop-header-cuenta a:hover {
+.nav-bar li a:hover{
     color: var(--color-secundario);
-    text-decoration-line: underline;
-}
-.desktop-header-cuenta div {
-    padding-right: 0;
-    padding-left: 0;
+    text-decoration: underline;
 }
 
-.desktop-header-cuenta i {
-    cursor: pointer;
-    padding-left: 0;
-    padding-right: 0;
-}
+/*------------------------------------------------------------------------------------------*/
 
-/*NAV*/
-.desktop-nav {
-    background: none;
+.mobile {
+    display: none;
 }
-.desktop-nav-lista{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background: none;
-    top: 0 ;
-    width: 100%;
-    text-align: center;
-}
-
-.desktop-nav-item {
-    display: inline-block;
-    background: none;
-}
-
-.desktop-nav-item a {
-    display: block;
+  
+.mobile i {
     color: #fff;
-    padding: 10px 15px;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    border-top: 1px solid transparent;
-    background: none;
+    align-items: center;
 }
 
-.desktop-nav-item a:hover {
-    color: rgb(139, 138, 138);
-    border-bottom: 1px solid var(--color-secundario);
-    border-top: 1px solid var(--color-secundario);
-}
-
-.mobile-header {
+.mobile-cuenta {
     display: none;
 }
 
-@media (max-width: 768px) {
-    header {
-        position: static;
-        backdrop-filter: none;
-        animation: none;
-    }
+/*------------------------------------------------------------------------------------------*/
 
-    .desktop-header, .desktop-nav {
-        display: none;
+@media screen and (max-width: 769px) {
+    .nav-container {
+        display: flex;
+        justify-content: flex-end;
+        padding-inline: 20px;
     }
-    
-    .mobile-header{
+    .mobile-cuenta {
         display: block;
-        margin: 0 auto;
-        height: 90px;
-        color: #fff;
-        background: transparent;
     }
-    
-    .mobile-nav{
-        --state-close: scale(0);
-        --state-hamburguer:scale(1);
-        --state-menu: translateY(-100%);
 
-        display: grid;
-        justify-content: space-between;
-        align-items: center;
-        grid-template-columns: repeat(2, max-content);
+    .mobile-cuenta-primero {
+        margin-top: 40px;
     }
-    
-    .mobile-nav:target{
-        --state-menu: translateY(0);
-        --state-close: scale(1);
-        --state-hamburguer:scale(0);
-    }
-    
-    .mobile-nav-logo{
-        width: 50px;
-        height: 50px;
-        z-index: 20;
-        margin: 20px 30px;
 
+    .nav-bar {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      position: fixed;
+      gap: 0;
+      top: 60px;
+      left: -250px;
+      width: 250px;
+      height: 100vh;
+      background: var(--color-primario);
+      padding: 40px 50px;
+      transition: 0.3s ease-in-out;
     }
     
-    .mobile-nav-open, .mobile-nav-close{
-        cursor: pointer;
-        grid-column: -2/-1;
-        grid-row: 1/2;
-        transition: .4s transform;
-        margin-right: 30px;
-        scale: 2;
-        z-index: 25;
-
-    }
-    
-    .mobile-nav-open{
-        transform: var(--state-hamburguer);
-    }
-    
-    .mobile-nav-close{
-        transform: var(--state-close);
-    }
-    
-    .mobile-nav-lista{
-        background: var(--color-primario);
-        position: absolute;
-        top: 0;
-        bottom: 100px;
+    .nav-bar.active {
         left: 0;
-        right: 0;
-        padding: 0;
-    
-        display: grid;
-        align-content: center;
-        text-align: end;
-        gap: 20px;
-        padding-right: 25px;
-    
-        transform: var(--state-menu);
-        transition: .3s transform;
-        z-index: 15;
     }
-    
-    .mobile-nav-item{
-        list-style: none;
-        border-bottom: 1px solid rgba(49, 49, 49, 0.596);
-        
+  
+    .nav-bar li {
+      margin-bottom: 15px;
     }
-    
-    .mobile-cuenta-item{
-        text-decoration: none;
-        position: relative;
-        font-size: 1.2rem;
-        background: none;
+  
+    .mobile {
+      display: block;
     }
-    
-    .mobile-nav-link{
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.2rem;
-        letter-spacing: 2px;
-        background: none;
-    }
-    
-    .cuenta {
-        margin-top: 100px;
+  
+    .mobile i {
+        font-size: 24px;
+        cursor: pointer;
+        position: absolute;
+        top: 15px;
+        left: 18px;
     }
 }
 
-    
+/*------------------------------------------------------------------------------------------*/

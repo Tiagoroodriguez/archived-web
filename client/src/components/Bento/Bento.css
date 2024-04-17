@@ -66,3 +66,11 @@
 .item-5 { 
     grid-area: 2 / 3 / 4 / 4; 
 }
+
+/*-----------------------------------------------------------------------------------*/
+
+@media screen and (max-width: 769px) {
+    .grid-container {
+        margin-inline:20px;
+    }
+}
