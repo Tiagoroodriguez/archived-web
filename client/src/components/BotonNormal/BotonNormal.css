@@ -16,8 +16,9 @@
     background: none;
     border-radius: 5px;
     border: none;
-    outline: 1px solid rgba(49, 49, 49, 0.596);
-  
+    outline: 1px solid var(--color-texto);
+    color: var(--color-texto);
+
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;

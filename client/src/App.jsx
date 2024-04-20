@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from 'sonner';
 import Layout from './components/ScrollToTop/Layout';
 import { AuthProvider } from './context/AuthContext';
 
@@ -34,7 +34,7 @@ const Background = styled.div`
   );
   background-size: cover;
 `;
-/*a*/
+
 function App() {
   return (
     <AuthProvider>
@@ -117,10 +117,7 @@ function App() {
           <Footer />
         </BrowserRouter>
       </ProductProvider>
-      <Toaster
-        position='bottom-right'
-        reverseOrder={false}
-      />
+      <Toaster richColors />
     </AuthProvider>
   );
 }

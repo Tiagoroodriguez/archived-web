@@ -2,12 +2,13 @@
     width: 100%;
     height: auto;
     place-content: center;
+    position: relative;
 }
 
 .slider-frame {
     width: 100%;
     height: auto;
-    overflow: hidden;
+    overflow-x: clip;
     margin: 0 auto 0;
 }
 
@@ -27,6 +28,16 @@
 .slider-frame img {
     width: 100%;
     aspect-ratio: 16/9;
+}
+
+.blur {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.blur img {
+    filter: blur(50px);
 }
 
 @keyframes slide {
