@@ -1,12 +1,18 @@
 import { Router } from 'express';
-import { login, logout, profile, register, verifyToken } from '../controllers/auth.controller.js';
-import {authRequired} from '../middlewares/validateToken.js'
-import {validateShema} from '../middlewares/validator.middleware.js'
-import {registerSchema, loginSchema} from '../schemas/auth.schema.js'
+import {
+  login,
+  logout,
+  profile,
+  register,
+  verifyToken,
+} from '../controllers/auth.controller.js';
+import { authRequired } from '../middlewares/validateToken.js';
+import { validateShema } from '../middlewares/validator.middleware.js';
+import { registerSchema, loginSchema } from '../schemas/auth.schema.js';
 
 const router = Router();
 
-router.post('/register', validateShema(registerSchema),register);
+router.post('/register', validateShema(registerSchema), register);
 
 router.post('/login', validateShema(loginSchema), login);
 

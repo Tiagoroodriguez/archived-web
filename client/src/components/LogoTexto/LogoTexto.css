@@ -5,7 +5,7 @@
 
 .logo {
     display: flex;
-    color: #fff;
+    color: var(--color-texto);
     align-self: center;
     justify-self: center;
     grid-area: logo;

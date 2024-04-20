@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { registerRequest, loginRequest, verifyTokeRequest } from '../api/auth';
 import Cookies from 'js-cookie';
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
 
 export const AuthContext = createContext();
 
