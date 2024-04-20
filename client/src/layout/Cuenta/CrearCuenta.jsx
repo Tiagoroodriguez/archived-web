@@ -42,13 +42,14 @@ export function CrearCuenta() {
           onSubmit={onSubmit}
         >
           <div className='texto-container'>
-            <p>Comprá más rapido y llevá el control de tus pedidos</p>
+            <p>Crea tu cuenta</p>
           </div>
 
           <div className='datos-container'>
             <label>Nombre</label>
             <input
               type='text'
+              placeholder='Ingresa tu nombre'
               className='nombre'
               {...register('nombre', { required: true })}
             />
@@ -57,6 +58,7 @@ export function CrearCuenta() {
             <label>Apellido</label>
             <input
               type='text'
+              placeholder='Ingresa tu apellido'
               className='apellido'
               {...register('apellido', { required: true })}
             />
@@ -83,6 +85,7 @@ export function CrearCuenta() {
             <label>Contraseña</label>
             <input
               type='password'
+              placeholder='*********'
               className='contraseña'
               {...register('password', { required: true })}
             />

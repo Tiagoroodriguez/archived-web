@@ -2,7 +2,18 @@ import Product from '../models/product.model.js';
 
 export const getProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const { limit, categoria } = req.params;
+    let query = Product.find().sort({ _id: -1 });
+
+    if (limit) {
+      query = query.limit(parseInt(limit));
+    }
+
+    if (categoria) {
+      query = query.where('categoria').equals(categoria);
+    }
+
+    const products = await query;
     res.json(products);
   } catch (error) {
     return res.status(500).json({ message: 'Something went wrong' });

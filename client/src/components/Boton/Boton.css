@@ -5,7 +5,7 @@
     cursor: pointer;
     text-transform: uppercase;
 
-    color: #FFFFFF;
+    color: var(--color-primario);
     outline: transparent;
     border: none;
     background: linear-gradient(to bottom right, #301e12, var(--color-texto));
