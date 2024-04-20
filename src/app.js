@@ -10,7 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://archived-web-six.vercel.app',
     /* produccion: https://archived-web-six.vercel.app*/
     /* dev: http://localhost:5173*/
     credentials: true,
