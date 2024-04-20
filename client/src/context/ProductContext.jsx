@@ -23,9 +23,14 @@ export function ProductProvider({ children }) {
     console.log(res);
   };
 
-  const getProducts = async () => {
+  const getProducts = async (limit = null, categoria = null) => {
     try {
-      const res = await getProductsRequest();
+      let res;
+      if (limit !== null || categoria !== null) {
+        res = await getProductsRequest(limit, categoria);
+      } else {
+        res = await getProductsRequest();
+      }
       setProducts(res.data);
       console.log(res.data);
     } catch (error) {
