@@ -20,10 +20,6 @@ export function Tienda() {
     <>
       <main>
         <section className='tienda'>
-          <div className='mensaje-container'>
-            <p>LA CALIDAD NO TIENE PRECIO, PERO SI NOMBRE</p>
-          </div>
-
           <nav className='tienda-filtros'>
             <BotonNormal textoBoton='Todos los productos' />
             <BotonNormal textoBoton='Archived Collection' />

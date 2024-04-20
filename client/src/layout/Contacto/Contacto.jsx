@@ -10,24 +10,29 @@ export function Contacto() {
           className='contacto'
         >
           <div className='contacto-texto-container'>
-            <span>Envianos tu duda</span>
+            <p>Envianos tu duda</p>
           </div>
 
           <div className='datos-container'>
             <label>Correo electrónico</label>
             <input
               type='email'
+              placeholder='ejemplo@gmail.com'
               className='mail'
             />
 
             <label>Asunto</label>
             <input
               type='text'
+              placeholder='Asunto del mensaje'
               className='asunto'
             />
 
             <label>Mensaje</label>
-            <textarea className='contenido'></textarea>
+            <textarea
+              className='contenido'
+              placeholder='Ingresa tu consulta'
+            ></textarea>
             <Boton
               type='sudmit'
               textBoton='Enviar'

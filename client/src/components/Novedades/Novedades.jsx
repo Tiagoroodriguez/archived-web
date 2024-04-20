@@ -1,5 +1,4 @@
 import { Producto } from '../Producto/Producto';
-import { BotonColor } from '../BotonColor/BotonColor';
 import './Novedades.css';
 import { useEffect } from 'react';
 import { useProduct } from '../../context/ProductContext';
@@ -8,13 +7,13 @@ export function Novedades() {
   const { getProducts, products } = useProduct();
 
   useEffect(() => {
-    getProducts();
+    getProducts(4, 'remera');
   }, []);
 
   return (
     <section className='novedades-section'>
-      <div className='mensaje-container'>
-        <p>No somos una marca, somos un movimiento</p>
+      <div className='novedades-text'>
+        <p>Conoce nuestra ultimo drop</p>
       </div>
 
       <article className='novedades-container'>

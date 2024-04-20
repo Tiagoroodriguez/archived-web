@@ -28,7 +28,7 @@ function Header() {
             {isAuthenticated ? (
               <>
                 <li className='mobile-cuenta mobile-cuenta-primero'>
-                  <Link to='#'>Bienvenido {user ? user.nombre : ''}</Link>
+                  <Link to='#'>Hola {user ? user.nombre : ''}</Link>
                 </li>
                 <li className='mobile-cuenta'>
                   <Link
@@ -74,7 +74,7 @@ function Header() {
             {isAuthenticated ? (
               <>
                 <li>
-                  <Link to='#'>Bienvenido {user ? user.nombre : ''}</Link>
+                  <Link to='#'>Hola {user ? user.nombre : ''}</Link>
                 </li>
                 <li>
                   <Link

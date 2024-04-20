@@ -33,6 +33,9 @@ export function IniciarSesion() {
           onSubmit={onSubmit}
           className='iniciar-sesion'
         >
+          <div className='texto-container'>
+            <p>Inicia sesión</p>
+          </div>
           <div className='datos-container'>
             {singInErrors.map((error, i) => (
               <div
@@ -57,6 +60,7 @@ export function IniciarSesion() {
             <label>Contraseña</label>
             <input
               type='password'
+              placeholder='*********'
               className='contraseña'
               {...register('password', { required: true })}
             />
@@ -66,7 +70,7 @@ export function IniciarSesion() {
 
             <Boton
               type='sudmit'
-              textBoton='Iniciar sesion'
+              textBoton='Iniciar sesión'
             />
           </div>
 

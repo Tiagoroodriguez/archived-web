@@ -12,10 +12,15 @@
     flex-direction: column;
 }
 
+.info p {
+    color: var(--color-texto);
+}
+
 
 .info i {
     font-size: 50px;
     text-align: center;
+    color: var(--color-texto);
 }
 
 .linea {
@@ -34,6 +39,6 @@
 
     .celu {
         display: flex;
-        
     }
+
 }
