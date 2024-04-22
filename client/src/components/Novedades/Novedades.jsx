@@ -3,17 +3,17 @@ import './Novedades.css';
 import { useEffect } from 'react';
 import { useProduct } from '../../context/ProductContext';
 
-export function Novedades() {
+export function Novedades({ categoria, cantidad, titulo }) {
   const { getProducts, products } = useProduct();
 
   useEffect(() => {
-    getProducts(4, 'remera');
+    getProducts(cantidad, categoria);
   }, []);
 
   return (
     <section className='novedades-section'>
       <div className='novedades-text'>
-        <p>Conoce nuestra ultimo drop</p>
+        <p>{titulo}</p>
       </div>
 
       <article className='novedades-container'>
