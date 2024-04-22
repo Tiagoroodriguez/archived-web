@@ -48,6 +48,7 @@
 
 .crear-cuenta-cambio {
     margin-bottom: 50px;
+    
 }
 
 .crear-cuenta-cambio a:hover {
@@ -75,8 +76,15 @@
 @media (max-width: 768px) {
     .texto-container{
         width: 80%;
+        justify-content: center;
     }
+
     .datos-container {
         width: 80%;
+    }
+
+    .crear-cuenta {
+        align-items: center;
+        justify-content: flex-start;
     }
 }
