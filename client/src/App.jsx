@@ -27,11 +27,6 @@ const Background = styled.div`
   min-height: 100vh;
   width: 100%;
   background-color: var(--color-primario);
-  background-image: radial-gradient(
-    ellipse 90% 80% at 50% -20%,
-    rgba(61, 68, 0, 0.37),
-    rgba(255, 255, 255, 0)
-  );
   background-size: cover;
 `;
 
