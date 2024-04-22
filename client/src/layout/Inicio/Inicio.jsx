@@ -11,9 +11,17 @@ export function Inicio() {
     <>
       <main>
         <Slider />
-        <Novedades />
+        <Novedades
+          categoria='remera'
+          cantidad='4'
+          titulo={'Conoce nuestro ultimo drop'}
+        />
         <Bento />
-        <Novedades />
+        <Novedades
+          categoria='remera'
+          cantidad='4'
+          titulo={'Remeras | Archived 222'}
+        />
         <InformacionEnvios />
       </main>
     </>
