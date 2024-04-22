@@ -29,14 +29,6 @@ export function CrearCuenta() {
   return (
     <>
       <section>
-        {registerErrors.map((error, i) => (
-          <div
-            className='cartel-error'
-            key={i}
-          >
-            {error}
-          </div>
-        ))}
         <form
           className='crear-cuenta'
           onSubmit={onSubmit}
@@ -46,6 +38,14 @@ export function CrearCuenta() {
           </div>
 
           <div className='datos-container'>
+            {registerErrors.map((error, i) => (
+              <div
+                className='cartel-error'
+                key={i}
+              >
+                {error}
+              </div>
+            ))}
             <label>Nombre</label>
             <input
               type='text'
