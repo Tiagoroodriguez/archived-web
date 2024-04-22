@@ -61,4 +61,8 @@
         width: 80%;
 
     }
+
+    .contacto {
+        justify-self: flex-start;
+    }
 }

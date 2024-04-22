@@ -10,6 +10,25 @@
     height: auto;
     overflow-x: clip;
     margin: 0 auto 0;
+    position: relative;
+}
+
+.slider-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    color: var(--color-primario);
+}
+
+.slider-text h1 {
+    font-size: 5rem;
+}
+
+.slider-text p {
+    font-size: 1.5rem;
 }
 
 .slider-frame ul {
@@ -62,14 +81,14 @@
 }
 
 /* Media Query for Mobile Devices */
-/*
-@media only screen and (max-width: 600px) {
 
-    .slider-text {
-        font-size: 1.5rem;
-        width: 100%;
-        top: 35%; Ajusta la posición vertical del texto 
-        transform: translate(-50%, -50%) scale(0.8); Ajusta la escala del texto
+@media (max-width: 768px) {
+
+    .slider-text h1 {
+    font-size: 3rem;
+    }
+
+    .slider-text p {
+    font-size: 1rem;
     }
 }
-*/

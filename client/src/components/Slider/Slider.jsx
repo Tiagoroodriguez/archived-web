@@ -5,6 +5,11 @@ export function Slider() {
     <section className='slider-section'>
       <div className='slider-container'>
         <div className='slider-frame'>
+          <div className='slider-text'>
+            <h1>Archived 222</h1>
+            <p>Nosomos solo una marca, somos un movimiento</p>
+          </div>
+
           <ul className='slider-list'>
             <li>
               <img

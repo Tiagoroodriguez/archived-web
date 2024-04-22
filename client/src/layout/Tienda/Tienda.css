@@ -1,7 +1,29 @@
 .tienda{
     margin: auto 50px;
   }
-  
+
+.tienda-header {
+    width: 100%;
+    margin: 0;
+    position: relative;
+}
+
+.tienda-header img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.tienda-header h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  
+    color: var(--color-primario);
+    font-size: 3rem;
+    text-align: center;
+}
+
 .mensaje-container {
     display: flex;
     width: 100%;
@@ -41,5 +63,13 @@
 
     .tienda {
         margin-inline: 20px;
+    }
+
+    .tienda-header img {
+        height: 200px;
+    }
+
+    .tienda-header h1 {
+        font-size: 2rem;
     }
 }
