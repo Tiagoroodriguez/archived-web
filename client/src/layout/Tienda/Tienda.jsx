@@ -19,6 +19,10 @@ export function Tienda() {
   return (
     <>
       <main>
+        <div className='tienda-header'>
+          <img src='/images/tienda/perchero.webp' />
+          <h1>Tienda Oficial de Archived 222</h1>
+        </div>
         <section className='tienda'>
           <nav className='tienda-filtros'>
             <BotonNormal textoBoton='Todos los productos' />
