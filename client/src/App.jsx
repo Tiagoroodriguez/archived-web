@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import Layout from './components/ScrollToTop/Layout';
+import styled from 'styled-components';
 import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CarritoContext';
 
 import { Inicio } from './layout/Inicio/Inicio';
 import { IniciarSesion } from './layout/Cuenta/IniciarSesion';
@@ -13,7 +15,6 @@ import { Contacto } from './layout/Contacto/Contacto';
 import ProductosForm from './layout/ProductosForm/ProductosForm';
 
 import ProteccionRutas from './ProteccionRutas';
-import styled from 'styled-components';
 import { ProductProvider } from './context/ProductContext';
 import Header from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
@@ -34,83 +35,85 @@ function App() {
   return (
     <AuthProvider>
       <ProductProvider>
-        <Background />
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route
-              path='/'
-              element={
-                <Layout>
-                  <Inicio />
-                </Layout>
-              }
-            />
-            <Route
-              path='/login'
-              element={
-                <Layout>
-                  <IniciarSesion />
-                </Layout>
-              }
-            />
-            <Route
-              path='/register'
-              element={
-                <Layout>
-                  <CrearCuenta />
-                </Layout>
-              }
-            />
-
-            <Route
-              path='/tienda'
-              element={
-                <Layout>
-                  <Tienda />
-                </Layout>
-              }
-            />
-            <Route
-              path='/detalle-producto/:id'
-              element={
-                <Layout>
-                  <DetalleProducto />
-                </Layout>
-              }
-            />
-
-            <Route
-              path='/guia-de-talles'
-              element={
-                <Layout>
-                  <GuiaTalles />
-                </Layout>
-              }
-            />
-
-            <Route
-              path='/contacto'
-              element={
-                <Layout>
-                  <Contacto />
-                </Layout>
-              }
-            />
-
-            <Route element={<ProteccionRutas />}>
+        <CartProvider>
+          <Background />
+          <BrowserRouter>
+            <Header />
+            <Routes>
               <Route
-                path='/productos-form'
+                path='/'
                 element={
                   <Layout>
-                    <ProductosForm />
+                    <Inicio />
                   </Layout>
                 }
               />
-            </Route>
-          </Routes>
-          <Footer />
-        </BrowserRouter>
+              <Route
+                path='/login'
+                element={
+                  <Layout>
+                    <IniciarSesion />
+                  </Layout>
+                }
+              />
+              <Route
+                path='/register'
+                element={
+                  <Layout>
+                    <CrearCuenta />
+                  </Layout>
+                }
+              />
+
+              <Route
+                path='/tienda'
+                element={
+                  <Layout>
+                    <Tienda />
+                  </Layout>
+                }
+              />
+              <Route
+                path='/detalle-producto/:id'
+                element={
+                  <Layout>
+                    <DetalleProducto />
+                  </Layout>
+                }
+              />
+
+              <Route
+                path='/guia-de-talles'
+                element={
+                  <Layout>
+                    <GuiaTalles />
+                  </Layout>
+                }
+              />
+
+              <Route
+                path='/contacto'
+                element={
+                  <Layout>
+                    <Contacto />
+                  </Layout>
+                }
+              />
+
+              <Route element={<ProteccionRutas />}>
+                <Route
+                  path='/productos-form'
+                  element={
+                    <Layout>
+                      <ProductosForm />
+                    </Layout>
+                  }
+                />
+              </Route>
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </CartProvider>
       </ProductProvider>
       <Toaster richColors />
     </AuthProvider>
