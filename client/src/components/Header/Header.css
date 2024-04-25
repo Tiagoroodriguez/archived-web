@@ -13,7 +13,8 @@ header {
     justify-content: space-between;
     padding: 10px 50px;
 
-    background: transparent;
+    background: var(--color-primario);
+    transition: background 0.5s ease;
     
     animation: adjust-header linear both;
     animation-timeline: scroll();
@@ -22,6 +23,7 @@ header {
 
 @keyframes adjust-header {
     to {
+        background: transparent;
         backdrop-filter: blur(20px);
     }
 }
@@ -63,7 +65,16 @@ header {
     justify-content: flex-end;
 }
 
+/*------------------------------------------------------------------------------------------*/
 
+.boton-carrito {
+    border: none;
+    outline: none;
+    border-radius: none;
+    cursor: pointer;
+    background: transparent;
+    font-size: 15px;
+}
 
 /*------------------------------------------------------------------------------------------*/
 
@@ -76,6 +87,10 @@ header {
 }
 
 .mobile-cuenta {
+    display: none;
+}
+
+.boton-carrito-mobile{
     display: none;
 }
 
@@ -101,7 +116,7 @@ header {
     }
     .nav-container {
         padding-inline: 20px;
-        display:block;
+        display: flex;
         width: 100%;
     }
     .mobile-cuenta {
@@ -134,7 +149,7 @@ header {
     }
 
     .nav-logo {
-        justify-content: flex-end;
+        justify-content: center;
         width: 100%;
     }
   
@@ -153,6 +168,19 @@ header {
         top: 15px;
         left: 18px;
     }
+
+    .boton-carrito-mobile{
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+        position: absolute;
+        top: 15px;
+        right: 18px;
+        background: none;
+        border: none;
+        color: var(--color-texto)
+    }
 }
 
 /*------------------------------------------------------------------------------------------*/
+
