@@ -1,14 +1,18 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import './DetalleProducto.css';
+import { useEffect, useState, useContext } from 'react';
+import { CartContext } from '../../context/CarritoContext';
+
 import { InformacionEnvios } from '../../components/InformacionEnvios/InformacionEnvios';
 import { Boton } from '../../components/Boton/Boton';
 import { useProduct } from '../../context/ProductContext';
+
+import './DetalleProducto.css';
 
 export function DetalleProducto() {
   const { getProduct } = useProduct();
   const [producto, setProducto] = useState(null);
   const params = useParams();
+  const { cartItems, addToCart } = useContext(CartContext);
 
   useEffect(() => {
     async function loadProduct() {
@@ -72,6 +76,7 @@ export function DetalleProducto() {
             <Boton
               type='sudmit'
               textBoton='Agregar al carrito'
+              onClick={() => addToCart(producto)}
             />
           </div>
         </section>
