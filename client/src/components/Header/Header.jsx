@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { LogoTexto } from '../LogoTexto/LogoTexto';
 import { useAuth } from '../../context/AuthContext'; // Importamos el hook useAuth
 import './Header.css';
 import Carrito from '../Carrito/Carrito';
+import { CartContext } from '../../context/CarritoContext';
 
 function Header() {
   const { isAuthenticated, user, logout } = useAuth(); // Usamos el hook useAuth para acceder al contexto de autenticación
   const [clicked, setClicked] = useState(false); // Usamos el estado local con el hook useState
   const [showCart, setShowCart] = useState(false); // Estado para controlar la visibilidad del carrito
+  const { cartItems, addToCart } = useContext(CartContext);
 
   // Función para alternar la visibilidad del carrito
   const toggleCart = () => {
@@ -65,7 +67,7 @@ function Header() {
             className='mobile'
             onClick={handleClick}
           >
-            <i className={clicked ? 'bi bi-x-lg' : 'bi bi-list'}></i>
+            <i className={clicked ? 'bi bi-x-lg' : 'bi bi-list'} />
           </div>
 
           <Link
@@ -79,7 +81,7 @@ function Header() {
             onClick={toggleCart}
             className='boton-carrito-mobile'
           >
-            <i className='bi bi-cart4'></i>
+            <i className='bi bi-cart4'>({cartItems.length})</i>
           </button>
 
           <div className='nav-cuenta'>
@@ -115,7 +117,7 @@ function Header() {
                   onClick={toggleCart}
                   className='boton-carrito'
                 >
-                  <i className='bi bi-cart4'></i>
+                  <i className='bi bi-cart4'>({cartItems.length})</i>
                 </button>
               </li>
             </ul>

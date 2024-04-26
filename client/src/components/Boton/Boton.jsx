@@ -1,10 +1,11 @@
 import './Boton.css';
 
-export function Boton({ textBoton, type, onClick }) {
+export function Boton({ textBoton, type, onClick, secundario }) {
+  const estilos = secundario ? 'boton secundario' : 'boton primario';
   return (
     <button
       type={type}
-      className='boton'
+      className={estilos}
       onClick={onClick}
     >
       {textBoton}

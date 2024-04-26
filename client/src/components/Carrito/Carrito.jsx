@@ -49,19 +49,22 @@ export default function Carrito() {
         ))}
       </div>
       {cartItems.length > 0 ? (
-        <div className=''>
-          <h1 className=''>Subtotal: ${getCartTotal()}</h1>
-          <button
-            className=''
+        <div className='descripcion-final'>
+          <h1 className='descripcion-final-texto'>
+            Subtotal: ${getCartTotal()}
+          </h1>
+
+          <Boton
+            type='sudmit'
+            textBoton='Clear cart'
             onClick={() => {
               clearCart();
             }}
-          >
-            Clear cart
-          </button>
+            secundario={true}
+          />
         </div>
       ) : (
-        <h1 className=''>Tu carrito esta vacio</h1>
+        <h1 className='descripcion-final-texto'>Tu carrito esta vacio</h1>
       )}
       <div className='cart-checkout-container'>
         <Boton

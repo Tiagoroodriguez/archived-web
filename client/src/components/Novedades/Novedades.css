@@ -1,11 +1,15 @@
 .novedades-section{
   margin: 50px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .novedades-text {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
   font-size: x-large;
   font-weight: bold;
   color: var(--color-texto);
@@ -13,14 +17,19 @@
 }
 
 
+.novedades-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  overflow: hidden;
+  gap: 20px;
+}
 
-  .novedades-container {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(4, 1fr);
-    overflow: hidden;
-    gap: 20px;
-  }
+
+.todos-productos{
+  width: 30%;
+}
+
 
   @media (max-width: 768px) {
     .novedades-container {
@@ -29,5 +38,9 @@
 
     .novedades-section{
       margin-inline: 20px;
+    }
+
+    .todos-productos{
+      width: 60%;
     }
 }
