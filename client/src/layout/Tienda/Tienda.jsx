@@ -1,6 +1,4 @@
-//import { Link } from "react-router-dom";
 import { Producto } from '../../components/Producto/Producto';
-import { BotonNormal } from '../../components/BotonNormal/BotonNormal';
 import { InformacionEnvios } from '../../components/InformacionEnvios/InformacionEnvios';
 
 import './Tienda.css';
@@ -25,9 +23,6 @@ export function Tienda() {
         </div>
         <section className='tienda'>
           <nav className='tienda-filtros'>
-            <BotonNormal textoBoton='Todos los productos' />
-            <BotonNormal textoBoton='Archived Collection' />
-            <BotonNormal textoBoton='444 Collection' />
           </nav>
 
           <section className='productos-container'>
