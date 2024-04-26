@@ -1,7 +1,9 @@
 import { Producto } from '../Producto/Producto';
+import { Link } from 'react-router-dom';
 import './Novedades.css';
 import { useEffect } from 'react';
 import { useProduct } from '../../context/ProductContext';
+import { Boton } from '../../components/Boton/Boton';
 
 export function Novedades({ categoria, cantidad, titulo }) {
   const { getProducts, products } = useProduct();
@@ -24,6 +26,17 @@ export function Novedades({ categoria, cantidad, titulo }) {
           />
         ))}
       </article>
+
+      <Link
+        to='/tienda'
+        className='todos-productos'
+      >
+        <Boton
+          type='sudmit'
+          textBoton='Ver todos los productos'
+          secundario={true}
+        />
+      </Link>
     </section>
   );
 }

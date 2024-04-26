@@ -44,6 +44,7 @@ header {
   
 .nav-bar li i {
     color: var(--color-texto);
+    font-style: normal;
 } 
 
 .nav-bar li a {
@@ -82,8 +83,8 @@ header {
     display: none;
 }
   
-.mobile i {
-    align-items: center;
+.boton-carrito-mobile i {
+    font-style: normal;
 }
 
 .mobile-cuenta {
