@@ -70,6 +70,7 @@ export default function Carrito() {
         <Boton
           type='sudmit'
           textBoton='checkout'
+          desactivado={cartItems.length === 0 ? true : false}
         />
       </div>
     </div>
