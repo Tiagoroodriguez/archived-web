@@ -1,12 +1,15 @@
 import './Boton.css';
 
-export function Boton({ textBoton, type, onClick, secundario }) {
-  const estilos = secundario ? 'boton secundario' : 'boton primario';
+export function Boton({ textBoton, type, onClick, secundario, desactivado }) {
+  const secundarioEstilos = secundario ? 'boton secundario' : 'boton primario';
+  const estilo = desactivado ? 'boton desactivado' : secundarioEstilos;
+
   return (
     <button
       type={type}
-      className={estilos}
-      onClick={onClick}
+      className={estilo}
+      disabled={desactivado}
+      onClick={() => (desactivado ? null : onClick())}
     >
       {textBoton}
     </button>
