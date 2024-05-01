@@ -26,24 +26,6 @@
     width: 40%;
 }
 
-.datos-container input {
-    height: 40px;
-    width: 100%;
-    border: none;
-    border-bottom: solid 1px var(--color-secundario);
-    border-radius: none;
-    background: none;
-}
-
-.datos-container input:focus {
-    outline: none;
-    border-bottom: solid 1px var(--color-texto);
-}
-
-.datos-container label {
-    margin-top: 20px;
-}
-
 /*--------------------------------------------------------------------------------------------------*/
 
 .crear-cuenta-cambio {

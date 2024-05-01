@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { CartContext } from '../../context/CarritoContext';
 
@@ -9,20 +9,39 @@ import { useProduct } from '../../context/ProductContext';
 import './DetalleProducto.css';
 
 export function DetalleProducto() {
-  const { getProduct } = useProduct();
   const [producto, setProducto] = useState(null);
-  const params = useParams();
+  const [talleSeleccionado, setTalleSeleccionado] = useState('');
+
+  const { getProduct } = useProduct();
   const { cartItems, addToCart } = useContext(CartContext);
+
+  const params = useParams();
 
   useEffect(() => {
     async function loadProduct() {
       if (params.id) {
         const producto = await getProduct(params.id);
         setProducto(producto);
+        const talleDefecto = determinarTallePorDefecto(producto);
+        setTalleSeleccionado(talleDefecto);
       }
     }
     loadProduct();
   }, []);
+
+  const determinarTallePorDefecto = (producto) => {
+    if (producto.cant_s > 0) return 'S';
+    if (producto.cant_m > 0) return 'M';
+    if (producto.cant_l > 0) return 'L';
+    if (producto.cant_xl > 0) return 'XL';
+    if (producto.cant_xxl > 0) return 'XXL';
+    return ''; // Si no hay stock en ningún talle
+  };
+
+  const handleTalleSeleccionado = (talle) => {
+    setTalleSeleccionado(talle);
+  };
+
   return (
     <>
       {producto && (
@@ -54,29 +73,62 @@ export function DetalleProducto() {
             <div className='informacion-dp'>
               <span className='nombre-producto'>{producto.nombre}</span>
               <span className='precio-producto'>${producto.precio}</span>
+              <p className='descripcion-producto'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptatibus, accusamus? Incidunt, eos! Consectetur ex tempora
+                officia sed, minima obcaecati iste, doloribus odit consequatur,
+                deserunt fugiat porro voluptatum omnis ut reiciendis?
+              </p>
             </div>
 
             <div className='division'></div>
 
             <div className='talles'>
-              <span className='talle-seleccionado'>Talle: X</span>
+              <span className='talle-seleccionado'>
+                Talle: {talleSeleccionado}
+              </span>
               <div className='talles-container'>
-                <button className='boton-talle'>S</button>
-                <button className='boton-talle'>M</button>
-                <button className='boton-talle'>L</button>
-                <button className='boton-talle'>XL</button>
+                <Boton
+                  textBoton='S'
+                  desactivado={producto.cant_s <= 0}
+                  secundario={true}
+                  onClick={() => handleTalleSeleccionado('S')}
+                />
+                <Boton
+                  textBoton='M'
+                  desactivado={producto.cant_m <= 0}
+                  secundario={true}
+                  onClick={() => handleTalleSeleccionado('M')}
+                />
+                <Boton
+                  textBoton='L'
+                  desactivado={producto.cant_l <= 0}
+                  secundario={true}
+                  onClick={() => handleTalleSeleccionado('L')}
+                />
+                <Boton
+                  textBoton='XL'
+                  desactivado={producto.cant_xl <= 0}
+                  secundario={true}
+                  onClick={() => handleTalleSeleccionado('XL')}
+                />
+                <Boton
+                  textBoton='XXL'
+                  desactivado={producto.cant_xxl <= 0}
+                  secundario={true}
+                  onClick={() => handleTalleSeleccionado('XXL')}
+                />
               </div>
-            </div>
-
-            <div className='cantiadad'>
-              <span className='cantidad-text'>Cantidad</span>
-              <input type='number'></input>
+              <Link to=''>Guia de talles</Link>
             </div>
 
             <Boton
               type='sudmit'
-              textBoton='Agregar al carrito'
+              textBoton={
+                talleSeleccionado === '' ? 'Sin stock' : 'Agregar al carrito'
+              }
               onClick={() => addToCart(producto)}
+              desactivado={talleSeleccionado === ''}
             />
           </div>
         </section>

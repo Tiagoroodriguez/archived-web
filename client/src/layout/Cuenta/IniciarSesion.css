@@ -13,23 +13,6 @@
     width: 40%;
 }
 
-.datos-container input {
-    height: 40px;
-    width: 100%;
-    border: none;
-    border-bottom: solid 1px var(--color-secundario);
-    border-radius: none;
-}
-.datos-container input:focus {
-    outline: none;
-    border-bottom: solid 1px #932b21;
-}
-
-
-.datos-container label {
-    margin-top: 20px;
-}
-
 .iniciar-sesion-cambio {
     margin-bottom: 50px;
 }
@@ -46,7 +29,6 @@
     .datos-container {
         width: 80%;
     }
-
     .iniciar-sesion {
         justify-content: flex-start;
     }
