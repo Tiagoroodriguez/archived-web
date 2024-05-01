@@ -32,7 +32,6 @@ export function ProductProvider({ children }) {
         res = await getProductsRequest();
       }
       setProducts(res.data);
-      console.log(res.data);
     } catch (error) {
       console.error(error);
     }
