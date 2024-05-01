@@ -40,17 +40,23 @@
 .informacion-dp {
     display: flex;
     flex-direction: column;
-    text-transform: uppercase;
     color: var(--color-texto);
 }
 
 .nombre-producto {
     font-size: x-large;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .precio-producto {
     font-size: xx-large;
     font-weight: bold;
+}
+
+.descripcion-producto {
+    font-size: small;
+    opacity: 70%;
 }
 /*-------------------------------------------------------------*/
 .division {
@@ -71,59 +77,12 @@
 }
 .talles-container {
     display: flex;
-    gap: 5px;
-}
-.boton-talle {
-    border-radius: 0;
-    border: none;
-    width: 30px;
-    height: 30px;
-    border: solid 1px var(--color-secundario);
-    cursor: pointer;
-    background: none;
-    color: var(--color-texto);
-}
-.boton-talle:hover {
-    border: solid 1px #932b21;
-}
-.boton-talle:focus {
-    border: solid 1px #932b21;
-}
-/*-------------------------------------------------------------*/
-.cantiadad {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    color: var(--color-texto);
-}
-.cantidad-text {
-    font-size: small;
-    text-transform: uppercase;
-    
-}
-.cantiadad input {
-    width: 60px;
-    height: 25px;
-    border-radius: 0;
-    border: none;
-    border: solid 1px var(--color-secundario);
-    background: none;
+    gap: 15px;
 }
 
-.cantiadad input:focus{
-    outline: none;
-    border: solid 1px #932b21;
-}
-input[type="number"] {
-    -moz-appearance: textfield;
-}
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
 /*-------------------------------------------------------------*/
+
 .agregar-carrito {
     display: flex;
     width: 100%;

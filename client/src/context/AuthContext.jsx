@@ -43,6 +43,7 @@ export const AuthProvider = ({ children }) => {
         return setErrors(error.response.data);
       }
       setErrors([error.response.data.message]);
+      toast.error('Error!');
     }
   };
 
@@ -50,6 +51,7 @@ export const AuthProvider = ({ children }) => {
     Cookies.remove('token');
     setIsAuthenticated(false);
     setUser(null);
+    toast.success('Sesion cerrada!');
   };
 
   useEffect(() => {

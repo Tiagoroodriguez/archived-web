@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '../../context/AuthContext';
 
 import { Boton } from '../../components/Boton/Boton';
+import Input from '../../components/Input/Input';
 
 import './IniciarSesion.css';
 
@@ -46,23 +47,21 @@ export function IniciarSesion() {
               </div>
             ))}
 
-            <label>Correo electrónico</label>
-            <input
+            <Input
               type='email'
               placeholder='ejemplo@gmail.com'
-              className='mail'
-              {...register('email', { required: true })}
+              label='Contraseña'
+              ternaria={register('email', { required: true })}
             />
             {errors.email && (
               <p className='error'>Correo electrónico es requerido</p>
             )}
 
-            <label>Contraseña</label>
-            <input
+            <Input
               type='password'
               placeholder='*********'
-              className='contraseña'
-              {...register('password', { required: true })}
+              label='Contraseña'
+              ternaria={register('password', { required: true })}
             />
             {errors.password && (
               <p className='error'>Contraseña es requerida</p>
@@ -73,7 +72,6 @@ export function IniciarSesion() {
               textBoton='Iniciar sesión'
             />
           </div>
-
           <p className='iniciar-sesion-cambio'>
             ¿No tenés cuenta? <Link to='/register'>Crear cuenta</Link>
           </p>
