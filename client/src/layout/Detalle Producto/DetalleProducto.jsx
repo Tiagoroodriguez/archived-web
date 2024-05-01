@@ -7,10 +7,12 @@ import { Boton } from '../../components/Boton/Boton';
 import { useProduct } from '../../context/ProductContext';
 
 import './DetalleProducto.css';
+import { Tabla } from '../../components/Tabla/Tabla';
 
 export function DetalleProducto() {
   const [producto, setProducto] = useState(null);
   const [talleSeleccionado, setTalleSeleccionado] = useState('');
+  const [modalAbierta, setModalAbierta] = useState(false);
 
   const { getProduct } = useProduct();
   const { cartItems, addToCart } = useContext(CartContext);
@@ -40,6 +42,14 @@ export function DetalleProducto() {
 
   const handleTalleSeleccionado = (talle) => {
     setTalleSeleccionado(talle);
+  };
+
+  const abrirModal = () => {
+    setModalAbierta(true);
+  };
+
+  const cerrarModal = () => {
+    setModalAbierta(false);
   };
 
   return (
@@ -119,7 +129,25 @@ export function DetalleProducto() {
                   onClick={() => handleTalleSeleccionado('XXL')}
                 />
               </div>
-              <Link to=''>Guia de talles</Link>
+              <button
+                className='modal-talle-boton'
+                onClick={abrirModal}
+              >
+                Ver Guía de Tallas
+              </button>
+              {modalAbierta && (
+                <Tabla
+                  onClose={cerrarModal}
+                  sAncho='10'
+                  sLargo='10'
+                  mAncho='20'
+                  mLargo='20'
+                  lAncho='30'
+                  lLargo='30'
+                  xlAncho='40'
+                  xlLargo='40'
+                />
+              )}
             </div>
 
             <Boton
