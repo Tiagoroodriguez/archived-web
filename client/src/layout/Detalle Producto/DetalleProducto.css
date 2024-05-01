@@ -35,6 +35,7 @@
     width: 40%;
     height: max-content;
     position: sticky;
+    top: 60px
 }
 
 .informacion-dp {
@@ -80,6 +81,19 @@
     gap: 15px;
 }
 
+.modal-talle-boton{
+    border: none;
+    background: none;
+    color: var(--color-texto);
+    font-size: small;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: left;
+}
+
+.modal-talle-boton:hover{
+    text-decoration: underline;
+}
 
 /*-------------------------------------------------------------*/
 
@@ -124,7 +138,7 @@
 @media (max-width: 768px) {
     .detalle-container {
         margin-bottom: 50px ;
-        margin-inline: 30px;
+        margin-inline: 20px;
         flex-direction: column;
     }
 
@@ -132,7 +146,7 @@
         display: flex;
         aspect-ratio:unset;
         width: 100%;
-        overflow: scroll;
+        overflow-x: scroll;
         gap:0;
         scroll-snap-type: x mandatory;
 
