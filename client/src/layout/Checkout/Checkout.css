@@ -1,0 +1,149 @@
+.checkout {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    margin-right: 50px;
+    margin-bottom: 20px;
+}
+
+.informacion-section {
+    width: 60vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.carrito-section {
+    width: 40vw;
+    height: auto;
+    background: var(--color-texto);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-block: 20px;
+    gap: 20px;
+}
+
+/*---------------------------------------------------------------------------------------------*/
+
+.superior ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    align-items: center;
+    padding-inline: 50px;
+}
+
+.point button {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.point button div {
+    border: 1px solid var(--color-texto);
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+}
+
+.focus div{
+    background: #301e1241;
+}
+
+.focus p {
+    font-weight: 600;
+}
+
+.point button p {
+    text-align: center;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background: var(--color-texto);
+    position: relative;
+    bottom: 10px;
+}
+
+/*---------------------------------------------------------------------------------------------*/
+
+.superior {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-block: 50px;
+}
+
+.superior span {
+    font-weight: bold;
+}
+
+/*---------------------------------------------------------------------------------------------*/
+
+
+.informacion-contacto {
+    padding-inline: 50px;
+}
+
+.informacion-contacto p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-texto);
+}
+
+/*---------------------------------------------------------------------------------------------*/
+
+.informacion-envio {
+    padding-inline: 50px;
+}
+
+.informacion-envio p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-texto);
+}
+
+/*---------------------------------------------------------------------------------------------*/
+
+.checkout-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 30%;
+    padding-inline: 50px;
+}
+
+/*---------------------------------------------------------------------------------------------*/
+
+.checkout-info-cart {
+    color: var(--color-primario);
+}
+
+.cart-item-container-checkout {
+    height: auto;
+    padding-inline: 20px;
+    overflow: hidden;
+}
+
+.carrito-section p, h1 {
+    color: var(--color-primario);
+}
+
+.descripcion-final-checkout {
+    display: flex;
+    flex-direction: column;
+}
+
+.descripcion-final-checkout div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-inline: 20px;
+}
