@@ -18,6 +18,7 @@ import ProteccionRutas from './ProteccionRutas';
 import { ProductProvider } from './context/ProductContext';
 import Header from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
+import Checkout from './layout/Checkout/Checkout';
 
 const Background = styled.div`
   position: fixed;
@@ -78,6 +79,15 @@ function App() {
                 element={
                   <Layout>
                     <DetalleProducto />
+                  </Layout>
+                }
+              />
+
+              <Route
+                path='/checkout'
+                element={
+                  <Layout>
+                    <Checkout />
                   </Layout>
                 }
               />

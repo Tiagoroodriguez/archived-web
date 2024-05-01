@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 import { Boton } from '../../components/Boton/Boton';
+import Input from '../../components/Input/Input';
 
 import './CrearCuenta.css';
 
@@ -46,48 +47,39 @@ export function CrearCuenta() {
                 {error}
               </div>
             ))}
-            <label>Nombre</label>
-            <input
+            <Input
               type='text'
               placeholder='Ingresa tu nombre'
-              className='nombre'
-              {...register('nombre', { required: true })}
+              label='Nombre'
+              ternaria={register('nombre', { required: true })}
             />
             {errors.nombre && <p className='error'>El nombre es requerido</p>}
 
-            <label>Apellido</label>
-            <input
+            <Input
               type='text'
               placeholder='Ingresa tu apellido'
-              className='apellido'
-              {...register('apellido', { required: true })}
+              label='Apellido'
+              ternaria={register('apellido', { required: true })}
             />
             {errors.apellido && (
               <p className='error'>El apellido es requerido</p>
             )}
 
-            <label>Correo electrónico</label>
-            <input
+            <Input
               type='email'
               placeholder='ejemplo@gmail.com'
-              className='mail'
-              {...register('email', { required: true })}
+              label='Correo electronico'
+              ternaria={register('email', { required: true })}
             />
             {errors.email && (
               <p className='error'>El correo electrónico es requerido</p>
             )}
 
-            {/*
-                        <label>Teléfono</label>
-                        <input type="text" className="telefono" />
-                        */}
-
-            <label>Contraseña</label>
-            <input
+            <Input
               type='password'
               placeholder='*********'
-              className='contraseña'
-              {...register('password', { required: true })}
+              label='Contraseña'
+              ternaria={register('password', { required: true })}
             />
             {errors.password && (
               <p className='error'>La contraseña es requerida</p>
