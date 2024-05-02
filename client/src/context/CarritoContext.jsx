@@ -10,40 +10,43 @@ export const CartProvider = ({ children }) => {
       : []
   );
 
-  const addToCart = (item) => {
-    const isItemInCart = cartItems.find(
-      (cartItem) => cartItem._id === item._id
-    ); // check if the item is already in the cart
+  const addToCart = (item, talle) => {
+    // Agregar el talle al ítem al momento de crear la clave del carrito
+    const itemWithSize = { ...item, talle };
+    const itemKey = `${item._id}-${talle}`; // Clave única combinando ID y talle
+
+    const isItemInCart = cartItems.find((cartItem) => cartItem.key === itemKey);
 
     if (isItemInCart) {
       setCartItems(
-        cartItems.map(
-          (
-            cartItem // if the item is already in the cart, increase the quantity of the item
-          ) =>
-            cartItem._id === item._id
-              ? { ...cartItem, quantity: cartItem.quantity + 1 }
-              : cartItem // otherwise, return the cart item
+        cartItems.map((cartItem) =>
+          cartItem.key === itemKey
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
         )
       );
     } else {
-      setCartItems([...cartItems, { ...item, quantity: 1 }]); // if the item is not in the cart, add the item to the cart
+      setCartItems([
+        ...cartItems,
+        { ...itemWithSize, quantity: 1, key: itemKey },
+      ]);
     }
     toast.success('Producto agregado al carrito');
   };
 
   const removeFromCart = (item) => {
-    const isItemInCart = cartItems.find(
-      (cartItem) => cartItem._id === item._id
-    );
+    // Asume que item ya contiene el 'talle' como una propiedad
+    const itemKey = `${item._id}-${item.talle}`; // Clave única combinando ID y talle
 
-    if (isItemInCart.quantity === 1) {
-      setCartItems(cartItems.filter((cartItem) => cartItem._id !== item._id)); // if the quantity of the item is 1, remove the item from the cart
-    } else {
+    const isItemInCart = cartItems.find((cartItem) => cartItem.key === itemKey);
+
+    if (isItemInCart && isItemInCart.quantity === 1) {
+      setCartItems(cartItems.filter((cartItem) => cartItem.key !== itemKey));
+    } else if (isItemInCart) {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem._id === item._id
-            ? { ...cartItem, quantity: cartItem.quantity - 1 } // if the quantity of the item is greater than 1, decrease the quantity of the item
+          cartItem.key === itemKey
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem
         )
       );
