@@ -6,10 +6,8 @@
 .logo {
     display: flex;
     color: var(--color-texto);
-    align-self: center;
-    justify-self: center;
-    grid-area: logo;
     background: none;
+    justify-content: center;
 }
 .text {
     font-family: 'AppleGaramond', serif;
