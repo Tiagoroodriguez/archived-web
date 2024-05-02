@@ -4,6 +4,7 @@ import Input from '../../components/Input/Input';
 import { Boton } from '../../components/Boton/Boton';
 
 import './Checkout.css';
+import { LogoTexto } from '../../components/LogoTexto/LogoTexto';
 
 export default function Checkout() {
   const { cartItems, getCartTotal } = useContext(CartContext);
@@ -13,6 +14,7 @@ export default function Checkout() {
       <main className='checkout'>
         <section className='informacion-section'>
           <div className='superior'>
+            <LogoTexto />
             <ul>
               <li className='point'>
                 <button>
