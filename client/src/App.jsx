@@ -39,13 +39,14 @@ function App() {
         <CartProvider>
           <Background />
           <BrowserRouter>
-            <Header />
             <Routes>
               <Route
                 path='/'
                 element={
                   <Layout>
+                    <Header />
                     <Inicio />
+                    <Footer />
                   </Layout>
                 }
               />
@@ -53,7 +54,9 @@ function App() {
                 path='/login'
                 element={
                   <Layout>
+                    <Header />
                     <IniciarSesion />
+                    <Footer />
                   </Layout>
                 }
               />
@@ -61,7 +64,9 @@ function App() {
                 path='/register'
                 element={
                   <Layout>
+                    <Header />
                     <CrearCuenta />
+                    <Footer />
                   </Layout>
                 }
               />
@@ -70,7 +75,9 @@ function App() {
                 path='/tienda'
                 element={
                   <Layout>
+                    <Header />
                     <Tienda />
+                    <Footer />
                   </Layout>
                 }
               />
@@ -78,7 +85,9 @@ function App() {
                 path='/detalle-producto/:id'
                 element={
                   <Layout>
+                    <Header />
                     <DetalleProducto />
+                    <Footer />
                   </Layout>
                 }
               />
@@ -87,7 +96,9 @@ function App() {
                 path='/guia-de-talles'
                 element={
                   <Layout>
+                    <Header />
                     <GuiaTalles />
+                    <Footer />
                   </Layout>
                 }
               />
@@ -96,7 +107,9 @@ function App() {
                 path='/contacto'
                 element={
                   <Layout>
+                    <Header />
                     <Contacto />
+                    <Footer />
                   </Layout>
                 }
               />
@@ -106,7 +119,9 @@ function App() {
                   path='/productos-form'
                   element={
                     <Layout>
+                      <Header />
                       <ProductosForm />
+                      <Footer />
                     </Layout>
                   }
                 />
@@ -120,11 +135,13 @@ function App() {
                 />
               </Route>
             </Routes>
-            <Footer />
           </BrowserRouter>
         </CartProvider>
       </ProductProvider>
-      <Toaster richColors />
+      <Toaster
+        richColors
+        position='bottom-left'
+      />
     </AuthProvider>
   );
 }
