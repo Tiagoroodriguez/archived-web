@@ -51,10 +51,12 @@ export const CartProvider = ({ children }) => {
         )
       );
     }
+    toast.info('Producto eliminado del carrito');
   };
 
   const clearCart = () => {
     setCartItems([]); // set the cart items to an empty array
+    toast.info('Carrito vaciado');
   };
 
   const getCartTotal = () => {

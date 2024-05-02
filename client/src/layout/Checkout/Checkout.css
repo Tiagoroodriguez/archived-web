@@ -2,8 +2,6 @@
     display: flex;
     flex-direction: row;
     width: auto;
-    margin-right: 50px;
-    margin-bottom: 20px;
 }
 
 .informacion-section {
@@ -27,12 +25,19 @@
 
 /*---------------------------------------------------------------------------------------------*/
 
+.superior {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 50px;
+    gap: 15px;
+}
+
 .superior ul {
     display: flex;
     flex-direction: row;
     list-style: none;
     align-items: center;
-    padding-inline: 50px;
 }
 
 .point button {
@@ -42,6 +47,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 40px;
 }
 
 .point button div {
@@ -61,6 +67,7 @@
 
 .point button p {
     text-align: center;
+    color: var(--color-texto);
 }
 
 .line {
@@ -69,20 +76,6 @@
     background: var(--color-texto);
     position: relative;
     bottom: 10px;
-}
-
-/*---------------------------------------------------------------------------------------------*/
-
-.superior {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    margin-block: 50px;
-}
-
-.superior span {
-    font-weight: bold;
 }
 
 /*---------------------------------------------------------------------------------------------*/
