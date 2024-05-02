@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { CartContext } from '../../context/CarritoContext';
 import { Boton } from '../../components/Boton/Boton';
 import './Carrito.css';
+import { Link } from 'react-router-dom';
 
 export default function Carrito() {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
@@ -14,7 +15,7 @@ export default function Carrito() {
         {cartItems.map((item) => (
           <div
             className='cart-items'
-            key={item._id}
+            key={item.key}
           >
             <div className='cart-producto'>
               <div className='img-producto'>
@@ -25,11 +26,12 @@ export default function Carrito() {
               </div>
               <div className='info-producto'>
                 <h1 className=''>{item.nombre}</h1>
+                <p className=''>{`Talle: ${item.talle}`}</p>{' '}
                 <p className=''>{`$${item.precio}`}</p>
                 <div className='botones-producto'>
                   <button
                     onClick={() => {
-                      addToCart(item);
+                      addToCart(item, item.talle);
                     }}
                   >
                     +
@@ -37,7 +39,7 @@ export default function Carrito() {
                   <p>{item.quantity}</p>
                   <button
                     onClick={() => {
-                      removeFromCart(item);
+                      removeFromCart(item, item.talle);
                     }}
                   >
                     -
@@ -67,11 +69,13 @@ export default function Carrito() {
         <h1 className='descripcion-final-texto'>Tu carrito esta vacio</h1>
       )}
       <div className='cart-checkout-container'>
-        <Boton
-          type='sudmit'
-          textBoton='checkout'
-          desactivado={cartItems.length === 0 ? true : false}
-        />
+        <Link to='/checkout'>
+          <Boton
+            type='sudmit'
+            textBoton='checkout'
+            desactivado={cartItems.length === 0 ? true : false}
+          />
+        </Link>
       </div>
     </div>
   );

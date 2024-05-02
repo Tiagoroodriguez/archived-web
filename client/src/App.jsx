@@ -84,15 +84,6 @@ function App() {
               />
 
               <Route
-                path='/checkout'
-                element={
-                  <Layout>
-                    <Checkout />
-                  </Layout>
-                }
-              />
-
-              <Route
                 path='/guia-de-talles'
                 element={
                   <Layout>
@@ -116,6 +107,14 @@ function App() {
                   element={
                     <Layout>
                       <ProductosForm />
+                    </Layout>
+                  }
+                />
+                <Route
+                  path='/checkout'
+                  element={
+                    <Layout>
+                      <Checkout />
                     </Layout>
                   }
                 />

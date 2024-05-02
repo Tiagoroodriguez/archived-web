@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { CartContext } from '../../context/CarritoContext';
 
@@ -42,6 +42,10 @@ export function DetalleProducto() {
 
   const handleTalleSeleccionado = (talle) => {
     setTalleSeleccionado(talle);
+  };
+
+  const handleAddToCart = () => {
+    addToCart(producto, talleSeleccionado);
   };
 
   const abrirModal = () => {
@@ -98,36 +102,15 @@ export function DetalleProducto() {
                 Talle: {talleSeleccionado}
               </span>
               <div className='talles-container'>
-                <Boton
-                  textBoton='S'
-                  desactivado={producto.cant_s <= 0}
-                  secundario={true}
-                  onClick={() => handleTalleSeleccionado('S')}
-                />
-                <Boton
-                  textBoton='M'
-                  desactivado={producto.cant_m <= 0}
-                  secundario={true}
-                  onClick={() => handleTalleSeleccionado('M')}
-                />
-                <Boton
-                  textBoton='L'
-                  desactivado={producto.cant_l <= 0}
-                  secundario={true}
-                  onClick={() => handleTalleSeleccionado('L')}
-                />
-                <Boton
-                  textBoton='XL'
-                  desactivado={producto.cant_xl <= 0}
-                  secundario={true}
-                  onClick={() => handleTalleSeleccionado('XL')}
-                />
-                <Boton
-                  textBoton='XXL'
-                  desactivado={producto.cant_xxl <= 0}
-                  secundario={true}
-                  onClick={() => handleTalleSeleccionado('XXL')}
-                />
+                {['S', 'M', 'L', 'XL', 'XXL'].map((talle) => (
+                  <Boton
+                    key={talle}
+                    textBoton={talle}
+                    desactivado={producto[`cant_${talle.toLowerCase()}`] <= 0}
+                    secundario={true}
+                    onClick={() => handleTalleSeleccionado(talle)}
+                  />
+                ))}
               </div>
               <button
                 className='modal-talle-boton'
@@ -155,7 +138,7 @@ export function DetalleProducto() {
               textBoton={
                 talleSeleccionado === '' ? 'Sin stock' : 'Agregar al carrito'
               }
-              onClick={() => addToCart(producto)}
+              onClick={handleAddToCart}
               desactivado={talleSeleccionado === ''}
             />
           </div>
