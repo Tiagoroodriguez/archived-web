@@ -15,7 +15,6 @@ export const getProductsRequest = (limit = null, categoria = null) => {
       url += `${categoria}`;
     }
   }
-  console.log(url);
   return axios.get(url);
 };
 
