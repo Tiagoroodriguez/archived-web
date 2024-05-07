@@ -136,10 +136,11 @@ export default function Checkout() {
                     />
                   </div>
                   <div className='info-producto checkout-info-cart'>
-                    <h1 className=''>{item.nombre}</h1>
-                    <p>{`Talle: ${item.talle}`}</p>
-                    <p>{`Cantidad: ${item.quantity}`}</p>
-                    <p className=''>{`$${item.precio * item.quantity}`}</p>
+                    <p className='info-producto-nombre'>{item.nombre}</p>
+                    <p className='info-producto-talle'>{`${item.quantity} x Talle: ${item.talle}`}</p>
+                    <p className='info-producto-precio'>{`$${
+                      item.precio * item.quantity
+                    }`}</p>
                   </div>
                 </div>
               </div>

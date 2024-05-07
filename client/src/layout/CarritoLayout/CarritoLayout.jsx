@@ -49,6 +49,7 @@ export default function CarritoLayout() {
             </button>
           </li>
         </ul>
+        <h1 className='carrito-layout-title'>Detalle de compra</h1>
       </header>
       <table className='cart-table-container'>
         <thead>
@@ -64,20 +65,23 @@ export default function CarritoLayout() {
             </th>
           </tr>
         </thead>
-        {cartItems.map((item) => (
-          <tbody key={item.key}>
-            <tr className='cart-table-cuerpo'>
+        <tbody>
+          {cartItems.map((item) => (
+            <tr
+              key={item.key}
+              className='cart-table-cuerpo'
+            >
               <td className='cart-table-cuerpo-item cart-table-product'>
-                <div className='img-producto'>
+                <div className='img-producto cart-table-product-item'>
                   <img
                     src={`/images/productos/small/${item.nombre}.webp`}
                     alt={`imagen del producto ${item.nombre}`}
                   />
                 </div>
-                <div className='table-info-producto'>
-                  <p>{item.nombre}</p>
-                  <p>{`Talle: ${item.talle}`}</p>
-                  <p>{`$${item.precio}`}</p>
+                <div className='table-info-producto cart-table-product-item'>
+                  <p className='info-producto-nombre'>{item.nombre}</p>
+                  <p className='info-producto-talle'>{`Talle: ${item.talle}`}</p>
+                  <p className='info-producto-precio'>{`Precio: $${item.precio}`}</p>
                 </div>
               </td>
               <td className='cart-table-cuerpo-item cart-table-actions'>
@@ -103,8 +107,8 @@ export default function CarritoLayout() {
                 <p>{`$${item.precio * item.quantity}`}</p>
               </td>
             </tr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </table>
       <footer className='table-footer'>
         <h2>Total: ${getCartTotal()}</h2>

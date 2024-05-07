@@ -7,6 +7,11 @@
     justify-content: space-between;
 }
 
+.carrito-layout-title {
+    color: var(--color-texto);
+    width: 100%;
+    text-align: center;
+}
 
 /*-----------------------------------------------------------------------------------------*/
 
@@ -44,6 +49,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     gap: 10px;
 }
 
@@ -64,7 +70,6 @@
 
 .table-info-producto p {
     color: var(--color-texto);
-    font-size: 1.2rem;
 }
 
 .table-footer {
@@ -97,5 +102,9 @@
 
     .superior {
         padding-inline: 0;
+    }
+
+    .cart-table-product, .cart-table-product-item {
+        width: 200px;
     }
 }
