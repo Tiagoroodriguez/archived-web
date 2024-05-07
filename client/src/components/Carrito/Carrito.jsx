@@ -11,7 +11,7 @@ export default function Carrito() {
 
   return (
     <div className='cart-container'>
-      <h1>Carrito</h1>
+      <h1 className='cart-title'>Carrito de compras</h1>
       <div className='cart-item-container'>
         {cartItems.map((item) => (
           <div
@@ -26,9 +26,9 @@ export default function Carrito() {
                 />
               </div>
               <div className='info-producto'>
-                <h1 className=''>{item.nombre}</h1>
-                <p className=''>{`Talle: ${item.talle}`}</p>{' '}
-                <p className=''>{`$${item.precio}`}</p>
+                <p className='info-producto-nombre'>{item.nombre}</p>
+                <p className='info-producto-talle'>{`Talle: ${item.talle}`}</p>
+                <p className='info-producto-precio'>{`Precio: $${item.precio}`}</p>
                 <div className='botones-producto'>
                   <button
                     onClick={() => {
@@ -53,9 +53,7 @@ export default function Carrito() {
       </div>
       {cartItems.length > 0 ? (
         <div className='descripcion-final'>
-          <h1 className='descripcion-final-texto'>
-            Subtotal: ${getCartTotal()}
-          </h1>
+          <h2 className='descripcion-final-texto'>Total: ${getCartTotal()}</h2>
 
           <Boton
             type='sudmit'
@@ -67,7 +65,7 @@ export default function Carrito() {
           />
         </div>
       ) : (
-        <h1 className='descripcion-final-texto'>Tu carrito esta vacio</h1>
+        <h2 className='descripcion-final-texto'>Tu carrito esta vacio</h2>
       )}
       <div className='cart-checkout-container'>
         <Link to='/carrito'>
