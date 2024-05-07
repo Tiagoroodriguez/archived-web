@@ -51,58 +51,59 @@ export default function CarritoLayout() {
         </ul>
       </header>
       <table className='cart-table-container'>
-        <tr className='cart-table-encabezado'>
-          <th className='cart-table-encabezado-item cart-table-product'>
-            Producto
-          </th>
-          <th className='cart-table-encabezado-item cart-table-actions'>
-            Cantidad
-          </th>
-          <th className='cart-table-encabezado-item cart-table-precio'>
-            Total
-          </th>
-        </tr>
-        {cartItems.map((item) => (
-          <tr
-            key={item.key}
-            className='cart-table-cuerpo'
-          >
-            <td className='cart-table-cuerpo-item cart-table-product'>
-              <div className='img-producto'>
-                <img
-                  src={`/images/productos/small/${item.nombre}.webp`}
-                  alt={`imagen del producto ${item.nombre}`}
-                />
-              </div>
-              <div className='table-info-producto'>
-                <p>{item.nombre}</p>
-                <p>{`Talle: ${item.talle}`}</p>
-                <p>{`$${item.precio}`}</p>
-              </div>
-            </td>
-            <td className='cart-table-cuerpo-item cart-table-actions'>
-              <div className='botones-producto'>
-                <button
-                  onClick={() => {
-                    addToCart(item, item.talle);
-                  }}
-                >
-                  +
-                </button>
-                <p>{item.quantity}</p>
-                <button
-                  onClick={() => {
-                    removeFromCart(item, item.talle);
-                  }}
-                >
-                  -
-                </button>
-              </div>
-            </td>
-            <td className='cart-table-cuerpo-item cart-table-precio'>
-              <p>{`$${item.precio * item.quantity}`}</p>
-            </td>
+        <thead>
+          <tr className='cart-table-encabezado'>
+            <th className='cart-table-encabezado-item cart-table-product'>
+              Producto
+            </th>
+            <th className='cart-table-encabezado-item cart-table-actions'>
+              Cantidad
+            </th>
+            <th className='cart-table-encabezado-item cart-table-precio'>
+              Total
+            </th>
           </tr>
+        </thead>
+        {cartItems.map((item) => (
+          <tbody key={item.key}>
+            <tr className='cart-table-cuerpo'>
+              <td className='cart-table-cuerpo-item cart-table-product'>
+                <div className='img-producto'>
+                  <img
+                    src={`/images/productos/small/${item.nombre}.webp`}
+                    alt={`imagen del producto ${item.nombre}`}
+                  />
+                </div>
+                <div className='table-info-producto'>
+                  <p>{item.nombre}</p>
+                  <p>{`Talle: ${item.talle}`}</p>
+                  <p>{`$${item.precio}`}</p>
+                </div>
+              </td>
+              <td className='cart-table-cuerpo-item cart-table-actions'>
+                <div className='botones-producto'>
+                  <button
+                    onClick={() => {
+                      addToCart(item, item.talle);
+                    }}
+                  >
+                    +
+                  </button>
+                  <p>{item.quantity}</p>
+                  <button
+                    onClick={() => {
+                      removeFromCart(item, item.talle);
+                    }}
+                  >
+                    -
+                  </button>
+                </div>
+              </td>
+              <td className='cart-table-cuerpo-item cart-table-precio'>
+                <p>{`$${item.precio * item.quantity}`}</p>
+              </td>
+            </tr>
+          </tbody>
         ))}
       </table>
       <footer className='table-footer'>
