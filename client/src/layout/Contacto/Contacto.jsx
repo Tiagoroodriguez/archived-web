@@ -1,4 +1,6 @@
 import { Boton } from '../../components/Boton/Boton';
+import Input from '../../components/Input/Input';
+
 import './Contacto.css';
 
 export function Contacto() {
@@ -14,25 +16,24 @@ export function Contacto() {
           </div>
 
           <div className='datos-container'>
-            <label>Correo electrónico</label>
-            <input
+            <Input
               type='email'
               placeholder='ejemplo@gmail.com'
-              className='mail'
+              label='Correo electrónico'
             />
 
-            <label>Asunto</label>
-            <input
+            <Input
               type='text'
-              placeholder='Asunto del mensaje'
-              className='asunto'
+              placeholder='Ingrese el asusto'
+              label='Asunto'
             />
 
             <label>Mensaje</label>
             <textarea
               className='contenido'
               placeholder='Ingresa tu consulta'
-            ></textarea>
+            />
+
             <Boton
               type='sudmit'
               textBoton='Enviar'
