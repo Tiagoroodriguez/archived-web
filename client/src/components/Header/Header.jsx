@@ -21,7 +21,7 @@ function Header() {
   };
   return (
     <>
-      <header>
+      <header className='header-container'>
         <nav className='nav-container'>
           <div className='nav-link'>
             <ul className={clicked ? 'nav-bar active links' : 'nav-bar links'}>
