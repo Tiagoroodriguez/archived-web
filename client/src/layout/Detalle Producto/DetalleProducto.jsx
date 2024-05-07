@@ -57,7 +57,7 @@ export function DetalleProducto() {
   };
 
   return (
-    <>
+    <main>
       {producto && (
         <section className='detalle-container'>
           <div className='img-container'>
@@ -144,7 +144,6 @@ export function DetalleProducto() {
           </div>
         </section>
       )}
-      <InformacionEnvios />
-    </>
+    </main>
   );
 }
