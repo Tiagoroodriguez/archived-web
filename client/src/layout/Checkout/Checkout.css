@@ -153,6 +153,7 @@
     padding-inline: 20px;
     overflow-y:scroll;
     scrollbar-color: var(--color-primario) transparent;
+    gap: 10px;
 }
 
 
