@@ -1,0 +1,42 @@
+/*.input-container{
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-1 {
+    display: block;
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-texto);
+    transition: all .3s ease;
+}
+
+.input-container input:focus {
+    color: var(--color-texto);
+    outline: none;
+}
+
+
+.labe-1 {
+    position: absolute;
+    cursor: text;
+    z-index: 2;
+    top: 13px;
+    left: 0;
+    font-size: 12px;
+    font-weight: bold;
+    background: var(--color-primario);
+    color: #999;
+    transition: all .3s ease;
+}
+
+.input-container input:focus + label {
+    font-size: 11px;
+    top: -5px;
+}
+
+.input-1:focus + .labe-1 {
+    color: var(--color-texto)
+}*/
