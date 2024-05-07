@@ -103,7 +103,6 @@
 }
 
 /*---------------------------------------------------------------------------------------------*/
-
 .informacion-envio {
     display: flex;
     flex-direction: column;
@@ -155,6 +154,7 @@
     overflow-y:scroll;
     scrollbar-color: var(--color-primario) transparent;
 }
+
 
 .carrito-section p, h1 {
     color: var(--color-primario);
