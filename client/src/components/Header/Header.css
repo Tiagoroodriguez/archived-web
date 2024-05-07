@@ -1,4 +1,4 @@
-header {
+.header-container {
     position: sticky;
     top:0;
     width: 100%;
@@ -120,7 +120,7 @@ header {
 /*------------------------------------------------------------------------------------------*/
 
 @media screen and (max-width: 769px) {
-    header {
+    .header-container {
         display: flex;
     }
     .nav-container {

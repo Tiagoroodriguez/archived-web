@@ -1,9 +1,9 @@
 .info-container {
-    height: 300px;
+    height: auto;
     display: flex;
-    margin-inline: 50px;
     justify-content: space-around;
     align-items: center;
+    padding: 20px 50px;
 }
 
 .info {
@@ -25,7 +25,7 @@
 
 .linea {
     background: var(--color-secundario);
-    height: 100px;
+    height: 90px;
     width: 2px;
 }
 
