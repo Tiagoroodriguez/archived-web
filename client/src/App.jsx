@@ -19,6 +19,7 @@ import { ProductProvider } from './context/ProductContext';
 import Header from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import Checkout from './layout/Checkout/Checkout';
+import CarritoLayout from './layout/CarritoLayout/CarritoLayout';
 
 const Background = styled.div`
   position: fixed;
@@ -114,6 +115,15 @@ function App() {
                 }
               />
 
+              <Route
+                path='/checkout/dev'
+                element={
+                  <Layout>
+                    <Checkout />
+                  </Layout>
+                }
+              />
+
               <Route element={<ProteccionRutas />}>
                 <Route
                   path='/productos-form'
@@ -121,6 +131,16 @@ function App() {
                     <Layout>
                       <Header />
                       <ProductosForm />
+                      <Footer />
+                    </Layout>
+                  }
+                />
+                <Route
+                  path='/carrito'
+                  element={
+                    <Layout>
+                      <Header />
+                      <CarritoLayout />
                       <Footer />
                     </Layout>
                   }

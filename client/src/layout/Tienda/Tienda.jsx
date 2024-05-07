@@ -1,5 +1,4 @@
 import { Producto } from '../../components/Producto/Producto';
-import { InformacionEnvios } from '../../components/InformacionEnvios/InformacionEnvios';
 
 import './Tienda.css';
 import { useProduct } from '../../context/ProductContext';
@@ -22,8 +21,7 @@ export function Tienda() {
           <h1>Tienda Oficial de Archived 222</h1>
         </div>
         <section className='tienda'>
-          <nav className='tienda-filtros'>
-          </nav>
+          <nav className='tienda-filtros'></nav>
 
           <section className='productos-container'>
             {products.map((product) => (
@@ -34,8 +32,6 @@ export function Tienda() {
             ))}
           </section>
         </section>
-
-        <InformacionEnvios />
       </main>
     </>
   );

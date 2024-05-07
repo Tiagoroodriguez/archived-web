@@ -1,8 +1,9 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CarritoContext';
 import { Boton } from '../../components/Boton/Boton';
+
 import './Carrito.css';
-import { Link } from 'react-router-dom';
 
 export default function Carrito() {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
@@ -58,7 +59,7 @@ export default function Carrito() {
 
           <Boton
             type='sudmit'
-            textBoton='Clear cart'
+            textBoton='vaciar carrito'
             onClick={() => {
               clearCart();
             }}
@@ -69,10 +70,10 @@ export default function Carrito() {
         <h1 className='descripcion-final-texto'>Tu carrito esta vacio</h1>
       )}
       <div className='cart-checkout-container'>
-        <Link to='/checkout'>
+        <Link to='/carrito'>
           <Boton
             type='sudmit'
-            textBoton='checkout'
+            textBoton='iniciar compra'
             desactivado={cartItems.length === 0 ? true : false}
           />
         </Link>
