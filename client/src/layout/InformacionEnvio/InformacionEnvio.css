@@ -9,6 +9,7 @@
     height: auto;
     display: flex;
     flex-direction: column;
+    padding-top: 20px;
 }
 
 .carrito-section {

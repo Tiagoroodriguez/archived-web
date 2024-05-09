@@ -20,6 +20,7 @@ import Header from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import InformacionEnvio from './layout/InformacionEnvio/InformacionEnvio';
 import CarritoCompra from './layout/CarritoCompra/CarritoCompra';
+import Pago from './layout/Pago/Pago';
 
 const Background = styled.div`
   position: fixed;
@@ -161,6 +162,14 @@ function App() {
                   element={
                     <Layout>
                       <InformacionEnvio />
+                    </Layout>
+                  }
+                />
+                <Route
+                  path='/checkout/pago'
+                  element={
+                    <Layout>
+                      <Pago />
                     </Layout>
                   }
                 />
