@@ -11,9 +11,17 @@ export const CartProvider = ({ children }) => {
   );
 
   const addToCart = (item, talle) => {
-    // Agregar el talle al ítem al momento de crear la clave del carrito
     const itemWithSize = { ...item, talle };
     const itemKey = `${item._id}-${talle}`; // Clave única combinando ID y talle
+
+    // Verificar si hay stock del talle seleccionado
+    const stockAvailable = checkStock(item, talle);
+
+    if (!stockAvailable) {
+      // Si no hay stock, mostrar un toast de error
+      toast.error('No hay stock disponible de este talle.');
+      return;
+    }
 
     const isItemInCart = cartItems.find((cartItem) => cartItem.key === itemKey);
 
@@ -32,6 +40,39 @@ export const CartProvider = ({ children }) => {
       ]);
     }
     toast.success('Producto agregado al carrito');
+  };
+
+  // Función para verificar el stock del talle seleccionado
+  const checkStock = (item, talle) => {
+    let availableStock = 0;
+
+    // Verificar el stock disponible según el talle
+    switch (talle) {
+      case 'S':
+        availableStock = item.cant_s;
+        break;
+      case 'M':
+        availableStock = item.cant_m;
+        break;
+      case 'L':
+        availableStock = item.cant_l;
+        break;
+      case 'XL':
+        availableStock = item.cant_xl;
+        break;
+      case 'XXL':
+        availableStock = item.cant_xxl;
+        break;
+      default:
+        availableStock = 0;
+    }
+
+    // Verificar la cantidad del mismo producto en el carrito
+    const cartItem = cartItems.find((cartItem) => cartItem._id === item._id);
+    const quantityInCart = cartItem ? cartItem.quantity : 0;
+
+    // Comparar la cantidad en el carrito con el stock disponible
+    return quantityInCart < availableStock;
   };
 
   const removeFromCart = (item) => {

@@ -3,7 +3,6 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 function ProteccionRutas() {
   const { loading, isAuthenticated } = useAuth();
-  console.log(loading, isAuthenticated);
 
   if (loading) return <h1> Cargando... </h1>;
 
