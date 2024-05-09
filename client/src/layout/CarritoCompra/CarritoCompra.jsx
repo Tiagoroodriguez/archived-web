@@ -2,55 +2,17 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CarritoContext';
 import { Boton } from '../../components/Boton/Boton';
+import RutaCompra from '../../components/RutaCompra/RutaCompra';
 
-import './CarritoLayout.css';
+import './CarritoCompra.css';
 
-export default function CarritoLayout() {
+export default function CarritoCompra() {
   const { cartItems, addToCart, removeFromCart, getCartTotal } =
     useContext(CartContext);
 
   return (
     <main className='carritolayout-container'>
-      <header className='superior'>
-        <ul>
-          <li className='point'>
-            <button className='focus'>
-              <div>
-                <i className='bi bi-cart4'></i>
-              </div>
-              <p>Carrito</p>
-            </button>
-          </li>
-          <li className='line'></li>
-          <li className='point'>
-            <button>
-              <div>
-                <i className='bi bi-info-lg'></i>
-              </div>
-              <p>Informacion</p>
-            </button>
-          </li>
-          <li className='line'></li>
-          <li className='point'>
-            <button>
-              <div>
-                <i className='bi bi-box-seam'></i>
-              </div>
-              <p>Envio</p>
-            </button>
-          </li>
-          <li className='line'></li>
-          <li className='point'>
-            <button>
-              <div>
-                <i className='bi bi-credit-card'></i>
-              </div>
-              <p>Pago</p>
-            </button>
-          </li>
-        </ul>
-        <h1 className='carrito-layout-title'>Detalle de compra</h1>
-      </header>
+      <RutaCompra carrito={true} />
       <table className='cart-table-container'>
         <thead>
           <tr className='cart-table-encabezado'>
@@ -114,7 +76,7 @@ export default function CarritoLayout() {
         <h2>Total: ${getCartTotal()}</h2>
         <p>Los gastos de envio se calculan al momento de la compra</p>
         <Link
-          to='/checkout'
+          to='/checkout/informacion'
           className='table-boton-container'
         >
           <Boton

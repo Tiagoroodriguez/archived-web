@@ -3,57 +3,19 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CarritoContext';
 import Input from '../../components/Input/Input';
 import { Boton } from '../../components/Boton/Boton';
+import RutaCompra from '../../components/RutaCompra/RutaCompra';
 
-import './Checkout.css';
-import { LogoTexto } from '../../components/LogoTexto/LogoTexto';
+import './InformacionEnvio.css';
 
-export default function Checkout() {
+export default function InformacionEnvio() {
   const { cartItems, getCartTotal } = useContext(CartContext);
 
   return (
     <>
       <main className='checkout'>
         <section className='informacion-section'>
-          <header className='superior'>
-            <LogoTexto />
-            <ul>
-              <li className='point'>
-                <button>
-                  <div>
-                    <i className='bi bi-cart4'></i>
-                  </div>
-                  <p>Carrito</p>
-                </button>
-              </li>
-              <li className='line'></li>
-              <li className='point'>
-                <button className='focus'>
-                  <div>
-                    <i className='bi bi-info-lg'></i>
-                  </div>
-                  <p>Informacion</p>
-                </button>
-              </li>
-              <li className='line'></li>
-              <li className='point'>
-                <button>
-                  <div>
-                    <i className='bi bi-box-seam'></i>
-                  </div>
-                  <p>Envio</p>
-                </button>
-              </li>
-              <li className='line'></li>
-              <li className='point'>
-                <button>
-                  <div>
-                    <i className='bi bi-credit-card'></i>
-                  </div>
-                  <p>Pago</p>
-                </button>
-              </li>
-            </ul>
-          </header>
+          <RutaCompra informacion={true} />
+
           <form className='form-datos-envio'>
             <div className='informacion-contacto'>
               <p>Información de contacto</p>
@@ -106,7 +68,7 @@ export default function Checkout() {
             </div>
 
             <div className='checkout-actions'>
-              <Link to='/carrito'>
+              <Link to='/checkout'>
                 <Boton
                   textBoton='Volver'
                   secundario={true}
