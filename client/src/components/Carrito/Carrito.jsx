@@ -68,7 +68,7 @@ export default function Carrito() {
         <h2 className='descripcion-final-texto'>Tu carrito esta vacio</h2>
       )}
       <div className='cart-checkout-container'>
-        <Link to='/carrito'>
+        <Link to='/checkout'>
           <Boton
             type='sudmit'
             textBoton='iniciar compra'

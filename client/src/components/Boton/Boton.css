@@ -42,8 +42,8 @@ box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #3a241694, .12
 }
 
 .desactivado {
-  background: #f1edd0;
-  color: #e4daa4;
-  border: 1px solid #e4daa4;
+  background: #fafaf9;
+  color: #e7e5e4;
+  border: 1px solid #e7e5e4;
   cursor: not-allowed;
 }
