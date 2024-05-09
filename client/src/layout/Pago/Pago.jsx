@@ -1,84 +1,79 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CarritoContext';
-import Input from '../../components/Input/Input';
 import { LogoTexto } from '../../components/LogoTexto/LogoTexto';
 import { Boton } from '../../components/Boton/Boton';
 import RutaCompra from '../../components/RutaCompra/RutaCompra';
+import Acordeon from '../../components/Acordeon/Arcodeon';
 
-import './InformacionEnvio.css';
+import './Pago.css';
 
-export default function InformacionEnvio() {
+export default function Pago() {
   const { cartItems, getCartTotal } = useContext(CartContext);
 
   return (
     <>
-      <main className='checkout'>
-        <section className='informacion-section'>
+      <main className='pago'>
+        <section className='pago-section'>
           <LogoTexto />
-          <RutaCompra informacion={true} />
+          <RutaCompra pago={true} />
+          <table className='pago-table-container'>
+            <tbody className='pago-table-body'>
+              <tr className='pago-tabla-fila'>
+                <td className='pago-tabla-item'>
+                  <div>
+                    <p className='pago-tabla-titulo'>Contacto</p>
+                    <p className='pago-tabla-contenido'>
+                      tiagorodriguez0202@gmail.com
+                    </p>
+                  </div>
+                  <Link to='/checkout/informacion'>Cambiar</Link>
+                </td>
+              </tr>
+              <tr className='pago-tabla-fila'>
+                <td className='pago-tabla-item'>
+                  <div>
+                    <p className='pago-tabla-titulo'>Enviar a</p>
+                    <p className='pago-tabla-contenido'>25 de febrero 1481</p>
+                  </div>
+                  <Link to='/checkout/informacion'>Cambiar</Link>
+                </td>
+              </tr>
+              <tr className='pago-tabla-fila'>
+                <td className='pago-tabla-item'>
+                  <div>
+                    <p className='pago-tabla-titulo'>Metodo</p>
+                    <p className='pago-tabla-contenido'>
+                      Correo Argentino $5000
+                    </p>
+                  </div>
+                  <Link to='/checkout/informacion'>Cambiar</Link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-          <form className='form-datos-envio'>
-            <div className='informacion-contacto'>
-              <p>Información de contacto</p>
-              <Input
-                type='email'
-                placeholder='ejemplo@gmail.com'
-                label='Correo electrónico'
+          <form className='form-pago'>
+            <div className='informacion-pago'>
+              <h1>Forma de pago</h1>
+              <Acordeon
+                titulo='Efectivo'
+                descripcion='Paga en efectivo cuando te llega tu producto'
               />
-            </div>
-
-            <div className='informacion-envio'>
-              <p>Dirección de envio</p>
-              <Input
-                type='text'
-                placeholder='nombre'
-                label='Nombre'
+              <Acordeon
+                titulo='Mercado Pago'
+                descripcion='Paga con tu cuenta de mercado pago, tarjeta de debito o credito'
               />
-              <Input
-                type='text'
-                placeholder='apellido'
-                label='Apellido'
-              />
-              <Input
-                type='number'
-                placeholder='0000000000'
-                label='Telefono'
-              />
-              <Input
-                type='text'
-                placeholder='dirección'
-                label='Dirección'
-              />
-              <div className='ciudad-container'>
-                <div className='ciudad-item ciudad'>
-                  <Input
-                    type='text'
-                    placeholder='ciudad'
-                    label='Ciudad'
-                  />
-                </div>
-
-                <div className='ciudad-item'>
-                  <Input
-                    type='number'
-                    placeholder='XXXXX'
-                    label='Codigo postal'
-                  />
-                </div>
-              </div>
             </div>
 
             <div className='checkout-actions'>
-              <Link to='/checkout'>
+              <Link to='/checkout/informacion'>
                 <Boton
                   textBoton='Volver'
                   secundario={true}
                 />
               </Link>
-              <Link to='/checkout/pago'>
-                <Boton textBoton='Continuar' />
-              </Link>
+              <Boton textBoton='Pagar con MercadoPago' />
             </div>
           </form>
         </section>
