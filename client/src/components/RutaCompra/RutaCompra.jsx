@@ -6,8 +6,9 @@ export default function RutaCompra({ carrito, informacion, envio, pago }) {
   const estilosEnvio = envio ? 'focus' : '';
   const estilosPago = pago ? 'focus' : '';
 
-  const iconoCarrito = informacion ? 'bi bi-check-lg' : 'bi bi-cart4';
-  const iconoInformacion = envio ? 'bi bi-check-lg' : 'bi bi-info-lg';
+  const iconoCarrito =
+    informacion || envio || pago ? 'bi bi-check-lg' : 'bi bi-cart4';
+  const iconoInformacion = envio || pago ? 'bi bi-check-lg' : 'bi bi-info-lg';
   const iconoEnvio = pago ? 'bi bi-check-lg' : 'bi bi-box-seam';
 
   return (

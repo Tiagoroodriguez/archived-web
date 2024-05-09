@@ -1,0 +1,67 @@
+.pago-table-container {
+    padding: 25px 50px;
+}
+
+.pago-table-body {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    border-bottom: none ;
+}
+
+.pago-tabla-fila {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.pago-tabla-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
+.pago-tabla-titulo {
+    font-size: small;
+    opacity: 60%;
+}
+
+.pago-tabla-titulo, .pago-tabla-contenido {
+    color: var(--color-texto);
+}
+
+/*---------------------------------------------------------------------------------------*/
+.pago {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+}
+
+.pago-section {
+    width: 60vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+/*---------------------------------------------------------------------------------------*/
+
+.form-pago{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 25px 50px;
+}
+
+.informacion-pago {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.informacion-pago h1 {
+    color: var(--color-texto);
+}
+/*---------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------*/

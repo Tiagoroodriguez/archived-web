@@ -1,0 +1,25 @@
+.acordeon-button {
+    background: none;
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.acordeon-button:hover {
+    background: var(--color-secundario);
+    color: var(--color-primario);
+}
+
+.acordeon-container {
+    padding: 10px;
+}
+
+.acordeon-hide {
+    display: none;
+}
+
+.acordeon-show {
+    display: block;
+}
