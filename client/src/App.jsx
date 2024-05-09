@@ -18,8 +18,8 @@ import ProteccionRutas from './ProteccionRutas';
 import { ProductProvider } from './context/ProductContext';
 import Header from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
-import Checkout from './layout/Checkout/Checkout';
-import CarritoLayout from './layout/CarritoLayout/CarritoLayout';
+import InformacionEnvio from './layout/InformacionEnvio/InformacionEnvio';
+import CarritoCompra from './layout/CarritoCompra/CarritoCompra';
 
 const Background = styled.div`
   position: fixed;
@@ -116,10 +116,21 @@ function App() {
               />
 
               <Route
+                path='/checkout/informacion/dev'
+                element={
+                  <Layout>
+                    <InformacionEnvio />
+                  </Layout>
+                }
+              />
+
+              <Route
                 path='/checkout/dev'
                 element={
                   <Layout>
-                    <Checkout />
+                    <Header />
+                    <CarritoCompra />
+                    <Footer />
                   </Layout>
                 }
               />
@@ -136,20 +147,20 @@ function App() {
                   }
                 />
                 <Route
-                  path='/carrito'
+                  path='/checkout'
                   element={
                     <Layout>
                       <Header />
-                      <CarritoLayout />
+                      <CarritoCompra />
                       <Footer />
                     </Layout>
                   }
                 />
                 <Route
-                  path='/checkout'
+                  path='/checkout/informacion'
                   element={
                     <Layout>
-                      <Checkout />
+                      <InformacionEnvio />
                     </Layout>
                   }
                 />

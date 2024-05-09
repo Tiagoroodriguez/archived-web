@@ -2,12 +2,11 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { CartContext } from '../../context/CarritoContext';
 
-import { InformacionEnvios } from '../../components/InformacionEnvios/InformacionEnvios';
 import { Boton } from '../../components/Boton/Boton';
 import { useProduct } from '../../context/ProductContext';
+import { Tabla } from '../../components/Tabla/Tabla';
 
 import './DetalleProducto.css';
-import { Tabla } from '../../components/Tabla/Tabla';
 
 export function DetalleProducto() {
   const [producto, setProducto] = useState(null);
