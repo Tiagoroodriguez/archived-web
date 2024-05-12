@@ -1,15 +1,16 @@
 import './Input.css';
 
-export default function Input({ type, placeholder, label, ternaria }) {
+export default function Input({ type, label, ternaria }) {
   return (
-    <>
-      <label className='label'>{label}</label>
+    <div className='input-container'>
       <input
+        autoComplete='off'
+        required
         type={type}
-        placeholder={placeholder}
         className='input'
         {...ternaria}
       />
-    </>
+      <label className='label'>{label}</label>
+    </div>
   );
 }

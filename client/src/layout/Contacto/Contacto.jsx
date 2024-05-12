@@ -12,7 +12,7 @@ export function Contacto() {
           className='contacto'
         >
           <div className='contacto-texto-container'>
-            <p>Envianos tu duda</p>
+            <p>Contactate con nosotros</p>
           </div>
 
           <div className='datos-container'>
@@ -28,7 +28,7 @@ export function Contacto() {
               label='Asunto'
             />
 
-            <label>Mensaje</label>
+            <label className='contacto-label'>Mensaje</label>
             <textarea
               className='contenido'
               placeholder='Ingresa tu consulta'
