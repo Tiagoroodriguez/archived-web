@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 import { Boton } from '../../components/Boton/Boton';
+import { LogoTexto } from '../../components/LogoTexto/LogoTexto';
 import Input from '../../components/Input/Input';
 
 import './CrearCuenta.css';
@@ -28,17 +29,32 @@ export function CrearCuenta() {
   });
 
   return (
-    <>
-      <section>
+    <div className='cuenta-container'>
+      <aside>
+        <div className='aside-img-container'>
+          <img src='/images/doku-europe-finesse-records-3.jpg' />
+        </div>
+      </aside>
+      <main>
+        <Link to='/'>
+          <LogoTexto />
+        </Link>
+
         <form
-          className='crear-cuenta'
+          className='form-cuenta'
           onSubmit={onSubmit}
         >
-          <div className='texto-container'>
-            <p>Crea tu cuenta</p>
+          <div className='cuenta-texto-container'>
+            <h1>Crea tu cuenta</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+              quibusdam, perferendis ad quaerat culpa minus laborum ipsam, rerum
+              libero voluptatum inventore. Velit nulla esse officiis repellendus
+              explicabo blanditiis ipsam iure?
+            </p>
           </div>
 
-          <div className='datos-container'>
+          <div className='cuenta-datos-container'>
             {registerErrors.map((error, i) => (
               <div
                 className='cartel-error'
@@ -95,7 +111,7 @@ export function CrearCuenta() {
             ¿Ya tenés una cuenta? <Link to='/login'>Iniciá sesión</Link>
           </p>
         </form>
-      </section>
-    </>
+      </main>
+    </div>
   );
 }

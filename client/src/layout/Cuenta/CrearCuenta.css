@@ -1,6 +1,23 @@
-.crear-cuenta {
-    width: 100%;
+.cuenta-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.cuenta-container aside {
+    width: 50vw;
     height: 100vh;
+    overflow: hidden;
+}
+
+.cuenta-container main {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-cuenta {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,22 +25,45 @@
 }
 
 /*--------------------------------------------------------------------------------------------------*/
-
-.texto-container {
-    font-size: x-large;
-    font-weight: bolder;
-    text-align: center;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    color: var(--color-texto);
-    padding-top: 10px;
+.aside-img-container {
+    width: 100%;
 }
 
-.datos-container {
+.aside-img-container img {
+    object-fit: contain;
+    position: relative;
+    top: -564px;
+    left: -1978px;
+}
+
+/*--------------------------------------------------------------------------------------------------*/
+
+.cuenta-texto-container {
+    font-size:medium;
+    font-weight: bolder;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    width: 40%;
+    align-items: center;
+    padding: 20px 50px;
+    gap: 10px;
+}
+
+.cuenta-texto-container h1 {
+    color: var(--color-texto);
+}
+
+.cuenta-texto-container p {
+    font-size: x-small;
+    color: var(--color-texto);
+    opacity: 60%;
+}
+
+.cuenta-datos-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-inline: 50px;
 }
 
 /*--------------------------------------------------------------------------------------------------*/
@@ -56,17 +96,24 @@
 /*--------------------------------------------------------------------------------------------------*/
 
 @media (max-width: 768px) {
-    .texto-container{
-        width: 80%;
-        justify-content: center;
-    }
-
-    .datos-container {
-        width: 80%;
+    .cuenta-texto-container, .cuenta-datos-container{
+        padding-inline: 20px;
     }
 
     .crear-cuenta {
         align-items: center;
         justify-content: flex-start;
+    }
+
+    .cuenta-container aside { 
+        display: none;
+    }
+
+    .cuenta-container main {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
