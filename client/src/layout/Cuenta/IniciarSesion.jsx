@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../context/AuthContext';
 
+import { LogoTexto } from '../../components/LogoTexto/LogoTexto';
 import { Boton } from '../../components/Boton/Boton';
 import Input from '../../components/Input/Input';
 
@@ -28,16 +29,25 @@ export function IniciarSesion() {
   }, [isAuthenticated]);
 
   return (
-    <>
-      <section>
+    <div className='cuenta-container'>
+      <main>
+        <Link to='/'>
+          <LogoTexto />
+        </Link>
         <form
           onSubmit={onSubmit}
-          className='iniciar-sesion'
+          className='form-cuenta'
         >
-          <div className='texto-container'>
-            <p>Inicia sesión</p>
+          <div className='cuenta-texto-container'>
+            <h1>Inicia sesión</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Asperiores, assumenda. Animi magni eos optio perferendis sunt,
+              eveniet quasi, illum maxime facere delectus veritatis quaerat
+              officia. Voluptatibus molestiae odio unde praesentium.
+            </p>
           </div>
-          <div className='datos-container'>
+          <div className='cuenta-datos-container'>
             {singInErrors.map((error, i) => (
               <div
                 className='cartel-error'
@@ -49,8 +59,7 @@ export function IniciarSesion() {
 
             <Input
               type='email'
-              placeholder='ejemplo@gmail.com'
-              label='Contraseña'
+              label='Correo electronico'
               ternaria={register('email', { required: true })}
             />
             {errors.email && (
@@ -59,13 +68,13 @@ export function IniciarSesion() {
 
             <Input
               type='password'
-              placeholder='*********'
               label='Contraseña'
               ternaria={register('password', { required: true })}
             />
             {errors.password && (
               <p className='error'>Contraseña es requerida</p>
             )}
+            <label className='label-contraseña'>Olvidaste tu contraseña?</label>
 
             <Boton
               type='sudmit'
@@ -76,7 +85,12 @@ export function IniciarSesion() {
             ¿No tenés cuenta? <Link to='/register'>Crear cuenta</Link>
           </p>
         </form>
-      </section>
-    </>
+      </main>
+      <aside>
+        <div className='aside-img-container'>
+          <img src='/images/doku-europe-finesse-records-3.jpg' />
+        </div>
+      </aside>
+    </div>
   );
 }

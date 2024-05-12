@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     color: var(--color-texto);
-    padding-top: 10px;
+    padding: 20px;
 }
 
 .datos-container {
@@ -24,7 +24,7 @@
     width: 40%;
 }
 
-.datos-container label {
+.contacto-label {
     margin-top: 20px;
     color: var(--color-texto);
 }
