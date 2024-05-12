@@ -56,9 +56,7 @@ function App() {
                 path='/login'
                 element={
                   <Layout>
-                    <Header />
                     <IniciarSesion />
-                    <Footer />
                   </Layout>
                 }
               />
@@ -66,9 +64,7 @@ function App() {
                 path='/register'
                 element={
                   <Layout>
-                    <Header />
                     <CrearCuenta />
-                    <Footer />
                   </Layout>
                 }
               />
@@ -135,6 +131,32 @@ function App() {
                   </Layout>
                 }
               />
+              <Route
+                path='/checkout'
+                element={
+                  <Layout>
+                    <Header />
+                    <CarritoCompra />
+                    <Footer />
+                  </Layout>
+                }
+              />
+              <Route
+                path='/checkout/informacion'
+                element={
+                  <Layout>
+                    <InformacionEnvio />
+                  </Layout>
+                }
+              />
+              <Route
+                path='/checkout/pago'
+                element={
+                  <Layout>
+                    <Pago />
+                  </Layout>
+                }
+              />
 
               <Route element={<ProteccionRutas />}>
                 <Route
@@ -144,32 +166,6 @@ function App() {
                       <Header />
                       <ProductosForm />
                       <Footer />
-                    </Layout>
-                  }
-                />
-                <Route
-                  path='/checkout'
-                  element={
-                    <Layout>
-                      <Header />
-                      <CarritoCompra />
-                      <Footer />
-                    </Layout>
-                  }
-                />
-                <Route
-                  path='/checkout/informacion'
-                  element={
-                    <Layout>
-                      <InformacionEnvio />
-                    </Layout>
-                  }
-                />
-                <Route
-                  path='/checkout/pago'
-                  element={
-                    <Layout>
-                      <Pago />
                     </Layout>
                   }
                 />

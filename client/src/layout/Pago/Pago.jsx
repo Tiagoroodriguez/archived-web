@@ -11,6 +11,15 @@ import './Pago.css';
 export default function Pago() {
   const { cartItems, getCartTotal } = useContext(CartContext);
 
+  const acordeonData = [
+    { title: 'Efectivo', content: 'Paga en efectivo cuando retires tu prenda' },
+    {
+      title: 'Mercado Pago',
+      content:
+        'Paga con tu cuenta de Mercado Pago o con tu tarjeta de debito o credito',
+    },
+  ];
+
   return (
     <>
       <main className='pago'>
@@ -53,29 +62,12 @@ export default function Pago() {
             </tbody>
           </table>
 
-          <form className='form-pago'>
+          <div className='form-pago'>
             <div className='informacion-pago'>
               <h1>Forma de pago</h1>
-              <Acordeon
-                titulo='Efectivo'
-                descripcion='Paga en efectivo cuando te llega tu producto'
-              />
-              <Acordeon
-                titulo='Mercado Pago'
-                descripcion='Paga con tu cuenta de mercado pago, tarjeta de debito o credito'
-              />
+              <Acordeon data={acordeonData} />
             </div>
-
-            <div className='checkout-actions'>
-              <Link to='/checkout/informacion'>
-                <Boton
-                  textBoton='Volver'
-                  secundario={true}
-                />
-              </Link>
-              <Boton textBoton='Pagar con MercadoPago' />
-            </div>
-          </form>
+          </div>
         </section>
 
         <section className='carrito-section'>

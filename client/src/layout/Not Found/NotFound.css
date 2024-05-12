@@ -12,5 +12,5 @@
 }
 .container-404 p {
     text-transform: uppercase;
-    color: #932b21;
+    color: var(--color-texto);
 }
