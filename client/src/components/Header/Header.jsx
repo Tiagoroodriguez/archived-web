@@ -81,7 +81,7 @@ function Header() {
             onClick={toggleCart}
             className='boton-carrito-mobile'
           >
-            <i className='bi bi-cart4'>({cartItems.length})</i>
+            <i className='bi bi-cart2'>({cartItems.length})</i>
           </button>
 
           <div className='nav-cuenta'>
@@ -117,14 +117,16 @@ function Header() {
                   onClick={toggleCart}
                   className='boton-carrito'
                 >
-                  <i className='bi bi-cart4'>({cartItems.length})</i>
+                  <i className='bi bi-cart2'>({cartItems.length})</i>
                 </button>
               </li>
             </ul>
           </div>
         </nav>
+        <div className={`header-cart-container ${showCart ? 'show' : ''}`}>
+          <Carrito />
+        </div>
       </header>
-      {showCart && <Carrito />}
     </>
   );
 }

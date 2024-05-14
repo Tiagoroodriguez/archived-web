@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CarritoContext';
 import { LogoTexto } from '../../components/LogoTexto/LogoTexto';
@@ -10,6 +10,7 @@ import './Pago.css';
 
 export default function Pago() {
   const { cartItems, getCartTotal } = useContext(CartContext);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const acordeonData = [
     { title: 'Efectivo', content: 'Paga en efectivo cuando retires tu prenda' },
@@ -65,7 +66,33 @@ export default function Pago() {
           <div className='form-pago'>
             <div className='informacion-pago'>
               <h1>Forma de pago</h1>
-              <Acordeon data={acordeonData} />
+              <Acordeon
+                data={acordeonData}
+                activeIndex={activeIndex}
+                setActiveIndex={setActiveIndex}
+              />
+            </div>
+            <div className='checkout-actions'>
+              <Link to='/checkout/informacion'>
+                <Boton
+                  textBoton='Volver'
+                  secundario={true}
+                />
+              </Link>
+              {activeIndex === null ? (
+                <Boton
+                  textBoton='Seleccione un metodo de pago'
+                  desactivado={true}
+                />
+              ) : (
+                <Boton
+                  textBoton={
+                    activeIndex === 0
+                      ? 'Pagar en Efectivo'
+                      : 'Pagar con Mercado Pago'
+                  }
+                />
+              )}
             </div>
           </div>
         </section>
