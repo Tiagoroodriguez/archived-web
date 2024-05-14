@@ -4,9 +4,7 @@ import { Boton } from '../../components/Boton/Boton';
 
 import './Acordeon.css';
 
-export default function Acordeon({ data }) {
-  const [activeIndex, setActiveIndex] = useState(null);
-
+export default function Acordeon({ data, activeIndex, setActiveIndex }) {
   const handleToggle = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
@@ -21,34 +19,20 @@ export default function Acordeon({ data }) {
           >
             <div>
               {item.title}
-              <i className='bi bi-check-lg' />
+              <i
+                className={
+                  activeIndex === index
+                    ? 'bi bi-chevron-down'
+                    : 'bi bi-chevron-right'
+                }
+              />
             </div>
           </button>
-          {activeIndex === index && (
-            <div className='acordeon-item-desc'>{item.content}</div>
-          )}
+          <div style={{ display: activeIndex === index ? 'block' : 'none' }}>
+            {item.content}
+          </div>
         </div>
       ))}
-      <div className='checkout-actions'>
-        <Link to='/checkout/informacion'>
-          <Boton
-            textBoton='Volver'
-            secundario={true}
-          />
-        </Link>
-        {activeIndex === null ? (
-          <Boton
-            textBoton='Seleccione un metodo de pago'
-            desactivado={true}
-          />
-        ) : (
-          <Boton
-            textBoton={
-              activeIndex === 0 ? 'Pagar en Efectivo' : 'Pagar con Mercado Pago'
-            }
-          />
-        )}
-      </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@
     right: 0px;
     top: 60px;
     width: 350px;
-    height: -webkit-fill-available;
+    height: 91vh;
 
     z-index: 1;
     background: var(--color-primario);
