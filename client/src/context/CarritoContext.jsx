@@ -107,6 +107,20 @@ export const CartProvider = ({ children }) => {
     ); // calculate the total price of the items in the cart
   };
 
+  const getCartItems = () => {
+    const cartItemsWithInfo = cartItems.map((item) => {
+      return {
+        id: item._id,
+        nombre: item.nombre,
+        precio: item.precio,
+        cantidad: item.quantity,
+      };
+    });
+
+    console.log(cartItemsWithInfo);
+    return cartItemsWithInfo;
+  };
+
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
@@ -126,6 +140,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         clearCart,
         getCartTotal,
+        getCartItems,
       }}
     >
       {children}
