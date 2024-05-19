@@ -5,6 +5,7 @@ import cors from 'cors';
 
 import authRoutes from './routes/auth.routes.js';
 import productRoutes from './routes/products.route.js';
+import mercadopagoRoutes from './routes/mercadopago.route.js';
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use(cookieParser());
 
 app.use('/api', authRoutes);
 app.use('/api', productRoutes);
+app.use('/api', mercadopagoRoutes);
 
 export default app;

@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CarritoContext';
+import { MercadoPagoContext } from '../../context/MercadoPago';
 import { LogoTexto } from '../../components/LogoTexto/LogoTexto';
 import { Boton } from '../../components/Boton/Boton';
 import RutaCompra from '../../components/RutaCompra/RutaCompra';
@@ -9,7 +10,8 @@ import Acordeon from '../../components/Acordeon/Arcodeon';
 import './Pago.css';
 
 export default function Pago() {
-  const { cartItems, getCartTotal } = useContext(CartContext);
+  const { createOrder } = useContext(MercadoPagoContext);
+  const { cartItems, getCartTotal, getCartItems } = useContext(CartContext);
   const [activeIndex, setActiveIndex] = useState(null);
 
   const acordeonData = [
@@ -20,6 +22,10 @@ export default function Pago() {
         'Paga con tu cuenta de Mercado Pago o con tu tarjeta de debito o credito',
     },
   ];
+
+  const handdleMercadoPago = () => {
+    createOrder(getCartItems());
+  };
 
   return (
     <>
@@ -90,6 +96,13 @@ export default function Pago() {
                     activeIndex === 0
                       ? 'Pagar en Efectivo'
                       : 'Pagar con Mercado Pago'
+                  }
+                  onClick={
+                    activeIndex === 0
+                      ? () => alert('Pago en efectivo')
+                      : () => {
+                          handdleMercadoPago();
+                        }
                   }
                 />
               )}
