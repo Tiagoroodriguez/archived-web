@@ -26,4 +26,7 @@ export const createProductRequest = (product) =>
 export const updateProductRequest = (product) =>
   axios.put(`/product/${product._id}`, product);
 
+export const updateProductStockRequest = (id, talle, quantity) =>
+  axios.put(`/product/update-stock/${id}`, { talle, quantity });
+
 export const deleteProductsRequest = (id) => axios.delete(`/product/${id}`);

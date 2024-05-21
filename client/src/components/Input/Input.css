@@ -26,7 +26,6 @@
   top: 13px;
   left: 0;
   font-size: 12px;
-  font-weight: bold;
   background: var(--color-primario);
   color: #999;
   transition: all .3s ease;
@@ -35,8 +34,15 @@
 .input:focus + label,.input:valid + label {
   font-size: 11px;
   top: -5px;
+  font-weight: bold;
 }
 
 .input:focus + .label, .input:valid + .label {
   color: var(--color-texto);
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

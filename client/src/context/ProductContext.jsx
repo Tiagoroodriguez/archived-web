@@ -3,6 +3,7 @@ import {
   createProductRequest,
   getProductsRequest,
   getProductRequest,
+  updateProductStockRequest,
 } from '../api/products';
 
 const ProductContext = createContext();
@@ -45,9 +46,25 @@ export function ProductProvider({ children }) {
       console.error(error);
     }
   };
+
+  const updateProductStock = async (id, talle, quantity) => {
+    try {
+      const res = await updateProductStockRequest(id, talle, quantity);
+      console.log(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <ProductContext.Provider
-      value={{ products, createProduct, getProducts, getProduct }}
+      value={{
+        products,
+        createProduct,
+        getProducts,
+        getProduct,
+        updateProductStock,
+      }}
     >
       {children}
     </ProductContext.Provider>
