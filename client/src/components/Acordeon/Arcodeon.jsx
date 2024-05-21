@@ -1,7 +1,3 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Boton } from '../../components/Boton/Boton';
-
 import './Acordeon.css';
 
 export default function Acordeon({ data, activeIndex, setActiveIndex }) {
@@ -28,7 +24,10 @@ export default function Acordeon({ data, activeIndex, setActiveIndex }) {
               />
             </div>
           </button>
-          <div style={{ display: activeIndex === index ? 'block' : 'none' }}>
+          <div
+            className='acordeon-item-desc'
+            style={{ display: activeIndex === index ? 'block' : 'none' }}
+          >
             {item.content}
           </div>
         </div>

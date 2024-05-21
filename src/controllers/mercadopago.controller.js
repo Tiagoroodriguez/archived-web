@@ -22,11 +22,12 @@ export const createOrder = async (req, res) => {
     const preferences = {
       items: arrayProducto,
 
-      notification_url: 'https://archived-web-1.onrender.com/api/webhook',
+      notification_url:
+        'https://fbd5-138-204-152-207.ngrok-free.app/api/webhook',
       back_urls: {
-        success: 'https://archived-web-six.vercel.app/checkout/pago/success',
-        failure: 'https://archived-web-six.vercel.app/failure',
-        pending: 'https://archived-web-six.vercel.app/pending',
+        success: 'http://localhost:5173/checkout/pago/success',
+        failure: 'http://localhost:5173/failure',
+        pending: 'http://localhost:5173/pending',
       },
 
       auto_return: 'approved',

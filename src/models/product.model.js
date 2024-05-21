@@ -1,37 +1,38 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema(
-    {
+  {
     nombre: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     categoria: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     precio: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     cant_s: {
-        type: Number,
+      type: Number,
     },
     cant_m: {
-        type: Number,
+      type: Number,
     },
     cant_l: {
-        type: Number,
+      type: Number,
     },
     cant_xl: {
-        type: Number,
+      type: Number,
     },
     cant_xxl: {
-        type: Number,
+      type: Number,
     },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-}, {
-    timestamps: true
-});
-
-export default mongoose.model("Product", productSchema);
+export default mongoose.model('Product', productSchema);

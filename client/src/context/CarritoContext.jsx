@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import { toast } from 'sonner';
+import { useProduct } from './ProductContext';
 
 export const CartContext = createContext();
 
@@ -10,7 +11,9 @@ export const CartProvider = ({ children }) => {
       : []
   );
 
-  const addToCart = (item, talle) => {
+  const { updateProductStock } = useProduct(); // Use the updateProductStock function from ProductContext
+
+  const addToCart = async (item, talle) => {
     const itemWithSize = { ...item, talle };
     const itemKey = `${item._id}-${talle}`; // Clave única combinando ID y talle
 
@@ -39,6 +42,11 @@ export const CartProvider = ({ children }) => {
         { ...itemWithSize, quantity: 1, key: itemKey },
       ]);
     }
+    // Restar del stock
+    console.log(item._id);
+    console.log(talle);
+    await updateProductStock(item._id, talle, 1);
+
     toast.success('Producto agregado al carrito');
   };
 
@@ -75,7 +83,7 @@ export const CartProvider = ({ children }) => {
     return quantityInCart < availableStock;
   };
 
-  const removeFromCart = (item) => {
+  const removeFromCart = async (item) => {
     // Asume que item ya contiene el 'talle' como una propiedad
     const itemKey = `${item._id}-${item.talle}`; // Clave única combinando ID y talle
 
@@ -92,10 +100,16 @@ export const CartProvider = ({ children }) => {
         )
       );
     }
+    await updateProductStock(item._id, item.talle, -1);
+
     toast.info('Producto eliminado del carrito');
   };
 
   const clearCart = () => {
+    // Restaurar todo el stock
+    cartItems.forEach(async (item) => {
+      await updateProductStock(item._id, item.talle, -item.quantity);
+    });
     setCartItems([]); // set the cart items to an empty array
     toast.info('Carrito vaciado');
   };
@@ -122,15 +136,28 @@ export const CartProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
+    const now = new Date().getTime();
+    const fiveHours = 5 * 60 * 60 * 1000;
 
-  useEffect(() => {
-    const cartItems = localStorage.getItem('cartItems');
-    if (cartItems) {
-      setCartItems(JSON.parse(cartItems));
+    const savedCart = localStorage.getItem('cartItems');
+    const savedTime = localStorage.getItem('cartTime');
+
+    if (savedCart && savedTime) {
+      if (now - savedTime > fiveHours) {
+        localStorage.removeItem('cartItems');
+        localStorage.removeItem('cartTime');
+        setCartItems([]);
+      } else {
+        setCartItems(JSON.parse(savedCart));
+      }
     }
   }, []);
+
+  useEffect(() => {
+    const now = new Date().getTime();
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    localStorage.setItem('cartTime', now);
+  }, [cartItems]);
 
   return (
     <CartContext.Provider
