@@ -1,0 +1,30 @@
+.checkboxgroup-container {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    gap: 10px;
+}
+
+.checkboxgroup-item input {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.checkboxgroup-item label {
+    color: var(--color-texto);
+    cursor: pointer;
+    width: 100%;
+}
+
+.checkboxgroup-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    border: #e0e0e0 1px solid;
+    cursor: pointer;
+}  
+
+.checkboxgroup-item:hover {
+    background-color: #f0f0f0;
+}
