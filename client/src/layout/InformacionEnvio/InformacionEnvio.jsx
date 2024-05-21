@@ -23,7 +23,6 @@ export default function InformacionEnvio() {
               <p>Información de contacto</p>
               <Input
                 type='email'
-                placeholder='ejemplo@gmail.com'
                 label='Correo electrónico'
               />
             </div>
@@ -32,29 +31,24 @@ export default function InformacionEnvio() {
               <p>Dirección de envio</p>
               <Input
                 type='text'
-                placeholder='nombre'
                 label='Nombre'
               />
               <Input
                 type='text'
-                placeholder='apellido'
                 label='Apellido'
               />
               <Input
                 type='number'
-                placeholder='0000000000'
                 label='Telefono'
               />
               <Input
                 type='text'
-                placeholder='dirección'
                 label='Dirección'
               />
               <div className='ciudad-container'>
                 <div className='ciudad-item ciudad'>
                   <Input
                     type='text'
-                    placeholder='ciudad'
                     label='Ciudad'
                   />
                 </div>
@@ -62,7 +56,6 @@ export default function InformacionEnvio() {
                 <div className='ciudad-item'>
                   <Input
                     type='number'
-                    placeholder='XXXXX'
                     label='Codigo postal'
                   />
                 </div>

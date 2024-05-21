@@ -82,3 +82,61 @@ export const updateProduct = async (req, res) => {
     return res.status(404).json({ message: 'Producto no encontrado' });
   }
 };
+
+export const updateProductStock = async (req, res) => {
+  const { talle, quantity } = req.body;
+  const { id } = req.params;
+
+  try {
+    // Encontrar el producto por ID
+    const product = await Product.findById(id);
+    if (!product) {
+      console.log('Producto no encontrado');
+      return res.status(404).json({ message: 'Producto no encontrado' });
+    }
+
+    // Actualizar el stock según el talle
+    switch (talle) {
+      case 'S':
+        if (product.cant_s < quantity) {
+          return res.status(400).json({ message: 'Stock insuficiente' });
+        }
+        product.cant_s -= quantity;
+        break;
+      case 'M':
+        if (product.cant_m < quantity) {
+          return res.status(400).json({ message: 'Stock insuficiente' });
+        }
+        product.cant_m -= quantity;
+        break;
+      case 'L':
+        if (product.cant_l < quantity) {
+          return res.status(400).json({ message: 'Stock insuficiente' });
+        }
+        product.cant_l -= quantity;
+        break;
+      case 'XL':
+        if (product.cant_xl < quantity) {
+          return res.status(400).json({ message: 'Stock insuficiente' });
+        }
+        product.cant_xl -= quantity;
+        break;
+      case 'XXL':
+        if (product.cant_xxl < quantity) {
+          return res.status(400).json({ message: 'Stock insuficiente' });
+        }
+        product.cant_xxl -= quantity;
+        break;
+      default:
+        console.log('Talle inválido');
+        return res.status(400).json({ message: 'Talle inválido' });
+    }
+
+    // Guardar los cambios en el producto
+    const updatedProduct = await product.save();
+    res.json(updatedProduct);
+  } catch (error) {
+    console.error('Error al actualizar el stock:', error);
+    return res.status(500).json({ message: 'Algo salió mal' });
+  }
+};

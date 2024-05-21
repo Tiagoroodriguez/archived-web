@@ -5,6 +5,7 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
+  updateProductStock,
 } from '../controllers/products.controller.js';
 
 const router = Router();
@@ -17,6 +18,6 @@ router.post('/product', createProduct);
 
 router.delete('/product/:id', deleteProduct);
 
-router.put('/product/:id', updateProduct);
+router.put('/product/update-stock/:id', updateProductStock);
 
 export default router;
