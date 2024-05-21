@@ -1,11 +1,14 @@
 import { Link, useSearchParams } from 'react-router-dom';
-import { Boton } from '../../components/Boton/Boton';
-import './PagoSuccess.css'; // Import your CSS file for styling
 import { useContext, useState, useEffect } from 'react';
 import { MercadoPagoContext } from '../../context/MercadoPago';
+import { CartContext } from '../../context/CarritoContext';
+import { Boton } from '../../components/Boton/Boton';
+
+import './PagoSuccess.css';
 
 const PagoSuccess = () => {
   const { getOrder } = useContext(MercadoPagoContext);
+  const { clearCartLocally } = useContext(CartContext);
   const [searchParams] = useSearchParams();
   const [orderItems, setOrderItems] = useState([]);
 
@@ -15,10 +18,11 @@ const PagoSuccess = () => {
     const fetchOrderItems = async () => {
       const items = await getOrder(merchantOrderId);
       setOrderItems(items);
+      clearCartLocally();
     };
 
     fetchOrderItems();
-  }, [getOrder, merchantOrderId]);
+  }, [getOrder, merchantOrderId, clearCartLocally]);
 
   return (
     <div className='payment-success-container'>
