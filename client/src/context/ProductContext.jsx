@@ -49,8 +49,7 @@ export function ProductProvider({ children }) {
 
   const updateProductStock = async (id, talle, quantity) => {
     try {
-      const res = await updateProductStockRequest(id, talle, quantity);
-      console.log(res.data);
+      await updateProductStockRequest(id, talle, quantity);
     } catch (error) {
       console.error(error);
     }
