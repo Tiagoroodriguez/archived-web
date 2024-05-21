@@ -14,12 +14,33 @@ export default function Pago() {
   const { cartItems, getCartTotal, getCartItems } = useContext(CartContext);
   const [activeIndex, setActiveIndex] = useState(null);
 
-  const acordeonData = [
-    { title: 'Efectivo', content: 'Paga en efectivo cuando retires tu prenda' },
+  const data = [
+    {
+      title: 'Efectivo',
+      content: (
+        <div>
+          <h3>Efectivo</h3>
+          <p>Más detalles sobre el otro método de pago</p>
+        </div>
+      ),
+    },
     {
       title: 'Mercado Pago',
-      content:
-        'Paga con tu cuenta de Mercado Pago o con tu tarjeta de debito o credito',
+      content: (
+        <div>
+          <h3>Mercado pago</h3>
+          <p>Más detalles sobre el otro método de pago</p>
+        </div>
+      ),
+    },
+    {
+      title: 'Otro método',
+      content: (
+        <div>
+          <h3>Título del otro método</h3>
+          <p>Más detalles sobre el otro método de pago</p>
+        </div>
+      ),
     },
   ];
 
@@ -73,7 +94,7 @@ export default function Pago() {
             <div className='informacion-pago'>
               <h1>Forma de pago</h1>
               <Acordeon
-                data={acordeonData}
+                data={data}
                 activeIndex={activeIndex}
                 setActiveIndex={setActiveIndex}
               />
