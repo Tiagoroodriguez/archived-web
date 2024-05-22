@@ -10,13 +10,11 @@ export function Inicio() {
       <main>
         <Slider />
         <Novedades
-          categoria='remera'
           cantidad='4'
-          titulo={'Conoce nuestro ultimo drop'}
+          titulo={'Buzos | Archived 222'}
         />
         <Bento />
         <Novedades
-          categoria='remera'
           cantidad='4'
           titulo={'Remeras | Archived 222'}
         />

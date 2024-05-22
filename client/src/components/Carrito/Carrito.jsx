@@ -62,6 +62,7 @@ export default function Carrito() {
               clearCart();
             }}
             secundario={true}
+            value={'vaciar'}
           />
         </div>
       ) : (

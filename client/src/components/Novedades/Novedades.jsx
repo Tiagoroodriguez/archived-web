@@ -5,11 +5,11 @@ import { useEffect } from 'react';
 import { useProduct } from '../../context/ProductContext';
 import { Boton } from '../../components/Boton/Boton';
 
-export function Novedades({ categoria, cantidad, titulo }) {
+export function Novedades({ cantidad, titulo }) {
   const { getProducts, products } = useProduct();
 
   useEffect(() => {
-    getProducts(cantidad, categoria);
+    getProducts(cantidad);
   }, []);
 
   return (
@@ -26,7 +26,6 @@ export function Novedades({ categoria, cantidad, titulo }) {
           />
         ))}
       </article>
-
       <Link
         to='/tienda'
         className='todos-productos'
@@ -35,6 +34,7 @@ export function Novedades({ categoria, cantidad, titulo }) {
           type='sudmit'
           textBoton='Ver todos los productos'
           secundario={true}
+          value={'volver'}
         />
       </Link>
     </section>

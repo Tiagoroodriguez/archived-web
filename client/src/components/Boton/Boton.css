@@ -47,3 +47,8 @@ box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #3a241694, .12
   border: 1px solid #e7e5e4;
   cursor: not-allowed;
 }
+
+.boton-activo {
+  background-color: #452b1a31;
+  color: var(--color-texto);
+}
