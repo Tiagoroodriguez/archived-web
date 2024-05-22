@@ -37,9 +37,10 @@
 
 .tienda-filtros {
     display: flex;
-    height: 50px;
+    width: 50%;
+    height: 30px;
     align-items: center;
-    border-bottom: 1px solid rgba(49, 49, 49, 0.596);
+    gap: 15px;
 }
 
   
@@ -58,8 +59,8 @@
     .tienda-filtros{
         overflow-y: auto;
         height: 70px;
-        border-bottom: 1px solid rgba(49, 49, 49, 0.596);
         scrollbar-width: none;
+        width: 100%;
     }
 
     .tienda {

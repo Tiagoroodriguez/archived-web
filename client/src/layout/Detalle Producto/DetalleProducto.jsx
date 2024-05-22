@@ -108,6 +108,8 @@ export function DetalleProducto() {
                     desactivado={producto[`cant_${talle.toLowerCase()}`] <= 0}
                     secundario={true}
                     onClick={() => handleTalleSeleccionado(talle)}
+                    value={talle}
+                    selected={talleSeleccionado}
                   />
                 ))}
               </div>

@@ -10,13 +10,15 @@ export const getProducts = async (req, res) => {
     }
 
     if (categoria) {
-      query = query.where('categoria').equals(categoria);
+      // Ensure categoria is properly converted to string
+      const categoriaString = decodeURIComponent(categoria);
+      query = query.where('categoria').equals(categoriaString);
     }
 
     const products = await query;
     res.json(products);
   } catch (error) {
-    return res.status(500).json({ message: 'Something went wrong' });
+    return res.status(500).json({ message: 'Algo salió mal' });
   }
 };
 
