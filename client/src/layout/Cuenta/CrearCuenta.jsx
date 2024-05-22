@@ -32,7 +32,7 @@ export function CrearCuenta() {
     <div className='cuenta-container'>
       <aside>
         <div className='aside-img-container'>
-          <img src='/images/doku-europe-finesse-records-3.jpg' />
+          <img src='/images/cuenta.webp' />
         </div>
       </aside>
       <main>

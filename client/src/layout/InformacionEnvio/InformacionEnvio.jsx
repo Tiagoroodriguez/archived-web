@@ -67,6 +67,7 @@ export default function InformacionEnvio() {
                 <Boton
                   textBoton='Volver'
                   secundario={true}
+                  value={'volver'}
                 />
               </Link>
               <Link to='/checkout/pago'>
