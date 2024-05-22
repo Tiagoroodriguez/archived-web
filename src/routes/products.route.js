@@ -18,6 +18,8 @@ router.post('/product', createProduct);
 
 router.delete('/product/:id', deleteProduct);
 
+router.put('/product/:id', updateProduct);
+
 router.put('/product/update-stock/:id', updateProductStock);
 
 export default router;

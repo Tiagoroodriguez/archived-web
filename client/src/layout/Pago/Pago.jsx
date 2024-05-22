@@ -134,6 +134,7 @@ export default function Pago() {
                 <Boton
                   textBoton='Volver'
                   secundario={true}
+                  value={'volver'}
                 />
               </Link>
               {!selectedPaymentMethod ? (
