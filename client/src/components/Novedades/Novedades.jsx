@@ -35,7 +35,7 @@ export function Novedades({ cantidad, categoria, titulo }) {
         ))}
       </article>
       <Link
-        to='/tienda'
+        to={`/tienda?categoria=${categoria}`}
         className='todos-productos'
       >
         <Boton

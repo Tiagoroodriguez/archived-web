@@ -4,14 +4,15 @@ import './Bento.css';
 export default function Bento() {
   return (
     <section className='grid-container'>
-      <div
+      <Link
+        to='/tienda?categoria=remera'
         className='grid-item item-1'
         data-text='Remeras'
       >
         <img src='/images/bento/remera.jpg' />
-      </div>
+      </Link>
       <Link
-        to='/tienda'
+        to='/tienda?categoria=all'
         className='grid-item item-2'
         data-text='Todos los productos'
       >
@@ -29,12 +30,13 @@ export default function Bento() {
       >
         <img src='/images/bento/gorra.jpg' />
       </div>
-      <div
+      <Link
+        to='/tienda?categoria=buzo'
         className='grid-item item-5'
         data-text='Buzos'
       >
         <img src='/images/bento/oufit-4.jpg' />
-      </div>
+      </Link>
     </section>
   );
 }
