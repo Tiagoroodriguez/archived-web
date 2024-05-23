@@ -2,17 +2,15 @@ import Product from '../models/product.model.js';
 
 export const getProducts = async (req, res) => {
   try {
-    const { limit, categoria } = req.params;
+    const { limit, categoria } = req.query;
     let query = Product.find().sort({ _id: -1 });
+
+    if (categoria) {
+      query = query.where('categoria').equals(decodeURIComponent(categoria));
+    }
 
     if (limit) {
       query = query.limit(parseInt(limit));
-    }
-
-    if (categoria) {
-      // Ensure categoria is properly converted to string
-      const categoriaString = decodeURIComponent(categoria);
-      query = query.where('categoria').equals(categoriaString);
     }
 
     const products = await query;

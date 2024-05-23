@@ -1,25 +1,33 @@
+import { useEffect, useState } from 'react';
+import { useProduct } from '../../context/ProductContext';
 import { Producto } from '../Producto/Producto';
 import { Link } from 'react-router-dom';
+import { Boton } from '../Boton/Boton';
 import './Novedades.css';
-import { useEffect } from 'react';
-import { useProduct } from '../../context/ProductContext';
-import { Boton } from '../../components/Boton/Boton';
 
-export function Novedades({ cantidad, titulo }) {
-  const { getProducts, products } = useProduct();
+export function Novedades({ cantidad, categoria, titulo }) {
+  const { getProducts } = useProduct();
+  const [categoryProducts, setCategoryProducts] = useState([]);
 
   useEffect(() => {
-    getProducts(cantidad);
-  }, []);
+    const fetchProducts = async () => {
+      try {
+        const res = await getProducts(cantidad, categoria);
+        setCategoryProducts(res);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+    fetchProducts();
+  }, [cantidad, categoria, getProducts]);
 
   return (
     <section className='novedades-section'>
       <div className='novedades-text'>
         <p>{titulo}</p>
       </div>
-
       <article className='novedades-container'>
-        {products.map((product) => (
+        {categoryProducts.map((product) => (
           <Producto
             key={product._id}
             producto={product}
@@ -31,10 +39,10 @@ export function Novedades({ cantidad, titulo }) {
         className='todos-productos'
       >
         <Boton
-          type='sudmit'
+          type='submit'
           textBoton='Ver todos los productos'
           secundario={true}
-          value={'volver'}
+          value='volver'
         />
       </Link>
     </section>

@@ -32,7 +32,10 @@ export function ProductProvider({ children }) {
       } else {
         res = await getProductsRequest();
       }
-      setProducts(res.data);
+      if (!categoria && !limit) {
+        setProducts(res.data);
+      }
+      return res.data; // Devolver los productos obtenidos
     } catch (error) {
       console.error(error);
     }
