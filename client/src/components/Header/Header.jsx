@@ -29,7 +29,7 @@ function Header() {
                 <Link to='/'>Inicio</Link>
               </li>
               <li>
-                <Link to='/tienda'>Tienda</Link>
+                <Link to='/tienda?categoria=all'>Tienda</Link>
               </li>
               <li>
                 <Link to='/contacto'>Contacto</Link>
