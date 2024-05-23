@@ -2,20 +2,12 @@ import axios from './axios';
 
 export const getProductsRequest = (limit = null, categoria = null) => {
   let url = '/products';
+  const params = {};
 
-  if (limit !== null || categoria !== null) {
-    url += `/`;
-    if (limit !== null) {
-      url += `${limit}`;
-      if (categoria !== null) {
-        url += `/`;
-      }
-    }
-    if (categoria !== null) {
-      url += `${categoria}`;
-    }
-  }
-  return axios.get(url);
+  if (limit !== null) params.limit = limit;
+  if (categoria !== null) params.categoria = categoria;
+
+  return axios.get(url, { params });
 };
 
 export const getProductRequest = (id) => axios.get(`/product/${id}`);
