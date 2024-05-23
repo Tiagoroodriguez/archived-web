@@ -1,15 +1,37 @@
 import { Producto } from '../../components/Producto/Producto';
-
 import './Tienda.css';
 import { useProduct } from '../../context/ProductContext';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Boton } from '../../components/Boton/Boton';
 import { useFilters } from '../../hooks/useFilter';
+import { useLocation } from 'react-router-dom';
 
 export function Tienda() {
   const { getProducts, products } = useProduct();
-
   const { filters, setFilters, filterProducts } = useFilters();
+  const location = useLocation();
+  const [initialLoad, setInitialLoad] = useState(true);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const categoria = searchParams.get('categoria');
+    if (categoria) {
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        categoria,
+      }));
+    }
+  }, [location.search, setFilters]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      await getProducts();
+      setInitialLoad(false); // Set initial load to false after the first fetch
+    };
+    if (initialLoad) {
+      fetchProducts();
+    }
+  }, [initialLoad, getProducts]);
 
   const handleChangeFilter = (categoria) => {
     setFilters({
@@ -18,11 +40,7 @@ export function Tienda() {
     });
   };
 
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  if (products.lenght === 0) return <h1>No hay productos</h1>;
+  if (products.length === 0) return <h1>No hay productos</h1>;
   const filteredProducts = filterProducts(products);
 
   return (
