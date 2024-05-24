@@ -105,7 +105,7 @@ export function DetalleProducto() {
                   <Boton
                     key={talle}
                     textBoton={talle}
-                    desactivado={producto[`cant_${talle.toLowerCase()}`] <= 0}
+                    desactivado={producto[`cant_${talle.toLowerCase()}`] === 0}
                     secundario={true}
                     onClick={() => handleTalleSeleccionado(talle)}
                     value={talle}
