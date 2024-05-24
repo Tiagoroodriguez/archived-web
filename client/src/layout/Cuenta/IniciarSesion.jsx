@@ -31,9 +31,7 @@ export function IniciarSesion() {
   return (
     <div className='cuenta-container'>
       <main>
-        <Link to='/'>
-          <LogoTexto />
-        </Link>
+        <LogoTexto />
         <form
           onSubmit={onSubmit}
           className='form-cuenta'

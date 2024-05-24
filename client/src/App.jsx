@@ -24,6 +24,7 @@ import Pago from './layout/Pago/Pago';
 import { MercadoPagoProvider } from './context/MercadoPago';
 import PagoSuccess from './layout/PagoSuccess/PagoSuccess';
 import { FilterProvider } from './context/FilterContext';
+import { PedidoProvider } from './context/PedidosContext';
 
 const Background = styled.div`
   position: fixed;
@@ -44,150 +45,152 @@ function App() {
         <CartProvider>
           <MercadoPagoProvider>
             <FilterProvider>
-              <Background />
-              <BrowserRouter>
-                <Routes>
-                  <Route
-                    path='/'
-                    element={
-                      <Layout>
-                        <Header />
-                        <Inicio />
-                        <Footer />
-                      </Layout>
-                    }
-                  />
-                  <Route
-                    path='/login'
-                    element={
-                      <Layout>
-                        <IniciarSesion />
-                      </Layout>
-                    }
-                  />
-                  <Route
-                    path='/register'
-                    element={
-                      <Layout>
-                        <CrearCuenta />
-                      </Layout>
-                    }
-                  />
-
-                  <Route
-                    path='/tienda'
-                    element={
-                      <Layout>
-                        <Header />
-                        <Tienda />
-                        <Footer />
-                      </Layout>
-                    }
-                  />
-                  <Route
-                    path='/detalle-producto/:id'
-                    element={
-                      <Layout>
-                        <Header />
-                        <DetalleProducto />
-                        <Footer />
-                      </Layout>
-                    }
-                  />
-
-                  <Route
-                    path='/guia-de-talles'
-                    element={
-                      <Layout>
-                        <Header />
-                        <GuiaTalles />
-                        <Footer />
-                      </Layout>
-                    }
-                  />
-
-                  <Route
-                    path='/contacto'
-                    element={
-                      <Layout>
-                        <Header />
-                        <Contacto />
-                        <Footer />
-                      </Layout>
-                    }
-                  />
-
-                  <Route
-                    path='/checkout/informacion/dev'
-                    element={
-                      <Layout>
-                        <InformacionEnvio />
-                      </Layout>
-                    }
-                  />
-
-                  <Route
-                    path='/checkout/dev'
-                    element={
-                      <Layout>
-                        <Header />
-                        <CarritoCompra />
-                        <Footer />
-                      </Layout>
-                    }
-                  />
-                  <Route
-                    path='/checkout'
-                    element={
-                      <Layout>
-                        <Header />
-                        <CarritoCompra />
-                        <Footer />
-                      </Layout>
-                    }
-                  />
-                  <Route
-                    path='/checkout/informacion'
-                    element={
-                      <Layout>
-                        <InformacionEnvio />
-                      </Layout>
-                    }
-                  />
-                  <Route
-                    path='/checkout/pago'
-                    element={
-                      <Layout>
-                        <Pago />
-                      </Layout>
-                    }
-                  />
-
-                  <Route
-                    path='/checkout/pago/success'
-                    element={
-                      <Layout>
-                        <Header />
-                        <PagoSuccess />
-                        <Footer />
-                      </Layout>
-                    }
-                  />
-
-                  <Route element={<ProteccionRutas />}>
+              <PedidoProvider>
+                <Background />
+                <BrowserRouter>
+                  <Routes>
                     <Route
-                      path='/productos-form'
+                      path='/'
                       element={
                         <Layout>
                           <Header />
-                          <ProductosForm />
+                          <Inicio />
                           <Footer />
                         </Layout>
                       }
                     />
-                  </Route>
-                </Routes>
-              </BrowserRouter>
+                    <Route
+                      path='/login'
+                      element={
+                        <Layout>
+                          <IniciarSesion />
+                        </Layout>
+                      }
+                    />
+                    <Route
+                      path='/register'
+                      element={
+                        <Layout>
+                          <CrearCuenta />
+                        </Layout>
+                      }
+                    />
+
+                    <Route
+                      path='/tienda'
+                      element={
+                        <Layout>
+                          <Header />
+                          <Tienda />
+                          <Footer />
+                        </Layout>
+                      }
+                    />
+                    <Route
+                      path='/detalle-producto/:id'
+                      element={
+                        <Layout>
+                          <Header />
+                          <DetalleProducto />
+                          <Footer />
+                        </Layout>
+                      }
+                    />
+
+                    <Route
+                      path='/guia-de-talles'
+                      element={
+                        <Layout>
+                          <Header />
+                          <GuiaTalles />
+                          <Footer />
+                        </Layout>
+                      }
+                    />
+
+                    <Route
+                      path='/contacto'
+                      element={
+                        <Layout>
+                          <Header />
+                          <Contacto />
+                          <Footer />
+                        </Layout>
+                      }
+                    />
+
+                    <Route
+                      path='/checkout/informacion/dev'
+                      element={
+                        <Layout>
+                          <InformacionEnvio />
+                        </Layout>
+                      }
+                    />
+
+                    <Route
+                      path='/checkout/dev'
+                      element={
+                        <Layout>
+                          <Header />
+                          <CarritoCompra />
+                          <Footer />
+                        </Layout>
+                      }
+                    />
+                    <Route
+                      path='/checkout'
+                      element={
+                        <Layout>
+                          <Header />
+                          <CarritoCompra />
+                          <Footer />
+                        </Layout>
+                      }
+                    />
+                    <Route
+                      path='/checkout/informacion'
+                      element={
+                        <Layout>
+                          <InformacionEnvio />
+                        </Layout>
+                      }
+                    />
+                    <Route
+                      path='/checkout/pago'
+                      element={
+                        <Layout>
+                          <Pago />
+                        </Layout>
+                      }
+                    />
+
+                    <Route
+                      path='/checkout/pago/success'
+                      element={
+                        <Layout>
+                          <Header />
+                          <PagoSuccess />
+                          <Footer />
+                        </Layout>
+                      }
+                    />
+
+                    <Route element={<ProteccionRutas />}>
+                      <Route
+                        path='/productos-form'
+                        element={
+                          <Layout>
+                            <Header />
+                            <ProductosForm />
+                            <Footer />
+                          </Layout>
+                        }
+                      />
+                    </Route>
+                  </Routes>
+                </BrowserRouter>
+              </PedidoProvider>
             </FilterProvider>
           </MercadoPagoProvider>
         </CartProvider>
