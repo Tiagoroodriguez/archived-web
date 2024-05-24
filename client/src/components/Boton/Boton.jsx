@@ -10,12 +10,12 @@ export function Boton({
   selected,
   value,
 }) {
-  const estilo = secundario
+  const estilo = desactivado
+    ? 'boton desactivado'
+    : secundario
     ? 'boton secundario'
     : terceario
     ? 'boton terceario'
-    : desactivado
-    ? 'boton desactivado'
     : 'boton primario';
   const className =
     secundario && selected === value
