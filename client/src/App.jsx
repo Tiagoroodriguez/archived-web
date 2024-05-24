@@ -25,6 +25,7 @@ import { MercadoPagoProvider } from './context/MercadoPago';
 import PagoSuccess from './layout/PagoSuccess/PagoSuccess';
 import { FilterProvider } from './context/FilterContext';
 import { PedidoProvider } from './context/PedidosContext';
+import MetodoEnvio from './layout/MetodoEnvio/MetodoEnvio';
 
 const Background = styled.div`
   position: fixed;
@@ -156,8 +157,9 @@ function App() {
                         </Layout>
                       }
                     />
+
                     <Route
-                      path='/checkout/pago'
+                      path='/checkout/pago/:id'
                       element={
                         <Layout>
                           <Pago />
