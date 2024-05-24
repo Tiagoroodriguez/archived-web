@@ -1,10 +1,14 @@
+import { Link } from 'react-router-dom';
 import './LogoTexto.css';
 
 export function LogoTexto() {
-    return (
-        <div className='logo'>
-            <span className='text'>Archived</span>
-            <span className='r'>®</span>
-        </div>
-    )
+  return (
+    <Link
+      to='/'
+      className='logo'
+    >
+      <span className='text'>Archived</span>
+      <span className='r'>®</span>
+    </Link>
+  );
 }

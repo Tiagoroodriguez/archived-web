@@ -5,14 +5,24 @@ export function Boton({
   type,
   onClick,
   secundario,
+  terceario,
   desactivado,
   selected,
   value,
 }) {
-  const secundarioEstilos = secundario ? 'boton secundario' : 'boton primario';
-  const estilo = desactivado ? 'boton desactivado' : secundarioEstilos;
+  const estilo = secundario
+    ? 'boton secundario'
+    : terceario
+    ? 'boton terceario'
+    : desactivado
+    ? 'boton desactivado'
+    : 'boton primario';
   const className =
-    secundario && selected === value ? `${estilo} boton-activo` : estilo; // Add boton-activo class
+    secundario && selected === value
+      ? `${estilo} boton-secundario-activo`
+      : terceario && selected === value
+      ? `${estilo} boton-terceario-activo`
+      : estilo; // Add boton-activo class
 
   return (
     <button
