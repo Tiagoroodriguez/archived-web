@@ -36,9 +36,7 @@ export function CrearCuenta() {
         </div>
       </aside>
       <main>
-        <Link to='/'>
-          <LogoTexto />
-        </Link>
+        <LogoTexto />
 
         <form
           className='form-cuenta'
