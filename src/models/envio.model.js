@@ -45,6 +45,7 @@ const envioSchema = new mongoose.Schema(
     numero_pedido: {
       type: Number,
       required: true,
+      default: 0,
     },
   },
   {
