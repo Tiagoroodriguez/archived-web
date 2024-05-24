@@ -20,20 +20,19 @@ export default function InformacionEnvio() {
     formState: { errors },
   } = useForm();
 
-  const { registrarEnvio } = usePedido();
+  const { registrarEnvio, pedido } = usePedido();
 
   const { isAuthenticated, user } = useAuth();
 
   const navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (data) => {
-    const numero_pedido = Math.floor(Math.random() * 1000000000); // Generar número de pedido
-    const envioData = { ...data, numero_pedido };
+    const envioData = { ...data };
 
     const result = await registrarEnvio(envioData);
     if (result) {
       console.log('Envio registrado:', result);
-      navigate('/checkout/pago');
+      navigate(`/checkout/pago/${pedido._id}`);
     } else {
       console.error('Error al registrar el envio');
     }
