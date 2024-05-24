@@ -69,6 +69,7 @@
 .ciudad-item {
     display: flex;
     flex-direction: column;
+    width: 30%;
 }
 
 .ciudad {
