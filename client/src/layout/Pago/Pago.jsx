@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CarritoContext';
 import { MercadoPagoContext } from '../../context/MercadoPago';
 import { LogoTexto } from '../../components/LogoTexto/LogoTexto';
@@ -14,34 +14,11 @@ import { usePedido } from '../../context/PedidosContext';
 export default function Pago() {
   const { createOrder } = useContext(MercadoPagoContext);
   const { cartItems, getCartTotal, getCartItems } = useContext(CartContext);
-  const { getPedido, getEnvio } = usePedido();
+  const { envioInfo } = usePedido();
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [activeIndex, setActiveIndex] = useState(null);
-  const [pedido, setPedido] = useState(null);
-  const [envio, setEnvio] = useState(null);
-
-  const params = useParams();
-
-  useEffect(() => {
-    async function loadPedido() {
-      if (params.id) {
-        const pedido = await getPedido(params.id);
-        setPedido(pedido);
-      }
-    }
-    loadPedido();
-  }, []);
-
-  useEffect(() => {
-    async function loadEnvio() {
-      if (pedido && pedido.informacion_envio) {
-        const envio = await getEnvio(pedido.informacion_envio);
-        setEnvio(envio);
-      }
-    }
-    loadEnvio();
-  }, [pedido]);
+  const [loading, setLoading] = useState(false);
 
   const paymentOptions = ['Mercado Pago', 'Efectivo'];
   const data = [
@@ -95,6 +72,7 @@ export default function Pago() {
 
   const handleMercadoPago = () => {
     createOrder(getCartItems());
+    setLoading(true);
   };
 
   return (
@@ -118,7 +96,7 @@ export default function Pago() {
                   <div>
                     <p className='pago-tabla-titulo'>Contacto</p>
                     <p className='pago-tabla-contenido'>
-                      {envio ? envio.email : 'vacio'}
+                      {envioInfo ? envioInfo.email : 'vacio'}
                     </p>
                   </div>
                   <Link to='/checkout/informacion'>Cambiar</Link>
@@ -129,8 +107,8 @@ export default function Pago() {
                   <div>
                     <p className='pago-tabla-titulo'>Enviar a</p>
                     <p className='pago-tabla-contenido'>
-                      {envio
-                        ? `${envio.direccion}-${envio.numero_direccion}`
+                      {envioInfo
+                        ? `${envioInfo.direccion}-${envioInfo.numero_direccion}`
                         : 'vacio'}
                     </p>
                   </div>
@@ -164,14 +142,14 @@ export default function Pago() {
               <Link to='/checkout/informacion'>
                 <Boton
                   textBoton='Volver'
-                  secundario={true}
+                  secundario
                   value={'volver'}
                 />
               </Link>
               {!selectedPaymentMethod ? (
                 <Boton
                   textBoton='Seleccione un metodo de pago'
-                  desactivado={true}
+                  desactivado
                 />
               ) : (
                 <Boton
@@ -185,6 +163,8 @@ export default function Pago() {
                       ? () => alert('Pago en efectivo')
                       : handleMercadoPago
                   }
+                  load={loading}
+                  desactivado={loading}
                 />
               )}
             </div>

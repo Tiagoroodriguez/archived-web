@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import {
   updatePedidoRequest,
   createEnvioRequest,
@@ -17,8 +17,39 @@ export const usePedido = () => {
   return context;
 };
 
+const saveEnvioInfo = (data) => {
+  const now = new Date().getTime();
+  const envioData = {
+    data,
+    timestamp: now,
+  };
+  localStorage.setItem('envioInfo', JSON.stringify(envioData));
+};
+
+const loadEnvioInfo = () => {
+  const savedEnvio = localStorage.getItem('envioInfo');
+  if (!savedEnvio) return {};
+
+  const { data, timestamp } = JSON.parse(savedEnvio);
+  const now = new Date().getTime();
+
+  if (now - timestamp > 3 * 60 * 60 * 1000) {
+    localStorage.removeItem('envioInfo');
+    return {};
+  }
+
+  return data;
+};
+
 export const PedidoProvider = ({ children }) => {
   const [pedido, setPedido] = useState(null);
+  const [envioInfo, setEnvioInfo] = useState(loadEnvioInfo);
+
+  useEffect(() => {
+    if (Object.keys(envioInfo).length > 0) {
+      saveEnvioInfo(envioInfo);
+    }
+  }, [envioInfo]);
 
   const getPedido = async (id) => {
     try {
@@ -44,8 +75,6 @@ export const PedidoProvider = ({ children }) => {
     try {
       const res = await createEnvioRequest(envio);
       setPedido(res.data);
-      console.log('pedido', pedido);
-      console.log('res.data', pedido._id);
       return res.data;
     } catch (error) {
       console.error(error);
@@ -76,6 +105,8 @@ export const PedidoProvider = ({ children }) => {
   return (
     <PedidosContext.Provider
       value={{
+        envioInfo,
+        setEnvioInfo,
         getPedido,
         updatePedido,
         pedido,

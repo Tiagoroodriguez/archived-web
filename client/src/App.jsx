@@ -159,7 +159,7 @@ function App() {
                     />
 
                     <Route
-                      path='/checkout/pago/:id'
+                      path='/checkout/pago'
                       element={
                         <Layout>
                           <Pago />
