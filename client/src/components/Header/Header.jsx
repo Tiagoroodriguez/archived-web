@@ -70,12 +70,9 @@ function Header() {
             <i className={clicked ? 'bi bi-x-lg' : 'bi bi-list'} />
           </div>
 
-          <Link
-            to='/'
-            className='nav-logo'
-          >
+          <div className='nav-logo'>
             <LogoTexto />
-          </Link>
+          </div >
 
           <button
             onClick={toggleCart}
