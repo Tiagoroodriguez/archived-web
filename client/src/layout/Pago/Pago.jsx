@@ -48,7 +48,7 @@ export default function Pago() {
     {
       title: 'Detalle de compra',
       content: (
-        <section className='carrito-section mobile'>
+        <section className='carrito-section pago-mobile'>
           <div className='cart-item-container cart-item-container-checkout'>
             {cartItems.map((item) => (
               <div
