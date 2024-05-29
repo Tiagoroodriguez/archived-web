@@ -9,6 +9,7 @@ export function Boton({
   desactivado,
   selected,
   value,
+  load,
 }) {
   const estilo = desactivado
     ? 'boton desactivado'
@@ -17,12 +18,15 @@ export function Boton({
     : terceario
     ? 'boton terceario'
     : 'boton primario';
+
   const className =
     secundario && selected === value
       ? `${estilo} boton-secundario-activo`
       : terceario && selected === value
       ? `${estilo} boton-terceario-activo`
       : estilo; // Add boton-activo class
+
+  const text = load ? 'Cargando...' : textBoton;
 
   return (
     <button
@@ -32,7 +36,7 @@ export function Boton({
       onClick={() => (desactivado ? null : onClick())}
       value={value}
     >
-      {textBoton}
+      {text}
     </button>
   );
 }
