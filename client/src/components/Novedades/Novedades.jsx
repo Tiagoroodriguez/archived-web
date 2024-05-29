@@ -4,6 +4,7 @@ import { Producto } from '../Producto/Producto';
 import { Link } from 'react-router-dom';
 import { Boton } from '../Boton/Boton';
 import './Novedades.css';
+import { ProductoEsqueleto } from '../ProductoEsqueleto/ProductoEsqueleto';
 
 export function Novedades({ cantidad, categoria, titulo }) {
   const { getProducts } = useProduct();
@@ -26,14 +27,23 @@ export function Novedades({ cantidad, categoria, titulo }) {
       <div className='novedades-text'>
         <p>{titulo}</p>
       </div>
-      <article className='novedades-container'>
-        {categoryProducts.map((product) => (
-          <Producto
-            key={product._id}
-            producto={product}
-          />
-        ))}
-      </article>
+      {categoryProducts ? (
+        <article className='novedades-container'>
+          {categoryProducts.map((product) => (
+            <Producto
+              key={product._id}
+              producto={product}
+            />
+          ))}
+        </article>
+      ) : (
+        <article className='novedades-container'>
+          <ProductoEsqueleto />
+          <ProductoEsqueleto />
+          <ProductoEsqueleto />
+          <ProductoEsqueleto />
+        </article>
+      )}
       <Link
         to={`/tienda?categoria=${categoria}`}
         className='todos-productos'

@@ -57,7 +57,7 @@ export function DetalleProducto() {
 
   return (
     <main>
-      {producto && (
+      {producto ? (
         <section className='detalle-container'>
           <div className='img-container'>
             <img
@@ -142,6 +142,23 @@ export function DetalleProducto() {
               onClick={handleAddToCart}
               desactivado={talleSeleccionado === ''}
             />
+          </div>
+        </section>
+      ) : (
+        <section className='detalle-container'>
+          <div className='img-container-esquleto'>
+            <div className='img-esqueleto'></div>
+            <div className='img-esqueleto mobile-img-esqueleto'></div>
+            <div className='img-esqueleto mobile-img-esqueleto'></div>
+            <div className='img-esqueleto mobile-img-esqueleto'></div>
+          </div>
+
+          <div className='informacion-container-esqueleto'>
+            <div className='informacion-esqueleto'></div>
+            <div className='informacion-esqueleto'></div>
+            <div className='informacion-desc-esqueleto'></div>
+            <div className='informacion-desc-esqueleto'></div>
+            <div className='informacion-desc-esqueleto'></div>
           </div>
         </section>
       )}

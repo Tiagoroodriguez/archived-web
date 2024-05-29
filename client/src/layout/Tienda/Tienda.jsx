@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Boton } from '../../components/Boton/Boton';
 import { useFilters } from '../../hooks/useFilter';
 import { useLocation } from 'react-router-dom';
+import { ProductoEsqueleto } from '../../components/ProductoEsqueleto/ProductoEsqueleto';
 
 export function Tienda() {
   const { getProducts, products } = useProduct();
@@ -40,7 +41,7 @@ export function Tienda() {
     });
   };
 
-  if (products.length === 0) return <h1>No hay productos</h1>;
+  if (filterProducts.length === 0) return <h1>No hay productos</h1>;
   const filteredProducts = filterProducts(products);
 
   return (
@@ -74,15 +75,23 @@ export function Tienda() {
               value='buzo'
             />
           </nav>
-
-          <section className='productos-container'>
-            {filteredProducts.map((product) => (
-              <Producto
-                key={product._id}
-                producto={product}
-              />
-            ))}
-          </section>
+          {filteredProducts.length === 0 ? (
+            <section className='productos-container'>
+              <ProductoEsqueleto />
+              <ProductoEsqueleto />
+              <ProductoEsqueleto />
+              <ProductoEsqueleto />
+            </section>
+          ) : (
+            <section className='productos-container'>
+              {filteredProducts.map((product) => (
+                <Producto
+                  key={product._id}
+                  producto={product}
+                />
+              ))}
+            </section>
+          )}
         </section>
       </main>
     </>

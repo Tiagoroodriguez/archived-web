@@ -45,4 +45,8 @@
     .todos-productos{
       width: 60%;
     }
+
+    .novedades-text {
+      padding-inline: 0;
+    }
 }

@@ -23,10 +23,12 @@ export function Producto({ producto }) {
           <div
             to='/detalle-producto'
             className='nombre-texto'
-          >{`"${producto.nombre}"`}</div>
+          >
+            {producto.nombre}
+          </div>
           <div
             to='/detalle-producto'
-            className='preci-texto'
+            className='precio-texto'
           >{`$${producto.precio}`}</div>
         </div>
       </article>
