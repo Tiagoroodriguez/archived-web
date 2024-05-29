@@ -9,7 +9,7 @@ import { Boton } from '../../components/Boton/Boton';
 import RutaCompra from '../../components/RutaCompra/RutaCompra';
 
 import './InformacionEnvio.css';
-import { set } from 'mongoose';
+
 
 export default function InformacionEnvio() {
   const { cartItems, getCartTotal } = useContext(CartContext);
