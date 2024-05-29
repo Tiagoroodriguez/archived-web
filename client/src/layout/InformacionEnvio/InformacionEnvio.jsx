@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { usePedido } from '../../context/PedidosContext';
@@ -9,7 +9,7 @@ import { Boton } from '../../components/Boton/Boton';
 import RutaCompra from '../../components/RutaCompra/RutaCompra';
 
 import './InformacionEnvio.css';
-import { useAuth } from '../../context/AuthContext';
+import { set } from 'mongoose';
 
 export default function InformacionEnvio() {
   const { cartItems, getCartTotal } = useContext(CartContext);
@@ -17,26 +17,43 @@ export default function InformacionEnvio() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
-  const { registrarEnvio, pedido } = usePedido();
-
-  const { isAuthenticated, user } = useAuth();
+  const { setEnvioInfo, envioInfo } = usePedido();
 
   const navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (data) => {
     const envioData = { ...data };
-
-    const result = await registrarEnvio(envioData);
-    if (result) {
-      console.log('Envio registrado:', result);
-      navigate(`/checkout/pago/${pedido._id}`);
+    console.log('envioData', envioData);
+    setEnvioInfo(envioData);
+    if (envioInfo) {
+      console.log('Envio registrado:', envioInfo);
+      navigate('/checkout/pago');
     } else {
       console.error('Error al registrar el envio');
     }
   });
+
+  useEffect(() => {
+    const loadEnvioInfo = async () => {
+      if (envioInfo) {
+        const envioData = envioInfo;
+        setValue('email', envioData.email);
+        setValue('nombre', envioData.nombre);
+        setValue('apellido', envioData.apellido);
+        setValue('telefono', envioData.telefono);
+        setValue('direccion', envioData.direccion);
+        setValue('numero_direccion', envioData.numero_direccion);
+        setValue('provincia', envioData.provincia);
+        setValue('ciudad', envioData.ciudad);
+        setValue('codigo_postal', envioData.codigo_postal);
+      }
+    };
+    loadEnvioInfo();
+  }, []);
 
   return (
     <main className='checkout'>
@@ -54,7 +71,6 @@ export default function InformacionEnvio() {
               type='email'
               label='Correo electrónico'
               name='email'
-              value={isAuthenticated ? user.email : ''}
               ternaria={register('email', { required: true })}
             />
             {errors.email && (
@@ -68,7 +84,6 @@ export default function InformacionEnvio() {
               type='text'
               label='Nombre'
               name='nombre'
-              value={isAuthenticated ? user.nombre : ''}
               ternaria={register('nombre', { required: true })}
             />
             {errors.nombre && <p className='error'>El nombre es requerido</p>}
@@ -77,7 +92,6 @@ export default function InformacionEnvio() {
               type='text'
               label='Apellido'
               name='apellido'
-              value={isAuthenticated ? user.apellido : ''}
               ternaria={register('apellido', { required: true })}
             />
             {errors.apellido && (
