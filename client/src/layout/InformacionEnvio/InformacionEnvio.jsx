@@ -8,10 +8,9 @@ import { LogoTexto } from '../../components/LogoTexto/LogoTexto';
 import { Boton } from '../../components/Boton/Boton';
 import RutaCompra from '../../components/RutaCompra/RutaCompra';
 import { provincias } from '../../../public/json/provincias.json';
-
-import './InformacionEnvio.css';
-import Select from '../../components/Select/Select';
 import { CheckboxGroup } from '../../components/CheckboxGroup/CheckboxGroup';
+import Select from '../../components/Select/Select';
+import './InformacionEnvio.css';
 
 export default function InformacionEnvio() {
   const { cartItems, getCartTotal } = useContext(CartContext);
