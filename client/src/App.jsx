@@ -150,6 +150,15 @@ function App() {
                       }
                     />
                     <Route
+                      path='/checkout/envio'
+                      element={
+                        <Layout>
+                          <MetodoEnvio />
+                        </Layout>
+                      }
+                    />
+
+                    <Route
                       path='/checkout/informacion'
                       element={
                         <Layout>

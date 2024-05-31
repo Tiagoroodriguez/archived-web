@@ -21,6 +21,7 @@ export default function Pago() {
   const [loading, setLoading] = useState(false);
 
   const paymentOptions = ['Mercado Pago', 'Efectivo'];
+
   const data = [
     {
       title: 'Detalle de compra',
