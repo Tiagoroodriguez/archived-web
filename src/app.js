@@ -6,12 +6,13 @@ import cors from 'cors';
 import authRoutes from './routes/auth.routes.js';
 import productRoutes from './routes/products.route.js';
 import mercadopagoRoutes from './routes/mercadopago.route.js';
+import pedidosRoutes from './routes/pedidos.route.js';
 
 const app = express();
 
 app.use(
   cors({
-    origin: 'https://archived-web-six.vercel.app',
+    origin: 'http://localhost:5173',
     /* produccion: https://archived-web-six.vercel.app*/
     /* dev: http://localhost:5173*/
     credentials: true,
@@ -25,5 +26,6 @@ app.use(cookieParser());
 app.use('/api', authRoutes);
 app.use('/api', productRoutes);
 app.use('/api', mercadopagoRoutes);
+app.use('/api', pedidosRoutes);
 
 export default app;
