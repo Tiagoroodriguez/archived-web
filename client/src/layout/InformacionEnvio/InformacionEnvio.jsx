@@ -29,6 +29,7 @@ export default function InformacionEnvio() {
 
   const onSubmit = handleSubmit(async (data) => {
     const envioData = { ...data };
+    console.log('hola');
     setEnvioInfo(envioData);
     if (envioInfo) {
       navigate('/checkout/pago');
@@ -39,6 +40,8 @@ export default function InformacionEnvio() {
 
   const [selectedProvincia, setSelectedProvincia] = useState('');
   const [selectedMetodoEnvio, setSelectedMetodoEnvio] = useState('');
+  console.log(selectedMetodoEnvio);
+  console.log(selectedProvincia);
 
   const handleSelectProvinciaChange = (event) => {
     setSelectedProvincia(event.target.value);
