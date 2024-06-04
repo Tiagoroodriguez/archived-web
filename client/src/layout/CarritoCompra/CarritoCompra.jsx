@@ -76,7 +76,7 @@ export default function CarritoCompra() {
         <h2>Total: ${getCartTotal()}</h2>
         <p>Los gastos de envio se calculan al momento de la compra</p>
         <Link
-          to='/checkout/envio'
+          to='/checkout/entrega'
           className='table-boton-container'
         >
           <Boton
