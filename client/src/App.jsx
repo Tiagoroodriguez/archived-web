@@ -25,7 +25,6 @@ import { MercadoPagoProvider } from './context/MercadoPago';
 import PagoSuccess from './layout/PagoSuccess/PagoSuccess';
 import { FilterProvider } from './context/FilterContext';
 import { PedidoProvider } from './context/PedidosContext';
-import MetodoEnvio from './layout/MetodoEnvio/MetodoEnvio';
 
 const Background = styled.div`
   position: fixed;
@@ -121,25 +120,6 @@ function App() {
                     />
 
                     <Route
-                      path='/checkout/informacion/dev'
-                      element={
-                        <Layout>
-                          <InformacionEnvio />
-                        </Layout>
-                      }
-                    />
-
-                    <Route
-                      path='/checkout/dev'
-                      element={
-                        <Layout>
-                          <Header />
-                          <CarritoCompra />
-                          <Footer />
-                        </Layout>
-                      }
-                    />
-                    <Route
                       path='/checkout'
                       element={
                         <Layout>
@@ -149,17 +129,9 @@ function App() {
                         </Layout>
                       }
                     />
-                    <Route
-                      path='/checkout/envio'
-                      element={
-                        <Layout>
-                          <MetodoEnvio />
-                        </Layout>
-                      }
-                    />
 
                     <Route
-                      path='/checkout/informacion'
+                      path='/checkout/entrega'
                       element={
                         <Layout>
                           <InformacionEnvio />
