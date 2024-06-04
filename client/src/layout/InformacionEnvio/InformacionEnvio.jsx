@@ -14,7 +14,7 @@ import './InformacionEnvio.css';
 
 export default function InformacionEnvio() {
   const { cartItems, getCartTotal } = useContext(CartContext);
-
+  const [codigoPostal, setCodigoPostal] = useState(false);
   const {
     register,
     handleSubmit,
@@ -26,9 +26,16 @@ export default function InformacionEnvio() {
 
   const navigate = useNavigate();
 
+  const handleCodigoPostal = () => {
+    setCodigoPostal(true);
+  };
+  const handleCambiarCodigoPostal = () => {
+    setCodigoPostal(false);
+    setSelectedMetodoEnvio('');
+  };
+
   const onSubmit = handleSubmit(async (data) => {
     const envioData = { ...data };
-    console.log('hola');
     setEnvioInfo(envioData);
     if (envioInfo) {
       navigate('/checkout/pago');
@@ -39,13 +46,10 @@ export default function InformacionEnvio() {
 
   const [selectedProvincia, setSelectedProvincia] = useState('');
   const [selectedMetodoEnvio, setSelectedMetodoEnvio] = useState('');
-  console.log(selectedMetodoEnvio);
-  console.log(selectedProvincia);
 
-  const handleSelectProvinciaChange = (event) => {
-    setSelectedProvincia(event.target.value);
+  const handleSelectProvinciaChange = (newValue) => {
+    setSelectedProvincia(newValue);
   };
-
   useEffect(() => {
     const loadEnvioInfo = async () => {
       if (cartItems.length === 0) {
@@ -64,6 +68,7 @@ export default function InformacionEnvio() {
       }
     };
     loadEnvioInfo();
+    console.log(envioInfo);
   }, []);
 
   const paymentOptions = ['Andreani - $2000', 'Retirar en el local - Gratis'];
@@ -90,15 +95,39 @@ export default function InformacionEnvio() {
               <p className='error'>El correo electrónico es requerido</p>
             )}
           </div>
+          {!codigoPostal && (
+            <div className='informacion-datos'>
+              <p>Etrega</p>
+              <Input
+                type='number'
+                label='Codigo Postal'
+              />
+              <Boton
+                textBoton='Calcular'
+                onClick={handleCodigoPostal}
+                type={'button'}
+              />
+            </div>
+          )}
 
-          <div className='informacion-datos'>
-            <p>Seleccione el metodo de entrega</p>
-            <CheckboxGroup
-              options={paymentOptions}
-              onSelectionChange={setSelectedMetodoEnvio}
-            />
-          </div>
-          {selectedMetodoEnvio === 'Andreani - $2000' ? (
+          {codigoPostal && (
+            <div className='informacion-datos'>
+              <p>Seleccione el metodo de entrega</p>
+
+              <CheckboxGroup
+                options={paymentOptions}
+                onSelectionChange={setSelectedMetodoEnvio}
+              />
+
+              <div className='informacion-boton-cambio'>
+                <button onClick={handleCambiarCodigoPostal}>
+                  Cambiar codigo postal
+                </button>
+              </div>
+            </div>
+          )}
+
+          {selectedMetodoEnvio === 'Andreani - $2000' && (
             <div className='informacion-datos'>
               <p>Dirección de envio</p>
               <Input
@@ -174,8 +203,10 @@ export default function InformacionEnvio() {
                 data={provincias}
                 value={selectedProvincia}
                 onChange={handleSelectProvinciaChange}
-                ternaria={register('provincia', { required: true })}
               />
+              {errors.provincia && (
+                <p className='error'>La provincia es requerida</p>
+              )}
               <span>Datos de facturacion</span>
               <Input
                 type='number'
@@ -188,7 +219,9 @@ export default function InformacionEnvio() {
                 </label>
               </div>
             </div>
-          ) : (
+          )}
+
+          {selectedMetodoEnvio === 'Retirar en el local - Gratis' && (
             <div className='informacion-datos'>
               <p>Datos de facturacion</p>
               <Input
@@ -260,25 +293,26 @@ export default function InformacionEnvio() {
                 data={provincias}
                 value={selectedProvincia}
                 onChange={handleSelectProvinciaChange}
-                ternaria={register('provincia', { required: true })}
               />
             </div>
           )}
 
-          <div className='checkout-actions'>
-            <Link to='/checkout/envio'>
-              <Boton
-                textBoton='Volver'
-                secundario={true}
-                value={'volver'}
-              />
-            </Link>
+          {selectedMetodoEnvio && (
+            <div className='checkout-actions'>
+              <Link to='/checkout/envio'>
+                <Boton
+                  textBoton='Volver'
+                  secundario={true}
+                  value={'volver'}
+                />
+              </Link>
 
-            <Boton
-              textBoton='Continuar'
-              type='submit'
-            />
-          </div>
+              <Boton
+                textBoton='Continuar'
+                type='submit'
+              />
+            </div>
+          )}
         </form>
       </section>
 

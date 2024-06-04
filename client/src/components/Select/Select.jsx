@@ -1,17 +1,14 @@
+import { useState } from 'react';
 import './Select.css';
+// ... other imports ...
 
-export default function Select({
-  labelText,
-  value,
-  onChange,
-  texto,
-  data,
-  ternaria,
-}) {
+export default function Select({ labelText, value, onChange, texto, data }) {
+  const [selectedProvincia, setSelectedProvincia] = useState('');
+
   return (
     <div className='select-container'>
       <label
-        htmlFor='cars'
+        htmlFor={labelText.toLowerCase()}
         className='select-label'
       >
         {labelText}
@@ -20,9 +17,11 @@ export default function Select({
         className='select-input'
         name={labelText.toLowerCase()}
         id={labelText.toLowerCase()}
-        value={value}
-        onChange={onChange}
-        {...ternaria}
+        value={selectedProvincia}
+        onChange={(event) => {
+          setSelectedProvincia(event.target.value);
+          onChange(event.target.value); // Pass the selected value to the parent component
+        }}
       >
         <option
           className='select-option'
@@ -30,13 +29,13 @@ export default function Select({
         >
           {texto}
         </option>
-        {data.map((data) => (
+        {data.map((dataItem) => (
           <option
             className='select-option'
-            key={data.id}
-            value={data.nombre}
+            key={dataItem.id}
+            value={dataItem.nombre}
           >
-            {data.nombre}
+            {dataItem.nombre}
           </option>
         ))}
       </select>
