@@ -56,6 +56,28 @@
     padding: 20px 50px;
 }
 
+.informacion-boton-cambio {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+
+.informacion-boton-cambio button {
+    background: none;
+    border: none;
+    width: auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--color-texto);
+    font-size: 15px;
+}
+
+.informacion-boton-cambio button:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
 /*---------------------------------------------------------------------------------------------*/
 
 
