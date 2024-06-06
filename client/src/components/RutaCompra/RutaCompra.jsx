@@ -1,15 +1,12 @@
 import './RutaCompra.css';
 
-export default function RutaCompra({ carrito, informacion, envio, pago }) {
+export default function RutaCompra({ carrito, informacion, pago }) {
   const estilosCarrito = carrito ? 'focus' : '';
   const estilosInformacion = informacion ? 'focus' : '';
-  const estilosEnvio = envio ? 'focus' : '';
   const estilosPago = pago ? 'focus' : '';
 
-  const iconoCarrito =
-    informacion || envio || pago ? 'bi bi-check-lg' : 'bi bi-cart4';
-  const iconoInformacion = envio || pago ? 'bi bi-check-lg' : 'bi bi-info-lg';
-  const iconoEnvio = pago ? 'bi bi-check-lg' : 'bi bi-box-seam';
+  const iconoCarrito = informacion || pago ? 'bi bi-check-lg' : 'bi bi-cart4';
+  const iconoInformacion = pago ? 'bi bi-check-lg' : 'bi bi-truck';
 
   return (
     <div className='superior'>
@@ -28,16 +25,7 @@ export default function RutaCompra({ carrito, informacion, envio, pago }) {
             <div>
               <i className={iconoInformacion}></i>
             </div>
-            <p>Informacion</p>
-          </button>
-        </li>
-        <li className='line'></li>
-        <li className='point'>
-          <button className={estilosEnvio}>
-            <div>
-              <i className={iconoEnvio}></i>
-            </div>
-            <p>Envio</p>
+            <p>Entrega</p>
           </button>
         </li>
         <li className='line'></li>

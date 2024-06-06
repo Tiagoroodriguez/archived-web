@@ -44,6 +44,9 @@ const loadEnvioInfo = () => {
 export const PedidoProvider = ({ children }) => {
   const [pedido, setPedido] = useState(null);
   const [envioInfo, setEnvioInfo] = useState(loadEnvioInfo);
+  const [selectedMetodoEnvio, setSelectedMetodoEnvio] = useState('');
+  const [selectedProvincia, setSelectedProvincia] = useState('');
+  const [mismaDireccion, setMismaDireccion] = useState(true);
 
   useEffect(() => {
     if (Object.keys(envioInfo).length > 0) {
@@ -107,6 +110,12 @@ export const PedidoProvider = ({ children }) => {
       value={{
         envioInfo,
         setEnvioInfo,
+        selectedMetodoEnvio,
+        setSelectedMetodoEnvio,
+        selectedProvincia,
+        setSelectedProvincia,
+        mismaDireccion,
+        setMismaDireccion,
         getPedido,
         updatePedido,
         pedido,

@@ -1,12 +1,10 @@
 import { LogoTexto } from '../LogoTexto/LogoTexto';
-import { InformacionEnvios } from '../../components/InformacionEnvios/InformacionEnvios';
 
 import './Footer.css';
 
 export function Footer() {
   return (
     <footer>
-      <InformacionEnvios />
       <div className='desktop-footer'>
         <div className='desktop-footer-redes'>
           <div className='desktop-footer-logo'>

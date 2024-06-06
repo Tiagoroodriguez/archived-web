@@ -71,14 +71,12 @@ export const reciverWebhook = async (req, res) => {
 
 export const getOrder = async (req, res) => {
   try {
-    const orderId = req.params.id;
-    console.log(orderId);
-    const response = await mercadopago.merchant_orders.findById(orderId);
+    const response = await mercadopago.merchant_orders.findById(req.params.id);
     const orderDetails = response.response.items;
-
-    res.status(200).json(orderDetails); // Send order details as JSON response
+    if (!orderDetails)
+      return res.status(404).json({ message: 'Pedido no encontrado' });
+    return res.json(orderDetails); // Asegúrate de devolver el contenido adecuado
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message }); // Handle errors
+    return res.status(404).json({ message: 'Pedido no encontrado' });
   }
 };

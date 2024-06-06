@@ -4,6 +4,10 @@
     margin: 50px auto;
     padding: 20px;
     color: var(--color-texto);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
   .payment-success-container h1{
@@ -22,6 +26,20 @@
 
   .payment-success-container p {
     text-align: center;
+  }
+
+
+  .circle-check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-texto);
+    width: 70px;
+    height: 70px;
+    border: 2px solid ;
+    border-color:linear-gradient(to bottom, red -29%, blue 60%);
+    border-radius: 100%;
+    background: linear-gradient(to bottom, var(--color-secundario) -29%, var(--color-primario) 60%);
   }
   
   .payment-details {
