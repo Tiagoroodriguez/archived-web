@@ -10,6 +10,7 @@ import Acordeon from '../../components/Acordeon/Arcodeon';
 import './Pago.css';
 import { CheckboxGroup } from '../../components/CheckboxGroup/CheckboxGroup';
 import { usePedido } from '../../context/PedidosContext';
+import CartSection from '../../components/CartSection/CartSection';
 
 export default function Pago() {
   const { createOrder } = useContext(MercadoPagoContext);
@@ -100,7 +101,7 @@ export default function Pago() {
                       {envioInfo ? envioInfo.email : 'vacio'}
                     </p>
                   </div>
-                  <Link to='/checkout/informacion'>Cambiar</Link>
+                  <Link to='/checkout/entrega'>Cambiar</Link>
                 </td>
               </tr>
               <tr className='pago-tabla-fila'>
@@ -113,7 +114,7 @@ export default function Pago() {
                         : 'vacio'}
                     </p>
                   </div>
-                  <Link to='/checkout/informacion'>Cambiar</Link>
+                  <Link to='/checkout/entrega'>Cambiar</Link>
                 </td>
               </tr>
               <tr className='pago-tabla-fila'>
@@ -124,7 +125,7 @@ export default function Pago() {
                       Correo Argentino $5000
                     </p>
                   </div>
-                  <Link to='/checkout/informacion'>Cambiar</Link>
+                  <Link to='/checkout/entrega'>Cambiar</Link>
                 </td>
               </tr>
             </tbody>
@@ -140,7 +141,7 @@ export default function Pago() {
               />
             </div>
             <div className='checkout-actions'>
-              <Link to='/checkout/informacion'>
+              <Link to='/checkout/entrega'>
                 <Boton
                   textBoton='Volver'
                   secundario
@@ -171,52 +172,7 @@ export default function Pago() {
             </div>
           </div>
         </section>
-
-        <section className='carrito-section'>
-          <header className='header-carrito'>
-            <h1>Detalle de compra</h1>
-            <div className='line-costo' />
-          </header>
-          <div className='cart-item-container cart-item-container-checkout'>
-            {cartItems.map((item) => (
-              <div
-                className='cart-items'
-                key={item._id}
-              >
-                <div className='cart-producto'>
-                  <div className='img-producto'>
-                    <img
-                      src={`/images/productos/small/${item.nombre}.webp`}
-                      alt={`imagen del producto ${item.nombre}`}
-                    />
-                  </div>
-                  <div className='info-producto checkout-info-cart'>
-                    <p className='info-producto-nombre'>{item.nombre}</p>
-                    <p className='info-producto-talle'>{`${item.quantity} x Talle: ${item.talle}`}</p>
-                    <p className='info-producto-precio'>{`$${
-                      item.precio * item.quantity
-                    }`}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className='descripcion-final-checkout'>
-            <div className='line-costo' />
-            <div>
-              <p>Subtotal</p>
-              <p>${getCartTotal()}</p>
-            </div>
-            <div>
-              <p>Costo de envio</p>
-              <p>Calculado en el siguiente paso</p>
-            </div>
-            <div>
-              <h1>Total</h1>
-              <h1>${getCartTotal()}</h1>
-            </div>
-          </div>
-        </section>
+        <CartSection />
       </main>
     </>
   );

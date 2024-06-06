@@ -11,10 +11,12 @@ import { provincias } from '../../../public/json/provincias.json';
 import { CheckboxGroup } from '../../components/CheckboxGroup/CheckboxGroup';
 import Select from '../../components/Select/Select';
 import './InformacionEnvio.css';
+import CartSection from '../../components/CartSection/CartSection';
 
 export default function InformacionEnvio() {
-  const { cartItems, getCartTotal } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
   const [codigoPostal, setCodigoPostal] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -22,9 +24,19 @@ export default function InformacionEnvio() {
     formState: { errors },
   } = useForm();
 
-  const { setEnvioInfo, envioInfo } = usePedido();
+  const {
+    setEnvioInfo,
+    envioInfo,
+    selectedMetodoEnvio,
+    setSelectedMetodoEnvio,
+    selectedProvincia,
+    setSelectedProvincia,
+    mismaDireccion,
+    setMismaDireccion,
+  } = usePedido();
 
   const navigate = useNavigate();
+  console.log(mismaDireccion);
 
   const handleCodigoPostal = () => {
     setCodigoPostal(true);
@@ -44,12 +56,10 @@ export default function InformacionEnvio() {
     }
   });
 
-  const [selectedProvincia, setSelectedProvincia] = useState('');
-  const [selectedMetodoEnvio, setSelectedMetodoEnvio] = useState('');
-
   const handleSelectProvinciaChange = (newValue) => {
     setSelectedProvincia(newValue);
   };
+
   useEffect(() => {
     const loadEnvioInfo = async () => {
       if (cartItems.length === 0) {
@@ -102,11 +112,20 @@ export default function InformacionEnvio() {
                 type='number'
                 label='Codigo Postal'
               />
-              <Boton
-                textBoton='Calcular'
-                onClick={handleCodigoPostal}
-                type={'button'}
-              />
+              <div className='checkout-actions'>
+                <Link to='/checkout'>
+                  <Boton
+                    textBoton='Volver'
+                    secundario={true}
+                    value={'volver'}
+                  />
+                </Link>
+                <Boton
+                  textBoton='Calcular'
+                  onClick={handleCodigoPostal}
+                  type={'button'}
+                />
+              </div>
             </div>
           )}
 
@@ -157,45 +176,43 @@ export default function InformacionEnvio() {
               {errors.telefono && (
                 <p className='error'>El teléfono es requerido</p>
               )}
-
+              <Input
+                type='text'
+                label='Dirección'
+                name='direccion'
+                ternaria={register('direccion', { required: true })}
+              />
+              {errors.direccion && (
+                <p className='error'>La dirección es requerida</p>
+              )}
               <div className='ciudad-container'>
-                <div className='ciudad-item ciudad'>
-                  <Input
-                    type='text'
-                    label='Dirección'
-                    name='direccion'
-                    ternaria={register('direccion', { required: true })}
-                  />
-                  {errors.direccion && (
-                    <p className='error'>La dirección es requerida</p>
-                  )}
-                </div>
                 <div className='ciudad-item'>
                   <Input
                     type='number'
-                    label='Numero'
+                    label='Numero (opcional)'
                     name='numero_direccion'
-                    ternaria={register('numero_direccion', { required: true })}
+                    ternaria={register('numero_direccion')}
+                  />
+                  {errors.numero_direccion && (
+                    <p className='error'>El número de dirección es requerido</p>
+                  )}
+                </div>
+                <div className='ciudad-item ciudad'>
+                  <Input
+                    type='text'
+                    label='Departamento (opcional)'
+                    name='departmaneto'
+                    ternaria={register('departmaneto')}
                   />
                   {errors.numero_direccion && (
                     <p className='error'>El número de dirección es requerido</p>
                   )}
                 </div>
               </div>
-              <div className='ciudad-container'>
-                <div className='ciudad'>
-                  <Input
-                    type='text'
-                    label='Ciudad'
-                  />
-                </div>
-                <div className='ciudad-item'>
-                  <Input
-                    type='numer'
-                    label='Codigo Postal'
-                  />
-                </div>
-              </div>
+              <Input
+                type='text'
+                label='Ciudad'
+              />
 
               <Select
                 labelText='Provincia'
@@ -214,10 +231,104 @@ export default function InformacionEnvio() {
               />
               <div className='informacion-datos-chebox'>
                 <label>
-                  <input type='checkbox' />
-                  Mis datos de facturacion son distintos a los de envio
+                  <input
+                    type='checkbox'
+                    checked={mismaDireccion}
+                    onChange={() => setMismaDireccion(!mismaDireccion)}
+                  />
+                  Mis datos de facturacion y entrega son los mismos
                 </label>
               </div>
+              {!mismaDireccion && (
+                <>
+                  <span>Persona que paga el pedido</span>
+                  <Input
+                    type='text'
+                    label='Nombre'
+                    name='nombre'
+                    ternaria={register('nombre', { required: true })}
+                  />
+                  {errors.nombre && (
+                    <p className='error'>El nombre es requerido</p>
+                  )}
+
+                  <Input
+                    type='text'
+                    label='Apellido'
+                    name='apellido'
+                    ternaria={register('apellido', { required: true })}
+                  />
+                  {errors.apellido && (
+                    <p className='error'>El apellido es requerido</p>
+                  )}
+
+                  <Input
+                    type='number'
+                    label='Telefono'
+                    name='telefono'
+                    ternaria={register('telefono', { required: true })}
+                  />
+                  {errors.telefono && (
+                    <p className='error'>El teléfono es requerido</p>
+                  )}
+                  <Input
+                    type='text'
+                    label='Dirección'
+                    name='direccion'
+                    ternaria={register('direccion', { required: true })}
+                  />
+                  {errors.direccion && (
+                    <p className='error'>La dirección es requerida</p>
+                  )}
+                  <div className='ciudad-container'>
+                    <div className='ciudad-item'>
+                      <Input
+                        type='number'
+                        label='Numero (opcional)'
+                        name='numero_direccion'
+                        ternaria={register('numero_direccion')}
+                      />
+                      {errors.numero_direccion && (
+                        <p className='error'>
+                          El número de dirección es requerido
+                        </p>
+                      )}
+                    </div>
+                    <div className='ciudad-item ciudad'>
+                      <Input
+                        type='text'
+                        label='Departamento (opcional)'
+                        name='departmaneto'
+                        ternaria={register('departmaneto')}
+                      />
+                      {errors.numero_direccion && (
+                        <p className='error'>
+                          El número de dirección es requerido
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <Input
+                    type='text'
+                    label='Ciudad'
+                  />
+                  <Input
+                    type='number'
+                    label='Codigo Postal'
+                  />
+
+                  <Select
+                    labelText='Provincia'
+                    texto='Seleccione su provincia'
+                    data={provincias}
+                    value={selectedProvincia}
+                    onChange={handleSelectProvinciaChange}
+                  />
+                  {errors.provincia && (
+                    <p className='error'>La provincia es requerida</p>
+                  )}
+                </>
+              )}
             </div>
           )}
 
@@ -299,7 +410,7 @@ export default function InformacionEnvio() {
 
           {selectedMetodoEnvio && (
             <div className='checkout-actions'>
-              <Link to='/checkout/envio'>
+              <Link to='/checkout'>
                 <Boton
                   textBoton='Volver'
                   secundario={true}
@@ -316,51 +427,7 @@ export default function InformacionEnvio() {
         </form>
       </section>
 
-      <section className='carrito-section'>
-        <header className='header-carrito'>
-          <h1>Detalle de compra</h1>
-          <div className='line-costo' />
-        </header>
-        <div className='cart-item-container cart-item-container-checkout'>
-          {cartItems.map((item) => (
-            <div
-              className='cart-items'
-              key={item._id}
-            >
-              <div className='cart-producto'>
-                <div className='img-producto'>
-                  <img
-                    src={`/images/productos/small/${item.nombre}.webp`}
-                    alt={`imagen del producto ${item.nombre}`}
-                  />
-                </div>
-                <div className='info-producto checkout-info-cart'>
-                  <p className='info-producto-nombre'>{item.nombre}</p>
-                  <p className='info-producto-talle'>{`${item.quantity} x Talle: ${item.talle}`}</p>
-                  <p className='info-producto-precio'>{`$${
-                    item.precio * item.quantity
-                  }`}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className='descripcion-final-checkout'>
-          <div className='line-costo' />
-          <div>
-            <p>Subtotal</p>
-            <p>${getCartTotal()}</p>
-          </div>
-          <div>
-            <p>Costo de envio</p>
-            <p>Calculado en el siguiente paso</p>
-          </div>
-          <div>
-            <h1>Total</h1>
-            <h1>${getCartTotal()}</h1>
-          </div>
-        </div>
-      </section>
+      <CartSection />
     </main>
   );
 }
