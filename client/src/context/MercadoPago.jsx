@@ -1,10 +1,10 @@
-import { createContext } from 'react';
+import { createContext, useCallback } from 'react';
 import { createOrderRequest, getOrderRequest } from '../api/mercadopago';
 
 export const MercadoPagoContext = createContext();
 
 export function MercadoPagoProvider({ children }) {
-  const createOrder = async (productos) => {
+  const createOrder = useCallback(async (productos) => {
     try {
       const res = await createOrderRequest(productos);
       const initPointUrl = res.data;
@@ -12,19 +12,21 @@ export function MercadoPagoProvider({ children }) {
     } catch (error) {
       console.error('Error creating order:', error);
     }
-  };
+  }, []);
 
-  const getOrder = async (id) => {
+  const getOrder = useCallback(async (id) => {
     try {
-      const res = await getOrderRequest(id);
+      const res = await getOrderRequest(
+        id + `?timestamp=${new Date().getTime()}`
+      );
       return res.data;
     } catch (error) {
       console.error(error);
     }
-  }
+  }, []);
 
   return (
-    <MercadoPagoContext.Provider value={{ createOrder, getOrder}}>
+    <MercadoPagoContext.Provider value={{ createOrder, getOrder }}>
       {children}
     </MercadoPagoContext.Provider>
   );
