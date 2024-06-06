@@ -3,18 +3,50 @@ import mongoose from 'mongoose';
 const pedidoSchema = new mongoose.Schema(
   {
     numero_pedido: {
+      type: String,
+      required: true,
+    },
+
+    nombre: {
+      type: String,
+      required: true,
+    },
+
+    apellido: {
+      type: String,
+      required: true,
+    },
+
+    documento: {
       type: Number,
       required: true,
     },
-    estado: {
+
+    email: {
       type: String,
       required: true,
-      default: 'pendiente',
     },
-    informacion_envio: {
+
+    telefono: {
+      type: String,
+      required: true,
+    },
+
+    direcciones: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Envio',
+      ref: 'Direccion',
     },
+
+    informacion_pago: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Pago',
+    },
+
+    productos: [
+      {
+        type: Array,
+      },
+    ],
   },
   {
     timestamps: true,
