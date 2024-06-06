@@ -13,6 +13,7 @@ const PagoSuccess = () => {
   const [orderItems, setOrderItems] = useState([]);
 
   const merchantOrderId = searchParams.get('merchant_order_id');
+  console.log(orderItems);
 
   useEffect(() => {
     const fetchOrderItems = async () => {
@@ -20,19 +21,23 @@ const PagoSuccess = () => {
       setOrderItems(items);
       clearCartLocally();
     };
-
-    fetchOrderItems();
-  }, [getOrder, merchantOrderId, clearCartLocally]);
+    if (orderItems.length === 0) {
+      fetchOrderItems();
+    }
+  }, [getOrder, merchantOrderId]);
 
   return (
     <div className='payment-success-container'>
-      <i className='bi bi-check-circle' />
+      <div className='circle-check '>
+        <i className='bi bi-check-circle' />
+      </div>
+
       <h1>¡Tu compra fue realizada con éxito!</h1>
       <p>Gracias por formar parte de esta familia</p>
 
       <div className='payment-details'>
         <p>
-          Número de pedido{' '}
+          Número de pedido
           <span className='order-id'>{`#${merchantOrderId}`}</span>
         </p>
         <p>
@@ -40,24 +45,11 @@ const PagoSuccess = () => {
         </p>
       </div>
 
-      {orderItems.length > 0 && ( // Conditionally render items only if fetched
-        <ul className='purchased-items'>
-          {orderItems.map((item) => (
-            <li key={item.id}>
-              <p>
-                {item.title} (x{item.quantity})
-              </p>
-              <p>Precio: {item.unit_price}</p>
-            </li>
-          ))}
-        </ul>
-      )}
-
       <div className='action-buttons'>
         <Link to='/'>
           <Boton
             textBoton='Inicio'
-            secundario={true}
+            secundario
           />
         </Link>
         <Link to='/tienda'>

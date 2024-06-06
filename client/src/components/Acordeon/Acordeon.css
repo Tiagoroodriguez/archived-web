@@ -5,19 +5,22 @@
     gap: 15px;
 }
 
+.acordeon-item {
+    padding: 10px;
+    color: var(--color-texto);
+}
+
 .acordeon-item, .acordeon-item-desc  {
     width: 100%;
     outline: none;
     background: none;
     border: 1px solid #e0e0e0;
-    padding: 10px;
     text-align: start;
     transition: all .3s ease;
 }
 
 .acordeon-item:hover{
     background: #452b1a31;
-    
 }
 
 .acordeon-item div {
@@ -29,4 +32,10 @@
 .acordeon-item-desc {
     border-top: none;
     background: var(--color-primario);
+}
+
+@media screen and (max-width: 768px) {
+    .acordeon-item:hover {
+        background: none;
+    }
 }
