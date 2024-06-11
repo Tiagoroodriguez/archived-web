@@ -19,7 +19,7 @@
     flex-direction: column;
 }
 
-.informacion-datos p {
+.informacion-datos-p {
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--color-texto);
