@@ -31,7 +31,7 @@ const direccionSchema = new mongoose.Schema(
   {
     envio: {
       type: subDireccionSchema,
-      required: true,
+      required: false,
     },
     facturacion: {
       type: subDireccionSchema,
