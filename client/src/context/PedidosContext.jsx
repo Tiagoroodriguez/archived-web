@@ -1,11 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import {
-  updatePedidoRequest,
-  createEnvioRequest,
-  modificarEnvioRequest,
-  getEnvioRequest,
-  getPedidoRequest,
-} from '../api/pedidos';
+import { updatePedidoRequest, getPedidoRequest } from '../api/pedidos';
 
 export const PedidosContext = createContext();
 
@@ -45,9 +39,8 @@ export const PedidoProvider = ({ children }) => {
   const [pedido, setPedido] = useState(null);
   const [envioInfo, setEnvioInfo] = useState(loadEnvioInfo);
   const [selectedMetodoEnvio, setSelectedMetodoEnvio] = useState('');
-  const [selectedProvincia, setSelectedProvincia] = useState('');
   const [mismaDireccion, setMismaDireccion] = useState(true);
-
+  //console.log('Informacion envio:', envioInfo);
   useEffect(() => {
     if (Object.keys(envioInfo).length > 0) {
       saveEnvioInfo(envioInfo);
@@ -74,37 +67,6 @@ export const PedidoProvider = ({ children }) => {
     }
   };
 
-  const registrarEnvio = async (envio) => {
-    try {
-      const res = await createEnvioRequest(envio);
-      setPedido(res.data);
-      return res.data;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
-
-  const getEnvio = async (id) => {
-    try {
-      const res = await getEnvioRequest(id);
-      return res.data;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
-
-  const modificarEnvio = async (id, envio) => {
-    try {
-      const res = await modificarEnvioRequest(id, envio);
-      return res.data;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
-
   return (
     <PedidosContext.Provider
       value={{
@@ -112,16 +74,11 @@ export const PedidoProvider = ({ children }) => {
         setEnvioInfo,
         selectedMetodoEnvio,
         setSelectedMetodoEnvio,
-        selectedProvincia,
-        setSelectedProvincia,
         mismaDireccion,
         setMismaDireccion,
         getPedido,
         updatePedido,
         pedido,
-        registrarEnvio,
-        getEnvio,
-        modificarEnvio,
       }}
     >
       {children}
