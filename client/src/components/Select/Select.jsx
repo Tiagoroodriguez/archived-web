@@ -1,10 +1,6 @@
-import { useState } from 'react';
 import './Select.css';
-// ... other imports ...
 
 export default function Select({ labelText, value, onChange, texto, data }) {
-  const [selectedProvincia, setSelectedProvincia] = useState('');
-
   return (
     <div className='select-container'>
       <label
@@ -17,11 +13,8 @@ export default function Select({ labelText, value, onChange, texto, data }) {
         className='select-input'
         name={labelText.toLowerCase()}
         id={labelText.toLowerCase()}
-        value={selectedProvincia}
-        onChange={(event) => {
-          setSelectedProvincia(event.target.value);
-          onChange(event.target.value); // Pass the selected value to the parent component
-        }}
+        value={value} // Usar el valor proporcionado por las props
+        onChange={(event) => onChange(event.target.value)} // Llamar a onChange proporcionado por las props
       >
         <option
           className='select-option'

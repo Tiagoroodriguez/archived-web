@@ -38,8 +38,11 @@ const loadEnvioInfo = () => {
 export const PedidoProvider = ({ children }) => {
   const [pedido, setPedido] = useState(null);
   const [envioInfo, setEnvioInfo] = useState(loadEnvioInfo);
+  const [provinciaEnvio, setProvinciaEnvio] = useState('');
+  const [provinciaFacturacion, setProvinciaFacturacion] = useState('');
   const [selectedMetodoEnvio, setSelectedMetodoEnvio] = useState('');
   const [mismaDireccion, setMismaDireccion] = useState(true);
+  const [codigoPostal, setCodigoPostal] = useState(false);
   //console.log('Informacion envio:', envioInfo);
   useEffect(() => {
     if (Object.keys(envioInfo).length > 0) {
@@ -74,6 +77,12 @@ export const PedidoProvider = ({ children }) => {
         setEnvioInfo,
         selectedMetodoEnvio,
         setSelectedMetodoEnvio,
+        codigoPostal,
+        setCodigoPostal,
+        provinciaEnvio,
+        setProvinciaEnvio,
+        provinciaFacturacion,
+        setProvinciaFacturacion,
         mismaDireccion,
         setMismaDireccion,
         getPedido,
