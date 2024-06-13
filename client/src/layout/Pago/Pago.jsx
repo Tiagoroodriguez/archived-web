@@ -15,7 +15,7 @@ import CartSection from '../../components/CartSection/CartSection';
 export default function Pago() {
   const { createOrder } = useContext(MercadoPagoContext);
   const { cartItems, getCartTotal, getCartItems } = useContext(CartContext);
-  const { envioInfo } = usePedido();
+  const { envioInfo, selectedMetodoEnvio } = usePedido();
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [activeIndex, setActiveIndex] = useState(null);
@@ -98,7 +98,7 @@ export default function Pago() {
                   <div>
                     <p className='pago-tabla-titulo'>Contacto</p>
                     <p className='pago-tabla-contenido'>
-                      {envioInfo ? envioInfo.email : 'vacio'}
+                      {envioInfo ? envioInfo.email_facturacion : 'vacio'}
                     </p>
                   </div>
                   <Link to='/checkout/entrega'>Cambiar</Link>
@@ -107,10 +107,10 @@ export default function Pago() {
               <tr className='pago-tabla-fila'>
                 <td className='pago-tabla-item'>
                   <div>
-                    <p className='pago-tabla-titulo'>Enviar a</p>
+                    <p className='pago-tabla-titulo'>Enviar a:</p>
                     <p className='pago-tabla-contenido'>
                       {envioInfo
-                        ? `${envioInfo.direccion}-${envioInfo.numero_direccion}`
+                        ? `${envioInfo.direccion_envio}-${envioInfo.numero_direccion_envio}`
                         : 'vacio'}
                     </p>
                   </div>
@@ -120,9 +120,9 @@ export default function Pago() {
               <tr className='pago-tabla-fila'>
                 <td className='pago-tabla-item'>
                   <div>
-                    <p className='pago-tabla-titulo'>Metodo</p>
+                    <p className='pago-tabla-titulo'>Metodo de entrega:</p>
                     <p className='pago-tabla-contenido'>
-                      Correo Argentino $5000
+                      {selectedMetodoEnvio}
                     </p>
                   </div>
                   <Link to='/checkout/entrega'>Cambiar</Link>
@@ -138,6 +138,7 @@ export default function Pago() {
               <CheckboxGroup
                 options={paymentOptions}
                 onSelectionChange={setSelectedPaymentMethod}
+                selectedOption={selectedPaymentMethod}
               />
             </div>
             <div className='checkout-actions'>
@@ -146,6 +147,7 @@ export default function Pago() {
                   textBoton='Volver'
                   secundario
                   value={'volver'}
+                  onClick={() => null}
                 />
               </Link>
               {!selectedPaymentMethod ? (
