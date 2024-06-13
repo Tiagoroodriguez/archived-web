@@ -17,9 +17,6 @@ export default function InformacionEnvio() {
   const paymentOptions = ['Andreani - $2000', 'Retirar en el local - Gratis'];
   const navigate = useNavigate();
 
-  const [codigoPostal, setCodigoPostal] = useState(false);
-  const [provinciaEnvio, setProvinciaEnvio] = useState('');
-  const [provinciaFacturacion, setProvinciaFacturacion] = useState('');
   const [codigoPostalError, setCodigoPostalError] = useState('');
 
   const {
@@ -38,6 +35,12 @@ export default function InformacionEnvio() {
     setSelectedMetodoEnvio,
     mismaDireccion,
     setMismaDireccion,
+    provinciaEnvio,
+    setProvinciaEnvio,
+    codigoPostal,
+    setCodigoPostal,
+    provinciaFacturacion,
+    setProvinciaFacturacion,
   } = usePedido();
 
   const handleCodigoPostal = () => {
@@ -70,14 +73,16 @@ export default function InformacionEnvio() {
     if (mismaDireccion && selectedMetodoEnvio === 'Andreani - $2000') {
       envioData = {
         // Datos del cliente que recibe el pedido
-        nombre_envio: data.nombre,
-        apellido_envio: data.apellido,
-        telefono_envio: data.telefono,
+        email_envio: data.email,
+        nombre_envio: data.nombre_envio,
+        apellido_envio: data.apellido_envio,
+        telefono_envio: data.telefono_envio,
         documento_envio: data.documento_envio,
         // Datos del cliente que paga el pedido
-        nombre_facturacion: data.nombre,
-        apellido_facturacion: data.apellido,
-        telefono_facturacion: data.telefono,
+        email_facturacion: data.email,
+        nombre_facturacion: data.nombre_envio,
+        apellido_facturacion: data.apellido_envio,
+        telefono_facturacion: data.telefono_envio,
         documento_facturacion: data.documento_envio,
         // Datos de envio
         direccion_envio: data.direccion_envio,
@@ -98,11 +103,13 @@ export default function InformacionEnvio() {
     if (!mismaDireccion && selectedMetodoEnvio === 'Andreani - $2000') {
       envioData = {
         // Datos del cliente que recibe el pedido
-        nombre_envio: data.nombre,
-        apellido_envio: data.apellido,
-        telefono_envio: data.telefono,
+        email_envio: data.email,
+        nombre_envio: data.nombre_envio,
+        apellido_envio: data.apellido_envio,
+        telefono_envio: data.telefono_envio,
         documento_envio: data.documento_envio,
         // Datos del cliente que paga el pedido
+        email_facturacion: data.email,
         nombre_facturacion: data.nombre_facturacion,
         apellido_facturacion: data.apellido_facturacion,
         telefono_facturacion: data.telefono_facturacion,
@@ -126,22 +133,24 @@ export default function InformacionEnvio() {
     if (selectedMetodoEnvio === 'Retirar en el local - Gratis') {
       envioData = {
         // Datos del cliente que paga el pedido
-        nombre_facturacion: data.nombre,
-        apellido_facturacion: data.apellido,
-        telefono_facturacion: data.telefono,
-        documento_facturacion: data.documento,
+        email_facturacion: data.email,
+        nombre_facturacion: data.nombre_facturacion,
+        apellido_facturacion: data.apellido_facturacion,
+        telefono_facturacion: data.telefono_facturacion,
+        documento_facturacion: data.documento_facturacion,
         // Datos de facturacion
-        direccion_facturacion: data.direccion,
-        numero_direccion_facturacion: data.numero_direccion,
-        ciudad_facturacion: data.ciudad,
+        direccion_facturacion: data.direccion_facturacion,
+        numero_direccion_facturacion: data.numero_direccion_facturacion,
+        departamento_facturacion: data.departamento_facturacion,
+        ciudad_facturacion: data.ciudad_facturacion,
         provincia_facturacion: provinciaFacturacion,
-        codigo_postal_facturacion: data.codigo_postal,
+        codigo_postal_facturacion: data.codigo_postal_facturacion,
       };
     }
     setEnvioInfo(envioData);
 
     if (envioData) {
-      //navigate('/checkout/pago');
+      navigate('/checkout/pago');
       console.log('Informacion: ', envioData);
     } else {
       console.error('Error al registrar el envio');
@@ -153,20 +162,59 @@ export default function InformacionEnvio() {
       if (cartItems.length === 0) {
         navigate('/tienda');
       }
-      /*if (envioInfo) {
-        setValue('email', envioInfo.email);
-        setValue('nombre', envioInfo.nombre);
-        setValue('apellido', envioInfo.apellido);
-        setValue('telefono', envioInfo.telefono);
+      if (envioInfo && selectedMetodoEnvio === 'Andreani - $2000') {
+        setValue('email', envioInfo.email_facturacion);
+        setValue('codigo_postal_envio', envioInfo.codigo_postal_envio);
+        setValue('nombre_envio', envioInfo.nombre_envio);
+        setValue('apellido_envio', envioInfo.apellido_envio);
+        setValue('telefono_envio', envioInfo.telefono_envio);
+        setValue('documento_envio', envioInfo.documento_envio);
         setValue('direccion_envio', envioInfo.direccion_envio);
         setValue('numero_direccion_envio', envioInfo.numero_direccion_envio);
-        setValue('provincia', envioInfo.provincia);
+        setValue('departamento_envio', envioInfo.departamento_envio);
         setValue('ciudad_envio', envioInfo.ciudad_envio);
-        setValue('codigo_postal', envioInfo.codigo_postal);
-      }*/
+        setProvinciaEnvio(provinciaEnvio); // Set provinciaEnvio state
+        if (!mismaDireccion) {
+          setValue('email_facturacion', envioInfo.email_facturacion);
+          setValue(
+            'codigo_postal_facturacion',
+            envioInfo.codigo_postal_facturacion
+          );
+          setValue('nombre_facturacion', envioInfo.nombre_facturacion);
+          setValue('apellido_facturacion', envioInfo.apellido_facturacion);
+          setValue('telefono_facturacion', envioInfo.telefono_facturacion);
+          setValue('documento_facturacion', envioInfo.documento_facturacion);
+          setValue('direccion_facturacion', envioInfo.direccion_facturacion);
+          setValue(
+            'numero_direccion_facturacion',
+            envioInfo.numero_direccion_facturacion
+          );
+          setValue(
+            'departamento_facturacion',
+            envioInfo.departamento_facturacion
+          );
+          setValue('ciudad_facturacion', envioInfo.ciudad_facturacion);
+          setProvinciaFacturacion(provinciaFacturacion); // Set provinciaFacturacion state
+          setMismaDireccion(false);
+        }
+      }
+      if (envioInfo && selectedMetodoEnvio === 'Retirar en el local - Gratis') {
+        setValue('email_facturacion', envioInfo.email_facturacion);
+        setValue('nombre_facturacion', envioInfo.nombre_facturacion);
+        setValue('apellido_facturacion', envioInfo.apellido_facturacion);
+        setValue('telefono_facturacion', envioInfo.telefono_facturacion);
+        setValue('documento_facturacion', envioInfo.documento_facturacion);
+        setValue('direccion_facturacion', envioInfo.direccion_facturacion);
+        setValue(
+          'numero_direccion_facturacion',
+          envioInfo.numero_direccion_facturacion
+        );
+        setValue('ciudad_facturacion', envioInfo.ciudad_facturacion);
+        setProvinciaFacturacion(provinciaFacturacion); // Set provinciaFacturacion state
+      }
     };
     loadEnvioInfo();
-  }, []);
+  }, [cartItems, envioInfo, navigate, setValue]);
 
   return (
     <main className='checkout'>
@@ -233,7 +281,8 @@ export default function InformacionEnvio() {
 
               <CheckboxGroup
                 options={paymentOptions}
-                onSelectionChange={setSelectedMetodoEnvio}
+                selectedOption={selectedMetodoEnvio} // Estado controlado en el componente padre
+                onSelectionChange={setSelectedMetodoEnvio} // Función para actualizar el estado en el componente padre
               />
 
               <div className='informacion-boton-cambio'>
@@ -267,7 +316,7 @@ export default function InformacionEnvio() {
                 type='text'
                 label='Nombre'
                 name='nombre'
-                ternaria={register('nombre', {
+                ternaria={register('nombre_envio', {
                   required: 'El nombre es requerido',
                 })}
               />
@@ -279,7 +328,7 @@ export default function InformacionEnvio() {
                 type='text'
                 label='Apellido'
                 name='apellido'
-                ternaria={register('apellido', {
+                ternaria={register('apellido_envio', {
                   required: 'El apellido es requerido',
                 })}
               />
@@ -291,7 +340,7 @@ export default function InformacionEnvio() {
                 type='number'
                 label='Teléfono'
                 name='telefono'
-                ternaria={register('telefono', {
+                ternaria={register('telefono_envio', {
                   required: 'El teléfono es requerido',
                 })}
               />
@@ -317,7 +366,9 @@ export default function InformacionEnvio() {
                     type='number'
                     label='Número (opcional)'
                     name='numero_direccion_envio'
-                    ternaria={register('numero_direccion_envio')}
+                    ternaria={register('numero_direccion_envio', {
+                      required: false,
+                    })}
                   />
                 </div>
                 <div className='ciudad-item ciudad'>
@@ -325,7 +376,9 @@ export default function InformacionEnvio() {
                     type='text'
                     label='Departamento (opcional)'
                     name='departamento_envio'
-                    ternaria={register('departamento_envio')}
+                    ternaria={register('departamento_envio', {
+                      required: false,
+                    })}
                   />
                 </div>
               </div>
@@ -344,10 +397,10 @@ export default function InformacionEnvio() {
 
               <Select
                 labelText='Provincia'
-                texto='Seleccione su provincia'
+                value={provinciaEnvio} // Estado controlado en el componente padre
+                onChange={handleProvinciaEnvioChange} // Función para actualizar el estado en el componente padre
+                texto='Seleccione una provincia'
                 data={provincias}
-                value={provinciaEnvio}
-                onChange={handleProvinciaEnvioChange}
               />
               {errors.provincia && (
                 <p className='error'>La provincia es requerida</p>
@@ -439,7 +492,9 @@ export default function InformacionEnvio() {
                         type='number'
                         label='Número (opcional)'
                         name='numero_direccion_facturacion'
-                        ternaria={register('numero_direccion_facturacion')}
+                        ternaria={register('numero_direccion_facturacion', {
+                          required: false,
+                        })}
                       />
                     </div>
                     <div className='ciudad-item ciudad'>
@@ -447,7 +502,10 @@ export default function InformacionEnvio() {
                         type='text'
                         label='Departamento (opcional)'
                         name='departamento_facturacion'
-                        ternaria={register('departamento_facturacion')}
+                        ternaria={
+                          (register('departamento_facturacion'),
+                          { required: false })
+                        }
                       />
                     </div>
                   </div>
@@ -480,10 +538,10 @@ export default function InformacionEnvio() {
 
                   <Select
                     labelText='Provincia'
-                    texto='Seleccione su provincia'
+                    value={provinciaFacturacion} // Estado controlado en el componente padre
+                    onChange={handleProvinciaFacturacionChange} // Función para actualizar el estado en el componente padre
+                    texto='Seleccione una provincia'
                     data={provincias}
-                    value={provinciaFacturacion}
-                    onChange={handleProvinciaFacturacionChange}
                   />
                   {errors.provincia && (
                     <p className='error'>La provincia es requerida</p>
@@ -512,7 +570,7 @@ export default function InformacionEnvio() {
                 type='text'
                 label='Nombre'
                 name='nombre'
-                ternaria={register('nombre', {
+                ternaria={register('nombre_facturacion', {
                   required: 'El nombre es requerido',
                 })}
               />
@@ -524,7 +582,7 @@ export default function InformacionEnvio() {
                 type='text'
                 label='Apellido'
                 name='apellido'
-                ternaria={register('apellido', {
+                ternaria={register('apellido_facturacion', {
                   required: 'El apellido es requerido',
                 })}
               />
@@ -536,7 +594,7 @@ export default function InformacionEnvio() {
                 type='number'
                 label='Teléfono'
                 name='telefono'
-                ternaria={register('telefono', {
+                ternaria={register('telefono_facturacion', {
                   required: 'El teléfono es requerido',
                 })}
               />
@@ -544,70 +602,73 @@ export default function InformacionEnvio() {
                 <p className='error'>{errors.telefono.message}</p>
               )}
 
+              <Input
+                type='text'
+                label='Dirección'
+                name='direccion_facturacion'
+                ternaria={register('direccion_facturacion', {
+                  required: 'La dirección es requerida',
+                })}
+              />
+              {errors.direccion_facturacion && (
+                <p className='error'>{errors.direccion_facturacion.message}</p>
+              )}
+
               <div className='ciudad-container'>
+                <div className='ciudad-item'>
+                  <Input
+                    type='number'
+                    label='Número (opcional)'
+                    name='numero_direccion_facturacion'
+                    ternaria={
+                      (register('numero_direccion_facturacion'),
+                      { required: false })
+                    }
+                  />
+                </div>
                 <div className='ciudad-item ciudad'>
                   <Input
                     type='text'
-                    label='Dirección'
-                    name='direccion'
-                    ternaria={register('direccion_facturacion', {
-                      required: 'La dirección es requerida',
-                    })}
+                    label='Departamento (opcional)'
+                    name='departamento_facturacion'
+                    ternaria={
+                      (register('departamento_facturacion'),
+                      { required: false })
+                    }
                   />
-                  {errors.direccion && (
-                    <p className='error'>{errors.direccion.message}</p>
-                  )}
-                </div>
-                <div className='ciudad-item'>
-                  <Input
-                    type='number'
-                    label='Número'
-                    name='numero_direccion'
-                    ternaria={register('numero_direccion_facturacion', {
-                      required: 'El número de dirección es requerido',
-                    })}
-                  />
-                  {errors.numero_direccion && (
-                    <p className='error'>{errors.numero_direccion.message}</p>
-                  )}
                 </div>
               </div>
-              <div className='ciudad-container'>
-                <div className='ciudad'>
-                  <Input
-                    type='text'
-                    label='Ciudad'
-                    name='ciudad'
-                    ternaria={register('ciudad_facturacion', {
-                      required: 'La ciudad es requerida',
-                    })}
-                  />
-                  {errors.ciudad && (
-                    <p className='error'>{errors.ciudad.message}</p>
-                  )}
-                </div>
-                <div className='ciudad-item'>
-                  <Input
-                    type='number'
-                    label='Código Postal'
-                    name='codigo_postal'
-                    ternaria={register('codigo_postal_facturacion', {
-                      required: 'El código postal es requerido',
-                    })}
-                  />
-                  {errors.codigo_postal && (
-                    <p className='error'>{errors.codigo_postal.message}</p>
-                  )}
-                </div>
-              </div>
+              <Input
+                type='text'
+                label='Ciudad'
+                name='ciudad'
+                ternaria={register('ciudad_facturacion', {
+                  required: 'La ciudad es requerida',
+                })}
+              />
+              {errors.ciudad && (
+                <p className='error'>{errors.ciudad.message}</p>
+              )}
+              <Input
+                type='number'
+                label='Código Postal'
+                name='codigo_postal'
+                ternaria={register('codigo_postal_facturacion', {
+                  required: 'El código postal es requerido',
+                })}
+              />
+              {errors.codigo_postal && (
+                <p className='error'>{errors.codigo_postal.message}</p>
+              )}
 
               <Select
                 labelText='Provincia'
-                texto='Seleccione su provincia'
+                value={provinciaFacturacion} // Estado controlado en el componente padre
+                onChange={handleProvinciaFacturacionChange} // Función para actualizar el estado en el componente padre
+                texto='Seleccione una provincia'
                 data={provincias}
-                value={provinciaFacturacion}
-                onChange={handleProvinciaFacturacionChange}
               />
+
               {errors.provincia && (
                 <p className='error'>La provincia es requerida</p>
               )}
@@ -628,12 +689,14 @@ export default function InformacionEnvio() {
                   textBoton='Volver'
                   secundario={true}
                   value={'volver'}
+                  onClick={() => null}
                 />
               </Link>
 
               <Boton
                 textBoton='Continuar'
                 type='submit'
+                onClick={() => null}
               />
             </div>
           )}

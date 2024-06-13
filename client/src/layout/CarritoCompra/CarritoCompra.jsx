@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from '../../context/CarritoContext';
 import { Boton } from '../../components/Boton/Boton';
 import RutaCompra from '../../components/RutaCompra/RutaCompra';
@@ -9,6 +9,13 @@ import './CarritoCompra.css';
 export default function CarritoCompra() {
   const { cartItems, addToCart, removeFromCart, getCartTotal } =
     useContext(CartContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      navigate('/tienda');
+    }
+  }, [cartItems, navigate]);
 
   return (
     <main className='carritolayout-container'>
@@ -83,6 +90,7 @@ export default function CarritoCompra() {
             type='sudmit'
             textBoton='checkout'
             desactivado={cartItems.length === 0 ? true : false}
+            onClick={() => null}
           />
         </Link>
       </footer>
