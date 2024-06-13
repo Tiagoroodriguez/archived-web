@@ -1,16 +1,6 @@
-import { useState } from 'react';
 import './CheckboxGroup.css';
 
-export function CheckboxGroup({ options, onSelectionChange }) {
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const handleChange = (option) => {
-    setSelectedOption(option);
-    if (onSelectionChange) {
-      onSelectionChange(option);
-    }
-  };
-
+export function CheckboxGroup({ options, selectedOption, onSelectionChange }) {
   return (
     <div className='checkboxgroup-container'>
       {options.map((option, index) => (
@@ -21,8 +11,8 @@ export function CheckboxGroup({ options, onSelectionChange }) {
           <label>
             <input
               type='checkbox'
-              checked={selectedOption === option}
-              onChange={() => handleChange(option)}
+              checked={selectedOption === option} // Usar el valor proporcionado por las props
+              onChange={() => onSelectionChange(option)} // Llamar a onChange proporcionado por las props
             />
             {option}
           </label>
