@@ -5,6 +5,16 @@ import Pedido from '../models/pedido.model.js';
 export const createPedido = async (req, res) => {
   try {
     const {
+      // Datos del pedido
+      numero_pedido,
+
+      // Datos del cliente de envío
+      nombre_envio,
+      apellido_envio,
+      documento_envio,
+      email_envio,
+      telefono_envio,
+
       // Datos de envío
       direccion_envio,
       numero_direccion_envio,
@@ -13,23 +23,20 @@ export const createPedido = async (req, res) => {
       provincia_envio,
       codigo_postal_envio,
 
+      // Datos del cliente de facturación
+      nombre_facturacion,
+      apellido_facturacion,
+      documento_facturacion,
+      email_facturacion,
+      telefono_facturacion,
+
       // Datos de facturación
       direccion_facturacion,
       numero_direccion_facturacion,
-      departamento_envio_facturacion,
+      departamento_facturacion,
       ciudad_facturacion,
       provincia_facturacion,
       codigo_postal_facturacion,
-
-      // Datos del pedido
-      numero_pedido,
-
-      // Datos del cliente
-      nombre,
-      apellido,
-      documento,
-      email,
-      telefono,
 
       // Productos
       productos,
@@ -37,19 +44,15 @@ export const createPedido = async (req, res) => {
 
     // Validar que todos los campos requeridos están presentes
     if (
-      !direccion_envio ||
-      !ciudad_envio ||
-      !provincia_envio ||
-      !codigo_postal_envio ||
       !direccion_facturacion ||
       !ciudad_facturacion ||
       !provincia_facturacion ||
       !numero_pedido ||
-      !nombre ||
-      !apellido ||
-      !documento ||
-      !email ||
-      !telefono ||
+      !nombre_facturacion ||
+      !apellido_facturacion ||
+      !documento_facturacion ||
+      !email_facturacion ||
+      !telefono_facturacion ||
       !productos ||
       !Array.isArray(productos) ||
       productos.length === 0
@@ -59,89 +62,98 @@ export const createPedido = async (req, res) => {
         .json({ message: 'Complete los campos obligatorios' });
     }
 
-    // Verificar si el cliente ya existe
-    let cliente = await Cliente.findOne({ documento });
-
-    if (!cliente) {
-      // Crear un nuevo cliente si no existe
-      cliente = new Cliente({
-        nombre,
-        apellido,
-        documento,
-        email,
-        telefono,
-      });
-      await cliente.save();
+    // Verificar si el pedido ya existe
+    const existingPedido = await Pedido.findOne({ numero_pedido });
+    if (existingPedido) {
+      return res.json(existingPedido);
     }
 
-    // Crear o buscar la dirección
-    const direccion = new Direccion({
-      envio: {
+    // Buscar o crear el cliente de facturación
+    let clienteFacturacion = await Cliente.findOne({
+      documento: documento_facturacion,
+    });
+    if (!clienteFacturacion) {
+      clienteFacturacion = new Cliente({
+        nombre: nombre_facturacion,
+        apellido: apellido_facturacion,
+        documento: documento_facturacion,
+        email: email_facturacion,
+        telefono: telefono_facturacion,
+      });
+      clienteFacturacion = await clienteFacturacion.save();
+    }
+
+    // Crear la dirección de facturación
+    const direccionFacturacion = new Direccion({
+      direccion: direccion_facturacion,
+      numero: numero_direccion_facturacion,
+      departamento: departamento_facturacion,
+      ciudad: ciudad_facturacion,
+      provincia: provincia_facturacion,
+      codigo_postal: codigo_postal_facturacion,
+      cliente: clienteFacturacion._id,
+    });
+    const savedDireccionFacturacion = await direccionFacturacion.save();
+
+    let clienteEnvio, savedDireccionEnvio;
+
+    // Si se proporciona información de envío, buscar o crear el cliente de envío
+    if (documento_envio) {
+      clienteEnvio = await Cliente.findOne({ documento: documento_envio });
+      if (!clienteEnvio) {
+        clienteEnvio = new Cliente({
+          nombre: nombre_envio,
+          apellido: apellido_envio,
+          documento: documento_envio,
+          email: email_envio,
+          telefono: telefono_envio,
+        });
+        clienteEnvio = await clienteEnvio.save();
+      }
+
+      // Crear la dirección de envío
+      const direccionEnvio = new Direccion({
         direccion: direccion_envio,
         numero: numero_direccion_envio,
         departamento: departamento_envio,
         ciudad: ciudad_envio,
         provincia: provincia_envio,
         codigo_postal: codigo_postal_envio,
-      },
-      facturacion: {
-        direccion: direccion_facturacion,
-        numero: numero_direccion_facturacion,
-        departamento: departamento_envio_facturacion,
-        ciudad: ciudad_facturacion,
-        provincia: provincia_facturacion,
-        codigo_postal: codigo_postal_facturacion,
-      },
-    });
-
-    const savedDireccion = await direccion.save();
+        cliente: clienteEnvio._id,
+      });
+      savedDireccionEnvio = await direccionEnvio.save();
+    }
 
     // Crear un nuevo documento de pedido
     const newPedido = new Pedido({
       numero_pedido,
-      cliente: cliente._id,
-      direcciones: savedDireccion._id,
+      cliente_facturacion: clienteFacturacion._id,
+      direccion_facturacion: savedDireccionFacturacion._id,
+      cliente_envio: clienteEnvio ? clienteEnvio._id : undefined,
+      direccion_envio: savedDireccionEnvio
+        ? savedDireccionEnvio._id
+        : undefined,
       productos,
     });
 
     const savedPedido = await newPedido.save();
     res.json(savedPedido);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al generar el pedido' });
+    console.error('Error en la creación del pedido:', error);
+    res
+      .status(500)
+      .json({ message: 'Error al generar el pedido', error: error.message });
   }
 };
 
 export const getPedido = async (req, res) => {
   try {
     const pedido = await Pedido.findById(req.params.id)
-      .populate('cliente', {
-        nombre: 1,
-        apellido: 1,
-        documento: 1,
-        email: 1,
-        telefono: 1,
-        _id: 0,
-      })
-      .populate('direcciones', {
-        envio: 1,
-        facturacion: 1,
-        _id: 0,
-      });
+      .populate('cliente_facturacion')
+      .populate('direccion_facturacion')
+      .populate('cliente_envio')
+      .populate('direccion_envio');
 
-    if (!pedido)
-      return res.status(404).json({ message: 'Pedido no encontrado' });
-    res.json(pedido);
-  } catch (error) {
-    return res.status(404).json({ message: 'Pedido no encontrado' });
-  }
-};
-
-export const updatePedido = async (req, res) => {
-  try {
-    const pedido = await Pedido.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
     if (!pedido)
       return res.status(404).json({ message: 'Pedido no encontrado' });
     res.json(pedido);

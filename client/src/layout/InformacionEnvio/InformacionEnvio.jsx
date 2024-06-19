@@ -73,24 +73,14 @@ export default function InformacionEnvio() {
     if (mismaDireccion && selectedMetodoEnvio === 'Andreani - $2000') {
       envioData = {
         // Datos del cliente que recibe el pedido
-        email_envio: data.email,
-        nombre_envio: data.nombre_envio,
-        apellido_envio: data.apellido_envio,
-        telefono_envio: data.telefono_envio,
-        documento_envio: data.documento_envio,
+        ...data,
+        provincia_envio: provinciaEnvio,
         // Datos del cliente que paga el pedido
-        email_facturacion: data.email,
+        email_facturacion: data.email_envio,
         nombre_facturacion: data.nombre_envio,
         apellido_facturacion: data.apellido_envio,
         telefono_facturacion: data.telefono_envio,
         documento_facturacion: data.documento_envio,
-        // Datos de envio
-        direccion_envio: data.direccion_envio,
-        numero_direccion_envio: data.numero_direccion_envio,
-        departamento_envio: data.departamento_envio,
-        ciudad_envio: data.ciudad_envio,
-        provincia_envio: provinciaEnvio,
-        codigo_postal_envio: data.codigo_postal_envio,
         // Datos de facturacion
         direccion_facturacion: data.direccion_envio,
         numero_direccion_facturacion: data.numero_direccion_envio,
@@ -102,38 +92,16 @@ export default function InformacionEnvio() {
     }
     if (!mismaDireccion && selectedMetodoEnvio === 'Andreani - $2000') {
       envioData = {
-        // Datos del cliente que recibe el pedido
-        email_envio: data.email,
-        nombre_envio: data.nombre_envio,
-        apellido_envio: data.apellido_envio,
-        telefono_envio: data.telefono_envio,
-        documento_envio: data.documento_envio,
-        // Datos del cliente que paga el pedido
-        email_facturacion: data.email,
-        nombre_facturacion: data.nombre_facturacion,
-        apellido_facturacion: data.apellido_facturacion,
-        telefono_facturacion: data.telefono_facturacion,
-        documento_facturacion: data.documento_facturacion,
-        // Datos de envio
-        direccion_envio: data.direccion_envio,
-        numero_direccion_envio: data.numero_direccion_envio,
-        departamento_envio: data.departamento_envio,
-        ciudad_envio: data.ciudad_envio,
+        ...data,
+        email_facturacion: data.email_envio,
         provincia_envio: provinciaEnvio,
-        codigo_postal_envio: data.codigo_postal_envio,
-        // Datos de facturacion
-        direccion_facturacion: data.direccion_facturacion,
-        numero_direccion_facturacion: data.numero_direccion_facturacion,
-        departamento_facturacion: data.departamento_facturacion,
-        ciudad_facturacion: data.ciudad_facturacion,
         provincia_facturacion: provinciaFacturacion,
-        codigo_postal_facturacion: data.codigo_postal_facturacion,
       };
     }
     if (selectedMetodoEnvio === 'Retirar en el local - Gratis') {
       envioData = {
         // Datos del cliente que paga el pedido
-        email_facturacion: data.email,
+        email_facturacion: data.email_envio,
         nombre_facturacion: data.nombre_facturacion,
         apellido_facturacion: data.apellido_facturacion,
         telefono_facturacion: data.telefono_facturacion,
@@ -163,7 +131,7 @@ export default function InformacionEnvio() {
         navigate('/tienda');
       }
       if (envioInfo && selectedMetodoEnvio === 'Andreani - $2000') {
-        setValue('email', envioInfo.email_facturacion);
+        setValue('email_envio', envioInfo.email_facturacion);
         setValue('codigo_postal_envio', envioInfo.codigo_postal_envio);
         setValue('nombre_envio', envioInfo.nombre_envio);
         setValue('apellido_envio', envioInfo.apellido_envio);
@@ -199,7 +167,7 @@ export default function InformacionEnvio() {
         }
       }
       if (envioInfo && selectedMetodoEnvio === 'Retirar en el local - Gratis') {
-        setValue('email_facturacion', envioInfo.email_facturacion);
+        setValue('email_envio', envioInfo.email_facturacion);
         setValue('nombre_facturacion', envioInfo.nombre_facturacion);
         setValue('apellido_facturacion', envioInfo.apellido_facturacion);
         setValue('telefono_facturacion', envioInfo.telefono_facturacion);
@@ -209,7 +177,15 @@ export default function InformacionEnvio() {
           'numero_direccion_facturacion',
           envioInfo.numero_direccion_facturacion
         );
+        setValue(
+          'departamento_facturacion',
+          envioInfo.departamento_facturacion
+        );
         setValue('ciudad_facturacion', envioInfo.ciudad_facturacion);
+        setValue(
+          'codigo_postal_facturacion',
+          envioInfo.codigo_postal_facturacion
+        );
         setProvinciaFacturacion(provinciaFacturacion); // Set provinciaFacturacion state
       }
     };
@@ -231,12 +207,14 @@ export default function InformacionEnvio() {
             <Input
               type='email'
               label='Correo electrónico'
-              name='email'
-              ternaria={register('email', {
+              name='email_envio'
+              ternaria={register('email_envio', {
                 required: 'El correo electrónico es requerido',
               })}
             />
-            {errors.email && <p className='error'>{errors.email.message}</p>}
+            {errors.email_envio && (
+              <p className='error'>{errors.email_envio.message}</p>
+            )}
           </div>
 
           {!codigoPostal && (
@@ -502,10 +480,9 @@ export default function InformacionEnvio() {
                         type='text'
                         label='Departamento (opcional)'
                         name='departamento_facturacion'
-                        ternaria={
-                          (register('departamento_facturacion'),
-                          { required: false })
-                        }
+                        ternaria={register('departamento_facturacion', {
+                          required: false,
+                        })}
                       />
                     </div>
                   </div>
@@ -620,10 +597,9 @@ export default function InformacionEnvio() {
                     type='number'
                     label='Número (opcional)'
                     name='numero_direccion_facturacion'
-                    ternaria={
-                      (register('numero_direccion_facturacion'),
-                      { required: false })
-                    }
+                    ternaria={register('numero_direccion_facturacion', {
+                      required: false,
+                    })}
                   />
                 </div>
                 <div className='ciudad-item ciudad'>
@@ -631,10 +607,9 @@ export default function InformacionEnvio() {
                     type='text'
                     label='Departamento (opcional)'
                     name='departamento_facturacion'
-                    ternaria={
-                      (register('departamento_facturacion'),
-                      { required: false })
-                    }
+                    ternaria={register('departamento_facturacion', {
+                      required: false,
+                    })}
                   />
                 </div>
               </div>
@@ -668,17 +643,9 @@ export default function InformacionEnvio() {
                 texto='Seleccione una provincia'
                 data={provincias}
               />
-
               {errors.provincia && (
                 <p className='error'>La provincia es requerida</p>
               )}
-
-              <div className='informacion-datos-chebox'>
-                <label>
-                  <input type='checkbox' />
-                  Otra persona va a retirar el pedido
-                </label>
-              </div>
             </div>
           )}
 
