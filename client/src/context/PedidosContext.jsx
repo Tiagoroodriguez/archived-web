@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { updatePedidoRequest, getPedidoRequest } from '../api/pedidos';
+import { createPedidoRequest, getPedidoRequest } from '../api/pedidos';
 
 export const PedidosContext = createContext();
 
@@ -35,20 +35,40 @@ const loadEnvioInfo = () => {
   return data;
 };
 
+const loadPedidoCreated = (merchantOrderId) => {
+  const savedStatus = localStorage.getItem(`pedidoCreated_${merchantOrderId}`);
+  return savedStatus === 'true';
+};
+
+const savePedidoCreated = (merchantOrderId, status) => {
+  localStorage.setItem(`pedidoCreated_${merchantOrderId}`, status);
+};
+
 export const PedidoProvider = ({ children }) => {
-  const [pedido, setPedido] = useState(null);
+  const [pedido, setPedido] = useState([]);
   const [envioInfo, setEnvioInfo] = useState(loadEnvioInfo);
   const [provinciaEnvio, setProvinciaEnvio] = useState('');
   const [provinciaFacturacion, setProvinciaFacturacion] = useState('');
   const [selectedMetodoEnvio, setSelectedMetodoEnvio] = useState('');
   const [mismaDireccion, setMismaDireccion] = useState(true);
   const [codigoPostal, setCodigoPostal] = useState(false);
-  //console.log('Informacion envio:', envioInfo);
+  const [isPedidoCreated, setPedidoCreated] = useState(false);
+
   useEffect(() => {
     if (Object.keys(envioInfo).length > 0) {
       saveEnvioInfo(envioInfo);
     }
   }, [envioInfo]);
+
+  const createPedido = async (pedido) => {
+    try {
+      const res = await createPedidoRequest(pedido);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
 
   const getPedido = async (id) => {
     try {
@@ -60,15 +80,24 @@ export const PedidoProvider = ({ children }) => {
     }
   };
 
-  const updatePedido = async (pedido) => {
-    try {
-      const res = await updatePedidoRequest(pedido);
-      return res.data;
-    } catch (error) {
-      console.error(error);
-      return null;
+  useEffect(() => {
+    const merchantOrderId = new URLSearchParams(window.location.search).get(
+      'merchant_order_id'
+    );
+    if (merchantOrderId) {
+      const pedidoCreated = loadPedidoCreated(merchantOrderId);
+      setPedidoCreated(pedidoCreated);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    const merchantOrderId = new URLSearchParams(window.location.search).get(
+      'merchant_order_id'
+    );
+    if (merchantOrderId) {
+      savePedidoCreated(merchantOrderId, isPedidoCreated);
+    }
+  }, [isPedidoCreated]);
 
   return (
     <PedidosContext.Provider
@@ -86,8 +115,11 @@ export const PedidoProvider = ({ children }) => {
         mismaDireccion,
         setMismaDireccion,
         getPedido,
-        updatePedido,
         pedido,
+        setPedido,
+        createPedido,
+        isPedidoCreated,
+        setPedidoCreated,
       }}
     >
       {children}

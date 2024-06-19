@@ -1,7 +1,6 @@
 import axios from './axios';
 
-export const updatePedidoRequest = (pedido) =>
-  axios.put(`/pedido/${pedido._id}`, pedido);
+export const createPedidoRequest = (pedido) => axios.post('/pedido', pedido);
 
 export const getPedidoRequest = (id) => axios.get(`/pedido/${id}`);
 

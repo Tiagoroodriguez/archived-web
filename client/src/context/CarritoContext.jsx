@@ -160,6 +160,7 @@ export const CartProvider = ({ children }) => {
         nombre: item.nombre,
         precio: item.precio,
         cantidad: item.quantity,
+        talle: item.talle,
       };
     });
 
