@@ -104,8 +104,4 @@
     .superior {
         padding-inline: 0;
     }
-
-    .cart-table-product, .cart-table-product-item {
-        width: 200px;
-    }
 }
