@@ -5,26 +5,33 @@ const pedidoSchema = new mongoose.Schema(
     numero_pedido: {
       type: String,
       required: true,
-      unique: true,
     },
-    cliente: {
+    cliente_facturacion: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Cliente',
       required: true,
     },
-    direcciones: {
+    direccion_facturacion: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Direccion',
+      required: true,
     },
-    informacion_pago: {
+    cliente_envio: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Pago',
+      ref: 'Cliente',
+      required: false,
+    },
+    direccion_envio: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Direccion',
+      required: false,
     },
     productos: [
       {
         producto_id: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Producto',
+          required: true,
         },
         cantidad: {
           type: Number,
@@ -32,6 +39,10 @@ const pedidoSchema = new mongoose.Schema(
         },
         precio: {
           type: Number,
+          required: true,
+        },
+        talle: {
+          type: String,
           required: true,
         },
       },

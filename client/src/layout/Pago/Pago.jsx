@@ -76,6 +76,10 @@ export default function Pago() {
     createOrder(getCartItems());
     setLoading(true);
   };
+  const handlePago = () => {
+    const prodts = getCartItems();
+    console.log(prodts);
+  };
 
   return (
     <>
@@ -107,11 +111,9 @@ export default function Pago() {
               <tr className='pago-tabla-fila'>
                 <td className='pago-tabla-item'>
                   <div>
-                    <p className='pago-tabla-titulo'>Enviar a:</p>
+                    <p className='pago-tabla-titulo'>Metodo de entrega:</p>
                     <p className='pago-tabla-contenido'>
-                      {envioInfo
-                        ? `${envioInfo.direccion_envio}-${envioInfo.numero_direccion_envio}`
-                        : 'vacio'}
+                      {selectedMetodoEnvio}
                     </p>
                   </div>
                   <Link to='/checkout/entrega'>Cambiar</Link>
@@ -120,10 +122,22 @@ export default function Pago() {
               <tr className='pago-tabla-fila'>
                 <td className='pago-tabla-item'>
                   <div>
-                    <p className='pago-tabla-titulo'>Metodo de entrega:</p>
-                    <p className='pago-tabla-contenido'>
-                      {selectedMetodoEnvio}
-                    </p>
+                    {selectedMetodoEnvio === 'Andreani - $2000' ? (
+                      <>
+                        <p className='pago-tabla-titulo'>Enviar a:</p>
+                        <p className='pago-tabla-contenido'>
+                          {envioInfo.direccion_envio} -
+                          {envioInfo.numero_direccion_envio}
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <p className='pago-tabla-titulo'>Retirar en:</p>
+                        <p className='pago-tabla-contenido'>
+                          25 de febrero 1481 - Oncativo
+                        </p>
+                      </>
+                    )}
                   </div>
                   <Link to='/checkout/entrega'>Cambiar</Link>
                 </td>
@@ -164,7 +178,7 @@ export default function Pago() {
                   }
                   onClick={
                     selectedPaymentMethod === 'Efectivo'
-                      ? () => alert('Pago en efectivo')
+                      ? handlePago
                       : handleMercadoPago
                   }
                   load={loading}
