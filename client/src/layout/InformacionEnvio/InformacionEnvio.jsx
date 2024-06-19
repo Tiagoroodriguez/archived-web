@@ -196,7 +196,10 @@ export default function InformacionEnvio() {
     <main className='checkout'>
       <section className='informacion-section'>
         <LogoTexto />
-        <RutaCompra informacion={true} />
+        <RutaCompra
+          informacion
+          detalleCompra
+        />
 
         <form
           className='form-datos-envio'
@@ -352,11 +355,9 @@ export default function InformacionEnvio() {
                 <div className='ciudad-item ciudad'>
                   <Input
                     type='text'
-                    label='Departamento (opcional)'
+                    label='Departamentoooo (opcional)'
                     name='departamento_envio'
-                    ternaria={register('departamento_envio', {
-                      required: false,
-                    })}
+                    ternaria={register('departamento_envio')}
                   />
                 </div>
               </div>
