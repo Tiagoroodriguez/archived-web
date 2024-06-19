@@ -5,7 +5,6 @@ export default function Input({ type, label, ternaria }) {
     <div className='input-container'>
       <input
         autoComplete='off'
-        required
         type={type}
         name={label}
         className='input'

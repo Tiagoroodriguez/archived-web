@@ -19,7 +19,10 @@ export default function CarritoCompra() {
 
   return (
     <main className='carritolayout-container'>
-      <RutaCompra carrito={true} />
+      <RutaCompra
+        carrito={true}
+        detalleCompra={false}
+      />
       <table className='cart-table-container'>
         <thead>
           <tr className='cart-table-encabezado'>
