@@ -11,13 +11,7 @@ import { usePedido } from '../../context/PedidosContext';
 const PagoSuccess = () => {
   const { getOrder } = useContext(MercadoPagoContext);
   const { clearCartLocally } = useContext(CartContext);
-  const {
-    envioInfo,
-    setPedido,
-    createPedido,
-    isPedidoCreated,
-    setPedidoCreated,
-  } = usePedido();
+  const { envioInfo, setPedido, createPedido } = usePedido();
   const [searchParams] = useSearchParams();
   const [orderItems, setOrderItems] = useState([]);
   const merchantOrderId = searchParams.get('merchant_order_id');
@@ -35,7 +29,7 @@ const PagoSuccess = () => {
   }, [getOrder, merchantOrderId, orderItems.length]);
 
   useEffect(() => {
-    if (orderItems.length && envioInfo && !isPedidoCreated) {
+    if (orderItems.length && envioInfo) {
       const formattedOrderItems = orderItems.map((item) => ({
         producto_id: item.id,
         cantidad: item.quantity,
@@ -49,18 +43,10 @@ const PagoSuccess = () => {
       };
       setPedido(completeOrder);
       createPedido(completeOrder); // Crear el pedido cuando la información esté completa
-      setPedidoCreated(true); // Marcar que el pedido ha sido creado
+
       console.log('Pedido:', completeOrder);
     }
-  }, [
-    envioInfo,
-    orderItems,
-    merchantOrderId,
-    setPedido,
-    createPedido,
-    isPedidoCreated,
-    setPedidoCreated,
-  ]);
+  }, [envioInfo, orderItems, merchantOrderId, setPedido, createPedido]);
 
   return (
     <div className='payment-success-container'>
