@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const subClienteSchema = new mongoose.Schema(
+const clienteSchema = new mongoose.Schema(
   {
     nombre: {
       type: String,
@@ -13,6 +13,7 @@ const subClienteSchema = new mongoose.Schema(
     documento: {
       type: Number,
       required: true,
+      unique: true,
     },
     email: {
       type: String,
@@ -20,22 +21,6 @@ const subClienteSchema = new mongoose.Schema(
     },
     telefono: {
       type: String,
-      required: true,
-    },
-  },
-  {
-    timestamps: true,
-  }
-);
-
-const clienteSchema = new mongoose.Schema(
-  {
-    envio: {
-      type: subClienteSchema,
-      required: false,
-    },
-    facturacion: {
-      type: subClienteSchema,
       required: true,
     },
   },

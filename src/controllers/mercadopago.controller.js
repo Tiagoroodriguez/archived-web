@@ -15,6 +15,7 @@ export const createOrder = async (req, res) => {
       unit_price: producto.precio,
       currency_id: 'ARS',
       quantity: producto.cantidad,
+      description: producto.talle,
     };
   });
 
@@ -25,9 +26,9 @@ export const createOrder = async (req, res) => {
       notification_url:
         'https://fbd5-138-204-152-207.ngrok-free.app/api/webhook',
       back_urls: {
-        success: 'http://localhost:5173/checkout/pago/success',
-        failure: 'http://localhost:5173/checkout/pago',
-        pending: 'http://localhost:5173/pending',
+        success: 'https://archived-web-six.vercel.app/checkout/pago/success',
+        failure: 'https://archived-web-six.vercel.app/checkout/pago',
+        pending: 'https://archived-web-six.vercel.app/pending',
       },
 
       auto_return: 'approved',
@@ -57,10 +58,6 @@ export const reciverWebhook = async (req, res) => {
       // Recupera los detalles del pago usando el ID
       const paymentDetails = await mercadopago.payment.findById(paymentId);
       console.log(paymentDetails);
-
-      // Guarda los detalles del pago en tu base de datos
-      // Implementa la lógica para guardar los detalles del pago en tu base de datos
-      // ...
     }
     res.sendStatus(204);
   } catch (error) {

@@ -74,6 +74,7 @@ export default function Carrito() {
             type='sudmit'
             textBoton='iniciar compra'
             desactivado={cartItems.length === 0 ? true : false}
+            onClick={() => null}
           />
         </Link>
       </div>
