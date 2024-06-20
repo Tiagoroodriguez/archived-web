@@ -1,4 +1,5 @@
 import { Boton } from '../Boton/Boton';
+import Contador from '../Contador/Contador';
 import './HeroSection.css';
 
 export default function HeroSection() {
@@ -23,7 +24,7 @@ export default function HeroSection() {
 
         <div className='hero-contador'>
           <span>Next Drop In: </span>
-          <span className='timer'>05 Days 12 Hours 30 Minutes</span>
+          <Contador targetDate='2024-12-31T23:59:59' />
         </div>
       </div>
     </div>
