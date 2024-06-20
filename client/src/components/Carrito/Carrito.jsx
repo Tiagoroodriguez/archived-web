@@ -57,7 +57,7 @@ export default function Carrito() {
 
           <Boton
             type='sudmit'
-            textBoton='vaciar carrito'
+            textBoton='Vaciar carrito'
             onClick={() => {
               clearCart();
             }}
@@ -72,7 +72,7 @@ export default function Carrito() {
         <Link to='/checkout'>
           <Boton
             type='sudmit'
-            textBoton='iniciar compra'
+            textBoton='Iniciar compra'
             desactivado={cartItems.length === 0 ? true : false}
             onClick={() => null}
           />

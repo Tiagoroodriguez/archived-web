@@ -91,7 +91,7 @@ export default function CarritoCompra() {
         >
           <Boton
             type='sudmit'
-            textBoton='checkout'
+            textBoton='Checkout'
             desactivado={cartItems.length === 0 ? true : false}
             onClick={() => null}
           />
