@@ -2,7 +2,7 @@
     position: relative;
     text-align: center;
     color: var(--color-primario);
-    height: 95vh;
+    height: 100vh;
     width: 100%;
 }
 
@@ -43,13 +43,28 @@
   
 .hero-content h2 {
     font-size: 1.5rem;
-    margin-top: 10px;
 }
 
 /*----------------------------------------------------*/
 
 .hero-btn-container{
-    width: 250px;
+    width: 40%;
+    display: flex;
+    gap: 10px;
+}
+
+.hero-btn{
+    background: none;
+    outline: none;
+    border: none;
+    color: var(--color-primario);
+    width: 100%;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+.hero-btn:hover{
+   text-decoration: underline;
+   font-weight: bold;
 }
 
 .hero-contador {
@@ -85,6 +100,9 @@
 
     .hero-btn-container {
         width: 200px;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 20px;
     }
 
     .hero-contador {

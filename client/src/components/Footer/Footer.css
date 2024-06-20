@@ -4,6 +4,7 @@ footer {
     height: auto;
     background: none;
     overflow: hidden;
+    margin-top: 50px;
 }
 .desktop-footer {
     border-top: 1px solid var(--color-secundario);
