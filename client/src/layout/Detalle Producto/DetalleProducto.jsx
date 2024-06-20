@@ -157,7 +157,11 @@ export function DetalleProducto() {
                   />
                 ))}
               </div>
-
+              {producto[`cant_${talleSeleccionado.toLowerCase()}`] < 5 ? (
+                <span className='talles-aviso'>Quedan pocas unidades!</span>
+              ) : (
+                ''
+              )}
               <button
                 className='modal-talle-boton'
                 onClick={abrirModal}
