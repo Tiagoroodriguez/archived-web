@@ -12,6 +12,8 @@ export function DetalleProducto() {
   const [producto, setProducto] = useState(null);
   const [talleSeleccionado, setTalleSeleccionado] = useState('');
   const [modalAbierta, setModalAbierta] = useState(false);
+  const [imagenSeleccionada, setImagenSeleccionada] = useState(0);
+  const [modalImagenAbierta, setModalImagenAbierta] = useState(false);
 
   const { getProduct } = useProduct();
   const { addToCart } = useContext(CartContext);
@@ -28,7 +30,7 @@ export function DetalleProducto() {
       }
     }
     loadProduct();
-  }, []);
+  }, [params.id, getProduct]);
 
   const determinarTallePorDefecto = (producto) => {
     if (producto.cant_s > 0) return 'S';
@@ -55,32 +57,74 @@ export function DetalleProducto() {
     setModalAbierta(false);
   };
 
+  const abrirModalImagen = (indice) => {
+    setImagenSeleccionada(indice);
+    setModalImagenAbierta(true);
+  };
+
+  const cerrarModalImagen = () => {
+    setModalImagenAbierta(false);
+  };
+
+  const siguienteImagen = () => {
+    setImagenSeleccionada((prevIndice) => (prevIndice + 1) % 4);
+  };
+
+  const anteriorImagen = () => {
+    setImagenSeleccionada((prevIndice) => (prevIndice - 1 + 4) % 4);
+  };
+
   return (
     <main>
       {producto ? (
         <section className='detalle-container'>
           <div className='img-container'>
-            <img
-              className='img'
-              src={`/images/productos/big/1-${producto.nombre}.webp`}
-              alt={`imagen numero uno del producto ${producto.nombre}`}
-            />
-            <img
-              className='img'
-              src={`/images/productos/big/2-${producto.nombre}.webp`}
-              alt={`imagen numero dos del producto ${producto.nombre}`}
-            />
-            <img
-              className='img'
-              src={`/images/productos/big/3-${producto.nombre}.webp`}
-              alt={`imagen numero tres del producto ${producto.nombre}`}
-            />
-            <img
-              className='img'
-              src={`/images/productos/big/4-${producto.nombre}.webp`}
-              alt={`imagen numero cuatro del producto ${producto.nombre}`}
-            />
+            {Array.from({ length: 4 }).map((_, index) => (
+              <img
+                key={index}
+                className='img'
+                src={`/images/productos/big/${index + 1}-${
+                  producto.nombre
+                }.webp`}
+                alt={`imagen numero ${index + 1} del producto ${
+                  producto.nombre
+                }`}
+                onClick={() => abrirModalImagen(index)}
+              />
+            ))}
           </div>
+
+          {modalImagenAbierta && (
+            <div className='modal-imagen'>
+              <button
+                className='cerrar-modal'
+                onClick={cerrarModalImagen}
+              >
+                &times;
+              </button>
+              <button
+                className='anterior-imagen'
+                onClick={anteriorImagen}
+              >
+                &#10094;
+              </button>
+              <img
+                className='imagen-pantalla-completa'
+                src={`/images/productos/big/${imagenSeleccionada + 1}-${
+                  producto.nombre
+                }.webp`}
+                alt={`imagen numero ${imagenSeleccionada + 1} del producto ${
+                  producto.nombre
+                }`}
+              />
+              <button
+                className='siguiente-imagen'
+                onClick={siguienteImagen}
+              >
+                &#10095;
+              </button>
+            </div>
+          )}
 
           <div className='informacion-container'>
             <div className='informacion-dp'>
@@ -136,7 +180,7 @@ export function DetalleProducto() {
             </div>
 
             <Boton
-              type='sudmit'
+              type='submit'
               textBoton={
                 talleSeleccionado === '' ? 'Sin stock' : 'Agregar al carrito'
               }
