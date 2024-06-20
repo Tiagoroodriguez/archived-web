@@ -7,6 +7,7 @@ export const createPedido = async (req, res) => {
     const {
       // Datos del pedido
       numero_pedido,
+      user,
 
       // Datos del cliente de envío
       nombre_envio,
@@ -63,7 +64,9 @@ export const createPedido = async (req, res) => {
     }
 
     // Verificar si el pedido ya existe
-    const existingPedido = await Pedido.findOne({ numero_pedido });
+    const existingPedido = await Pedido.findOne({
+      numero_pedido: numero_pedido,
+    });
     if (existingPedido) {
       return res.json(existingPedido);
     }
@@ -134,6 +137,7 @@ export const createPedido = async (req, res) => {
         ? savedDireccionEnvio._id
         : undefined,
       productos,
+      user: user ? user : undefined,
     });
 
     const savedPedido = await newPedido.save();
@@ -152,7 +156,8 @@ export const getPedido = async (req, res) => {
       .populate('cliente_facturacion')
       .populate('direccion_facturacion')
       .populate('cliente_envio')
-      .populate('direccion_envio');
+      .populate('direccion_envio')
+      .populate('usuario'); // Asegurarse de poblar el usuario también
 
     if (!pedido)
       return res.status(404).json({ message: 'Pedido no encontrado' });
