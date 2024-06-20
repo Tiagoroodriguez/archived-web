@@ -5,13 +5,19 @@ import { CartContext } from '../../context/CarritoContext';
 import { Boton } from '../../components/Boton/Boton';
 import './PagoSuccess.css';
 import { usePedido } from '../../context/PedidosContext';
-
-// http://localhost:5173/checkout/pago/success?collection_id=1324051917&collection_status=approved&payment_id=1324051917&status=approved&external_reference=null&payment_type=account_money&merchant_order_id=19855782499&preference_id=1812427204-e1d25535-9a5c-4f26-b809-5fa9d9165548&site_id=MLA&processing_mode=aggregator&merchant_account_id=null
+import { useAuth } from '../../context/AuthContext';
 
 const PagoSuccess = () => {
   const { getOrder } = useContext(MercadoPagoContext);
   const { clearCartLocally } = useContext(CartContext);
-  const { envioInfo, setPedido, createPedido } = usePedido();
+  const { user } = useAuth();
+  const {
+    envioInfo,
+    setPedido,
+    createPedido,
+    isPedidoCreated,
+    setPedidoCreated,
+  } = usePedido();
   const [searchParams] = useSearchParams();
   const [orderItems, setOrderItems] = useState([]);
   const merchantOrderId = searchParams.get('merchant_order_id');
@@ -29,7 +35,7 @@ const PagoSuccess = () => {
   }, [getOrder, merchantOrderId, orderItems.length]);
 
   useEffect(() => {
-    if (orderItems.length && envioInfo) {
+    if (orderItems.length && envioInfo && !isPedidoCreated) {
       const formattedOrderItems = orderItems.map((item) => ({
         producto_id: item.id,
         cantidad: item.quantity,
@@ -40,13 +46,22 @@ const PagoSuccess = () => {
         ...envioInfo,
         numero_pedido: merchantOrderId,
         productos: formattedOrderItems,
+        user: user ? user.id : undefined,
       };
       setPedido(completeOrder);
       createPedido(completeOrder); // Crear el pedido cuando la información esté completa
-
-      console.log('Pedido:', completeOrder);
+      setPedidoCreated(true); // Marcar que el pedido ha sido creado
+      //console.log('Pedido:', completeOrder);
     }
-  }, [envioInfo, orderItems, merchantOrderId, setPedido, createPedido]);
+  }, [
+    envioInfo,
+    orderItems,
+    merchantOrderId,
+    setPedido,
+    createPedido,
+    isPedidoCreated,
+    setPedidoCreated,
+  ]);
 
   return (
     <div className='payment-success-container'>
@@ -68,7 +83,8 @@ const PagoSuccess = () => {
         <Link to='/'>
           <Boton
             textBoton='Inicio'
-            secundario
+            secundario={true}
+            value={'Inicio'}
           />
         </Link>
         <Link to='/tienda'>
