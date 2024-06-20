@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './Producto.css';
 
 export function Producto({ producto }) {
+  const stock =
+    producto.cant_s + producto.cant_m + producto.cant_l + producto.cant_xl;
+
   return (
     <Link to={`/detalle-producto/${producto._id}`}>
       <article className='container'>
@@ -14,9 +17,13 @@ export function Producto({ producto }) {
               decoding='async'
             />
           </div>
-          <div className='descuento-container'>
-            <span className='descuento'>10%</span>
-          </div>
+          {stock === 0 ? (
+            <div className='descuento-container'>
+              <span className='descuento'>Sin stock</span>
+            </div>
+          ) : (
+            ''
+          )}
         </div>
 
         <div className='producto-informacion'>

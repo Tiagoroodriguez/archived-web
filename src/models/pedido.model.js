@@ -47,6 +47,15 @@ const pedidoSchema = new mongoose.Schema(
         },
       },
     ],
+    fecha: {
+      type: Date,
+      default: Date.now,
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: false,
+    },
   },
   {
     timestamps: true,

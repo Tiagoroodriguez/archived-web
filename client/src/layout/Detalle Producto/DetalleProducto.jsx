@@ -14,7 +14,7 @@ export function DetalleProducto() {
   const [modalAbierta, setModalAbierta] = useState(false);
 
   const { getProduct } = useProduct();
-  const { cartItems, addToCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
 
   const params = useParams();
 
@@ -113,6 +113,7 @@ export function DetalleProducto() {
                   />
                 ))}
               </div>
+
               <button
                 className='modal-talle-boton'
                 onClick={abrirModal}

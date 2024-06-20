@@ -8,11 +8,11 @@ const direccionSchema = new mongoose.Schema(
     },
     numero: {
       type: String,
-      required: true,
+      required: false,
     },
     departamento: {
       type: String,
-      required: true,
+      required: false,
     },
     ciudad: {
       type: String,
