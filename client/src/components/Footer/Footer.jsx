@@ -13,7 +13,7 @@ export function Footer() {
 
           <div>
             <a
-              href='#'
+              href='/'
               className='desktop-footer-icon'
             >
               <i
@@ -22,7 +22,7 @@ export function Footer() {
               ></i>
             </a>
             <a
-              href='#'
+              href='/'
               className='desktop-footer-icon'
             >
               <i
@@ -31,7 +31,7 @@ export function Footer() {
               ></i>
             </a>
             <a
-              href='#'
+              href='/'
               className='desktop-footer-icon'
             >
               <i
@@ -40,7 +40,7 @@ export function Footer() {
               ></i>
             </a>
             <a
-              href='#'
+              href='/'
               className='desktop-footer-icon'
             >
               <i
