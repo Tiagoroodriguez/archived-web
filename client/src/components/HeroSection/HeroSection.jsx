@@ -20,6 +20,7 @@ export default function HeroSection() {
         <h2>Each piece is unique. Once it's gone, it’s gone forever.</h2>
         <div className='hero-btn-container'>
           <Boton textBoton='Explore the Collection' />
+          <button className='hero-btn'>Quienes somos?</button>
         </div>
 
         <div className='hero-contador'>
