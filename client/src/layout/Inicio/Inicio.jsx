@@ -1,6 +1,7 @@
 import Bento from '../../components/Bento/Bento';
+import HeroSection from '../../components/HeroSection/HeroSection';
 import { Novedades } from '../../components/Novedades/Novedades';
-import { Slider } from '../../components/Slider/Slider';
+//import { Slider } from '../../components/Slider/Slider';
 import { useAuth } from '../../context/AuthContext';
 
 export function Inicio() {
@@ -8,7 +9,7 @@ export function Inicio() {
   return (
     <>
       <main>
-        <Slider />
+        <HeroSection />
         <Novedades
           cantidad='4'
           categoria='buzo'
