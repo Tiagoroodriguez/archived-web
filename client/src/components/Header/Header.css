@@ -7,11 +7,48 @@
 
 /*------------------------------------------------------------------------------------------*/
 
+.announcement-container {
+    background:var(--color-texto);
+    color: var(--color-primario);
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+    height: 27px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .announcement-messages {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    animation: scroll 9s linear infinite;
+  }
+  
+  .announcement-messages p {
+    margin: 0;
+    padding: 0;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @keyframes scroll {
+    0% { top: 0; }
+    33% { top: -40px; }
+    66% { top: -80px; }
+    100% { top: 0; }
+  }
+  
+/*------------------------------------------------------------------------------------------*/
+
 .nav-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 50px;
+    padding: 5px 50px;
 
     background: var(--color-primario);
     transition: background 0.5s ease;
@@ -75,7 +112,8 @@
     border-radius: none;
     cursor: pointer;
     background: transparent;
-    font-size: 15px;
+    font-size: 13px;
+    font-weight: 700;
 }
 
 .boton-carrito i{
@@ -83,8 +121,9 @@
 }
 
 .boton-carrito i:hover {
-    font-weight: bold;
+    text-decoration: underline;
 }
+
 
 /*------------------------------------------------------------------------------------------*/
 
@@ -142,6 +181,7 @@
 @media screen and (max-width: 769px) {
     .header-container {
         display: flex;
+        flex-direction: column;
     }
     .nav-container {
         padding-inline: 20px;
@@ -164,7 +204,7 @@
       align-items: flex-start;
       position: fixed;
       gap: 0;
-      top: 60px;
+      top: 50px;
       left: -250px;
       width: 250px;
       height: 100vh;

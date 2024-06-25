@@ -1,0 +1,25 @@
+.contador{
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.contador-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contador-tiempo{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.contador-texto{
+    font-size: 0.8rem;
+}
+
+.contador-separador{
+    font-size: 2rem;
+    font-weight: bold;
+}
