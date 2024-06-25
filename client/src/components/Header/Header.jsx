@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LogoTexto } from '../LogoTexto/LogoTexto';
 import { useAuth } from '../../context/AuthContext'; // Importamos el hook useAuth
@@ -23,6 +23,13 @@ function Header() {
   return (
     <>
       <header className='header-container'>
+        <div className='announcement-container'>
+          <div className='announcement-messages'>
+            <p>Free shipping on orders over $50!</p>
+            <p>30% off on all summer collections!</p>
+            <p>Subscribe to our newsletter for exclusive deals!</p>
+          </div>
+        </div>
         <nav className='nav-container'>
           <div className='nav-link'>
             <ul className={clicked ? 'nav-bar active links' : 'nav-bar links'}>
