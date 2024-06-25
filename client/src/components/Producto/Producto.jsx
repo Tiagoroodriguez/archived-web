@@ -7,8 +7,8 @@ export function Producto({ producto }) {
     producto.cant_s + producto.cant_m + producto.cant_l + producto.cant_xl;
 
   return (
-    <Link to={`/detalle-producto/${producto._id}`}>
-      <article className='container'>
+    <article className='container'>
+      <Link to={`/detalle-producto/${producto._id}`}>
         <div className='producto-imagen'>
           <div>
             <img
@@ -25,20 +25,26 @@ export function Producto({ producto }) {
             ''
           )}
         </div>
+      </Link>
 
-        <div className='producto-informacion'>
+      <div className='producto-informacion'>
+        <div className='producto-infor-superior'>
           <div
             to='/detalle-producto'
             className='nombre-texto'
           >
             {producto.nombre}
           </div>
-          <div
-            to='/detalle-producto'
-            className='precio-texto'
-          >{`$${producto.precio}`}</div>
+          <button className='producto-add-cart'>
+            <i className='bi bi-plus'></i>
+          </button>
         </div>
-      </article>
-    </Link>
+
+        <div
+          to='/detalle-producto'
+          className='precio-texto'
+        >{`$${producto.precio}`}</div>
+      </div>
+    </article>
   );
 }

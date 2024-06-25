@@ -5,9 +5,9 @@
     justify-content: flex-start;
     align-items: flex-start; 
     right: 0px;
-    top: 60px;
+    top: 78.4px;
     width: 350px;
-    height: calc(100dvh - 60px);
+    height: calc(100dvh - 78.4px);
 
     z-index: 1;
     background: var(--color-primario);

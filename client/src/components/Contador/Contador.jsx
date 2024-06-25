@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './Contador.css';
 
 export default function Contador({ targetDate }) {
   const calculateTimeLeft = () => {
@@ -30,9 +31,26 @@ export default function Contador({ targetDate }) {
   }, [timeLeft]);
 
   return (
-    <div className='hero-contador'>
-      <span>{timeLeft.days} Días</span> {timeLeft.hours} Horas{' '}
-      {timeLeft.minutes} Minutos {timeLeft.seconds} Segundos
+    <div className='hero-contador contador'>
+      <div className='contador-container'>
+        <span className='contador-tiempo'>{timeLeft.days}</span>
+        <span className='contador-texto'>Días</span>
+      </div>
+      <div className='contador-separador'>:</div>
+      <div className='contador-container'>
+        <span className='contador-tiempo'>{timeLeft.hours}</span>
+        <span className='contador-texto'>Horas</span>
+      </div>
+      <div className='contador-separador'>:</div>
+      <div className='contador-container'>
+        <span className='contador-tiempo'>{timeLeft.minutes}</span>
+        <span className='contador-texto'>Minutos</span>
+      </div>
+      <div className='contador-separador'>:</div>
+      <div className='contador-container'>
+        <span className='contador-tiempo'>{timeLeft.seconds}</span>
+        <span className='contador-texto'>Segundos</span>
+      </div>
     </div>
   );
 }
