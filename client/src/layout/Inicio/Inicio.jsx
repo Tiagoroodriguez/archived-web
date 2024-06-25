@@ -10,13 +10,13 @@ export function Inicio() {
         <Novedades
           cantidad='4'
           categoria='buzo'
-          titulo={'Buzos | Archived 222'}
+          titulo={'New in | Hoodies & Sweatshirts'}
         />
         <Bento />
         <Novedades
           cantidad='4'
           categoria='remera'
-          titulo={'Remeras | Archived 222'}
+          titulo={'New in | T-Shirts & Tops'}
         />
       </main>
     </>
