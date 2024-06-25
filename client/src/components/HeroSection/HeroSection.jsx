@@ -4,11 +4,14 @@ import './HeroSection.css';
 export default function HeroSection() {
   return (
     <div className='hero-container'>
-      <img
-        src='images/hero.jpg'
-        alt='hero'
-        className='hero-background'
-      />
+      <picture className='hero-img-container'>
+        <img
+          src='images/hero.jpg'
+          alt='hero'
+          className='hero-background'
+        />
+      </picture>
+
       {/*<img
         src='images/hero.jpg'
         alt='hero'

@@ -8,40 +8,35 @@
 /*------------------------------------------------------------------------------------------*/
 
 .announcement-container {
-    background:var(--color-texto);
+    background: var(--color-texto);
     color: var(--color-primario);
-    padding: 10px;
-    position: relative;
-    overflow: hidden;
-    height: 27px;
-    display: flex;
-    justify-content: center;
+    padding: 5px;
+    width: 100%;
+    overflow-x: clip;
   }
-  
-  .announcement-messages {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    animation: scroll 9s linear infinite;
+
+  .display-anuncio{
+    display: block;
   }
-  
+
+  .ocultar-anuncio{
+    display: none;
+  }
+  .announcement-messages{
+    display: flex;
+    width: 400%;
+    animation: slide 40s infinite linear;
+  }
   .announcement-messages p {
-    margin: 0;
-    padding: 0;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 700;
   }
-  
-  @keyframes scroll {
-    0% { top: 0; }
-    33% { top: -40px; }
-    66% { top: -80px; }
-    100% { top: 0; }
-  }
-  
+
+  @keyframes slide {
+    0% {margin-left: 0%;}
+    100% {margin-left: -400%;}
+}
 /*------------------------------------------------------------------------------------------*/
 
 .nav-container {
@@ -60,7 +55,7 @@
 
 @keyframes adjust-header {
     to {
-        background: transparent;
+        background: #fff7f06d;
         backdrop-filter: blur(20px);
     }
 }
