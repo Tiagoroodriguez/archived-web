@@ -10,7 +10,7 @@ function Header() {
   const { isAuthenticated, user, logout } = useAuth(); // Usamos el hook useAuth para acceder al contexto de autenticación
   const [clicked, setClicked] = useState(false); // Usamos el estado local con el hook useState
   const [showCart, setShowCart] = useState(false); // Estado para controlar la visibilidad del carrito
-  const { cartItems, addToCart } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
 
   // Función para alternar la visibilidad del carrito
   const toggleCart = () => {
@@ -19,6 +19,7 @@ function Header() {
   const handleClick = () => {
     setClicked(!clicked); // Cambiamos el estado local al hacer clic en el icono
   };
+
   return (
     <>
       <header className='header-container'>
@@ -37,7 +38,9 @@ function Header() {
               {isAuthenticated ? (
                 <>
                   <li className='mobile-cuenta mobile-cuenta-primero'>
-                    <Link to='#'>Hola {user ? user.nombre : ''}</Link>
+                    <Link to={`/perfil/${user.id}`}>
+                      Hola {user ? user.nombre : ''}
+                    </Link>
                   </li>
                   <li className='mobile-cuenta'>
                     <Link
@@ -72,13 +75,13 @@ function Header() {
 
           <div className='nav-logo'>
             <LogoTexto />
-          </div >
+          </div>
 
           <button
             onClick={toggleCart}
             className='boton-carrito-mobile'
           >
-            <i className='bi bi-cart2'>({cartItems.length})</i>
+            <i className='bi bi-bag'>({cartItems.length})</i>
           </button>
 
           <div className='nav-cuenta'>
@@ -86,7 +89,9 @@ function Header() {
               {isAuthenticated ? (
                 <>
                   <li>
-                    <Link to='#'>Hola {user ? user.nombre : ''}</Link>
+                    <Link to={`/perfil/${user.id}`}>
+                      Hola {user ? user.nombre : ''}
+                    </Link>
                   </li>
                   <li>
                     <Link
@@ -114,7 +119,7 @@ function Header() {
                   onClick={toggleCart}
                   className='boton-carrito'
                 >
-                  <i className='bi bi-cart2'>({cartItems.length})</i>
+                  <i className='bi bi-bag'>({cartItems.length})</i>
                 </button>
               </li>
             </ul>
