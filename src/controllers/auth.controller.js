@@ -64,6 +64,7 @@ export const login = async (req, res) => {
       nombre: userFound.nombre,
       apellido: userFound.apellido,
       email: userFound.email,
+      rol: userFound.rol,
       createdAt: userFound.createdAt,
       updateAt: userFound.updatedAt,
     });
@@ -89,6 +90,7 @@ export const profile = async (req, res) => {
     nombre: userFound.nombre,
     apellido: userFound.apellido,
     email: userFound.email,
+    rol: userFound.rol,
     createdAt: userFound.createdAt,
     updateAt: userFound.updatedAt,
   });
@@ -108,6 +110,7 @@ export const verifyToken = async (req, res) => {
       id: userFound._id,
       nombre: userFound.nombre,
       email: userFound.email,
+      rol: userFound.rol,
     });
   });
 };
