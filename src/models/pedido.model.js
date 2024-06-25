@@ -56,6 +56,10 @@ const pedidoSchema = new mongoose.Schema(
       ref: 'User',
       required: false,
     },
+    estado: {
+      type: String,
+      default: 'pendiente',
+    },
   },
   {
     timestamps: true,

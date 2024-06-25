@@ -1,6 +1,7 @@
 import Cliente from '../models/cliente.model.js';
 import Direccion from '../models/direccion.model.js';
 import Pedido from '../models/pedido.model.js';
+import mongoose from 'mongoose';
 
 export const createPedido = async (req, res) => {
   try {
@@ -164,5 +165,55 @@ export const getPedido = async (req, res) => {
     res.json(pedido);
   } catch (error) {
     return res.status(404).json({ message: 'Pedido no encontrado' });
+  }
+};
+
+export const getPedidos = async (req, res) => {
+  try {
+    const pedidos = await Pedido.find()
+      .populate('cliente_facturacion')
+      .populate('direccion_facturacion')
+      .populate('cliente_envio')
+      .populate('direccion_envio')
+      .populate('user'); // Asegúrate de poblar el usuario también
+    res.json(pedidos);
+  } catch (error) {
+    console.error('Error al recuperar los pedidos:', error);
+    res.status(500).json({
+      message: 'Error al recuperar los pedidos',
+      error: error.message,
+    });
+  }
+};
+
+export const getPedidoUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    // Verifica si el ID proporcionado es un ObjectId válido
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ message: 'ID de usuario inválido' });
+    }
+
+    const pedidos = await Pedido.find({ user: userId })
+      .populate('cliente_facturacion')
+      .populate('direccion_facturacion')
+      .populate('cliente_envio')
+      .populate('direccion_envio')
+      .populate('user'); // Asegúrate de poblar el usuario también
+
+    if (!pedidos.length) {
+      return res
+        .status(404)
+        .json({ message: 'No se encontraron pedidos para este usuario' });
+    }
+
+    res.json(pedidos);
+  } catch (error) {
+    console.error('Error al recuperar los pedidos del usuario:', error);
+    return res.status(500).json({
+      message: 'Error al recuperar los pedidos del usuario',
+      error: error.message,
+    });
   }
 };

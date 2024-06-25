@@ -1,5 +1,10 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { createPedidoRequest, getPedidoRequest } from '../api/pedidos';
+import {
+  createPedidoRequest,
+  getPedidoRequest,
+  getPedidoUserRequest,
+  getPedidosRequest,
+} from '../api/pedidos';
 
 export const PedidosContext = createContext();
 
@@ -46,6 +51,7 @@ const savePedidoCreated = (merchantOrderId, status) => {
 
 export const PedidoProvider = ({ children }) => {
   const [pedido, setPedido] = useState([]);
+  const [pedidoUser, setPedidoUser] = useState([]);
   const [envioInfo, setEnvioInfo] = useState(loadEnvioInfo);
   const [provinciaEnvio, setProvinciaEnvio] = useState('');
   const [provinciaFacturacion, setProvinciaFacturacion] = useState('');
@@ -73,6 +79,28 @@ export const PedidoProvider = ({ children }) => {
   const getPedido = async (id) => {
     try {
       const res = await getPedidoRequest(id);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
+  const getPedidos = async () => {
+    try {
+      const res = await getPedidosRequest();
+      setPedido(res.data);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
+  const getPedidoUser = async (id) => {
+    try {
+      const res = await getPedidoUserRequest(id);
+      setPedidoUser(res.data);
       return res.data;
     } catch (error) {
       console.error(error);
@@ -115,6 +143,9 @@ export const PedidoProvider = ({ children }) => {
         mismaDireccion,
         setMismaDireccion,
         getPedido,
+        getPedidoUser,
+        getPedidos,
+        pedidoUser,
         pedido,
         setPedido,
         createPedido,
