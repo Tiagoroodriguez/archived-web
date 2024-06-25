@@ -54,7 +54,7 @@ function App() {
                       path='/'
                       element={
                         <Layout>
-                          <Header />
+                          <Header anuncio />
                           <Inicio />
                           <Footer />
                         </Layout>
