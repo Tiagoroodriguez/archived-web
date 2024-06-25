@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { LogoTexto } from '../LogoTexto/LogoTexto';
 import { useAuth } from '../../context/AuthContext'; // Importamos el hook useAuth
@@ -6,7 +6,7 @@ import './Header.css';
 import Carrito from '../Carrito/Carrito';
 import { CartContext } from '../../context/CarritoContext';
 
-function Header() {
+function Header({ anuncio }) {
   const { isAuthenticated, user, logout } = useAuth(); // Usamos el hook useAuth para acceder al contexto de autenticación
   const [clicked, setClicked] = useState(false); // Usamos el estado local con el hook useState
   const [showCart, setShowCart] = useState(false); // Estado para controlar la visibilidad del carrito
@@ -23,29 +23,60 @@ function Header() {
   return (
     <>
       <header className='header-container'>
-        <div className='announcement-container'>
+        <div
+          className={`announcement-container ${
+            anuncio ? 'display-anuncio' : 'ocultar-anuncio'
+          }`}
+        >
           <div className='announcement-messages'>
             <p>Free shipping on orders over $50!</p>
             <p>30% off on all summer collections!</p>
             <p>Subscribe to our newsletter for exclusive deals!</p>
+            <p>Free shipping on orders over $50!</p>
           </div>
         </div>
         <nav className='nav-container'>
           <div className='nav-link'>
             <ul className={clicked ? 'nav-bar active links' : 'nav-bar links'}>
               <li>
-                <Link to='/'>Inicio</Link>
+                <Link
+                  to='/'
+                  onClick={() => {
+                    setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                  }}
+                >
+                  Inicio
+                </Link>
               </li>
               <li>
-                <Link to='/tienda?categoria=all'>Tienda</Link>
+                <Link
+                  to='/tienda?categoria=all'
+                  onClick={() => {
+                    setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                  }}
+                >
+                  Tienda
+                </Link>
               </li>
               <li>
-                <Link to='/contacto'>Contacto</Link>
+                <Link
+                  to='/contacto'
+                  onClick={() => {
+                    setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                  }}
+                >
+                  Contacto
+                </Link>
               </li>
               {isAuthenticated ? (
                 <>
                   <li className='mobile-cuenta mobile-cuenta-primero'>
-                    <Link to={`/perfil/${user.id}`}>
+                    <Link
+                      to={`/perfil/${user.id}`}
+                      onClick={() => {
+                        setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                      }}
+                    >
                       Hola {user ? user.nombre : ''}
                     </Link>
                   </li>
@@ -54,6 +85,7 @@ function Header() {
                       to='/'
                       onClick={() => {
                         logout();
+                        setClicked(false); // Cerramos el menú al hacer clic en el enlace
                       }}
                     >
                       Salir
@@ -63,10 +95,24 @@ function Header() {
               ) : (
                 <>
                   <li className='mobile-cuenta mobile-cuenta-primero'>
-                    <Link to='/login'>Iniciar sesión</Link>
+                    <Link
+                      to='/login'
+                      onClick={() => {
+                        setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                      }}
+                    >
+                      Iniciar sesión
+                    </Link>
                   </li>
                   <li className='mobile-cuenta'>
-                    <Link to='/register'>Crear cuenta</Link>
+                    <Link
+                      to='/register'
+                      onClick={() => {
+                        setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                      }}
+                    >
+                      Crear cuenta
+                    </Link>
                   </li>
                 </>
               )}

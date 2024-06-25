@@ -36,6 +36,10 @@
 
 }
 
+.hero-img-container{
+    background: transparent;
+}
+
 .hero-text h1 {
     font-size: 3rem;
     font-weight: 800;
