@@ -25,6 +25,7 @@ import { MercadoPagoProvider } from './context/MercadoPago';
 import PagoSuccess from './layout/PagoSuccess/PagoSuccess';
 import { FilterProvider } from './context/FilterContext';
 import { PedidoProvider } from './context/PedidosContext';
+import Perfil from './layout/Perfil/Perfil';
 
 const Background = styled.div`
   position: fixed;
@@ -154,6 +155,17 @@ function App() {
                         <Layout>
                           <Header />
                           <PagoSuccess />
+                          <Footer />
+                        </Layout>
+                      }
+                    />
+
+                    <Route
+                      path='/perfil/:id'
+                      element={
+                        <Layout>
+                          <Header />
+                          <Perfil />
                           <Footer />
                         </Layout>
                       }

@@ -4,9 +4,6 @@ export const createPedidoRequest = (pedido) => axios.post('/pedido', pedido);
 
 export const getPedidoRequest = (id) => axios.get(`/pedido/${id}`);
 
-export const createEnvioRequest = (envio) => axios.post('/envio', envio);
+export const getPedidosRequest = () => axios.get('/pedidos');
 
-export const getEnvioRequest = (id) => axios.get(`/envio/${id}`);
-
-export const modificarEnvioRequest = (envio) =>
-  axios.put(`/envio/${envio._id}`, envio);
+export const getPedidoUserRequest = (id) => axios.get(`/pedido-user/${id}`);
