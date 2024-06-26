@@ -48,6 +48,7 @@ a{
   margin-top: 10px;
   background: brown;
   color:var(--color-primario);
+  padding-block: 5px;
 }
 
 /*--------------------------------------------------------------------------------------------*/

@@ -1,0 +1,57 @@
+.section-img-grid{
+    padding: 20px 50px;
+    width: 100%;
+    height: 90vh;
+    overflow: none;
+}
+
+.img-grid-container {  
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "img1 img2"
+      "imgPanoramica imgPanoramica";
+  }
+  
+.imgPanoramica {
+    grid-area: imgPanoramica; 
+    background: red;
+}
+  
+.img1 { 
+    grid-area: img1; 
+    background-color: blue;
+}
+  
+.img2 { 
+    grid-area: img2;
+    background: green;
+}
+
+.img-grid-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.img-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 768px){
+    .section-img-grid{
+        padding: 10px;
+    }
+    
+}
+  

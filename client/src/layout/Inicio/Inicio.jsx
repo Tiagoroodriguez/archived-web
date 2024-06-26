@@ -1,5 +1,5 @@
-import Bento from '../../components/Bento/Bento';
 import HeroSection from '../../components/HeroSection/HeroSection';
+import ImgGrid from '../../components/ImgGrid/ImgGrid';
 import { Novedades } from '../../components/Novedades/Novedades';
 
 export function Inicio() {
@@ -12,7 +12,7 @@ export function Inicio() {
           categoria='buzo'
           titulo={'New in | Hoodies & Sweatshirts'}
         />
-        <Bento />
+        <ImgGrid />
         <Novedades
           cantidad='4'
           categoria='remera'

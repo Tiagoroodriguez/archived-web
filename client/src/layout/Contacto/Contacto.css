@@ -46,10 +46,10 @@
 @media (max-width: 768px) {
     .datos-container {
         width: 80%;
-
     }
 
     .contacto {
         justify-content: flex-start;
+        margin-top: 60px;
     }
 }

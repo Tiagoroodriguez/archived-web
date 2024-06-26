@@ -52,7 +52,6 @@ footer {
     display: inline-block;
 }
 
-
 .suscribirse {
     display:flex;
     flex-direction: column;
@@ -78,7 +77,6 @@ footer {
     text-align: center;
     font-size: small; 
 }
-
 
 .informacion-general{
     display: flex;
@@ -106,13 +104,35 @@ footer {
     color: var(--color-texto);
 }
 
-@media (max-width: 768px) {
+.navigation-buttons {
+    display: none;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
 
+.navigation-buttons button {
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: var(--color-texto);
+    font-size: small;
+    margin-bottom: 20px;
+}
+
+.navigation-buttons button:focus{
+    color: var(--color-texto);
+}
+
+
+@media (max-width: 768px) {
     .desktop-footer{
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 40px;
+        overflow: clip;
     }
 
     .desktop-footer-logo{
@@ -123,4 +143,28 @@ footer {
         text-align: center;
     }
 
+    .informacion-general{
+        flex-direction: row;
+        gap: 20px;
+        height: auto;
+        width: 100%;
+        overflow-x: hidden;
+        margin-bottom: 20px;
+    }
+
+    .informacion-item {
+        min-width: 100%;
+    }
+
+    .informacion-item.hidden {
+        display: none;
+    }
+
+    .informacion-item.visible {
+        display: flex;
+    }
+
+    .navigation-buttons {
+        display: flex;
+    }
 }

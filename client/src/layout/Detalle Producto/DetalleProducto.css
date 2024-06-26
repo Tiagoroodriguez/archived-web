@@ -190,7 +190,7 @@
 @media (max-width: 768px) {
     .detalle-container {
         margin-bottom: 50px ;
-        margin-inline: 20px;
+        margin-inline: 10px;
         flex-direction: column;
     }
 
