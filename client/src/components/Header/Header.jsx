@@ -23,18 +23,7 @@ function Header({ anuncio }) {
   return (
     <>
       <header className='header-container'>
-        <div
-          className={`announcement-container ${
-            anuncio ? 'display-anuncio' : 'ocultar-anuncio'
-          }`}
-        >
-          <div className='announcement-messages'>
-            <p>Free shipping on orders over $50!</p>
-            <p>30% off on all summer collections!</p>
-            <p>Subscribe to our newsletter for exclusive deals!</p>
-            <p>Free shipping on orders over $50!</p>
-          </div>
-        </div>
+        
         <nav className='nav-container'>
           <div className='nav-link'>
             <ul className={clicked ? 'nav-bar active links' : 'nav-bar links'}>
@@ -180,6 +169,18 @@ function Header({ anuncio }) {
         </nav>
         <div className={`header-cart-container ${showCart ? 'show' : ''}`}>
           <Carrito />
+        </div>
+        <div
+          className={`announcement-container ${
+            anuncio ? 'display-anuncio' : 'ocultar-anuncio'
+          }`}
+        >
+          <div className='announcement-messages'>
+            <p>Free shipping on orders over $50!</p>
+            <p>30% off on all summer collections!</p>
+            <p>Subscribe to our newsletter for exclusive deals!</p>
+            <p>Free shipping on orders over $50!</p>
+          </div>
         </div>
       </header>
     </>

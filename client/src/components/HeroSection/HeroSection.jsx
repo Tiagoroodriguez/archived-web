@@ -3,7 +3,7 @@ import './HeroSection.css';
 
 export default function HeroSection() {
   return (
-    <div className='hero-container'>
+    <section className='hero-container'>
       <picture className='hero-img-container'>
         <img
           src='images/hero.jpg'
@@ -27,6 +27,6 @@ export default function HeroSection() {
           <Contador targetDate='2024-12-31T23:59:59' />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
