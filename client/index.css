@@ -5,7 +5,8 @@
   font-family: Helvetica, "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
 }
 :root {
-  --color-primario: #fff7f0;
+  /*#fff7f0*/
+  --color-primario: #f2f2f2;
   --color-secundario: #301e129f;
   --color-texto: #452b1a;
   
