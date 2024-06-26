@@ -1,10 +1,21 @@
 import { Link } from 'react-router-dom';
-
 import './Producto.css';
+import { useContext } from 'react';
+import { CartContext } from '../../context/CarritoContext';
+import TalleSelectionOverlay from '../TalleSelectionOverlay/TalleSelectionOverlay';
 
 export function Producto({ producto }) {
+  const { setOverlayTalles, overlayTalles, setSelectedProduct } =
+    useContext(CartContext);
+
   const stock =
     producto.cant_s + producto.cant_m + producto.cant_l + producto.cant_xl;
+
+  const handleMostrarOverlayTalles = () => {
+    setOverlayTalles(true);
+    setSelectedProduct(producto);
+    console.log('Producto seleccionado:', producto);
+  };
 
   return (
     <article className='container'>
@@ -35,8 +46,11 @@ export function Producto({ producto }) {
           >
             {producto.nombre}
           </div>
-          <button className='producto-add-cart'>
-            <i className='bi bi-plus'></i>
+          <button
+            className='producto-add-cart'
+            onClick={handleMostrarOverlayTalles}
+          >
+            <i className='bi bi-plus' />
           </button>
         </div>
 
@@ -45,6 +59,7 @@ export function Producto({ producto }) {
           className='precio-texto'
         >{`$${producto.precio}`}</div>
       </div>
+      {overlayTalles && <TalleSelectionOverlay />}
     </article>
   );
 }
