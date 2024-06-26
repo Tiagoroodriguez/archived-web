@@ -48,7 +48,10 @@ export function Tienda() {
     <>
       <main>
         <div className='tienda-header'>
-          <img src='/images/tienda/perchero.webp' />
+          <img
+            src='/images/tienda/perchero.webp'
+            alt='Tienda Header'
+          />
           <h1>Tienda Oficial de Archived 222</h1>
         </div>
         <section className='tienda'>
@@ -85,10 +88,12 @@ export function Tienda() {
           ) : (
             <section className='productos-container'>
               {filteredProducts.map((product) => (
-                <Producto
-                  key={product._id}
-                  producto={product}
-                />
+                <div key={product._id}>
+                  <Producto
+                    key={product._id}
+                    producto={product}
+                  />
+                </div>
               ))}
             </section>
           )}

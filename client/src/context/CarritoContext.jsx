@@ -5,6 +5,8 @@ import { useProduct } from './ProductContext';
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+  const [overlayTalles, setOverlayTalles] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartItems, setCartItems] = useState(
     localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
@@ -178,6 +180,10 @@ export const CartProvider = ({ children }) => {
         getCartTotal,
         getCartItems,
         clearCartLocally,
+        overlayTalles,
+        setOverlayTalles,
+        selectedProduct,
+        setSelectedProduct,
       }}
     >
       {children}
