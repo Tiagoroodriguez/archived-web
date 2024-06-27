@@ -23,20 +23,9 @@ function Header({ anuncio }) {
   return (
     <>
       <header className='header-container'>
-        
         <nav className='nav-container'>
           <div className='nav-link'>
             <ul className={clicked ? 'nav-bar active links' : 'nav-bar links'}>
-              <li>
-                <Link
-                  to='/'
-                  onClick={() => {
-                    setClicked(false); // Cerramos el menú al hacer clic en el enlace
-                  }}
-                >
-                  Inicio
-                </Link>
-              </li>
               <li>
                 <Link
                   to='/tienda?categoria=all'
@@ -45,6 +34,16 @@ function Header({ anuncio }) {
                   }}
                 >
                   Tienda
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='/'
+                  onClick={() => {
+                    setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                  }}
+                >
+                  Colleciones
                 </Link>
               </li>
               <li>
