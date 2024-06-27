@@ -7,6 +7,7 @@ import { useProduct } from '../../context/ProductContext';
 import { Tabla } from '../../components/Tabla/Tabla';
 
 import './DetalleProducto.css';
+import Acordeon from '../../components/Acordeon/Arcodeon';
 
 export function DetalleProducto() {
   const [producto, setProducto] = useState(null);
@@ -14,6 +15,7 @@ export function DetalleProducto() {
   const [modalAbierta, setModalAbierta] = useState(false);
   const [imagenSeleccionada, setImagenSeleccionada] = useState(0);
   const [modalImagenAbierta, setModalImagenAbierta] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const { getProduct } = useProduct();
   const { addToCart } = useContext(CartContext);
@@ -73,6 +75,39 @@ export function DetalleProducto() {
   const anteriorImagen = () => {
     setImagenSeleccionada((prevIndice) => (prevIndice - 1 + 4) % 4);
   };
+
+  const arcodeonData = [
+    {
+      title: 'Detalles de producto',
+      content: (
+        <>
+          <p>Straight loose fit shorts.</p>
+
+          <p>Grey/black color.</p>
+
+          <p>100% heavy cotton fabric.</p>
+
+          <p>Zipper closure with Cold engraved on button.</p>
+
+          <p>Tool pockets and hammer loop.</p>
+
+          <p>Logo embroidered on back.</p>
+        </>
+      ),
+    },
+    {
+      title: 'Guia de talles',
+      content: <></>,
+    },
+    {
+      title: 'Envios',
+      content: (
+        <>
+          <p>Realizamos envios gratis a todo el pais.</p>
+        </>
+      ),
+    },
+  ];
 
   return (
     <main>
@@ -182,7 +217,6 @@ export function DetalleProducto() {
                 />
               )}
             </div>
-
             <Boton
               type='submit'
               textBoton={
@@ -190,6 +224,11 @@ export function DetalleProducto() {
               }
               onClick={handleAddToCart}
               desactivado={talleSeleccionado === ''}
+            />
+            <Acordeon
+              data={arcodeonData}
+              activeIndex={activeIndex}
+              setActiveIndex={setActiveIndex}
             />
           </div>
         </section>
