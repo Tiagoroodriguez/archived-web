@@ -55,7 +55,7 @@ export default function Carrito() {
         <div className='descripcion-final'>
           <h2 className='descripcion-final-texto'>Total: ${getCartTotal()}</h2>
 
-          <Boton
+          {/*<Boton
             type='sudmit'
             textBoton='Vaciar carrito'
             onClick={() => {
@@ -63,7 +63,7 @@ export default function Carrito() {
             }}
             secundario={true}
             value={'vaciar'}
-          />
+          />*/}
         </div>
       ) : (
         <h2 className='descripcion-final-texto'>Tu carrito esta vacio</h2>

@@ -33,6 +33,7 @@ export default function TalleSelectionOverlay() {
       ref={overlayRef}
     >
       <div className='overlay-talle'>
+        <p>Seleccione un talle</p>
         <ul className='overlay-talle-list'>
           {['S', 'M', 'L', 'XL', 'XXL'].map((talle) => (
             <li key={talle}>
