@@ -7,21 +7,28 @@
     top: 0;
     left: 0;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     z-index: 1000; /* Asegurar que el overlay esté por encima de otros elementos */
   }
   
   .overlay-talle {
-    width: 100%;
+    width: 60%;
     height: 20%;
     background: var(--color-primario);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding-inline: 10px;
+    padding-inline: 20px;
     list-style: none;
-    gap: 5px;
+    gap: 25px;
+  }
+
+  .overlay-talle p {
+    color: var(--color-texto);
+    font-size: 1.5rem;
+    font-weight: bold;
   }
   
   .overlay-talle-list {
@@ -30,11 +37,15 @@
     justify-content: space-between;
     align-items: center;
     list-style: none;
-    gap:5px;
+    gap: 5px;
   }
   
   .overlay-talle-list li {
     width: 100%;
+  }
+
+  .overlay-talle-list li button {
+    margin: 0;
   }
   
   .mostrar-talles {
@@ -45,3 +56,18 @@
     display: none;
   }
   
+
+  @media screen and (max-width: 768px){
+    .overlay-container {
+      align-items: flex-end;
+    }
+
+    .overlay-talle{
+      width: 100%;
+      padding-inline: 10px;
+    }
+
+    .overlay-talle p {
+      display: none;
+    }
+  }
