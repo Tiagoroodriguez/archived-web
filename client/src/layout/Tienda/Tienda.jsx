@@ -45,15 +45,8 @@ export function Tienda() {
   const filteredProducts = filterProducts(products);
 
   return (
-    <>
+    
       <main>
-        <div className='tienda-header'>
-          <img
-            src='/images/tienda/perchero.webp'
-            alt='Tienda Header'
-          />
-          <h1>Tienda Oficial de Archived 222</h1>
-        </div>
         <section className='tienda'>
           <nav className='tienda-filtros'>
             <Boton
@@ -99,6 +92,6 @@ export function Tienda() {
           )}
         </section>
       </main>
-    </>
+
   );
 }
