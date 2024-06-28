@@ -187,6 +187,7 @@
     width: 100%;
     left: 0;
     background-color: var(--color-primario);
+    border-bottom: 1px solid var(--color-texto);
     z-index: 1;
     list-style: none;
     padding: 10px 50px;
@@ -208,6 +209,21 @@
     text-decoration: underline;
   }
   
+/*------------------------------------------------------------------------------------------*/
+
+.coleccion-img-container{
+    width: 30%;
+}
+
+.coleccion-img-container img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.coleccion-img-container a{
+    text-align: center;
+    padding-top: 10px;
+}
 /*------------------------------------------------------------------------------------------*/
 
 @media screen and (max-width: 769px) {
