@@ -21,6 +21,7 @@ export default function InformacionEnvio() {
 
   const {
     register,
+    watch,
     handleSubmit,
     setValue,
     getValues,
@@ -214,6 +215,7 @@ export default function InformacionEnvio() {
               ternaria={register('email_envio', {
                 required: 'El correo electrónico es requerido',
               })}
+              value={watch('email_envio') || getValues('email_envio')}
             />
             {errors.email_envio && (
               <p className='error'>{errors.email_envio.message}</p>
@@ -230,6 +232,7 @@ export default function InformacionEnvio() {
                 ternaria={register('codigo_postal_envio', {
                   required: 'El código postal es requerido',
                 })}
+                value={getValues('codigo_postal_envio')}
               />
               {errors.codigo_postal_envio && (
                 <p className='error'>{errors.codigo_postal_envio.message}</p>
@@ -288,6 +291,7 @@ export default function InformacionEnvio() {
                 ternaria={register('documento_envio', {
                   required: 'El DNI o CUIL es requerido',
                 })}
+                value={getValues('documento_envio')}
               />
               {errors.documento && (
                 <p className='error'>{errors.documento.message}</p>
@@ -300,6 +304,7 @@ export default function InformacionEnvio() {
                 ternaria={register('nombre_envio', {
                   required: 'El nombre es requerido',
                 })}
+                value={getValues('nombre_envio')}
               />
               {errors.nombre && (
                 <p className='error'>{errors.nombre.message}</p>
@@ -312,6 +317,7 @@ export default function InformacionEnvio() {
                 ternaria={register('apellido_envio', {
                   required: 'El apellido es requerido',
                 })}
+                value={getValues('apellido_envio')}
               />
               {errors.apellido && (
                 <p className='error'>{errors.apellido.message}</p>
@@ -324,6 +330,7 @@ export default function InformacionEnvio() {
                 ternaria={register('telefono_envio', {
                   required: 'El teléfono es requerido',
                 })}
+                value={getValues('telefono_envio')}
               />
               {errors.telefono && (
                 <p className='error'>{errors.telefono.message}</p>
@@ -336,6 +343,7 @@ export default function InformacionEnvio() {
                 ternaria={register('direccion_envio', {
                   required: 'La dirección es requerida',
                 })}
+                value={getValues('direccion_envio')}
               />
               {errors.direccion_envio && (
                 <p className='error'>{errors.direccion_envio.message}</p>
@@ -350,14 +358,16 @@ export default function InformacionEnvio() {
                     ternaria={register('numero_direccion_envio', {
                       required: false,
                     })}
+                    value={getValues('numero_direccion_envio')}
                   />
                 </div>
                 <div className='ciudad-item ciudad'>
                   <Input
                     type='text'
-                    label='Departamentoooo (opcional)'
+                    label='Departamento (opcional)'
                     name='departamento_envio'
                     ternaria={register('departamento_envio')}
+                    value={getValues('departamento_envio')}
                   />
                 </div>
               </div>
@@ -369,6 +379,7 @@ export default function InformacionEnvio() {
                 ternaria={register('ciudad_envio', {
                   required: 'La ciudad es requerida',
                 })}
+                value={getValues('ciudad_envio')}
               />
               {errors.ciudad_envio && (
                 <p className='error'>{errors.ciudad_envio.message}</p>
@@ -406,6 +417,7 @@ export default function InformacionEnvio() {
                     ternaria={register('documento_facturacion', {
                       required: 'El DNI o CUIL es requerido',
                     })}
+                    value={getValues('documento_facturacion')}
                   />
                   {errors.documento && (
                     <p className='error'>{errors.documento.message}</p>
@@ -418,6 +430,7 @@ export default function InformacionEnvio() {
                     ternaria={register('nombre_facturacion', {
                       required: 'El nombre es requerido',
                     })}
+                    value={getValues('nombre_facturacion')}
                   />
                   {errors.nombre_facturacion && (
                     <p className='error'>{errors.nombre_facturacion.message}</p>
@@ -430,6 +443,7 @@ export default function InformacionEnvio() {
                     ternaria={register('apellido_facturacion', {
                       required: 'El apellido es requerido',
                     })}
+                    value={getValues('apellido_facturacion')}
                   />
                   {errors.apellido_facturacion && (
                     <p className='error'>
@@ -444,6 +458,7 @@ export default function InformacionEnvio() {
                     ternaria={register('telefono_facturacion', {
                       required: 'El teléfono es requerido',
                     })}
+                    value={getValues('telefono_facturacion')}
                   />
                   {errors.telefono_facturacion && (
                     <p className='error'>
@@ -458,6 +473,7 @@ export default function InformacionEnvio() {
                     ternaria={register('direccion_facturacion', {
                       required: 'La dirección es requerida',
                     })}
+                    value={getValues('direccion_facturacion')}
                   />
                   {errors.direccion_facturacion && (
                     <p className='error'>
@@ -474,6 +490,7 @@ export default function InformacionEnvio() {
                         ternaria={register('numero_direccion_facturacion', {
                           required: false,
                         })}
+                        value={getValues('numero_direccion_facturacion')}
                       />
                     </div>
                     <div className='ciudad-item ciudad'>
@@ -484,6 +501,7 @@ export default function InformacionEnvio() {
                         ternaria={register('departamento_facturacion', {
                           required: false,
                         })}
+                        value={getValues('departamento_facturacion')}
                       />
                     </div>
                   </div>
@@ -495,6 +513,7 @@ export default function InformacionEnvio() {
                     ternaria={register('ciudad_facturacion', {
                       required: 'La ciudad es requerida',
                     })}
+                    value={getValues('ciudad_facturacion')}
                   />
                   {errors.ciudad_facturacion && (
                     <p className='error'>{errors.ciudad_facturacion.message}</p>
@@ -507,6 +526,7 @@ export default function InformacionEnvio() {
                     ternaria={register('codigo_postal_facturacion', {
                       required: 'El código postal es requerido',
                     })}
+                    value={getValues('codigo_postal_facturacion')}
                   />
                   {errors.codigo_postal_facturacion && (
                     <p className='error'>
@@ -539,6 +559,7 @@ export default function InformacionEnvio() {
                 ternaria={register('documento_facturacion', {
                   required: 'El DNI o CUIL es requerido',
                 })}
+                value={getValues('documento_facturacion')}
               />
               {errors.documento && (
                 <p className='error'>{errors.documento.message}</p>
@@ -551,6 +572,7 @@ export default function InformacionEnvio() {
                 ternaria={register('nombre_facturacion', {
                   required: 'El nombre es requerido',
                 })}
+                value={getValues('nombre_facturacion')}
               />
               {errors.nombre && (
                 <p className='error'>{errors.nombre.message}</p>
@@ -563,6 +585,7 @@ export default function InformacionEnvio() {
                 ternaria={register('apellido_facturacion', {
                   required: 'El apellido es requerido',
                 })}
+                value={getValues('apellido_facturacion')}
               />
               {errors.apellido && (
                 <p className='error'>{errors.apellido.message}</p>
@@ -575,6 +598,7 @@ export default function InformacionEnvio() {
                 ternaria={register('telefono_facturacion', {
                   required: 'El teléfono es requerido',
                 })}
+                value={getValues('telefono_facturacion')}
               />
               {errors.telefono && (
                 <p className='error'>{errors.telefono.message}</p>
@@ -587,6 +611,7 @@ export default function InformacionEnvio() {
                 ternaria={register('direccion_facturacion', {
                   required: 'La dirección es requerida',
                 })}
+                value={getValues('direccion_facturacion')}
               />
               {errors.direccion_facturacion && (
                 <p className='error'>{errors.direccion_facturacion.message}</p>
@@ -601,6 +626,7 @@ export default function InformacionEnvio() {
                     ternaria={register('numero_direccion_facturacion', {
                       required: false,
                     })}
+                    value={getValues('numero_direccion_facturacion')}
                   />
                 </div>
                 <div className='ciudad-item ciudad'>
@@ -611,6 +637,7 @@ export default function InformacionEnvio() {
                     ternaria={register('departamento_facturacion', {
                       required: false,
                     })}
+                    value={getValues('departamento_facturacion')}
                   />
                 </div>
               </div>
@@ -621,6 +648,7 @@ export default function InformacionEnvio() {
                 ternaria={register('ciudad_facturacion', {
                   required: 'La ciudad es requerida',
                 })}
+                value={getValues('ciudad_facturacion')}
               />
               {errors.ciudad && (
                 <p className='error'>{errors.ciudad.message}</p>
@@ -632,6 +660,7 @@ export default function InformacionEnvio() {
                 ternaria={register('codigo_postal_facturacion', {
                   required: 'El código postal es requerido',
                 })}
+                value={getValues('codigo_postal_facturacion')}
               />
               {errors.codigo_postal && (
                 <p className='error'>{errors.codigo_postal.message}</p>
