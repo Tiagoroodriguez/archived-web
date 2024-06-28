@@ -6,7 +6,7 @@ import { Boton } from '../../components/Boton/Boton';
 import './Carrito.css';
 
 export default function Carrito() {
-  const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
+  const { cartItems, addToCart, removeFromCart, getCartTotal } =
     useContext(CartContext);
 
   return (
