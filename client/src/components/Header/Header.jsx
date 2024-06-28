@@ -1,24 +1,62 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { LogoTexto } from '../LogoTexto/LogoTexto';
-import { useAuth } from '../../context/AuthContext'; // Importamos el hook useAuth
+import { useAuth } from '../../context/AuthContext';
 import './Header.css';
 import Carrito from '../Carrito/Carrito';
 import { CartContext } from '../../context/CarritoContext';
+import DropDown from '../DropDown/DropDown';
 
 function Header({ anuncio }) {
-  const { isAuthenticated, user, logout } = useAuth(); // Usamos el hook useAuth para acceder al contexto de autenticación
-  const [clicked, setClicked] = useState(false); // Usamos el estado local con el hook useState
-  const [showCart, setShowCart] = useState(false); // Estado para controlar la visibilidad del carrito
+  const { isAuthenticated, user, logout } = useAuth();
+  const [clicked, setClicked] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const timerRef = useRef(null); // Referencia para el temporizador
+
   const { cartItems } = useContext(CartContext);
 
-  // Función para alternar la visibilidad del carrito
   const toggleCart = () => {
     setShowCart(!showCart);
   };
+
   const handleClick = () => {
-    setClicked(!clicked); // Cambiamos el estado local al hacer clic en el icono
+    setClicked(!clicked);
   };
+
+  const handleMouseEnter = () => {
+    clearTimeout(timerRef.current); // Limpiamos el temporizador si está activo
+    setDropdown(true);
+  };
+
+  const handleMouseLeave = () => {
+    // Configuramos el temporizador para cerrar el dropdown después de 5 segundos
+    timerRef.current = setTimeout(() => {
+      setDropdown(false);
+    }, 500); // 1000 milisegundos = 1 segundos
+  };
+
+  const handleDropdownItemClick = () => {
+    clearTimeout(timerRef.current); // Limpiamos el temporizador si está activo
+    setDropdown(false); // Cerramos el dropdown al hacer clic en un ítem
+  };
+
+  const dataHeader = [
+    {
+      title: 'Colecciones',
+      content: (
+        <ul>
+          <li>
+            <Link>Primavera</Link>
+            <Link>Verano</Link>
+            <Link>Otoño</Link>
+            <Link>Invierno</Link>
+          </li>
+        </ul>
+      ),
+    },
+  ];
 
   return (
     <>
@@ -30,27 +68,38 @@ function Header({ anuncio }) {
                 <Link
                   to='/tienda?categoria=all'
                   onClick={() => {
-                    setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                    setClicked(false);
                   }}
                 >
                   Tienda
                 </Link>
               </li>
-              <li>
+              <li
+                className='dropdown'
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
                 <Link
-                  to='/'
-                  onClick={() => {
-                    setClicked(false); // Cerramos el menú al hacer clic en el enlace
-                  }}
+                  to='#'
+                  className='dropdown-toggle'
                 >
-                  Colleciones
+                  Colecciones <i className='bi bi-chevron-down'></i>
                 </Link>
               </li>
+
+              <li className='dropdown-container'>
+                <DropDown
+                  data={dataHeader}
+                  activeIndex={activeIndex}
+                  setActiveIndex={setActiveIndex}
+                />
+              </li>
+
               <li>
                 <Link
                   to='/contacto'
                   onClick={() => {
-                    setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                    setClicked(false);
                   }}
                 >
                   Contacto
@@ -62,7 +111,7 @@ function Header({ anuncio }) {
                     <Link
                       to={`/perfil/${user.id}`}
                       onClick={() => {
-                        setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                        setClicked(false);
                       }}
                     >
                       Hola {user ? user.nombre : ''}
@@ -73,7 +122,7 @@ function Header({ anuncio }) {
                       to='/'
                       onClick={() => {
                         logout();
-                        setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                        setClicked(false);
                       }}
                     >
                       Salir
@@ -86,7 +135,7 @@ function Header({ anuncio }) {
                     <Link
                       to='/login'
                       onClick={() => {
-                        setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                        setClicked(false);
                       }}
                     >
                       Iniciar sesión
@@ -96,7 +145,7 @@ function Header({ anuncio }) {
                     <Link
                       to='/register'
                       onClick={() => {
-                        setClicked(false); // Cerramos el menú al hacer clic en el enlace
+                        setClicked(false);
                       }}
                     >
                       Crear cuenta
@@ -166,6 +215,7 @@ function Header({ anuncio }) {
             </ul>
           </div>
         </nav>
+
         <div className={`header-cart-container ${showCart ? 'show' : ''}`}>
           <Carrito />
         </div>
@@ -181,6 +231,60 @@ function Header({ anuncio }) {
             <p>Free shipping on orders over $50!</p>
           </div>
         </div>
+
+        {dropdown && (
+          <ul
+            className='dropdown-menu'
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <li>
+              <Link
+                to='/colecciones/primavera'
+                onClick={() => {
+                  setClicked(false);
+                  setDropdown(false);
+                  handleDropdownItemClick;
+                }}
+              >
+                Primavera
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/colecciones/verano'
+                onClick={() => {
+                  setClicked(false);
+                  setDropdown(false);
+                }}
+              >
+                Verano
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/colecciones/otoño'
+                onClick={() => {
+                  setClicked(false);
+                  setDropdown(false);
+                }}
+              >
+                Otoño
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/colecciones/invierno'
+                onClick={() => {
+                  setClicked(false);
+                  setDropdown(false);
+                }}
+              >
+                Invierno
+              </Link>
+            </li>
+          </ul>
+        )}
       </header>
     </>
   );
