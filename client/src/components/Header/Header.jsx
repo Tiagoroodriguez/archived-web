@@ -48,7 +48,7 @@ function Header({ anuncio }) {
       content: (
         <ul>
           <li>
-            <Link>Primavera</Link>
+            <Link>Archived 222</Link>
             <Link>Verano</Link>
             <Link>Otoño</Link>
             <Link>Invierno</Link>
@@ -238,7 +238,7 @@ function Header({ anuncio }) {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <li>
+            <li className='coleccion-img-container'>
               <Link
                 to='/colecciones/primavera'
                 onClick={() => {
@@ -247,10 +247,13 @@ function Header({ anuncio }) {
                   handleDropdownItemClick;
                 }}
               >
-                Primavera
+                <picture>
+                  <img src='/images/colecciones/collecion-1.jpg' />
+                </picture>
+                <p className='coleccion-nombre'>Archived 222</p>
               </Link>
             </li>
-            <li>
+            <li className='coleccion-img-container'>
               <Link
                 to='/colecciones/verano'
                 onClick={() => {
@@ -258,10 +261,13 @@ function Header({ anuncio }) {
                   setDropdown(false);
                 }}
               >
-                Verano
+                <picture>
+                  <img src='/images/colecciones/collecion-3.jpg' />
+                </picture>
+                <p className='coleccion-nombre'>Casa de campo</p>
               </Link>
             </li>
-            <li>
+            <li className='coleccion-img-container'>
               <Link
                 to='/colecciones/otoño'
                 onClick={() => {
@@ -269,10 +275,13 @@ function Header({ anuncio }) {
                   setDropdown(false);
                 }}
               >
-                Otoño
+                <picture>
+                  <img src='/images/colecciones/collecion-1.jpg' />
+                </picture>
+                <p className='coleccion-nombre'>Nombre generico</p>
               </Link>
             </li>
-            <li>
+            <li className='coleccion-img-container'>
               <Link
                 to='/colecciones/invierno'
                 onClick={() => {
@@ -280,7 +289,10 @@ function Header({ anuncio }) {
                   setDropdown(false);
                 }}
               >
-                Invierno
+                <picture>
+                  <img src='/images/colecciones/collecion-3.jpg' />
+                </picture>
+                <p className='coleccion-nombre'>Experimental</p>
               </Link>
             </li>
           </ul>
