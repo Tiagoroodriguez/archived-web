@@ -45,53 +45,65 @@ export function Tienda() {
   const filteredProducts = filterProducts(products);
 
   return (
-    
-      <main>
-        <section className='tienda'>
-          <nav className='tienda-filtros'>
-            <Boton
-              textBoton='Todos los productos'
-              terceario={true}
-              onClick={() => handleChangeFilter('all')}
-              selected={filters.categoria}
-              value='all'
-            />
-            <Boton
-              textBoton='Remeras'
-              terceario={true}
-              onClick={() => handleChangeFilter('remera')}
-              selected={filters.categoria}
-              value='remera'
-            />
-            <Boton
-              textBoton='Buzos'
-              terceario={true}
-              onClick={() => handleChangeFilter('buzo')}
-              selected={filters.categoria}
-              value='buzo'
-            />
-          </nav>
-          {filteredProducts.length === 0 ? (
-            <section className='productos-container'>
-              <ProductoEsqueleto />
-              <ProductoEsqueleto />
-              <ProductoEsqueleto />
-              <ProductoEsqueleto />
-            </section>
-          ) : (
-            <section className='productos-container'>
-              {filteredProducts.map((product) => (
-                <div key={product._id}>
-                  <Producto
-                    key={product._id}
-                    producto={product}
-                  />
-                </div>
-              ))}
-            </section>
-          )}
-        </section>
-      </main>
-
+    <main>
+      <section className='tienda'>
+        <nav className='tienda-filtros'>
+          <Boton
+            textBoton='Todos los productos'
+            terceario={true}
+            onClick={() => handleChangeFilter('all')}
+            selected={filters.categoria}
+            value='all'
+          />
+          <Boton
+            textBoton='Remeras'
+            terceario={true}
+            onClick={() => handleChangeFilter('remera')}
+            selected={filters.categoria}
+            value='remera'
+          />
+          <Boton
+            textBoton='Buzos'
+            terceario={true}
+            onClick={() => handleChangeFilter('buzo')}
+            selected={filters.categoria}
+            value='buzo'
+          />
+          <Boton
+            textBoton='Joggers'
+            terceario={true}
+            onClick={() => handleChangeFilter('buzo')}
+            selected={filters.categoria}
+            value='buzo'
+          />
+          <Boton
+            textBoton='Accesosorios'
+            terceario={true}
+            onClick={() => handleChangeFilter('buzo')}
+            selected={filters.categoria}
+            value='buzo'
+          />
+        </nav>
+        {filteredProducts.length === 0 ? (
+          <section className='productos-container'>
+            <ProductoEsqueleto />
+            <ProductoEsqueleto />
+            <ProductoEsqueleto />
+            <ProductoEsqueleto />
+          </section>
+        ) : (
+          <section className='productos-container'>
+            {filteredProducts.map((product) => (
+              <div key={product._id}>
+                <Producto
+                  key={product._id}
+                  producto={product}
+                />
+              </div>
+            ))}
+          </section>
+        )}
+      </section>
+    </main>
   );
 }
