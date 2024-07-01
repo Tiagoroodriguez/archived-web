@@ -31,7 +31,7 @@ export default function OrderCard({ pedido, admin }) {
           <strong>Estado:</strong>
           <span className={`status ${pedido.estado}`}>{pedido.estado}</span>
         </p>
-        <p className={admin ? '' : 'desactivado'}>
+        <p className={admin ? '' : 'ordercard-desactivado'}>
           <strong>Cliente:</strong>
           {pedido.user.nombre} {pedido.user.apellido}
         </p>
