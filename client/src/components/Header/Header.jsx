@@ -262,7 +262,7 @@ function Header({ anuncio }) {
                 }}
               >
                 <picture>
-                  <img src='/images/colecciones/collecion-3.jpg' />
+                  <img src='/images/colecciones/collecion-2.jpg' />
                 </picture>
                 <p className='coleccion-nombre'>Casa de campo</p>
               </Link>
@@ -276,7 +276,7 @@ function Header({ anuncio }) {
                 }}
               >
                 <picture>
-                  <img src='/images/colecciones/collecion-1.jpg' />
+                  <img src='/images/colecciones/collecion-3.jpg' />
                 </picture>
                 <p className='coleccion-nombre'>Nombre generico</p>
               </Link>
@@ -290,7 +290,7 @@ function Header({ anuncio }) {
                 }}
               >
                 <picture>
-                  <img src='/images/colecciones/collecion-3.jpg' />
+                  <img src='/images/colecciones/collecion-1.jpg' />
                 </picture>
                 <p className='coleccion-nombre'>Experimental</p>
               </Link>
