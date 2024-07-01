@@ -51,6 +51,7 @@ const savePedidoCreated = (merchantOrderId, status) => {
 
 export const PedidoProvider = ({ children }) => {
   const [pedido, setPedido] = useState([]);
+  const [pedidos, setPedidos] = useState([]);
   const [pedidoUser, setPedidoUser] = useState([]);
   const [envioInfo, setEnvioInfo] = useState(loadEnvioInfo);
   const [provinciaEnvio, setProvinciaEnvio] = useState('');
@@ -79,6 +80,7 @@ export const PedidoProvider = ({ children }) => {
   const getPedido = async (id) => {
     try {
       const res = await getPedidoRequest(id);
+      setPedido(res.data);
       return res.data;
     } catch (error) {
       console.error(error);
@@ -89,7 +91,7 @@ export const PedidoProvider = ({ children }) => {
   const getPedidos = async () => {
     try {
       const res = await getPedidosRequest();
-      setPedido(res.data);
+      setPedidos(res.data);
       return res.data;
     } catch (error) {
       console.error(error);
@@ -146,6 +148,8 @@ export const PedidoProvider = ({ children }) => {
         getPedidoUser,
         getPedidos,
         pedidoUser,
+        pedidos,
+        setPedidos,
         pedido,
         setPedido,
         createPedido,

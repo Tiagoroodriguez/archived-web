@@ -27,6 +27,10 @@
     margin-top: 30px;
 }
 
+.pedidos-container a {
+    color: var(--color-texto);
+}
+
 .pedido-card-container {
     display: flex;
     flex-direction: column;
