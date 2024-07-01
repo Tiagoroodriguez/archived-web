@@ -158,13 +158,16 @@ export const getPedido = async (req, res) => {
       .populate('direccion_facturacion')
       .populate('cliente_envio')
       .populate('direccion_envio')
-      .populate('usuario'); // Asegurarse de poblar el usuario también
+      .populate('user');
 
-    if (!pedido)
+    if (!pedido) {
       return res.status(404).json({ message: 'Pedido no encontrado' });
+    }
+
     res.json(pedido);
   } catch (error) {
-    return res.status(404).json({ message: 'Pedido no encontrado' });
+    console.error('Error al obtener el pedido:', error);
+    return res.status(500).json({ message: 'Error al obtener el pedido' });
   }
 };
 
