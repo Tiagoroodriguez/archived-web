@@ -26,6 +26,7 @@ import PagoSuccess from './layout/PagoSuccess/PagoSuccess';
 import { FilterProvider } from './context/FilterContext';
 import { PedidoProvider } from './context/PedidosContext';
 import Perfil from './layout/Perfil/Perfil';
+import PedidoForm from './layout/PedidoForm/PedidoForm';
 
 const Background = styled.div`
   position: fixed;
@@ -166,6 +167,16 @@ function App() {
                         <Layout>
                           <Header />
                           <Perfil />
+                          <Footer />
+                        </Layout>
+                      }
+                    />
+                    <Route
+                      path='/pedido/:id'
+                      element={
+                        <Layout>
+                          <Header />
+                          <PedidoForm />
                           <Footer />
                         </Layout>
                       }

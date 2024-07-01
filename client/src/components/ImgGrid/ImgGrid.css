@@ -20,17 +20,18 @@
   
 .imgPanoramica {
     grid-area: imgPanoramica; 
-    background: red;
+    background: #e7e7e7;
 }
   
 .img1 { 
     grid-area: img1; 
-    background-color: blue;
+    background-color: #e7e7e7;
+
 }
   
 .img2 { 
     grid-area: img2;
-    background: green;
+    background: #e7e7e7;
 }
 
 .img-grid-item{

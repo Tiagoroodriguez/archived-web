@@ -8,9 +8,9 @@ const formatDate = (isoString) => {
   return `${year}-${month}-${day}`;
 };
 
-export default function OrderCard({ pedido }) {
+export default function OrderCard({ pedido, admin }) {
   return (
-    <>
+    <article className='order-card'>
       <div className='order-card-header'>
         <h3>Pedido #{pedido.numero_pedido}</h3>
       </div>
@@ -31,7 +31,11 @@ export default function OrderCard({ pedido }) {
           <strong>Estado:</strong>
           <span className={`status ${pedido.estado}`}>{pedido.estado}</span>
         </p>
+        <p className={admin ? '' : 'desactivado'}>
+          <strong>Cliente:</strong>
+          {pedido.user.nombre} {pedido.user.apellido}
+        </p>
       </div>
-    </>
+    </article>
   );
 }

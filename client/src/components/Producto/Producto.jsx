@@ -26,6 +26,7 @@ export function Producto({ producto }) {
               src={`./images/productos/small/${producto.nombre}.webp`}
               alt={`imagen del producto ${producto.nombre}`}
               decoding='async'
+              loading='lazy'
             />
           </div>
           {stock === 0 ? (
