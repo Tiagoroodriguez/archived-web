@@ -175,17 +175,17 @@
   }
   
   .cerrar-modal {
-    top: -10px;
-    right: 10px;
+    top: 10px;
+    right: 20px;
     transform: none;
   }
   
   .anterior-imagen {
-    left: 10px;
+    left: 20px;
   }
   
   .siguiente-imagen {
-    right: 10px;
+    right: 20px;
   }
 
 /*-------------------------------------------------------------*/

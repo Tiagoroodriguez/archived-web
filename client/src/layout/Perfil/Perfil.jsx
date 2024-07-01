@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { usePedido } from '../../context/PedidosContext';
 import './Perfil.css';
 import { useEffect, useState } from 'react';
@@ -7,7 +7,7 @@ import { Boton } from '../../components/Boton/Boton';
 import { useAuth } from '../../context/AuthContext';
 
 function Perfil() {
-  const { getPedidoUser, pedidoUser, getPedidos, pedido } = usePedido();
+  const { getPedidoUser, pedidoUser, getPedidos, pedidos } = usePedido();
   const { user } = useAuth();
   const [initialLoad, setInitialLoad] = useState(true);
   const params = useParams();
@@ -25,7 +25,7 @@ function Perfil() {
       fetchPedidos();
     }
   }, [user, initialLoad, getPedidos, getPedidoUser, params.id]);
-  console.log(pedido);
+
   if (!user) {
     return <div>Loading...</div>; // Mostrar un mensaje de carga mientras se obtiene la información del usuario
   }
@@ -36,17 +36,18 @@ function Perfil() {
         <>
           <h1 className='perfil-title'>Perfil de administrador</h1>
           {/* Renderizar los pedidos para el admin */}
-          {pedido.length > 0 ? (
+          {pedidos.length > 0 ? (
             <section className='pedidos-container'>
-              {pedido.map((pedido) => (
-                <article
-                  className='order-card'
+              {pedidos.map((pedido) => (
+                <Link
+                  to={`/pedido/${pedido._id}`}
                   key={pedido._id}
                 >
-                  <OrderCard pedido={pedido} />
-                  <p>{pedido.user.nombre}</p>
-                  <p>{pedido.user.apellido}</p>
-                </article>
+                  <OrderCard
+                    admin
+                    pedido={pedido}
+                  />
+                </Link>
               ))}
             </section>
           ) : (
@@ -61,12 +62,12 @@ function Perfil() {
             <>
               <section className='pedidos-container'>
                 {pedidoUser.map((pedido) => (
-                  <article
-                    className='order-card'
+                  <Link
+                    to={`/pedido/${pedido._id}`}
                     key={pedido._id}
                   >
                     <OrderCard pedido={pedido} />
-                  </article>
+                  </Link>
                 ))}
               </section>
               <div className='perfil-botones-container'>

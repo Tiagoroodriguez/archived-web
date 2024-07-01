@@ -37,4 +37,8 @@
     background-color: #f44336;
 
   }
+
+  .desactivado{
+    display: none;
+  }
   
