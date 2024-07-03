@@ -15,7 +15,7 @@
   .overlay-talle {
     width: 60%;
     height: 20%;
-    background: var(--color-primario);
+    background: var(--bg-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,7 +26,7 @@
   }
 
   .overlay-talle p {
-    color: var(--color-texto);
+    color: var(--text-color);
     font-size: 1.5rem;
     font-weight: bold;
   }
