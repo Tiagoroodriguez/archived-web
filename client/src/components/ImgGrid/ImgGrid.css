@@ -1,8 +1,8 @@
 .section-img-grid{
-    padding-inline: 50px;
-    margin-block: 20px ;
+    padding: 20px 50px;
     width: 100%;
     height: 100vh;
+    background: var(--bg-color);
 }
 
 .img-grid-container {  

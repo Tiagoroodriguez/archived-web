@@ -9,12 +9,12 @@
   height: 40px;
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--color-texto);
+  border-bottom: 1px solid var(--text-color);
   transition: all .3s ease;
 }
 
 .input-container input:focus {
-  color: var(--color-texto);
+  color: var(--text-color);
   outline: none;
 }
 
@@ -25,7 +25,7 @@
   top: 13px;
   left: 0;
   font-size: 12px;
-  background: var(--color-primario);
+  background: var(--bg-color);
   color: #999;
   transition: all .3s ease;
 }
@@ -39,7 +39,7 @@
 
 .input:focus + .label,
 .input.filled + .label {
-  color: var(--color-texto);
+  color: var(--text-color);
 }
 
 input[type="number"]::-webkit-outer-spin-button,

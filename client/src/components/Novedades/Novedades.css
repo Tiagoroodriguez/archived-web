@@ -4,6 +4,7 @@
   flex-direction: column; 
   align-items: center;
   justify-content: flex-start;
+  background: var(--bg-color);
 }
 
 .novedades-text {
@@ -12,7 +13,7 @@
   width: 100%;
   font-size: x-large;
   font-weight: bold;
-  color: var(--color-texto);
+  color: var(--text-color);
   padding: 10px; 
 }
 
