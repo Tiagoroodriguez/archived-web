@@ -48,12 +48,12 @@
 }
 
 .cuenta-texto-container h1 {
-    color: var(--color-texto);
+    color: var(--text-color);
 }
 
 .cuenta-texto-container p {
     font-size: x-small;
-    color: var(--color-texto);
+    color: var(--text-color);
     opacity: 60%;
 }
 
@@ -68,11 +68,16 @@
 
 .crear-cuenta-cambio {
     margin-bottom: 50px;
-    
+    color: var(--text-color);
+}
+
+.crear-cuenta-cambio a {
+    color: var(--seconday-color);
+    text-decoration: none;
 }
 
 .crear-cuenta-cambio a:hover {
-    color:var(--color-secundario);
+    color: var(--primary-color);
     text-decoration: underline;
 }
 
