@@ -33,7 +33,8 @@ export default function OrderCard({ pedido, admin }) {
         </p>
         <p className={admin ? '' : 'ordercard-desactivado'}>
           <strong>Cliente:</strong>
-          {pedido.user.nombre} {pedido.user.apellido}
+          {pedido.cliente_facturacion.nombre}{' '}
+          {pedido.cliente_facturacion.apellido}
         </p>
       </div>
     </article>

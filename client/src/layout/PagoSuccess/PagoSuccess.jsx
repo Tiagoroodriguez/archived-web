@@ -17,6 +17,7 @@ const PagoSuccess = () => {
     createPedido,
     isPedidoCreated,
     setPedidoCreated,
+    sendEmail,
   } = usePedido();
   const [searchParams] = useSearchParams();
   const [orderItems, setOrderItems] = useState([]);
@@ -51,7 +52,41 @@ const PagoSuccess = () => {
       setPedido(completeOrder);
       createPedido(completeOrder); // Crear el pedido cuando la información esté completa
       setPedidoCreated(true); // Marcar que el pedido ha sido creado
-      //console.log('Pedido:', completeOrder);
+
+      // Enviar correo de confirmación
+      const to = envioInfo.email_facturacion; // Asegúrate de que el email del usuario esté disponible
+      const subject = 'Compra confirmada';
+      const html = `
+      <div style="font-family: Arial, sans-serif; color: #333;">
+        <h1 style="color: #4CAF50;">Compra confirmada con éxito</h1>
+        <p>Gracias por tu compra. Aquí están los detalles de tu pedido:</p>
+        <p><strong>Número de pedido:</strong> ${merchantOrderId}</p>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="border: 1px solid #ddd; padding: 8px;">Producto</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Cantidad</th>
+              <th style="border: 1px solid #ddd; padding: 8px;">Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${orderItems
+              .map(
+                (item) => `
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">${item.description}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">${item.quantity}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">${item.unit_price}</td>
+              </tr>
+            `
+              )
+              .join('')}
+          </tbody>
+        </table>
+        <p style="margin-top: 20px;">Si tienes alguna pregunta, no dudes en contactarnos.</p>
+      </div>
+    `;
+      sendEmail(to, subject, html); // Llamada a la función de envío de correo
     }
   }, [
     envioInfo,
@@ -61,6 +96,7 @@ const PagoSuccess = () => {
     createPedido,
     isPedidoCreated,
     setPedidoCreated,
+    user,
   ]);
 
   return (
@@ -72,7 +108,7 @@ const PagoSuccess = () => {
       <p>Gracias por formar parte de esta familia</p>
       <div className='payment-details'>
         <p>
-          Número de pedido{' '}
+          Número de pedido
           <span className='order-id'>{`#${merchantOrderId}`}</span>
         </p>
         <p>

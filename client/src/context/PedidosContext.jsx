@@ -4,6 +4,7 @@ import {
   getPedidoRequest,
   getPedidoUserRequest,
   getPedidosRequest,
+  sendMailRequest,
 } from '../api/pedidos';
 
 export const PedidosContext = createContext();
@@ -110,6 +111,16 @@ export const PedidoProvider = ({ children }) => {
     }
   };
 
+  const sendEmail = async (to, subject, html) => {
+    try {
+      const res = await sendMailRequest({ to, subject, html });
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
   useEffect(() => {
     const merchantOrderId = new URLSearchParams(window.location.search).get(
       'merchant_order_id'
@@ -155,6 +166,7 @@ export const PedidoProvider = ({ children }) => {
         createPedido,
         isPedidoCreated,
         setPedidoCreated,
+        sendEmail,
       }}
     >
       {children}
