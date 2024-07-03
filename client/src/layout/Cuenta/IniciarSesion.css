@@ -1,9 +1,15 @@
 .iniciar-sesion-cambio {
     margin-bottom: 50px;
+    color: var(--text-color);
+}
+
+.iniciar-sesion-cambio a {
+    color: var(--seconday-color);
+    text-decoration: none;
 }
 
 .iniciar-sesion-cambio a:hover {
-    color:var(--color-secundario);
+    color:var(--primary-color);
     text-decoration: underline;
 }
 
@@ -11,7 +17,7 @@
     width: 100%;
     text-align: end;
     font-size: small;
-    color: var(--color-texto);
+    color: var(--text-color);
     opacity: 60%;
     cursor: pointer;
     transition: all .3s ease;

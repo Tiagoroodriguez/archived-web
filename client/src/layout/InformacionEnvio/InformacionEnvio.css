@@ -22,14 +22,14 @@
 .informacion-datos-p {
     font-size: 1.5rem;
     font-weight: 500;
-    color: var(--color-texto);
+    color: var(--text-color);
     margin-bottom: 10px;
 }
 
 .informacion-datos span {
     font-size: 1.2rem;
     font-weight: 450;
-    color: var(--color-texto);
+    color: var(--text-color);
     margin-bottom: 10px;
 }
 /*---------------------------------------------------------------------------------------------*/
@@ -39,7 +39,7 @@
     height: 100vh;
     position: sticky;
     top: 0;
-    background: var(--color-texto);
+    background: var(--primary-color);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -88,7 +88,7 @@
 }
 
 .informacion-datos-chebox label{
-    color: var(--color-texto);
+    color: var(--text-color);
     font-size: 12px;
     font-weight: 500;
     display: flex;
@@ -131,20 +131,20 @@
 /*---------------------------------------------------------------------------------------------*/
 
 .checkout-info-cart {
-    color: var(--color-primario);
+    color: var(--bg-color);
 }
 
 .cart-item-container-checkout {
     height: 100%;
     padding-inline: 20px;
     overflow-y:scroll;
-    scrollbar-color: var(--color-primario) transparent;
+    scrollbar-color: var(--bg-color) transparent;
     gap: 10px;
 }
 
 
 .carrito-section p, h1 {
-    color: var(--color-primario);
+    color: var(--bg-color);
 }
 
 .descripcion-final-checkout {
@@ -165,7 +165,7 @@
 .line-costo {
     height: 1px;
     width: 100%;
-    background: var(--color-primario);
+    background: var(--bg-color);
     opacity: 5%;
     margin-block: 10px;
 }
