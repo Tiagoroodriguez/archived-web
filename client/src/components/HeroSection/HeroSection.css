@@ -1,7 +1,7 @@
 .hero-container {
     position: relative;
     text-align: center;
-    color: var(--color-primario);
+    color: var(--bg-color);
     height: 90vh;
     width: 100%;
 }
@@ -19,7 +19,6 @@
     z-index: -1;
     filter: blur(50px);
 }
-  
 /*----------------------------------------------------*/
 
 .hero-content {

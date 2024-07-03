@@ -36,7 +36,7 @@ const Background = styled.div`
   height: 100%;
   min-height: 100vh;
   width: 100%;
-  background-color: var(--color-primario);
+  background-color: var(--bg-color);
   background-size: cover;
 `;
 
