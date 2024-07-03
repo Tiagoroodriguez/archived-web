@@ -5,7 +5,7 @@
 
 .logo {
     display: flex;
-    color: var(--color-texto);
+    color: var(--text-color);
     background: none;
     justify-content: center;
 }

@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  color: var(--color-texto);
+  color: var(--text-color);
 }
 a{
   text-decoration: none;
@@ -47,7 +47,7 @@ a{
   width: 100px;
   margin-top: 10px;
   background: brown;
-  color:var(--color-primario);
+  color: var(--bg-color);
   padding-block: 5px;
 }
 
@@ -79,6 +79,7 @@ a{
   border: none;
   font-size: 20px;
   cursor: pointer;
+  color:var(--text-color);
 }
 
 .producto-infor-superior{
