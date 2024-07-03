@@ -33,15 +33,15 @@ box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem var(--primary-
 }
 
 .secundario:hover {
-  background: #452b1a31;
+  background: #2e373e3d;
 }
 
 .secundario:focus {
-  background: #452b1a31;
+  background: #2e373e3d;
 }
 
 .boton-secundario-activo{
-  background: #452b1a31;
+  background: #2e373e3d;
 }
 
 /*-------------------------------------------------------------------------------------------------*/
@@ -73,9 +73,9 @@ box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem var(--primary-
 /*-------------------------------------------------------------------------------------------------*/
 
 .desactivado {
-  background: #e9e9e1;
+  background: #e1e3e9;
   color: #c0c0c0;
-  border: 1px solid #e7e5e4;
+  border: 1px solid #e4e4e7;
   cursor: not-allowed;
   margin-bottom: 0;
 }
