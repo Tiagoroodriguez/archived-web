@@ -4,7 +4,7 @@
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    color: var(--color-texto);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,7 +15,7 @@
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    color: var(--color-texto);
+    color: var(--text-color);
   }
 
   .payment-success-container i {
@@ -34,7 +34,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--color-texto);
+    color: var(--text-color);
     width: 70px;
     height: 70px;
     border: 2px solid ;
@@ -50,13 +50,13 @@
   .payment-details p {
     margin-bottom: 10px;
     font-size: 16px;
-    color: var(--color-texto);
+    color: var(--text-color);
   }
   
   .payment-details span.order-id,
   .payment-details span.payment-status {
     font-weight: bold;
-    color: var(--color-texto);
+    color: var(--text-color);
   }
   
   .action-buttons {
