@@ -20,6 +20,15 @@
     padding: 10px;
 }
 
+.pago-tabla-item a {
+    color: var(--text-color);
+}
+
+.pago-tabla-item a:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
 
 .pago-tabla-titulo {
     font-size: small;
@@ -27,7 +36,7 @@
 }
 
 .pago-tabla-titulo, .pago-tabla-contenido {
-    color: var(--color-texto);
+    color: var(--text-color);
 }
 
 /*---------------------------------------------------------------------------------------*/
@@ -60,7 +69,7 @@
 }
 
 .informacion-pago h1 {
-    color: var(--color-texto);
+    color: var(--text-color);
 }
 
 .pago-mobile-acordeon {

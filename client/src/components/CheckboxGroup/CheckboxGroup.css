@@ -11,7 +11,7 @@
 }
 
 .checkboxgroup-item label {
-    color: var(--color-texto);
+    color: var(--text-color);
     cursor: pointer;
     width: 100%;
 }
@@ -26,5 +26,5 @@
 }  
 
 .checkboxgroup-item:hover {
-    background-color: #f0f0f0;
+    background-color: #e6e4e4;
 }

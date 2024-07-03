@@ -10,7 +10,7 @@
     height: 35px;
     background: transparent;
     border: none;
-    border-bottom: 1px solid var(--color-texto);
+    border-bottom: 1px solid var(--text-color);
 }
 
 .select-input:focus {
@@ -20,7 +20,7 @@
 .select-label {
     font-size: 12px;
     font-weight: bold;
-    color: var(--color-texto);
+    color: var(--text-color);
 }
 
 .select-option{
@@ -28,5 +28,5 @@
     height: 35px;
     background: transparent;
     border: none;
-    border-bottom: 1px solid var(--color-texto);
+    border-bottom: 1px solid var(--text-color);
 }
