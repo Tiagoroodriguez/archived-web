@@ -55,7 +55,8 @@
   .payment-details span.order-id,
   .payment-details span.payment-status {
     font-weight: bold;
-    color: var(--text-color-texto);
+    color: var(--text-color);
+
   }
   
   .action-buttons {

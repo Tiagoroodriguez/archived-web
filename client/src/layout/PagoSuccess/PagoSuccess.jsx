@@ -53,6 +53,7 @@ const PagoSuccess = () => {
       createPedido(completeOrder); // Crear el pedido cuando la información esté completa
       setPedidoCreated(true); // Marcar que el pedido ha sido creado
 
+
       // Enviar correo de confirmación
       const to = envioInfo.email_facturacion; // Asegúrate de que el email del usuario esté disponible
       const subject = 'Compra confirmada';
@@ -87,6 +88,7 @@ const PagoSuccess = () => {
       </div>
     `;
       sendEmail(to, subject, html); // Llamada a la función de envío de correo
+      //console.log('Pedido:', completeOrder);
     }
   }, [
     envioInfo,
