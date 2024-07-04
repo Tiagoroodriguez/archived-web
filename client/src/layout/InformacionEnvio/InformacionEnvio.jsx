@@ -86,6 +86,7 @@ export default function InformacionEnvio() {
         direccion_facturacion: data.direccion_envio,
         numero_direccion_facturacion: data.numero_direccion_envio,
         departamento_facturacion: data.departamento_envio,
+        piso_facturacion: data.piso_envio,
         ciudad_facturacion: data.ciudad_envio,
         provincia_facturacion: provinciaEnvio,
         codigo_postal_facturacion: data.codigo_postal_envio,
@@ -111,6 +112,7 @@ export default function InformacionEnvio() {
         direccion_facturacion: data.direccion_facturacion,
         numero_direccion_facturacion: data.numero_direccion_facturacion,
         departamento_facturacion: data.departamento_facturacion,
+        piso_facturacion: data.piso_facturacion,
         ciudad_facturacion: data.ciudad_facturacion,
         provincia_facturacion: provinciaFacturacion,
         codigo_postal_facturacion: data.codigo_postal_facturacion,
@@ -141,6 +143,7 @@ export default function InformacionEnvio() {
         setValue('direccion_envio', envioInfo.direccion_envio);
         setValue('numero_direccion_envio', envioInfo.numero_direccion_envio);
         setValue('departamento_envio', envioInfo.departamento_envio);
+        setValue('piso_envio', envioInfo.piso_envio);
         setValue('ciudad_envio', envioInfo.ciudad_envio);
         setProvinciaEnvio(provinciaEnvio); // Set provinciaEnvio state
         if (!mismaDireccion) {
@@ -162,6 +165,7 @@ export default function InformacionEnvio() {
             'departamento_facturacion',
             envioInfo.departamento_facturacion
           );
+          setValue('piso_facturacion', envioInfo.piso_facturacion);
           setValue('ciudad_facturacion', envioInfo.ciudad_facturacion);
           setProvinciaFacturacion(provinciaFacturacion); // Set provinciaFacturacion state
           setMismaDireccion(false);
@@ -182,6 +186,7 @@ export default function InformacionEnvio() {
           'departamento_facturacion',
           envioInfo.departamento_facturacion
         );
+        setValue('piso_facturacion', envioInfo.piso_facturacion);
         setValue('ciudad_facturacion', envioInfo.ciudad_facturacion);
         setValue(
           'codigo_postal_facturacion',
@@ -336,38 +341,53 @@ export default function InformacionEnvio() {
                 <p className='error'>{errors.telefono.message}</p>
               )}
 
-              <Input
-                type='text'
-                label='Dirección'
-                name='direccion_envio'
-                ternaria={register('direccion_envio', {
-                  required: 'La dirección es requerida',
-                })}
-                value={getValues('direccion_envio')}
-              />
-              {errors.direccion_envio && (
-                <p className='error'>{errors.direccion_envio.message}</p>
-              )}
-
               <div className='ciudad-container'>
                 <div className='ciudad-item'>
                   <Input
+                    type='text'
+                    label='Dirección'
+                    name='direccion_envio'
+                    ternaria={register('direccion_envio', {
+                      required: 'La dirección es requerida',
+                    })}
+                    value={getValues('direccion_envio')}
+                  />
+                  {errors.direccion_envio && (
+                    <p className='error'>{errors.direccion_envio.message}</p>
+                  )}
+                </div>
+                <div className='ciudad-item ciudad'>
+                  <Input
                     type='number'
-                    label='Número (opcional)'
+                    label='Número'
                     name='numero_direccion_envio'
                     ternaria={register('numero_direccion_envio', {
-                      required: false,
+                      required: 'El numero de direccion es requerido',
                     })}
                     value={getValues('numero_direccion_envio')}
                   />
+                  {errors.numero_direccion_envio && (
+                    <p className='error'>{errors.direccion_envio.message}</p>
+                  )}
                 </div>
-                <div className='ciudad-item ciudad'>
+              </div>
+              <div className='ciudad-container'>
+                <div className='ciudad-item'>
                   <Input
                     type='text'
                     label='Departamento (opcional)'
                     name='departamento_envio'
                     ternaria={register('departamento_envio')}
                     value={getValues('departamento_envio')}
+                  />
+                </div>
+                <div className='ciudad-item ciudad'>
+                  <Input
+                    type='text'
+                    label='Piso (opcional)'
+                    name='piso_envio'
+                    ternaria={register('piso_envio')}
+                    value={getValues('piso_envio')}
                   />
                 </div>
               </div>
@@ -399,6 +419,7 @@ export default function InformacionEnvio() {
               <div className='informacion-datos-chebox'>
                 <label>
                   <input
+                    className='checkbox-envio'
                     type='checkbox'
                     checked={mismaDireccion}
                     onChange={() => setMismaDireccion(!mismaDireccion)}
@@ -466,42 +487,57 @@ export default function InformacionEnvio() {
                     </p>
                   )}
 
-                  <Input
-                    type='text'
-                    label='Dirección'
-                    name='direccion_facturacion'
-                    ternaria={register('direccion_facturacion', {
-                      required: 'La dirección es requerida',
-                    })}
-                    value={getValues('direccion_facturacion')}
-                  />
-                  {errors.direccion_facturacion && (
-                    <p className='error'>
-                      {errors.direccion_facturacion.message}
-                    </p>
-                  )}
-
                   <div className='ciudad-container'>
                     <div className='ciudad-item'>
                       <Input
+                        type='text'
+                        label='Dirección'
+                        name='direccion_facturacion'
+                        ternaria={register('direccion_facturacion', {
+                          required: 'La dirección es requerida',
+                        })}
+                        value={getValues('direccion_facturacion')}
+                      />
+                      {errors.direccion_envio && (
+                        <p className='error'>
+                          {errors.direccion_facturacion.message}
+                        </p>
+                      )}
+                    </div>
+                    <div className='ciudad-item ciudad'>
+                      <Input
                         type='number'
-                        label='Número (opcional)'
+                        label='Número'
                         name='numero_direccion_facturacion'
                         ternaria={register('numero_direccion_facturacion', {
-                          required: false,
+                          required: 'El numero de direccion es requerido',
                         })}
                         value={getValues('numero_direccion_facturacion')}
+                      />
+                      {errors.numero_direccion_envio && (
+                        <p className='error'>
+                          {errors.direccion_facturacion.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className='ciudad-container'>
+                    <div className='ciudad-item'>
+                      <Input
+                        type='text'
+                        label='Departamento (opcional)'
+                        name='departamento_facturacion'
+                        ternaria={register('departamento_facturacion')}
+                        value={getValues('departamento_facturacion')}
                       />
                     </div>
                     <div className='ciudad-item ciudad'>
                       <Input
                         type='text'
-                        label='Departamento (opcional)'
-                        name='departamento_facturacion'
-                        ternaria={register('departamento_facturacion', {
-                          required: false,
-                        })}
-                        value={getValues('departamento_facturacion')}
+                        label='Piso (opcional)'
+                        name='piso_facturacion'
+                        ternaria={register('piso_facturacion')}
+                        value={getValues('piso_facturacion')}
                       />
                     </div>
                   </div>
@@ -604,40 +640,57 @@ export default function InformacionEnvio() {
                 <p className='error'>{errors.telefono.message}</p>
               )}
 
-              <Input
-                type='text'
-                label='Dirección'
-                name='direccion_facturacion'
-                ternaria={register('direccion_facturacion', {
-                  required: 'La dirección es requerida',
-                })}
-                value={getValues('direccion_facturacion')}
-              />
-              {errors.direccion_facturacion && (
-                <p className='error'>{errors.direccion_facturacion.message}</p>
-              )}
-
               <div className='ciudad-container'>
                 <div className='ciudad-item'>
                   <Input
+                    type='text'
+                    label='Dirección'
+                    name='direccion_facturacion'
+                    ternaria={register('direccion_facturacion', {
+                      required: 'La dirección es requerida',
+                    })}
+                    value={getValues('direccion_facturacion')}
+                  />
+                  {errors.direccion_envio && (
+                    <p className='error'>
+                      {errors.direccion_facturacion.message}
+                    </p>
+                  )}
+                </div>
+                <div className='ciudad-item ciudad'>
+                  <Input
                     type='number'
-                    label='Número (opcional)'
+                    label='Número'
                     name='numero_direccion_facturacion'
                     ternaria={register('numero_direccion_facturacion', {
-                      required: false,
+                      required: 'El numero de direccion es requerido',
                     })}
                     value={getValues('numero_direccion_facturacion')}
+                  />
+                  {errors.numero_direccion_envio && (
+                    <p className='error'>
+                      {errors.direccion_facturacion.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+              <div className='ciudad-container'>
+                <div className='ciudad-item'>
+                  <Input
+                    type='text'
+                    label='Departamento (opcional)'
+                    name='departamento_facturacion'
+                    ternaria={register('departamento_facturacion')}
+                    value={getValues('departamento_facturacion')}
                   />
                 </div>
                 <div className='ciudad-item ciudad'>
                   <Input
                     type='text'
-                    label='Departamento (opcional)'
-                    name='departamento_facturacion'
-                    ternaria={register('departamento_facturacion', {
-                      required: false,
-                    })}
-                    value={getValues('departamento_facturacion')}
+                    label='Piso (opcional)'
+                    name='piso_facturacion'
+                    ternaria={register('piso_facturacion')}
+                    value={getValues('piso_facturacion')}
                   />
                 </div>
               </div>
