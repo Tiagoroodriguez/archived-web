@@ -189,6 +189,11 @@
     right: 20px;
   }
 
+  .detalle-producto-acordeon {
+    padding: 10px;
+    color: var(--text-color);
+  }
+
 /*-------------------------------------------------------------*/
 @media (max-width: 768px) {
     .detalle-container {

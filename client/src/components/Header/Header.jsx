@@ -87,14 +87,6 @@ function Header({ anuncio }) {
                 </Link>
               </li>
 
-              <li className='dropdown-container'>
-                <DropDown
-                  data={dataHeader}
-                  activeIndex={activeIndex}
-                  setActiveIndex={setActiveIndex}
-                />
-              </li>
-
               <li>
                 <Link
                   to='/contacto'
@@ -104,6 +96,14 @@ function Header({ anuncio }) {
                 >
                   Contacto
                 </Link>
+              </li>
+
+              <li className='dropdown-container'>
+                <DropDown
+                  data={dataHeader}
+                  activeIndex={activeIndex}
+                  setActiveIndex={setActiveIndex}
+                />
               </li>
               {isAuthenticated ? (
                 <>

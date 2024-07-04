@@ -8,30 +8,33 @@
 .acordeon-item {
     padding: 10px;
     color: var(--text-color);
+    cursor: pointer;
 }
 
-.acordeon-item, .acordeon-item-desc  {
+.acordeon-item, .acordeon-item-desc {
     width: 100%;
     outline: none;
     background: none;
     border: 1px solid #e0e0e0;
     text-align: start;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 }
 
-.acordeon-item:hover{
-    background: #452b1a31;
+.acordeon-item:hover {
+    background: #2e373e3d;
 }
 
 .acordeon-item div {
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
 }
 
 .acordeon-item-desc {
     border-top: none;
     background: var(--bg-color);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
 }
 
 @media screen and (max-width: 768px) {
