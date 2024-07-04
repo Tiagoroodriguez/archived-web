@@ -46,20 +46,42 @@ export default function PedidoForm() {
           <div className='pedido-section'>
             <h3>Datos del cliente</h3>
             <div className='pedido-field'>
-              <p>
-                <strong>DNI:</strong> {pedido.cliente_envio.documento}
-              </p>
-              <p>
-                <strong>Nombre:</strong>
-                {`${pedido.cliente_envio.nombre} ${pedido.cliente_envio.apellido}`}
-              </p>
+              {pedido.cliente_envio ? (
+                <>
+                  <p>
+                    <strong>DNI:</strong> {pedido.cliente_envio.documento}
+                  </p>
+                  <p>
+                    <strong>Nombre:</strong>
+                    {`${pedido.cliente_envio.nombre} ${pedido.cliente_envio.apellido}`}
+                  </p>
 
-              <p>
-                <strong>Email:</strong> {pedido.cliente_envio.email}
-              </p>
-              <p>
-                <strong>Teléfono:</strong> {pedido.cliente_envio.telefono}
-              </p>
+                  <p>
+                    <strong>Email:</strong> {pedido.cliente_envio.email}
+                  </p>
+                  <p>
+                    <strong>Teléfono:</strong> {pedido.cliente_envio.telefono}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    <strong>DNI:</strong> {pedido.cliente_facturacion.documento}
+                  </p>
+                  <p>
+                    <strong>Nombre:</strong>
+                    {`${pedido.cliente_facturacion.nombre} ${pedido.cliente_facturacion.apellido}`}
+                  </p>
+
+                  <p>
+                    <strong>Email:</strong> {pedido.cliente_facturacion.email}
+                  </p>
+                  <p>
+                    <strong>Teléfono:</strong>{' '}
+                    {pedido.cliente_facturacion.telefono}
+                  </p>
+                </>
+              )}
             </div>
           </div>
 
