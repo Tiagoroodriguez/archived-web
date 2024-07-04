@@ -36,15 +36,15 @@ export default function CartSection() {
       <div className='descripcion-final-checkout'>
         <div className='line-costo' />
         <div>
-          <p>Subtotal</p>
+          <p>Subtotal:</p>
           <p>${getCartTotal()}</p>
         </div>
         <div>
-          <p>Costo de envio</p>
-          <p>Calculado en el siguiente paso</p>
+          <p>Costo de envio:</p>
+          <p>Gratis</p>
         </div>
         <div>
-          <h1>Total</h1>
+          <h1>Total:</h1>
           <h1>${getCartTotal()}</h1>
         </div>
       </div>
