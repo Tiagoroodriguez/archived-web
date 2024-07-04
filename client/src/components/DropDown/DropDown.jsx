@@ -1,9 +1,21 @@
 import './DropDown.css';
+import { useRef, useEffect } from 'react';
 
 export default function DropDown({ data, activeIndex, setActiveIndex }) {
+  const contentRef = useRef([]);
+
   const handleToggle = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
+
+  useEffect(() => {
+    contentRef.current.forEach((content, index) => {
+      if (content) {
+        content.style.maxHeight =
+          activeIndex === index ? `${content.scrollHeight}px` : '0px';
+      }
+    });
+  }, [activeIndex]);
 
   return (
     <div className='dropdown-container'>
@@ -25,8 +37,8 @@ export default function DropDown({ data, activeIndex, setActiveIndex }) {
             </div>
           </button>
           <div
+            ref={(el) => (contentRef.current[index] = el)}
             className='dropdown-item-desc'
-            style={{ display: activeIndex === index ? 'block' : 'none' }}
           >
             {item.content}
           </div>
