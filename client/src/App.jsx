@@ -203,7 +203,8 @@ function App() {
       </ProductProvider>
       <Toaster
         richColors
-        position='bottom-left'
+        position='top-left'
+        expand={false}
       />
     </AuthProvider>
   );

@@ -3,6 +3,7 @@
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     padding: 20px;
+    position: relative;
   }
   
   .order-card-header {
@@ -42,3 +43,20 @@
     display: none;
   }
   
+
+  .order-card-etiqueta {
+    position: absolute;
+    color: var(--bg-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    right: 20px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .order-enviar {
+    background-color: var(--primary-color);
+  }
+  .order-retirar {
+    background-color: var(--secondary-color);
+  }
