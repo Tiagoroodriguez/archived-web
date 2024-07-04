@@ -21,6 +21,7 @@ export const createPedido = async (req, res) => {
       direccion_envio,
       numero_direccion_envio,
       departamento_envio,
+      piso_envio,
       ciudad_envio,
       provincia_envio,
       codigo_postal_envio,
@@ -36,6 +37,7 @@ export const createPedido = async (req, res) => {
       direccion_facturacion,
       numero_direccion_facturacion,
       departamento_facturacion,
+      piso_facturacion,
       ciudad_facturacion,
       provincia_facturacion,
       codigo_postal_facturacion,
@@ -47,6 +49,7 @@ export const createPedido = async (req, res) => {
     // Validar que todos los campos requeridos están presentes
     if (
       !direccion_facturacion ||
+      !numero_direccion_facturacion ||
       !ciudad_facturacion ||
       !provincia_facturacion ||
       !numero_pedido ||
@@ -92,6 +95,7 @@ export const createPedido = async (req, res) => {
       direccion: direccion_facturacion,
       numero: numero_direccion_facturacion,
       departamento: departamento_facturacion,
+      piso: piso_facturacion,
       ciudad: ciudad_facturacion,
       provincia: provincia_facturacion,
       codigo_postal: codigo_postal_facturacion,
@@ -120,6 +124,7 @@ export const createPedido = async (req, res) => {
         direccion: direccion_envio,
         numero: numero_direccion_envio,
         departamento: departamento_envio,
+        piso: piso_envio,
         ciudad: ciudad_envio,
         provincia: provincia_envio,
         codigo_postal: codigo_postal_envio,

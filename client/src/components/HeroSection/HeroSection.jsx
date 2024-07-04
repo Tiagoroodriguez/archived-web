@@ -19,12 +19,12 @@ export default function HeroSection() {
       />*/}
       <div className='hero-content'>
         <div className='hero-text'>
-          <h1>ARCHIVED 222</h1>
-          <h2>Nueva coleccion el 13/05/2025</h2>
+          <h1>Casa de Campo</h1>
+          <h2>Coleccion exclusiva 22-09-2024</h2>
         </div>
 
         <div className='hero-contador'>
-          <Contador targetDate='2024-12-31T23:59:59' />
+          <Contador targetDate='2024-09-22T23:59:59' />
         </div>
       </div>
     </section>
