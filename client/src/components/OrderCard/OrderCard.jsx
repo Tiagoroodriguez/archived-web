@@ -11,6 +11,16 @@ const formatDate = (isoString) => {
 export default function OrderCard({ pedido, admin }) {
   return (
     <article className='order-card'>
+      {admin && pedido.direccion_envio ? (
+        <span className='order-card-etiqueta order-enviar'>Enviar</span>
+      ) : (
+        ''
+      )}
+      {admin && !pedido.direccion_envio ? (
+        <span className='order-card-etiqueta order-retirar'>Retirar</span>
+      ) : (
+        ''
+      )}
       <div className='order-card-header'>
         <h3>Pedido #{pedido.numero_pedido}</h3>
       </div>
@@ -33,8 +43,8 @@ export default function OrderCard({ pedido, admin }) {
         </p>
         <p className={admin ? '' : 'ordercard-desactivado'}>
           <strong>Cliente:</strong>
-          {pedido.cliente_facturacion.nombre}
-          {pedido.cliente_facturacion.apellido}
+          {`${pedido.cliente_facturacion.nombre}
+           ${pedido.cliente_facturacion.apellido}`}
         </p>
       </div>
     </article>

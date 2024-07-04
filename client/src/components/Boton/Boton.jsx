@@ -33,7 +33,11 @@ export function Boton({
       type={type}
       className={className}
       disabled={desactivado}
-      onClick={() => (desactivado ? null : onClick())}
+      onClick={() => {
+        if (!desactivado && onClick) {
+          onClick();
+        }
+      }}
       value={value}
     >
       {text}

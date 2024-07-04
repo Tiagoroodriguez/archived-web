@@ -137,8 +137,7 @@
 .cart-item-container-checkout {
     height: 100%;
     padding-inline: 20px;
-    overflow-y:scroll;
-    scrollbar-color: var(--bg-color) transparent;
+    overflow-y: auto;
     gap: 10px;
 }
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Input.css';
 
-export default function Input({ type, label, ternaria, value }) {
+export default function Input({ type, label, ternaria, value, onChange }) {
   const [inputValue, setInputValue] = useState(value || '');
   const [hasContent, setHasContent] = useState(!!value);
 
@@ -14,6 +14,9 @@ export default function Input({ type, label, ternaria, value }) {
     const newValue = e.target.value;
     setInputValue(newValue);
     setHasContent(newValue !== '');
+    if (onChange) {
+      onChange(e);
+    }
   };
 
   return (
