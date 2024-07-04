@@ -298,8 +298,8 @@ export default function InformacionEnvio() {
                 })}
                 value={getValues('documento_envio')}
               />
-              {errors.documento && (
-                <p className='error'>{errors.documento.message}</p>
+              {errors.documento_envio && (
+                <p className='error'>{errors.documento_envio.message}</p>
               )}
 
               <Input
@@ -311,8 +311,8 @@ export default function InformacionEnvio() {
                 })}
                 value={getValues('nombre_envio')}
               />
-              {errors.nombre && (
-                <p className='error'>{errors.nombre.message}</p>
+              {errors.nombre_envio && (
+                <p className='error'>{errors.nombre_envio.message}</p>
               )}
 
               <Input
@@ -324,8 +324,8 @@ export default function InformacionEnvio() {
                 })}
                 value={getValues('apellido_envio')}
               />
-              {errors.apellido && (
-                <p className='error'>{errors.apellido.message}</p>
+              {errors.apellido_envio && (
+                <p className='error'>{errors.apellido_envio.message}</p>
               )}
 
               <Input
@@ -337,8 +337,8 @@ export default function InformacionEnvio() {
                 })}
                 value={getValues('telefono_envio')}
               />
-              {errors.telefono && (
-                <p className='error'>{errors.telefono.message}</p>
+              {errors.telefono_envio && (
+                <p className='error'>{errors.telefono_envio.message}</p>
               )}
 
               <div className='ciudad-container'>
@@ -367,7 +367,9 @@ export default function InformacionEnvio() {
                     value={getValues('numero_direccion_envio')}
                   />
                   {errors.numero_direccion_envio && (
-                    <p className='error'>{errors.direccion_envio.message}</p>
+                    <p className='error'>
+                      {errors.numero_direccion_envio.message}
+                    </p>
                   )}
                 </div>
               </div>
@@ -419,7 +421,6 @@ export default function InformacionEnvio() {
               <div className='informacion-datos-chebox'>
                 <label>
                   <input
-                    className='checkbox-envio'
                     type='checkbox'
                     checked={mismaDireccion}
                     onChange={() => setMismaDireccion(!mismaDireccion)}
@@ -440,8 +441,10 @@ export default function InformacionEnvio() {
                     })}
                     value={getValues('documento_facturacion')}
                   />
-                  {errors.documento && (
-                    <p className='error'>{errors.documento.message}</p>
+                  {errors.documento_facturacion && (
+                    <p className='error'>
+                      {errors.documento_facturacion.message}
+                    </p>
                   )}
 
                   <Input
@@ -516,7 +519,7 @@ export default function InformacionEnvio() {
                       />
                       {errors.numero_direccion_envio && (
                         <p className='error'>
-                          {errors.direccion_facturacion.message}
+                          {errors.numero_direccion_facturacion.message}
                         </p>
                       )}
                     </div>
@@ -591,14 +594,14 @@ export default function InformacionEnvio() {
               <Input
                 type='number'
                 label='DNI o CUIL'
-                name='documento'
+                name='documento_facturacion'
                 ternaria={register('documento_facturacion', {
                   required: 'El DNI o CUIL es requerido',
                 })}
                 value={getValues('documento_facturacion')}
               />
-              {errors.documento && (
-                <p className='error'>{errors.documento.message}</p>
+              {errors.documento_facturacion && (
+                <p className='error'>{errors.documento_facturacion.message}</p>
               )}
 
               <Input
@@ -610,8 +613,8 @@ export default function InformacionEnvio() {
                 })}
                 value={getValues('nombre_facturacion')}
               />
-              {errors.nombre && (
-                <p className='error'>{errors.nombre.message}</p>
+              {errors.nombre_facturacion && (
+                <p className='error'>{errors.nombre_facturacion.message}</p>
               )}
 
               <Input
@@ -623,8 +626,8 @@ export default function InformacionEnvio() {
                 })}
                 value={getValues('apellido_facturacion')}
               />
-              {errors.apellido && (
-                <p className='error'>{errors.apellido.message}</p>
+              {errors.apellido_facturacion && (
+                <p className='error'>{errors.apellido_facturacion.message}</p>
               )}
 
               <Input
@@ -636,8 +639,8 @@ export default function InformacionEnvio() {
                 })}
                 value={getValues('telefono_facturacion')}
               />
-              {errors.telefono && (
-                <p className='error'>{errors.telefono.message}</p>
+              {errors.telefono_facturacion && (
+                <p className='error'>{errors.telefono_facturacion.message}</p>
               )}
 
               <div className='ciudad-container'>
@@ -703,8 +706,8 @@ export default function InformacionEnvio() {
                 })}
                 value={getValues('ciudad_facturacion')}
               />
-              {errors.ciudad && (
-                <p className='error'>{errors.ciudad.message}</p>
+              {errors.ciudad_facturacion && (
+                <p className='error'>{errors.ciudad_facturacion.message}</p>
               )}
               <Input
                 type='number'
@@ -715,8 +718,10 @@ export default function InformacionEnvio() {
                 })}
                 value={getValues('codigo_postal_facturacion')}
               />
-              {errors.codigo_postal && (
-                <p className='error'>{errors.codigo_postal.message}</p>
+              {errors.codigo_postal_facturacion && (
+                <p className='error'>
+                  {errors.codigo_postal_facturacion.message}
+                </p>
               )}
 
               <Select
