@@ -80,7 +80,7 @@ export function DetalleProducto() {
     {
       title: 'Detalles de producto',
       content: (
-        <>
+        <div className='detalle-producto-acordeon'>
           <p>Straight loose fit shorts.</p>
 
           <p>Grey/black color.</p>
@@ -92,7 +92,7 @@ export function DetalleProducto() {
           <p>Tool pockets and hammer loop.</p>
 
           <p>Logo embroidered on back.</p>
-        </>
+        </div>
       ),
     },
     {
@@ -102,9 +102,9 @@ export function DetalleProducto() {
     {
       title: 'Envios',
       content: (
-        <>
+        <div className='detalle-producto-acordeon'>
           <p>Realizamos envios gratis a todo el pais.</p>
-        </>
+        </div>
       ),
     },
   ];
