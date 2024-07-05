@@ -57,6 +57,19 @@
     color: #333;
   }
   
+  .descargar-factura{
+    color: var(--text-colo);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: end;
+    padding-block: 10px;
+  }
+
+  .descargar-factura:hover{
+    text-decoration: underline;
+  }
+
 
   @media screen and (max-width: 768px){
     .pedido-form-container{

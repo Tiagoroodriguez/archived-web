@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import './PedidoForm.css';
 import { usePedido } from '../../context/PedidosContext';
-import { useEffect, useState } from 'react';
 import Select from '../../components/Select/Select';
+import Invoice from '../../components/FacturaPDF/Invoice'; // Asegúrate de importar tu componente Invoice
 
 export default function PedidoForm() {
   const { id } = useParams();
@@ -32,6 +34,7 @@ export default function PedidoForm() {
     setEstado(nuevoEstado);
     //await updatePedido(id, { estado: nuevoEstado }); // Actualiza el pedido en la base de datos
   };
+
   const estados = [
     { id: 1, nombre: 'pendiente' },
     { id: 2, nombre: 'cancelado' },
@@ -118,6 +121,9 @@ export default function PedidoForm() {
                   <strong>Producto ID:</strong> {producto.producto_id}
                 </p>
                 <p>
+                  <strong>Nombre:</strong> {producto.nombre}
+                </p>
+                <p>
                   <strong>Cantidad:</strong> {producto.cantidad}
                 </p>
                 <p>
@@ -140,6 +146,35 @@ export default function PedidoForm() {
               data={estados}
             />
           </div>
+
+          <PDFDownloadLink
+            document={
+              <Invoice
+                invoice={{
+                  cliente: {
+                    nombre: `${pedido.cliente_facturacion.nombre} ${pedido.cliente_facturacion.apellido}`,
+                    direccion: `${pedido.direccion_facturacion.direccion} ${pedido.direccion_facturacion.numero}, ${pedido.direccion_facturacion.ciudad}, ${pedido.direccion_facturacion.provincia}`,
+                    telefono: pedido.cliente_facturacion.telefono,
+                    email: pedido.cliente_facturacion.email,
+                  },
+                  numero: pedido.numero_pedido,
+                  fecha: new Date().toLocaleDateString(),
+                  productos: pedido.productos,
+                }}
+              />
+            }
+            fileName={`Factura_${pedido.numero_pedido}.pdf`}
+          >
+            {({ loading }) =>
+              loading ? (
+                'Generando PDF...'
+              ) : (
+                <p className='descargar-factura'>
+                  Descargar Factura <i className='bi bi-file-earmark-text' />
+                </p>
+              )
+            }
+          </PDFDownloadLink>
         </div>
       ) : (
         <div>No se encontró el pedido</div>

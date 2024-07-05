@@ -94,12 +94,10 @@ export function Tienda() {
         ) : (
           <section className='productos-container'>
             {filteredProducts.map((product) => (
-              <div key={product._id}>
-                <Producto
-                  key={product._id}
-                  producto={product}
-                />
-              </div>
+              <Producto
+                key={product._id}
+                producto={product}
+              />
             ))}
           </section>
         )}
