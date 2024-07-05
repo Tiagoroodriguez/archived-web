@@ -118,6 +118,7 @@
 }
 
 .descripcion-final-texto {
+    width: 100%;
     color: var(--text-color);
     text-align: end;
     padding-top: 10px;
