@@ -33,6 +33,10 @@ const pedidoSchema = new mongoose.Schema(
           ref: 'Producto',
           required: true,
         },
+        nombre: {
+          type: String,
+          required: true,
+        },
         cantidad: {
           type: Number,
           required: true,

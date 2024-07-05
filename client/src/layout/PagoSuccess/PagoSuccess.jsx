@@ -39,6 +39,7 @@ const PagoSuccess = () => {
     if (orderItems.length && envioInfo && !isPedidoCreated) {
       const formattedOrderItems = orderItems.map((item) => ({
         producto_id: item.id,
+        nombre: item.title,
         cantidad: item.quantity,
         precio: item.unit_price,
         talle: item.description,
@@ -52,17 +53,15 @@ const PagoSuccess = () => {
       setPedido(completeOrder);
       createPedido(completeOrder); // Crear el pedido cuando la información esté completa
       setPedidoCreated(true); // Marcar que el pedido ha sido creado
-
-
       // Enviar correo de confirmación
       const to = envioInfo.email_facturacion; // Asegúrate de que el email del usuario esté disponible
       const subject = 'Compra confirmada';
       const html = `
-      <div style="font-family: Arial, sans-serif; color: #333;">
-        <h1 style="color: #4CAF50;">Compra confirmada con éxito</h1>
-        <p>Gracias por tu compra. Aquí están los detalles de tu pedido:</p>
+      <div style="font-family: Arial, sans-serif; color: #1A1F25; width: auto; padding: 20px; text-align: center;">
+          <h1 style="color: #1A1F25; margin:0">Compra confirmada con éxito</h1>
+          <p>Gracias por tu compra. Aquí están los detalles de tu pedido:</p>
         <p><strong>Número de pedido:</strong> ${merchantOrderId}</p>
-        <table style="width: 100%; border-collapse: collapse;">
+        <table style="width: 100%; border-collapse: collapse; margin-block: 20px;">
           <thead>
             <tr>
               <th style="border: 1px solid #ddd; padding: 8px;">Producto</th>
@@ -70,7 +69,7 @@ const PagoSuccess = () => {
               <th style="border: 1px solid #ddd; padding: 8px;">Precio</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody style="text-align: center;">
             ${orderItems
               .map(
                 (item) => `
@@ -84,7 +83,6 @@ const PagoSuccess = () => {
               .join('')}
           </tbody>
         </table>
-        <p style="margin-top: 20px;">Si tienes alguna pregunta, no dudes en contactarnos.</p>
       </div>
     `;
       sendEmail(to, subject, html); // Llamada a la función de envío de correo
