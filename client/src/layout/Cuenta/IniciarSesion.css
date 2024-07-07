@@ -6,6 +6,7 @@
 .iniciar-sesion-cambio a {
     color: var(--seconday-color);
     text-decoration: none;
+    font-weight: 600;
 }
 
 .iniciar-sesion-cambio a:hover {

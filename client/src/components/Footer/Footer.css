@@ -119,7 +119,7 @@ footer {
     border: none;
     background: none;
     color: var(--text-color);
-    font-size: small;
+    font-size: 7px;
     margin-bottom: 20px;
 }
 
@@ -168,5 +168,8 @@ footer {
 
     .navigation-buttons {
         display: flex;
+    }
+    .informacion-item h3 {
+        font-size: 12px;
     }
 }

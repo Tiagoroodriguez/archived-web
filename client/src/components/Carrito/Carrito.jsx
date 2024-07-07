@@ -11,7 +11,7 @@ export default function Carrito() {
 
   return (
     <div className='cart-container'>
-      <h1 className='cart-title'>Cesta de compras</h1>
+      <h1 className='cart-title'>Carrito de compras</h1>
       <div className='cart-item-container'>
         {cartItems.map((item) => (
           <div

@@ -87,17 +87,6 @@ function Header({ anuncio }) {
                 </Link>
               </li>
 
-              <li>
-                <Link
-                  to='/contacto'
-                  onClick={() => {
-                    setClicked(false);
-                  }}
-                >
-                  Contacto
-                </Link>
-              </li>
-
               <li className='dropdown-container'>
                 <DropDown
                   data={dataHeader}
@@ -143,12 +132,12 @@ function Header({ anuncio }) {
                   </li>
                   <li className='mobile-cuenta'>
                     <Link
-                      to='/register'
+                      to='/contacto'
                       onClick={() => {
                         setClicked(false);
                       }}
                     >
-                      Crear cuenta
+                      Contacto
                     </Link>
                   </li>
                 </>

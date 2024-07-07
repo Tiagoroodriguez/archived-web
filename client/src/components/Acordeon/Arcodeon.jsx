@@ -28,11 +28,7 @@ export default function Acordeon({ data, activeIndex, setActiveIndex }) {
             <div>
               {item.title}
               <i
-                className={
-                  activeIndex === index
-                    ? 'bi bi-chevron-down'
-                    : 'bi bi-chevron-right'
-                }
+                className={activeIndex === index ? 'bi bi-dash' : 'bi bi-plus'}
               />
             </div>
           </button>

@@ -165,12 +165,6 @@ export function DetalleProducto() {
             <div className='informacion-dp'>
               <span className='nombre-producto'>{producto.nombre}</span>
               <span className='precio-producto'>${producto.precio}</span>
-              <p className='descripcion-producto'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatibus, accusamus? Incidunt, eos! Consectetur ex tempora
-                officia sed, minima obcaecati iste, doloribus odit consequatur,
-                deserunt fugiat porro voluptatum omnis ut reiciendis?
-              </p>
             </div>
 
             <div className='division'></div>
@@ -196,25 +190,6 @@ export function DetalleProducto() {
                 <span className='talles-aviso'>Quedan pocas unidades!</span>
               ) : (
                 ''
-              )}
-              <button
-                className='modal-talle-boton'
-                onClick={abrirModal}
-              >
-                Ver Guía de Tallas
-              </button>
-              {modalAbierta && (
-                <Tabla
-                  onClose={cerrarModal}
-                  sAncho='10'
-                  sLargo='10'
-                  mAncho='20'
-                  mLargo='20'
-                  lAncho='30'
-                  lLargo='30'
-                  xlAncho='40'
-                  xlLargo='40'
-                />
               )}
             </div>
             <Boton
