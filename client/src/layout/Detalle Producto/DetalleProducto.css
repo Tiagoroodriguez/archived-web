@@ -100,7 +100,6 @@
 
 .talles-aviso{
     color: brown;
-    margin-top: 15px ;
 }
 /*-------------------------------------------------------------*/
 
@@ -192,6 +191,7 @@
   .detalle-producto-acordeon {
     padding: 10px;
     color: var(--text-color);
+    font-size: 12px;
   }
 
 /*-------------------------------------------------------------*/
@@ -220,9 +220,21 @@
     
     .informacion-container, .informacion-container-esqueleto {
         width: 100%;
+        gap: 10px;
     }
 
     .mobile-img-esqueleto {
         display: none;
+    }
+
+    .nombre-producto {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .precio-producto{ 
+        font-size: 15px;
+        font-weight: 100;
+        margin-bottom: 0;
     }
 }

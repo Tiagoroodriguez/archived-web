@@ -49,35 +49,35 @@ export function Tienda() {
       <section className='tienda'>
         <nav className='tienda-filtros'>
           <Boton
-            textBoton='Todos los productos'
+            textBoton='TODOS LOS PRODUCTOS'
             terceario={true}
             onClick={() => handleChangeFilter('all')}
             selected={filters.categoria}
             value='all'
           />
           <Boton
-            textBoton='Remeras'
+            textBoton='REMERAS'
             terceario={true}
             onClick={() => handleChangeFilter('remera')}
             selected={filters.categoria}
             value='remera'
           />
           <Boton
-            textBoton='Buzos'
+            textBoton='BUZOS'
             terceario={true}
             onClick={() => handleChangeFilter('buzo')}
             selected={filters.categoria}
             value='buzo'
           />
           <Boton
-            textBoton='Joggers'
+            textBoton='JOGGERS'
             terceario={true}
             onClick={() => handleChangeFilter('buzo')}
             selected={filters.categoria}
             value='buzo'
           />
           <Boton
-            textBoton='Accesosorios'
+            textBoton='ACCESORIOS'
             terceario={true}
             onClick={() => handleChangeFilter('buzo')}
             selected={filters.categoria}
