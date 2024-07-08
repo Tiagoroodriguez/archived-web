@@ -32,7 +32,7 @@
 .informacion-container, .informacion-container-esqueleto {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
     width: 30%;
     height: max-content;
     position: sticky;
@@ -47,14 +47,13 @@
 
 .nombre-producto {
     font-size: 25px;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
 .precio-producto {
     font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-weight: 100;
 }
 
 .descripcion-producto {
@@ -80,22 +79,11 @@
 }
 .talles-container {
     display: flex;
-    gap: 15px;
+    gap: 5px;
 }
 
-.modal-talle-boton{
-    border: none;
-    background: none;
-    color: var(--text-color);
-    font-size: small;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-align: left;
-    margin-top: 15px;
-}
-
-.modal-talle-boton:hover{
-    text-decoration: underline;
+.talles-container button{
+    margin-bottom: 0;
 }
 
 .talles-aviso{

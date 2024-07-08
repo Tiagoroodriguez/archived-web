@@ -8,7 +8,7 @@ import { useAuth } from '../../context/AuthContext';
 
 function Perfil() {
   const { getPedidoUser, pedidoUser, getPedidos, pedidos } = usePedido();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [initialLoad, setInitialLoad] = useState(true);
   const params = useParams();
 
@@ -35,6 +35,14 @@ function Perfil() {
       {user.rol === 'admin' ? (
         <>
           <h1 className='perfil-title'>Perfil de administrador</h1>
+          <Link
+            to='/'
+            onClick={() => {
+              logout();
+            }}
+          >
+            Salir
+          </Link>
           {/* Renderizar los pedidos para el admin */}
           {pedidos.length > 0 ? (
             <section className='pedidos-container'>
@@ -57,6 +65,14 @@ function Perfil() {
       ) : (
         <>
           <h1 className='perfil-title'>Tu cuenta</h1>
+          <Link
+            to='/'
+            onClick={() => {
+              logout();
+            }}
+          >
+            Salir
+          </Link>
           <p className='perfil-p'>Conoce el estado de tus pedidos</p>
           {pedidoUser.length > 0 ? (
             <>
