@@ -45,46 +45,48 @@ export default function Faq() {
     <main className='faq-container'>
       <h1>FAQ's</h1>
       <section className='faq-section'>
-        <h3>
-          <i className='bi bi-truck' /> Envios
-        </h3>
-        <Acordeon
-          data={arcodeonData}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-        />
+        <article className='faq-article'>
+          <h3>
+            <i className='bi bi-credit-card' /> Pagos
+          </h3>
+          <Acordeon
+            data={arcodeonData}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
+        </article>
+        <article className='faq-article'>
+          <h3>
+            <i className='bi bi-credit-card' /> Pagos
+          </h3>
+          <Acordeon
+            data={arcodeonData}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
+        </article>
+        <article className='faq-article'>
+          <h3>
+            <i className='bi bi-credit-card' /> Pagos
+          </h3>
+          <Acordeon
+            data={arcodeonData}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
+        </article>
+        <article className='faq-article'>
+          <h3>
+            <i className='bi bi-credit-card' /> Pagos
+          </h3>
+          <Acordeon
+            data={arcodeonData}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
+        </article>
       </section>
-      <section className='faq-section'>
-        <h3>
-          <i className='bi bi-star' /> Productos
-        </h3>
-        <Acordeon
-          data={arcodeonData}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-        />
-      </section>
-      <section className='faq-section'>
-        <h3>
-          <i className='bi bi-box-seam' /> Pedidos
-        </h3>
-        <Acordeon
-          data={arcodeonData}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-        />
-      </section>
-      <section className='faq-section'>
-        <h3>
-          <i className='bi bi-arrow-clockwise' />
-          Cambios y devoluciones
-        </h3>
-        <Acordeon
-          data={arcodeonData}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-        />
-      </section>
+
       <Contacto />
     </main>
   );
