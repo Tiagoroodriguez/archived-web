@@ -23,6 +23,7 @@ export function Producto({ producto }) {
         <div className='producto-imagen'>
           <div>
             <img
+              className={stock === 0 ? 'producto-imagen-agotado' : ''}
               src={`./images/productos/small/${producto.nombre}.webp`}
               alt={`imagen del producto ${producto.nombre}`}
               decoding='async'
@@ -31,7 +32,7 @@ export function Producto({ producto }) {
           </div>
           {stock === 0 ? (
             <div className='descuento-container'>
-              <span className='descuento'>Sin stock</span>
+              <span className='descuento'>Agotado</span>
             </div>
           ) : (
             ''
