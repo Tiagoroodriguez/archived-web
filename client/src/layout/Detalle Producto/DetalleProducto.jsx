@@ -155,7 +155,7 @@ export function DetalleProducto() {
 
           <div className='informacion-container'>
             <div className='informacion-dp'>
-              <span className='nombre-producto'>{producto.nombre}</span>
+              <span className='nombre-producto'>{`${producto.categoria} ${producto.nombre}`}</span>
               <span className='precio-producto'>
                 {formatPrice(producto.precio)}
               </span>
