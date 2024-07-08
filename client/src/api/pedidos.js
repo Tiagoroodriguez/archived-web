@@ -13,3 +13,7 @@ export const updatedPedidoRequest = (id, pedido) =>
 
 export const sendMailRequest = ({ to, subject, html }) =>
   axios.post('/mail', { to, subject, html });
+
+export const getRecommendationsRequest = async (productId) => {
+  return await axios.get(`/recommendations/${productId}`);
+};

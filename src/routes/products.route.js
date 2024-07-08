@@ -6,6 +6,7 @@ import {
   updateProduct,
   deleteProduct,
   updateProductStock,
+  getRecommendations,
 } from '../controllers/products.controller.js';
 import { authRequired } from '../middlewares/validateToken.js';
 import { checkRoleAuth } from '../middlewares/roleAuth.js';
@@ -23,5 +24,7 @@ router.delete('/product/:id', authRequired, checkRoleAuth, deleteProduct);
 router.put('/product/:id', updateProduct);
 
 router.put('/product/update-stock/:id', updateProductStock);
+
+router.get('/recommendations/:id', getRecommendations);
 
 export default router;

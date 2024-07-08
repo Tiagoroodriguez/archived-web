@@ -139,3 +139,24 @@ export const updateProductStock = async (req, res) => {
     return res.status(500).json({ message: 'Algo salió mal' });
   }
 };
+
+export const getRecommendations = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const currentProduct = await Product.findById(id);
+
+    if (!currentProduct) {
+      return res.status(404).json({ message: 'Producto no encontrado' });
+    }
+
+    const recommendedProducts = await Product.find({
+      categoria: currentProduct.categoria,
+      _id: { $ne: currentProduct._id },
+    }).limit(5);
+
+    res.json(recommendedProducts);
+  } catch (error) {
+    console.error('Error al obtener recomendaciones:', error);
+    return res.status(500).json({ message: 'Algo salió mal' });
+  }
+};
