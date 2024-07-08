@@ -86,10 +86,12 @@ export function DetalleProducto() {
           <p>Logo embroidered on back.</p>
         </div>
       ),
+      icon: 'bi bi-file-earmark-text',
     },
     {
       title: 'Guia de talles',
       content: <></>,
+      icon: 'bi bi-tag',
     },
     {
       title: 'Envios',
@@ -98,6 +100,7 @@ export function DetalleProducto() {
           <p>Realizamos envios gratis a todo el pais.</p>
         </div>
       ),
+      icon: 'bi bi-truck',
     },
   ];
 

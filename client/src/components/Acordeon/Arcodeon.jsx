@@ -9,7 +9,7 @@ export default function Acordeon({ data, activeIndex, setActiveIndex }) {
   };
 
   useEffect(() => {
-    contentRef.current.forEach((content, index) => {
+    contentRef.current.forEach((content, index, icon) => {
       if (content) {
         content.style.maxHeight =
           activeIndex === index ? `${content.scrollHeight}px` : '0px';
@@ -26,7 +26,9 @@ export default function Acordeon({ data, activeIndex, setActiveIndex }) {
             onClick={() => handleToggle(index)}
           >
             <div>
-              {item.title}
+              <p>
+                <i className={item.icon} /> {item.title}
+              </p>
               <i
                 className={activeIndex === index ? 'bi bi-dash' : 'bi bi-plus'}
               />
