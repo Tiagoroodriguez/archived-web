@@ -22,11 +22,7 @@ a{
   overflow: hidden;
 }
 
-.producto-imagen div {
-  height: auto;
-  background: #e0e0e0;
-  
-}
+
 
 .producto-imagen img {
   height: 100%;
@@ -44,18 +40,30 @@ a{
 /*--------------------------------------------------------------------------------------------*/
 
 .descuento-container {
-  position: relative;
-  background: none;
-}
-.descuento {
+  display: flex;
+  justify-content: center;
+  align-items: center;  /* Esto centra el contenido verticalmente */
   position: absolute;
+  top: 0;
   right: 0;
-  padding-inline: 10px;
-  width: 100px;
+  width: 100%;
+  height: 100%;  /* Asegúrate de que el contenedor tenga altura para centrar verticalmente */
   margin-top: 10px;
-  background: brown;
+}
+
+.descuento {
+  padding-inline: 10px;
+  color: #e0e0e0;
   color: var(--bg-color);
   padding-block: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.producto-imagen-agotado {
+  filter: brightness(0.5);
 }
 
 /*--------------------------------------------------------------------------------------------*/

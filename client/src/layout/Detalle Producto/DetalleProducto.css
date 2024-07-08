@@ -46,13 +46,14 @@
 }
 
 .nombre-producto {
-    font-size: 25px;
+    font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
 .precio-producto {
-    font-size: 20px;
+    font-size: 12px;
     font-weight: 100;
 }
 
@@ -72,9 +73,11 @@
     display: flex;
     flex-direction: column;
     color: var(--text-color);
+    
 }
 .talle-seleccionado {
-    font-size: small;
+    font-size: 12px;
+    margin-bottom: 5px;
     text-transform: uppercase;
 }
 .talles-container {
@@ -83,11 +86,13 @@
 }
 
 .talles-container button{
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .talles-aviso{
-    color: brown;
+    color: var(--text-color);
+    margin-top: 5px;
+    font-size: 12px;
 }
 /*-------------------------------------------------------------*/
 
