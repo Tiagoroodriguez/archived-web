@@ -51,7 +51,7 @@ export function Novedades({ cantidad, categoria, titulo }) {
         <Boton
           type='submit'
           textBoton='Ver todos los productos'
-          secundario={true}
+          terceario
           value='volver'
         />
       </Link>
