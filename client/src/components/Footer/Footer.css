@@ -104,6 +104,7 @@ footer {
 
 .informacion-item h3{
     color: var(--text-color);
+    font-size: 15px;
 }
 
 .navigation-buttons {

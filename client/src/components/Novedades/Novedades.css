@@ -15,7 +15,7 @@
   color: var(--text-color);
   padding: 10px; 
   text-transform: uppercase;
-  font-weight: 100;
+  font-weight: 600;
 }
 
 
@@ -51,6 +51,5 @@
 
     .novedades-text {
       padding-inline: 0;
-      font-size: 15px;
     }
 }

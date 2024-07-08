@@ -174,22 +174,36 @@ function Header({ anuncio }) {
                   </li>
                   <li>
                     <Link
-                      to='/'
+                      to='/contacto'
                       onClick={() => {
-                        logout();
+                        setClicked(false);
                       }}
                     >
-                      Salir
+                      Contacto
                     </Link>
                   </li>
                 </>
               ) : (
                 <>
                   <li>
-                    <Link to='/login'>Iniciar sesión</Link>
+                    <Link
+                      to='/contacto'
+                      onClick={() => {
+                        setClicked(false);
+                      }}
+                    >
+                      Contacto
+                    </Link>
                   </li>
                   <li>
-                    <Link to='/register'>Crear cuenta</Link>
+                    <Link
+                      to='/login'
+                      onClick={() => {
+                        setClicked(false);
+                      }}
+                    >
+                      Iniciar sesión
+                    </Link>
                   </li>
                 </>
               )}
