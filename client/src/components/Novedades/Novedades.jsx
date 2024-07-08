@@ -50,7 +50,7 @@ export function Novedades({ cantidad, categoria, titulo }) {
       >
         <Boton
           type='submit'
-          textBoton='Ver todos los productos'
+          textBoton='view all'
           terceario
           value='volver'
         />

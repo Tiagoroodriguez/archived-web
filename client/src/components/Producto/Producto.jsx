@@ -3,6 +3,7 @@ import './Producto.css';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CarritoContext';
 import TalleSelectionOverlay from '../TalleSelectionOverlay/TalleSelectionOverlay';
+import { formatPrice } from '../../utils/formatePrice';
 
 export function Producto({ producto }) {
   const { setOverlayTalles, overlayTalles, setSelectedProduct } =
@@ -14,7 +15,6 @@ export function Producto({ producto }) {
   const handleMostrarOverlayTalles = () => {
     setOverlayTalles(true);
     setSelectedProduct(producto);
-    console.log('Producto seleccionado:', producto);
   };
 
   return (
@@ -58,7 +58,9 @@ export function Producto({ producto }) {
         <div
           to='/detalle-producto'
           className='precio-texto'
-        >{`$${producto.precio}`}</div>
+        >
+          {formatPrice(producto.precio)}
+        </div>
       </div>
       {overlayTalles && <TalleSelectionOverlay />}
     </article>

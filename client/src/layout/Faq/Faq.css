@@ -1,0 +1,37 @@
+.faq-container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.faq-container h1 {
+    font-size: 20px;
+    font-weight: 700;
+    padding-top: 20px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.faq-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-inline: 250px;
+    padding-block: 20px;
+}
+
+.faq-section h3{
+    font-size: 15px;
+    padding: 10px 0;
+    text-align: start;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+    .faq-section{
+        padding-inline: 20px;
+    }
+    
+}

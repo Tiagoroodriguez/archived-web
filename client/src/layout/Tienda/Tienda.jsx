@@ -49,7 +49,7 @@ export function Tienda() {
       <section className='tienda'>
         <nav className='tienda-filtros'>
           <Boton
-            textBoton='TODOS'
+            textBoton='ALL'
             terceario={true}
             onClick={() => handleChangeFilter('all')}
             selected={filters.categoria}
@@ -63,14 +63,7 @@ export function Tienda() {
             value='remera'
           />
           <Boton
-            textBoton='BUZOS'
-            terceario={true}
-            onClick={() => handleChangeFilter('buzo')}
-            selected={filters.categoria}
-            value='buzo'
-          />
-          <Boton
-            textBoton='JOGGERS'
+            textBoton='BUZOS & HOODIES'
             terceario={true}
             onClick={() => handleChangeFilter('buzo')}
             selected={filters.categoria}
