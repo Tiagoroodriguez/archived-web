@@ -74,7 +74,7 @@ const PagoSuccess = () => {
               .map(
                 (item) => `
               <tr>
-                <td style="border: 1px solid #ddd; padding: 8px;">${item.description}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">${item.title}</td>
                 <td style="border: 1px solid #ddd; padding: 8px;">${item.quantity}</td>
                 <td style="border: 1px solid #ddd; padding: 8px;">${item.unit_price}</td>
               </tr>

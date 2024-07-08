@@ -71,7 +71,7 @@ function Header({ anuncio }) {
                     setClicked(false);
                   }}
                 >
-                  Tienda
+                  Shop
                 </Link>
               </li>
               <li
@@ -83,7 +83,7 @@ function Header({ anuncio }) {
                   to='#'
                   className='dropdown-toggle'
                 >
-                  Colecciones <i className='bi bi-chevron-down'></i>
+                  Collections <i className='bi bi-chevron-down'></i>
                 </Link>
               </li>
 
@@ -114,7 +114,7 @@ function Header({ anuncio }) {
                         setClicked(false);
                       }}
                     >
-                      Salir
+                      Logout
                     </Link>
                   </li>
                 </>
@@ -127,7 +127,7 @@ function Header({ anuncio }) {
                         setClicked(false);
                       }}
                     >
-                      Iniciar sesión
+                      Sing in
                     </Link>
                   </li>
                   <li className='mobile-cuenta'>
@@ -137,7 +137,7 @@ function Header({ anuncio }) {
                         setClicked(false);
                       }}
                     >
-                      Contacto
+                      contact
                     </Link>
                   </li>
                 </>
@@ -179,7 +179,7 @@ function Header({ anuncio }) {
                         setClicked(false);
                       }}
                     >
-                      Contacto
+                      contact
                     </Link>
                   </li>
                 </>
@@ -192,7 +192,7 @@ function Header({ anuncio }) {
                         setClicked(false);
                       }}
                     >
-                      Contacto
+                      contact
                     </Link>
                   </li>
                   <li>
@@ -202,7 +202,7 @@ function Header({ anuncio }) {
                         setClicked(false);
                       }}
                     >
-                      Iniciar sesión
+                      Sing in
                     </Link>
                   </li>
                 </>
