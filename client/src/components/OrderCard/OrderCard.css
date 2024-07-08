@@ -5,6 +5,9 @@
     padding: 20px;
     position: relative;
   }
+.order-card:hover{
+  background: #b4b4b427;
+}
   
   .order-card-header {
     border-bottom: 1px solid #eee;
@@ -29,12 +32,11 @@
 
   }
   
-  .status.completed {
+  .status.enviado {
     background-color: #4caf50;
-
   }
   
-  .status.cancelled {
+  .status.cancelado {
     background-color: #f44336;
 
   }

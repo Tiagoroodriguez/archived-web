@@ -225,3 +225,28 @@ export const getPedidoUser = async (req, res) => {
     });
   }
 };
+
+export const updatePedido = async (req, res) => {
+  try {
+    const pedidoId = req.params.id;
+    const update = req.body;
+
+    // Verifica si el ID proporcionado es un ObjectId válido
+    if (!mongoose.Types.ObjectId.isValid(pedidoId)) {
+      return res.status(400).json({ message: 'ID de pedido inválido' });
+    }
+
+    const updatedPedido = await Pedido.findByIdAndUpdate(pedidoId, update, {
+      new: true,
+    });
+
+    if (!updatedPedido) {
+      return res.status(404).json({ message: 'Pedido no encontrado' });
+    }
+
+    res.json(updatedPedido);
+  } catch (error) {
+    console.error('Error al actualizar el pedido:', error);
+    return res.status(500).json({ message: 'Error al actualizar el pedido' });
+  }
+};
