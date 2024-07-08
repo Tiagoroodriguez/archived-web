@@ -8,11 +8,11 @@ import { Tabla } from '../../components/Tabla/Tabla';
 
 import './DetalleProducto.css';
 import Acordeon from '../../components/Acordeon/Arcodeon';
+import { formatPrice } from '../../utils/formatePrice';
 
 export function DetalleProducto() {
   const [producto, setProducto] = useState(null);
   const [talleSeleccionado, setTalleSeleccionado] = useState('');
-  const [modalAbierta, setModalAbierta] = useState(false);
   const [imagenSeleccionada, setImagenSeleccionada] = useState(0);
   const [modalImagenAbierta, setModalImagenAbierta] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
@@ -49,14 +49,6 @@ export function DetalleProducto() {
 
   const handleAddToCart = () => {
     addToCart(producto, talleSeleccionado);
-  };
-
-  const abrirModal = () => {
-    setModalAbierta(true);
-  };
-
-  const cerrarModal = () => {
-    setModalAbierta(false);
   };
 
   const abrirModalImagen = (indice) => {
@@ -164,7 +156,9 @@ export function DetalleProducto() {
           <div className='informacion-container'>
             <div className='informacion-dp'>
               <span className='nombre-producto'>{producto.nombre}</span>
-              <span className='precio-producto'>${producto.precio}</span>
+              <span className='precio-producto'>
+                {formatPrice(producto.precio)}
+              </span>
             </div>
 
             <div className='division'></div>

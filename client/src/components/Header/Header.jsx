@@ -86,6 +86,9 @@ function Header({ anuncio }) {
                   Collections <i className='bi bi-chevron-down'></i>
                 </Link>
               </li>
+              <li>
+                <Link to='/faq'>Faqs</Link>
+              </li>
 
               <li className='dropdown-container'>
                 <DropDown
