@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import './PedidoForm.css';
 import { usePedido } from '../../context/PedidosContext';
 import Select from '../../components/Select/Select';
 import Invoice from '../../components/FacturaPDF/Invoice'; // Asegúrate de importar tu componente Invoice
+import { Boton } from '../../components/Boton/Boton';
 
 export default function PedidoForm() {
   const { id } = useParams();
-  const { getPedido, pedido } = usePedido();
+  const { getPedido, pedido, updatePedido } = usePedido();
   const [isLoading, setIsLoading] = useState(true);
   const [estado, setEstado] = useState('pendiente'); // Estado inicial
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPedido = async () => {
@@ -32,7 +35,11 @@ export default function PedidoForm() {
 
   const handleEstadoChange = async (nuevoEstado) => {
     setEstado(nuevoEstado);
-    //await updatePedido(id, { estado: nuevoEstado }); // Actualiza el pedido en la base de datos
+  };
+
+  const handleGuardar = async (nuevoEstado) => {
+    await updatePedido(id, { estado: nuevoEstado }); // Actualiza el pedido en la base de datos
+    navigate(-1); // Navega a la página anterior
   };
 
   const estados = [
@@ -146,35 +153,40 @@ export default function PedidoForm() {
               data={estados}
             />
           </div>
-
-          <PDFDownloadLink
-            document={
-              <Invoice
-                invoice={{
-                  cliente: {
-                    nombre: `${pedido.cliente_facturacion.nombre} ${pedido.cliente_facturacion.apellido}`,
-                    direccion: `${pedido.direccion_facturacion.direccion} ${pedido.direccion_facturacion.numero}, ${pedido.direccion_facturacion.ciudad}, ${pedido.direccion_facturacion.provincia}`,
-                    telefono: pedido.cliente_facturacion.telefono,
-                    email: pedido.cliente_facturacion.email,
-                  },
-                  numero: pedido.numero_pedido,
-                  fecha: new Date().toLocaleDateString(),
-                  productos: pedido.productos,
-                }}
-              />
-            }
-            fileName={`Factura_${pedido.numero_pedido}.pdf`}
-          >
-            {({ loading }) =>
-              loading ? (
-                'Generando PDF...'
-              ) : (
-                <p className='descargar-factura'>
-                  Descargar Factura <i className='bi bi-file-earmark-text' />
-                </p>
-              )
-            }
-          </PDFDownloadLink>
+          <div className='botones-container'>
+            <Boton
+              textBoton='Guardar'
+              onClick={() => handleGuardar(estado)} // Pasar una función en lugar de invocarla directamente
+            />
+            <PDFDownloadLink
+              document={
+                <Invoice
+                  invoice={{
+                    cliente: {
+                      nombre: `${pedido.cliente_facturacion.nombre} ${pedido.cliente_facturacion.apellido}`,
+                      direccion: `${pedido.direccion_facturacion.direccion} ${pedido.direccion_facturacion.numero}, ${pedido.direccion_facturacion.ciudad}, ${pedido.direccion_facturacion.provincia}`,
+                      telefono: pedido.cliente_facturacion.telefono,
+                      email: pedido.cliente_facturacion.email,
+                    },
+                    numero: pedido.numero_pedido,
+                    fecha: new Date().toLocaleDateString(),
+                    productos: pedido.productos,
+                  }}
+                />
+              }
+              fileName={`Factura_${pedido.numero_pedido}.pdf`}
+            >
+              {({ loading }) =>
+                loading ? (
+                  'Generando PDF...'
+                ) : (
+                  <p className='descargar-factura'>
+                    Descargar Factura <i className='bi bi-file-earmark-text' />
+                  </p>
+                )
+              }
+            </PDFDownloadLink>
+          </div>
         </div>
       ) : (
         <div>No se encontró el pedido</div>

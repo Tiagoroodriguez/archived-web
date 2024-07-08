@@ -5,6 +5,7 @@ import {
   getPedidoUserRequest,
   getPedidosRequest,
   sendMailRequest,
+  updatedPedidoRequest,
 } from '../api/pedidos';
 
 export const PedidosContext = createContext();
@@ -111,6 +112,16 @@ export const PedidoProvider = ({ children }) => {
     }
   };
 
+  const updatePedido = async (id, pedido) => {
+    try {
+      const res = await updatedPedidoRequest(id, pedido);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
   const sendEmail = async (to, subject, html) => {
     try {
       const res = await sendMailRequest({ to, subject, html });
@@ -158,6 +169,7 @@ export const PedidoProvider = ({ children }) => {
         getPedido,
         getPedidoUser,
         getPedidos,
+        updatePedido,
         pedidoUser,
         pedidos,
         setPedidos,
