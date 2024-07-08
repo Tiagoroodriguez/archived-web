@@ -163,7 +163,9 @@ function Header({ anuncio }) {
             onClick={toggleCart}
             className='boton-carrito-mobile'
           >
-            <i className='bi bi-bag'>({cartItems.length})</i>
+            <i className={showCart ? 'bi bi-x-lg' : 'bi bi-bag'}>
+              ({cartItems.length})
+            </i>
           </button>
 
           <div className='nav-cuenta'>
@@ -215,7 +217,9 @@ function Header({ anuncio }) {
                   onClick={toggleCart}
                   className='boton-carrito'
                 >
-                  <i className='bi bi-bag'>({cartItems.length})</i>
+                  <i className={showCart ? 'bi bi-x-lg' : 'bi bi-bag'}>
+                    ({cartItems.length})
+                  </i>
                 </button>
               </li>
             </ul>
