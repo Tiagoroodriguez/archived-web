@@ -24,7 +24,7 @@ export function Producto({ producto }) {
           <div>
             <img
               className={stock === 0 ? 'producto-imagen-agotado' : ''}
-              src={`./images/productos/small/${producto.nombre}.webp`}
+              src={`/images/productos/small/${producto.nombre}.webp`}
               alt={`imagen del producto ${producto.nombre}`}
               decoding='async'
               loading='lazy'
@@ -46,7 +46,7 @@ export function Producto({ producto }) {
             to='/detalle-producto'
             className='nombre-texto'
           >
-            {producto.nombre}
+            {`${producto.categoria} ${producto.nombre}`}
           </div>
           <button
             className='producto-add-cart'

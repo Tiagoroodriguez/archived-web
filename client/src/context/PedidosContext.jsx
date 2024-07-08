@@ -6,6 +6,7 @@ import {
   getPedidosRequest,
   sendMailRequest,
   updatedPedidoRequest,
+  getRecommendationsRequest,
 } from '../api/pedidos';
 
 export const PedidosContext = createContext();
@@ -132,6 +133,16 @@ export const PedidoProvider = ({ children }) => {
     }
   };
 
+  const getRecommendations = async (productId) => {
+    try {
+      const res = await getRecommendationsRequest(productId);
+      return res.data;
+    } catch (error) {
+      console.error('Error al obtener recomendaciones:', error);
+      return [];
+    }
+  };
+
   useEffect(() => {
     const merchantOrderId = new URLSearchParams(window.location.search).get(
       'merchant_order_id'
@@ -179,6 +190,7 @@ export const PedidoProvider = ({ children }) => {
         isPedidoCreated,
         setPedidoCreated,
         sendEmail,
+        getRecommendations,
       }}
     >
       {children}
