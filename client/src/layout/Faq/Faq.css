@@ -47,5 +47,9 @@
     .faq-section{
         padding-inline: 20px;
     }
+
+    .faq-article{
+        width: 100%;
+    }
     
 }
