@@ -5,6 +5,7 @@ import { Boton } from '../../components/Boton/Boton';
 import RutaCompra from '../../components/RutaCompra/RutaCompra';
 
 import './CarritoCompra.css';
+import { formatPrice } from '../../utils/formatePrice';
 
 export default function CarritoCompra() {
   const { cartItems, addToCart, removeFromCart, getCartTotal } =
@@ -51,9 +52,11 @@ export default function CarritoCompra() {
                   />
                 </div>
                 <div className='table-info-producto cart-table-product-item'>
-                  <p className='info-producto-nombre'>{item.nombre}</p>
-                  <p className='info-producto-talle'>{`Talle: ${item.talle}`}</p>
-                  <p className='info-producto-precio'>{`Precio: $${item.precio}`}</p>
+                  <p className='info-producto-nombre'>{`${item.categoria} ${item.nombre}`}</p>
+                  <p className='info-producto-talle'>{item.talle}</p>
+                  <p className='info-producto-precio'>
+                    {formatPrice(item.precio)}
+                  </p>
                 </div>
               </td>
               <td className='cart-table-cuerpo-item cart-table-actions'>
@@ -76,14 +79,14 @@ export default function CarritoCompra() {
                 </div>
               </td>
               <td className='cart-table-cuerpo-item cart-table-precio'>
-                <p>{`$${item.precio * item.quantity}`}</p>
+                <p>{formatPrice(item.precio * item.quantity)}</p>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       <footer className='table-footer'>
-        <h2>Total: ${getCartTotal()}</h2>
+        <h2>Total: {formatPrice(getCartTotal())}</h2>
         <p>Los gastos de envio se calculan al momento de la compra</p>
         <Link
           to='/checkout/entrega'
