@@ -30,22 +30,40 @@ export default function OrderCard({ pedido, admin }) {
         </p>
         {pedido.direccion_envio ? (
           <p>
-            <strong>Direccion envio:</strong> {pedido.direccion_envio.direccion}
+            <strong>Direccion envio: </strong>
+            {`${pedido.direccion_envio.direccion} ${pedido.direccion_envio.numero}`}
           </p>
         ) : (
           <p>
-            <strong>Direccion retiro:</strong> Casa reixer
+            <strong>Direccion retiro: </strong>Casa reixer
           </p>
         )}
+        {pedido.direccion_envio && pedido.direccion_envio.departamento ? (
+          <>
+            <p>
+              <strong>Departamento: </strong>
+              {pedido.direccion_envio.departamento}
+            </p>
+            <p>
+              <strong>Piso: </strong>
+              {pedido.direccion_envio.piso}
+            </p>
+          </>
+        ) : (
+          ''
+        )}
         <p>
-          <strong>Estado:</strong>
           <span className={`status ${pedido.estado}`}>{pedido.estado}</span>
         </p>
-        <p className={admin ? '' : 'ordercard-desactivado'}>
-          <strong>Cliente:</strong>
-          {`${pedido.cliente_facturacion.nombre}
+        {admin ? (
+          <p>
+            <strong>Cliente:</strong>
+            {`${pedido.cliente_facturacion.nombre}
            ${pedido.cliente_facturacion.apellido}`}
-        </p>
+          </p>
+        ) : (
+          ''
+        )}
       </div>
     </article>
   );

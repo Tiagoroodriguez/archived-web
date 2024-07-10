@@ -91,14 +91,6 @@ function Perfil() {
                   </Link>
                 ))}
               </section>
-              <div className='perfil-botones-container'>
-                <div className='perfil-botones'>
-                  <Boton
-                    textBoton='Seguir comprando'
-                    onClick={() => null}
-                  />
-                </div>
-              </div>
             </>
           ) : (
             <div>No tienes pedidos hechos aun</div>

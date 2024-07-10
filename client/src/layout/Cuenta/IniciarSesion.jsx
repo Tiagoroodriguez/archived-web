@@ -38,12 +38,7 @@ export function IniciarSesion() {
         >
           <div className='cuenta-texto-container'>
             <h1>Inicia sesión</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Asperiores, assumenda. Animi magni eos optio perferendis sunt,
-              eveniet quasi, illum maxime facere delectus veritatis quaerat
-              officia. Voluptatibus molestiae odio unde praesentium.
-            </p>
+            <p>Ingresa tu cuenta y lleva el control de tus pedidos</p>
           </div>
           <div className='cuenta-datos-container'>
             {singInErrors.map((error, i) => (

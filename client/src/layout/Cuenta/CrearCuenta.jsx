@@ -45,10 +45,8 @@ export function CrearCuenta() {
           <div className='cuenta-texto-container'>
             <h1>Crea tu cuenta</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-              quibusdam, perferendis ad quaerat culpa minus laborum ipsam, rerum
-              libero voluptatum inventore. Velit nulla esse officiis repellendus
-              explicabo blanditiis ipsam iure?
+              Completa los datos y abre un cuenta para comprar mas rapido y
+              llevar un control de tus pedidos
             </p>
           </div>
 

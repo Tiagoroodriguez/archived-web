@@ -4,7 +4,7 @@ import './MySlider.css';
 import { Boton } from '../Boton/Boton';
 
 const MySlider = () => {
-  const slides = Array.from({ length: 10 }, (_, index) => (
+  const slides = Array.from({ length: 8 }, (_, index) => (
     <div
       key={index}
       className='slider-item'
