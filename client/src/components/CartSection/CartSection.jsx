@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/CarritoContext';
+import { formatPrice } from '../../utils/formatePrice';
 
 export default function CartSection() {
   const { cartItems, getCartTotal } = useContext(CartContext);
@@ -37,7 +38,7 @@ export default function CartSection() {
         <div className='line-costo' />
         <div>
           <p>Subtotal:</p>
-          <p>${getCartTotal()}</p>
+          <p>{formatPrice(getCartTotal())}</p>
         </div>
         <div>
           <p>Costo de envio:</p>
@@ -45,7 +46,7 @@ export default function CartSection() {
         </div>
         <div>
           <h1>Total:</h1>
-          <h1>${getCartTotal()}</h1>
+          <h1>{formatPrice(getCartTotal())}</h1>
         </div>
       </div>
     </section>
