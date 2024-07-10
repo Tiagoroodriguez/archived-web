@@ -26,7 +26,7 @@
   .announcement-messages{
     display: flex;
     width: 400%;
-    animation: slide 40s infinite linear;
+    animation: slide 50s infinite linear;
   }
   .announcement-messages p {
     width: 100%;
@@ -158,19 +158,20 @@
 /*------------------------------------------------------------------------------------------*/
 
 .header-cart-container {
-    transform: translate(100vw);
-    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out, visibility 0s 0.3s;
     position: fixed;
     visibility: hidden;
     width: 350px;
-    top:0
+    top: 0;
+    right: 0;
+    z-index: 1000; /* Ajusta el z-index si es necesario */
   }
   
   .header-cart-container.show {
-    transform: translate(0);
-    left: auto;
-    right: 0;
+    transform: translateX(0);
     visibility: visible;
+    transition: transform 0.3s ease-in-out, visibility 0s 0s;
   }
 
 /*------------------------------------------------------------------------------------------*/

@@ -5,11 +5,6 @@
     gap: 5px;
 }
 
-.acordeon-item {
-    padding: 10px;
-    color: var(--text-color);
-    cursor: pointer;
-}
 
 .acordeon-item, .acordeon-item-desc {
     width: 100%;
@@ -18,6 +13,17 @@
     border: 1px solid #e0e0e0;
     text-align: start;
     transition: all 0.3s ease;
+}
+
+.acordeon-item {
+    padding: 10px;
+    color: var(--text-color);
+    cursor: pointer;
+    border-bottom: none;
+}
+
+.acordeon-item-desc{
+    border-top: none;
 }
 
 .acordeon-item:hover {
