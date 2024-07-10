@@ -4,6 +4,9 @@ footer {
   background: none;
   overflow: hidden;
 }
+.footer-info-container{
+  background: var(--text-color);
+}
 
 .desktop-footer {
   border-top: 1px solid var(--text-color);
@@ -158,7 +161,6 @@ footer {
   .informacion-general {
     flex-direction: row;
     gap: 20px;
-    height: auto;
     width: 100%;
     overflow-x: hidden;
     padding: 0;
