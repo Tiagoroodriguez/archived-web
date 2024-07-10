@@ -1,5 +1,6 @@
 import HeroSection from '../../components/HeroSection/HeroSection';
 import ImgGrid from '../../components/ImgGrid/ImgGrid';
+import MySlider from '../../components/MySlider/MySlider';
 import { Novedades } from '../../components/Novedades/Novedades';
 
 export function Inicio() {
@@ -18,6 +19,7 @@ export function Inicio() {
           categoria='remera'
           titulo={'New in | T-Shirts & Tops'}
         />
+        <MySlider />
       </main>
     </>
   );
