@@ -54,7 +54,7 @@
 
 .precio-producto {
     font-size: 15px;
-    font-weight: 100;
+    font-weight: 700;
 }
 
 .descripcion-producto {
@@ -213,7 +213,7 @@
     
     .informacion-container, .informacion-container-esqueleto {
         width: 100%;
-        gap: 10px;
+        gap: 15px;
     }
 
     .mobile-img-esqueleto {
@@ -227,7 +227,6 @@
 
     .precio-producto{ 
         font-size: 15px;
-        font-weight: 100;
         margin-bottom: 0;
     }
 }

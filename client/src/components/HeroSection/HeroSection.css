@@ -64,6 +64,10 @@
 }
 
 
+.hero-img-mobile {
+    display: none;
+}
+
 /*----------------------------------------------------*/
 
 @media screen and (max-width: 769px) {
@@ -95,5 +99,13 @@
     .hero-contador {
         font-size: 0.8rem;
         text-align: center;
+    }
+
+    .hero-img-pc {
+        display: none;
+    }
+
+    .hero-img-mobile {
+        display: block;
     }
 }

@@ -112,10 +112,12 @@ export function Footer() {
           <div className='suscribirse'>
             <h3>Unite a la familia</h3>
             <p>Obtene un 10% de descuento en tu primera compra</p>
-            <Input
-              type='mail'
-              label='Correo electronico'
-            />
+            <div>
+              <Input
+                type='mail'
+                label='Correo electronico'
+              />
+            </div>
           </div>
         </div>
         <div className='final'>ARCHIVED 222</div>

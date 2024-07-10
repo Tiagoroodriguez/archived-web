@@ -87,7 +87,7 @@ function Header({ anuncio }) {
                 </Link>
               </li>
               <li>
-                <Link to='/faq'>Faqs</Link>
+                <Link to='/faq'>Faq's</Link>
               </li>
 
               <li className='dropdown-container'>

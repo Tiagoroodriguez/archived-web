@@ -8,7 +8,12 @@ export default function HeroSection() {
         <img
           src='images/opa.jpg'
           alt='hero'
-          className='hero-background'
+          className='hero-background hero-img-pc'
+        />
+        <img
+          src='images/opa-2.jpg'
+          alt='hero'
+          className='hero-background hero-img-mobile'
         />
       </picture>
 

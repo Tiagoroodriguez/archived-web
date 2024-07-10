@@ -3,7 +3,6 @@ footer {
     height: auto;
     background: none;
     overflow: hidden;
-    background: var(--bg-color);
 }
 
 .desktop-footer {
@@ -69,6 +68,7 @@ footer {
 .suscribirse p {
     font-size: 13px;
     color: var(--text-color);
+    margin-bottom: 10px;
 }
 
 .final {

@@ -19,7 +19,7 @@ export default function Recomendaciones({ selectedProductId }) {
   }, [selectedProductId]);
   return (
     <div className='recommendations'>
-      <h3>Recomendaciones</h3>
+      <h3>También te puede interesar</h3>
       {recommendedProducts ? (
         <article className='novedades-container'>
           {recommendedProducts.map((product) => (
