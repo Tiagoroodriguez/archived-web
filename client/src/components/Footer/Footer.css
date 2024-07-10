@@ -1,178 +1,190 @@
 footer {
-    width: 100%;
-    height: auto;
-    background: none;
-    overflow: hidden;
+  width: 100%;
+  height: auto;
+  background: none;
+  overflow: hidden;
 }
 
 .desktop-footer {
-    border-top: 1px solid var(--text-color);
-    width: 100%;
-    padding: 20px 50px;
-    background: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  border-top: 1px solid var(--text-color);
+  width: 100%;
+  padding: 50px;
+  background: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.footer-redes{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+.footer-redes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .desktop-footer-logo {
-    display: flex;
-    margin-bottom: 10px;
-    background: none;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+  display: flex;
+  margin-bottom: 10px;
+  background: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
 }
 
 .desktop-footer-logo p {
-    color: var(--text-color);
-    font-size: 13px;
-    margin: 0;
+  color: var(--text-color);
+  font-size: 13px;
+  margin: 0;
 }
 
 .desktop-footer-redes {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.desktop-footer-icon i{
-    color: var(--text-color);
-    transition: all .3s ease;
+.desktop-footer-icon i {
+  color: var(--text-color);
+  transition: all .3s ease;
 }
 
 .desktop-footer-icon i:hover {
-    transform: scale(1.2);
-    display: inline-block;
+  transform: scale(1.2);
+  display: inline-block;
 }
 
 .suscribirse {
-    display:flex;
-    flex-direction: column;
-    gap: 5px;
-    color: var(--text-color);
-    text-align: end;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: var(--text-color);
+  text-align: end;
 }
 
 .suscribirse h3 {
-    font-size: 20px;
-    color: var(--text-color);
+  font-size: 20px;
+  color: var(--text-color);
 }
 
 .suscribirse p {
-    font-size: 13px;
-    color: var(--text-color);
-    margin-bottom: 10px;
+  font-size: 13px;
+  color: var(--text-color);
+  margin-bottom: 10px;
 }
 
 .final {
-    background: var(--text-color);
-    color: var(--bg-color);
-    padding: 10px;
-    text-align: center;
-    font-size: small; 
+  background: var(--text-color);
+  color: var(--bg-color);
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
 }
 
-.informacion-general{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    width: 100%;
-    height: 150px;
-    justify-content: space-evenly;
-    padding-block: 100px;
-    margin-top: 100px;
-    background: var(--bg-color);
-    border-top: 1px solid var(--text-color);
+.informacion-general {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  height: 150px;
+  justify-content: space-evenly;
+  padding-block: 100px;
+  margin-top: 100px;
+  background: var(--text-color);
 }
 
-.informacion-item{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-}
-.informacion-item i{
-    font-size: 35px;
-    color: var(--text-color);
+.informacion-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  color: var(--bg-color);
 }
 
-.informacion-item h3{
-    color: var(--text-color);
-    font-size: 12px;
+.informacion-item i {
+  font-size: 35px;
+}
+
+.informacion-item h3 {
+  font-size: 12px;
+}
+
+.informacion-item p {
+  font-size: 10px;
+}
+
+.informacion-item p a {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .navigation-buttons {
-    display: none;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
+  display: none;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 10px;
 }
 
 .navigation-buttons button {
-    padding: 5px 10px;
-    cursor: pointer;
-    border: none;
-    background: none;
-    color: var(--text-color);
-    font-size: 7px;
-    margin-bottom: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--bg-color);
+  font-size: 7px;
 }
 
-.navigation-buttons button:focus{
-    color: var(--text-color);
+.navigation-buttons button:focus {
+  color: var(--bg-color);
 }
-
 
 @media (max-width: 768px) {
-    .desktop-footer{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-        overflow: clip;
-    }
+  .desktop-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    overflow: clip;
+  }
 
-    .desktop-footer-logo{
-        align-items: center;
-    }
+  .desktop-footer-logo {
+    align-items: center;
+  }
 
-    .suscribirse {
-        text-align: center;
-    }
+  .suscribirse {
+    text-align: center;
+  }
 
-    .informacion-general{
-        flex-direction: row;
-        gap: 20px;
-        height: auto;
-        width: 100%;
-        overflow-x: hidden;
-        margin-bottom: 20px;
-    }
+  .informacion-general {
+    flex-direction: row;
+    gap: 20px;
+    height: auto;
+    width: 100%;
+    overflow-x: hidden;
+    padding: 0;
+    padding-top: 50px;
+  }
 
-    .informacion-item {
-        min-width: 100%;
-    }
+  .informacion-item {
+    min-width: 100%;
+  }
 
-    .informacion-item.hidden {
-        display: none;
-    }
+  .informacion-item.hidden {
+    display: none;
+  }
 
-    .informacion-item.visible {
-        display: flex;
-    }
+  .informacion-item.visible {
+    display: flex;
+  }
 
-    .navigation-buttons {
-        display: flex;
-    }
-    .informacion-item h3 {
-        font-size: 12px;
-    }
+  .navigation-buttons {
+    display: flex;
+    padding-block: 20px 50px;
+    background: var(--text-color);
+    margin: 0;
+  }
+
+  .informacion-item h3 {
+    font-size: 12px;
+  }
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Input from '../Input/Input';
 import { LogoTexto } from '../LogoTexto/LogoTexto';
 import './Footer.css';
@@ -10,6 +10,18 @@ export function Footer() {
     setCurrentIndex(index);
   };
 
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 768; // Cambia este valor según tus necesidades de detección de dispositivos móviles
+
+    if (isMobile) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % 3);
+      }, 7000);
+
+      return () => clearInterval(interval); // Limpiar el intervalo al desmontar el componente
+    }
+  }, []); // El array vacío asegura que este efecto se ejecute solo una vez al montar el componente
+
   return (
     <>
       <section className='informacion-general'>
@@ -20,6 +32,9 @@ export function Footer() {
         >
           <i className='bi bi-arrow-clockwise' />
           <h3>CAMBIOS Y DEVOLUCIONES</h3>
+          <p>
+            Mira las condiciones <a>aqui</a>
+          </p>
         </article>
         <article
           className={`informacion-item ${
@@ -28,6 +43,9 @@ export function Footer() {
         >
           <i className='bi bi-truck' />
           <h3>ENVIOS SEGUROS A TODA ARGENTINA</h3>
+          <p>
+            Click <a>aqui</a> para más información
+          </p>
         </article>
         <article
           className={`informacion-item ${
@@ -36,6 +54,7 @@ export function Footer() {
         >
           <i className='bi bi-shield-lock' />
           <h3>PAGOS SEGUROS</h3>
+          <p>MercadoPago, Visa, Mastercard y más</p>
         </article>
       </section>
       <div className='navigation-buttons'>
