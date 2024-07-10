@@ -12,7 +12,6 @@ export default function PedidoForm() {
   const { getPedido, pedido, updatePedido } = usePedido();
   const [isLoading, setIsLoading] = useState(true);
   const [estado, setEstado] = useState('pendiente'); // Estado inicial
-
   const navigate = useNavigate();
 
   useEffect(() => {

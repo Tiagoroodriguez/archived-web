@@ -5,9 +5,7 @@
     align-items: flex-start;
     margin-inline: 50px;
     height: 100vh;
-
     min-height: auto;
-
     color: var(--text-color);
 }
 
@@ -37,8 +35,8 @@
 }
 
 .perfil-p {
-    margin-top: 15px;
-    font-size: 1.5rem;
+    margin-top: 5px;
+    font-size: 15px;
 }
 
 .pedidos-container{
@@ -60,22 +58,13 @@
     align-items: flex-start;
     margin-top: 20px;
     width: 100%;
-    background: #ececec;
-}
-.perfil-botones-container{
-    width: 100%;
-    margin-top: 30px;
-    display: flex;
-    justify-content: flex-end;
-}
-.perfil-botones{
-    width: 32%;
+    background: var(--bg-color);
 }
 
 
 @media (max-width: 768px) {
     .perfil-main-container {
-        margin: 60px 20px;
+        margin-inline: 20px;
         height: auto;
     }
 

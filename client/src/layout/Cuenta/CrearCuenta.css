@@ -49,6 +49,9 @@
 
 .cuenta-texto-container h1 {
     color: var(--text-color);
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .cuenta-texto-container p {
@@ -69,11 +72,14 @@
 .crear-cuenta-cambio {
     margin-bottom: 50px;
     color: var(--text-color);
+    font-size: 15px;
 }
 
 .crear-cuenta-cambio a {
     color: var(--seconday-color);
     text-decoration: none;
+    font-weight: 600;
+    transition: all .4s ease;
 }
 
 .crear-cuenta-cambio a:hover {
