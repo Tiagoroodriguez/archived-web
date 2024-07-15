@@ -3,7 +3,6 @@ import { usePedido } from '../../context/PedidosContext';
 import './Perfil.css';
 import { useEffect, useState } from 'react';
 import OrderCard from '../../components/OrderCard/OrderCard';
-import { Boton } from '../../components/Boton/Boton';
 import { useAuth } from '../../context/AuthContext';
 
 function Perfil() {
