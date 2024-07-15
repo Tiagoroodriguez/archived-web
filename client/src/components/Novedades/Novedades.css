@@ -1,5 +1,5 @@
 .novedades-section{
-  padding: 40px;
+  padding-inline: 40px;
   display: flex;
   flex-direction: column; 
   align-items: center;
@@ -14,7 +14,7 @@
   width: 100%;
   font-size: 15px;
   color: var(--text-color);
-  padding: 10px; 
+  padding: 20px; 
   text-transform: uppercase;
   font-weight: 600;
 }
@@ -33,11 +33,13 @@
   width: 30%;
   display: flex;
   justify-content: center;
+  padding-block: 20px;
 }
 
 .todos-productos button{ 
   text-transform: uppercase;
   font-size: 12px;
+  margin: 0;
 }
 
 
