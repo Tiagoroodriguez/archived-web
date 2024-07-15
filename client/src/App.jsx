@@ -28,6 +28,8 @@ import { PedidoProvider } from './context/PedidosContext';
 import Perfil from './layout/Perfil/Perfil';
 import PedidoForm from './layout/PedidoForm/PedidoForm';
 import Faq from './layout/Faq/Faq';
+import PoliticasPrivacidad from './layout/Politicas/PoliticasPrivacidad';
+import Terminos from './layout/Politicas/Terminos';
 
 const Background = styled.div`
   position: fixed;
@@ -189,6 +191,27 @@ function App() {
                         <Layout>
                           <Header />
                           <PedidoForm />
+                          <Footer />
+                        </Layout>
+                      }
+                    />
+                    <Route
+                      path='/privacy-policy'
+                      element={
+                        <Layout>
+                          <Header />
+                          <PoliticasPrivacidad />
+                          <Footer />
+                        </Layout>
+                      }
+                    />
+
+                    <Route
+                      path='/terms-of-service'
+                      element={
+                        <Layout>
+                          <Header />
+                          <Terminos />
                           <Footer />
                         </Layout>
                       }

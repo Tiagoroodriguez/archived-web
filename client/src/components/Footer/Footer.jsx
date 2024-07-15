@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Input from '../Input/Input';
 import { LogoTexto } from '../LogoTexto/LogoTexto';
 import './Footer.css';
+import { Link } from 'react-router-dom';
 
 export function Footer() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -89,45 +90,22 @@ export function Footer() {
               <LogoTexto />
               <p>help@archived.com</p>
             </div>
+          </div>
+          <div className='footer-menu'>
+            <span>BRAND</span>
+            <Link to='/tienda'>Store</Link>
+            <Link to='/'>About us</Link>
+          </div>
+          <div className='footer-menu'>
+            <span>BORING STUFF</span>
+            <Link to='/privacy-policy'>Politicas de privacidad</Link>
+            <Link to='/terms-of-service'>Terminos y condiciones</Link>
+          </div>
 
-            <div className='footer-redes'>
-              <a
-                href='/'
-                className='desktop-footer-icon'
-              >
-                <i
-                  className='bi bi-facebook'
-                  alt='Facebook icono'
-                ></i>
-              </a>
-              <a
-                href='/'
-                className='desktop-footer-icon'
-              >
-                <i
-                  className='bi bi-twitter-x'
-                  alt='X icono'
-                ></i>
-              </a>
-              <a
-                href='/'
-                className='desktop-footer-icon'
-              >
-                <i
-                  className='bi bi-tiktok'
-                  alt='TikTok icono'
-                ></i>
-              </a>
-              <a
-                href='/'
-                className='desktop-footer-icon'
-              >
-                <i
-                  className='bi bi-instagram'
-                  alt='Instagram icono'
-                ></i>
-              </a>
-            </div>
+          <div className='footer-menu'>
+            <span>SUPPORT</span>
+            <Link to='/faq'>Faq's</Link>
+            <Link to='/contacto'>Contacto</Link>
           </div>
 
           <div className='suscribirse'>
