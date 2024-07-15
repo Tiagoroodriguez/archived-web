@@ -48,10 +48,10 @@ function Header({ anuncio }) {
       content: (
         <ul>
           <li>
-            <Link>Archived 222</Link>
-            <Link>Verano</Link>
-            <Link>Otoño</Link>
-            <Link>Invierno</Link>
+            <Link to='/'>Casa de campo</Link>
+            <Link to='/'>!$&%$#%/</Link>
+            <Link to='/'>%$#%!!*$¡?</Link>
+            <Link to='/'>*%!#$%$#</Link>
           </li>
         </ul>
       ),
@@ -111,13 +111,12 @@ function Header({ anuncio }) {
                   </li>
                   <li className='mobile-cuenta'>
                     <Link
-                      to='/'
+                      to='/contacto'
                       onClick={() => {
-                        logout();
                         setClicked(false);
                       }}
                     >
-                      Logout
+                      contact
                     </Link>
                   </li>
                 </>
@@ -130,7 +129,7 @@ function Header({ anuncio }) {
                         setClicked(false);
                       }}
                     >
-                      Sing in
+                      Log in
                     </Link>
                   </li>
                   <li className='mobile-cuenta'>
@@ -207,7 +206,7 @@ function Header({ anuncio }) {
                         setClicked(false);
                       }}
                     >
-                      Sing in
+                      Log in
                     </Link>
                   </li>
                 </>
@@ -250,7 +249,7 @@ function Header({ anuncio }) {
           >
             <li className='coleccion-img-container'>
               <Link
-                to='/colecciones/primavera'
+                to='/'
                 onClick={() => {
                   setClicked(false);
                   setDropdown(false);
@@ -260,49 +259,61 @@ function Header({ anuncio }) {
                 <picture>
                   <img src='/images/colecciones/collecion-1.jpg' />
                 </picture>
-                <p className='coleccion-nombre'>Archived 222</p>
-              </Link>
-            </li>
-            <li className='coleccion-img-container'>
-              <Link
-                to='/colecciones/verano'
-                onClick={() => {
-                  setClicked(false);
-                  setDropdown(false);
-                }}
-              >
-                <picture>
-                  <img src='/images/colecciones/collecion-2.jpg' />
-                </picture>
                 <p className='coleccion-nombre'>Casa de campo</p>
               </Link>
             </li>
             <li className='coleccion-img-container'>
               <Link
-                to='/colecciones/otoño'
+                to='/'
                 onClick={() => {
                   setClicked(false);
                   setDropdown(false);
                 }}
               >
-                <picture>
-                  <img src='/images/colecciones/collecion-3.jpg' />
+                <picture className='coleccion-bloqueada'>
+                  <img
+                    src='/images/colecciones/collecion-2.jpg'
+                    alt='Colección'
+                  />
+                  <div className='coleccion-overlay'>
+                    <span>???</span>
+                  </div>
                 </picture>
-                <p className='coleccion-nombre'>Nombre generico</p>
+                <p className='coleccion-nombre'>!$&%$#%/</p>
               </Link>
             </li>
             <li className='coleccion-img-container'>
               <Link
-                to='/colecciones/invierno'
+                to='/'
                 onClick={() => {
                   setClicked(false);
                   setDropdown(false);
                 }}
               >
-                <picture>
-                  <img src='/images/colecciones/collecion-1.jpg' />
+                <picture className='coleccion-bloqueada'>
+                  <img src='/images/colecciones/collecion-3.jpg' />
+                  <div className='coleccion-overlay'>
+                    <span>???</span>
+                  </div>
                 </picture>
-                <p className='coleccion-nombre'>Experimental</p>
+                <p className='coleccion-nombre'>%$#%!!*$¡?</p>
+              </Link>
+            </li>
+            <li className='coleccion-img-container'>
+              <Link
+                to='/'
+                onClick={() => {
+                  setClicked(false);
+                  setDropdown(false);
+                }}
+              >
+                <picture className='coleccion-bloqueada'>
+                  <img src='/images/colecciones/collecion-1.jpg' />
+                  <div className='coleccion-overlay'>
+                    <span>???</span>
+                  </div>
+                </picture>
+                <p className='coleccion-nombre'>*%!#$%$#</p>
               </Link>
             </li>
           </ul>
