@@ -6,6 +6,7 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [overlayTalles, setOverlayTalles] = useState(false);
+  const [showCart, setShowCart] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartItems, setCartItems] = useState(
     localStorage.getItem('cartItems')
@@ -184,6 +185,8 @@ export const CartProvider = ({ children }) => {
         setOverlayTalles,
         selectedProduct,
         setSelectedProduct,
+        showCart,
+        setShowCart,
       }}
     >
       {children}
