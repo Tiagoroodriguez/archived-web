@@ -5,13 +5,19 @@
     justify-content: flex-start;
     align-items: flex-start; 
     right: 0px;
-    top: 51px;
     width: 350px;
-    height: calc(100dvh - 50px);
+    height: 100dvh;
 
     z-index: 1;
     background: var(--bg-color);
     padding-inline: 15px;
+}
+
+.cart-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 8px;
 }
 
 .cart-title {

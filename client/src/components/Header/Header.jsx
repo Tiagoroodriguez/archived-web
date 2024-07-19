@@ -8,14 +8,14 @@ import { CartContext } from '../../context/CarritoContext';
 import DropDown from '../DropDown/DropDown';
 
 function Header({ anuncio }) {
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, user } = useAuth();
+
   const [clicked, setClicked] = useState(false);
-  const [showCart, setShowCart] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const timerRef = useRef(null); // Referencia para el temporizador
 
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, showCart, setShowCart } = useContext(CartContext);
 
   const toggleCart = () => {
     setShowCart(!showCart);
@@ -49,9 +49,9 @@ function Header({ anuncio }) {
         <ul>
           <li>
             <Link to='/'>Casa de campo</Link>
-            <Link to='/'>!$&%$#%/</Link>
-            <Link to='/'>%$#%!!*$¡?</Link>
-            <Link to='/'>*%!#$%$#</Link>
+            <Link to='/'>??? ???</Link>
+            <Link to='/'>??? ???</Link>
+            <Link to='/'>??? ???</Link>
           </li>
         </ul>
       ),
@@ -69,6 +69,7 @@ function Header({ anuncio }) {
                   to='/tienda?categoria=all'
                   onClick={() => {
                     setClicked(false);
+                    setShowCart(false);
                   }}
                 >
                   Shop
@@ -87,7 +88,15 @@ function Header({ anuncio }) {
                 </Link>
               </li>
               <li>
-                <Link to='/faq'>Faq's</Link>
+                <Link
+                  to='/faq'
+                  onClick={() => {
+                    setClicked(false);
+                    setShowCart(false);
+                  }}
+                >
+                  Faq's
+                </Link>
               </li>
 
               <li className='dropdown-container'>
@@ -104,6 +113,7 @@ function Header({ anuncio }) {
                       to={`/perfil/${user.id}`}
                       onClick={() => {
                         setClicked(false);
+                        setShowCart(false);
                       }}
                     >
                       Hola {user ? user.nombre : ''}
@@ -114,6 +124,7 @@ function Header({ anuncio }) {
                       to='/contacto'
                       onClick={() => {
                         setClicked(false);
+                        setShowCart(false);
                       }}
                     >
                       contact
@@ -127,6 +138,7 @@ function Header({ anuncio }) {
                       to='/login'
                       onClick={() => {
                         setClicked(false);
+                        setShowCart(false);
                       }}
                     >
                       Log in
@@ -137,6 +149,7 @@ function Header({ anuncio }) {
                       to='/contacto'
                       onClick={() => {
                         setClicked(false);
+                        setShowCart(false);
                       }}
                     >
                       contact
@@ -162,9 +175,7 @@ function Header({ anuncio }) {
             onClick={toggleCart}
             className='boton-carrito-mobile'
           >
-            <i className={showCart ? 'bi bi-x-lg' : 'bi bi-bag'}>
-              ({cartItems.length})
-            </i>
+            <i className='bi bi-bag'>({cartItems.length})</i>
           </button>
 
           <div className='nav-cuenta'>
@@ -172,7 +183,13 @@ function Header({ anuncio }) {
               {isAuthenticated ? (
                 <>
                   <li>
-                    <Link to={`/perfil/${user.id}`}>
+                    <Link
+                      to={`/perfil/${user.id}`}
+                      onClick={() => {
+                        setClicked(false);
+                        setShowCart(false);
+                      }}
+                    >
                       Hola {user ? user.nombre : ''}
                     </Link>
                   </li>
@@ -181,6 +198,7 @@ function Header({ anuncio }) {
                       to='/contacto'
                       onClick={() => {
                         setClicked(false);
+                        setShowCart(false);
                       }}
                     >
                       contact
@@ -194,6 +212,7 @@ function Header({ anuncio }) {
                       to='/contacto'
                       onClick={() => {
                         setClicked(false);
+                        setShowCart(false);
                       }}
                     >
                       contact
@@ -204,6 +223,7 @@ function Header({ anuncio }) {
                       to='/login'
                       onClick={() => {
                         setClicked(false);
+                        setShowCart(false);
                       }}
                     >
                       Log in
@@ -216,9 +236,7 @@ function Header({ anuncio }) {
                   onClick={toggleCart}
                   className='boton-carrito'
                 >
-                  <i className={showCart ? 'bi bi-x-lg' : 'bi bi-bag'}>
-                    ({cartItems.length})
-                  </i>
+                  <i className='bi bi-bag'>({cartItems.length})</i>
                 </button>
               </li>
             </ul>
@@ -234,10 +252,10 @@ function Header({ anuncio }) {
           }`}
         >
           <div className='announcement-messages'>
-            <p>Free shipping on orders over $50!</p>
-            <p>30% off on all summer collections!</p>
-            <p>Subscribe to our newsletter for exclusive deals!</p>
-            <p>Free shipping on orders over $50!</p>
+            <p>3 CUOTAS SIN INTERES</p>
+            <p>ENVIO GRATIS SUPERANDO LOS $120.000</p>
+            <p>10% OFF PAGANDO CON TRANSFERENCIA</p>
+            <p>3 CUOTAS SIN INTERES</p>
           </div>
         </div>
 

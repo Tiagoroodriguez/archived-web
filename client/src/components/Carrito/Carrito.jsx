@@ -7,12 +7,31 @@ import './Carrito.css';
 import { formatPrice } from '../../utils/formatePrice';
 
 export default function Carrito() {
-  const { cartItems, addToCart, removeFromCart, getCartTotal } =
-    useContext(CartContext);
+  const {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    getCartTotal,
+    setShowCart,
+    showCart,
+  } = useContext(CartContext);
+
+  const toggleCart = () => {
+    setShowCart(!showCart);
+  };
 
   return (
     <div className='cart-container'>
-      <h1 className='cart-title'>Carrito de compras</h1>
+      <div className='cart-header'>
+        <h1 className='cart-title'>Carrito de compras</h1>
+        <button
+          className='boton-carrito'
+          onClick={toggleCart}
+        >
+          <i className='bi bi-x-lg' />
+        </button>
+      </div>
+
       <div className='cart-item-container'>
         {cartItems.length === 0 ? (
           <p className='cart-item-p'>Su carrito está vacío</p>
