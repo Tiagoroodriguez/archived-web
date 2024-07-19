@@ -8,12 +8,14 @@ import { useAuth } from '../../context/AuthContext';
 export default function PedidoFormUser({ pedido }) {
   const { user } = useAuth();
 
-  const lineVariants = {
-    initial: { backgroundColor: '#2e2e2e52' },
-    animate: {
-      backgroundColor: 'var(--text-color)',
-      transition: { duration: 2 },
-    },
+  const firstLineVariants = {
+    initial: { width: 0, originX: 0 },
+    animate: { width: '100%', transition: { duration: 1 } },
+  };
+
+  const secondLineVariants = {
+    initial: { width: 0, originX: 0 },
+    animate: { width: '100%', transition: { duration: 1 } },
   };
 
   const codSegVariants = {
@@ -61,16 +63,19 @@ export default function PedidoFormUser({ pedido }) {
               Pendiente
             </span>
           </div>
-          <motion.div
-            className='pedido-line'
-            variants={lineVariants}
-            initial='initial'
-            animate={
-              pedido.estado === 'enviado' || pedido.estado === 'entregado'
-                ? 'animate'
-                : 'initial'
-            }
-          />
+          <div className='pedido-line-div'>
+            <motion.div
+              className='pedido-line'
+              variants={firstLineVariants}
+              initial='initial'
+              animate={
+                pedido.estado === 'enviado' || pedido.estado === 'entregado'
+                  ? 'animate'
+                  : 'initial'
+              }
+            />
+          </div>
+
           <div
             className={`pedido-estado ${
               pedido.estado === 'enviado' || pedido.estado === 'entregado'
@@ -95,16 +100,14 @@ export default function PedidoFormUser({ pedido }) {
               Despachado
             </span>
           </div>
-          <motion.div
-            className='pedido-line'
-            variants={lineVariants}
-            initial='initial'
-            animate={
-              pedido.estado === 'entregado' || pedido.estado === 'entregado'
-                ? 'animate'
-                : 'initial'
-            }
-          />
+          <div className='pedido-line-div'>
+            <motion.div
+              className='pedido-line'
+              variants={secondLineVariants}
+              initial='initial'
+              animate={pedido.estado === 'entregado' ? 'animate' : 'initial'}
+            />
+          </div>
           <div
             className={`pedido-estado ${
               pedido.estado === 'entregado' ? 'estado-actual' : ''
