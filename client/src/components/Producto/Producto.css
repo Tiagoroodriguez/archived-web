@@ -101,3 +101,12 @@ a{
   width: 100%;
   justify-content: space-between;
 }
+
+
+.producto-ocultar {
+  display: none;
+}
+
+.producto-mostar {
+  display: block;
+}
