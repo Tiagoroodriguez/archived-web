@@ -1,15 +1,49 @@
 import { useEffect, useState } from 'react';
-import Input from '../Input/Input';
 import { LogoTexto } from '../LogoTexto/LogoTexto';
 import './Footer.css';
 import { Link } from 'react-router-dom';
+import Acordeon from '../Acordeon/Arcodeon';
 
 export function Footer() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const handleButtonClick = (index) => {
     setCurrentIndex(index);
   };
+
+  const arcodeonData = [
+    {
+      title: 'BRAND',
+      content: (
+        <div className='footer-acordeon'>
+          <Link to='/tienda'>Store</Link>
+          <Link to='/'>About us</Link>
+        </div>
+      ),
+      icon: '',
+    },
+    {
+      title: 'BORING STUFF',
+      content: (
+        <div className='footer-acordeon'>
+          <Link to='/privacy-policy'>Politicas de privacidad</Link>
+          <Link to='/terms-of-service'>Terminos y condiciones</Link>
+        </div>
+      ),
+      icon: '',
+    },
+    {
+      title: 'SUPPORT',
+      content: (
+        <div className='footer-acordeon'>
+          <Link to='/faq'>Faq's</Link>
+          <Link to='/contacto'>Contacto</Link>
+        </div>
+      ),
+      icon: '',
+    },
+  ];
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768; // Cambia este valor según tus necesidades de detección de dispositivos móviles
@@ -91,32 +125,30 @@ export function Footer() {
               <p>help@archived.com</p>
             </div>
           </div>
-          <div className='footer-menu'>
-            <span>BRAND</span>
-            <Link to='/tienda'>Store</Link>
-            <Link to='/'>About us</Link>
-          </div>
-          <div className='footer-menu'>
-            <span>BORING STUFF</span>
-            <Link to='/privacy-policy'>Politicas de privacidad</Link>
-            <Link to='/terms-of-service'>Terminos y condiciones</Link>
-          </div>
-
-          <div className='footer-menu'>
-            <span>SUPPORT</span>
-            <Link to='/faq'>Faq's</Link>
-            <Link to='/contacto'>Contacto</Link>
-          </div>
-
-          <div className='suscribirse'>
-            <h3>Unite a la familia</h3>
-            <p>Obtene un 10% de descuento en tu primera compra</p>
-            <div>
-              <Input
-                type='mail'
-                label='Correo electronico'
-              />
+          <div className='desktop-footer-menu'>
+            <div className='footer-menu'>
+              <span>BRAND</span>
+              <Link to='/tienda'>Store</Link>
+              <Link to='/'>About us</Link>
             </div>
+            <div className='footer-menu'>
+              <span>BORING STUFF</span>
+              <Link to='/privacy-policy'>Politicas de privacidad</Link>
+              <Link to='/terms-of-service'>Terminos y condiciones</Link>
+            </div>
+
+            <div className='footer-menu'>
+              <span>SUPPORT</span>
+              <Link to='/faq'>Faq's</Link>
+              <Link to='/contacto'>Contacto</Link>
+            </div>
+          </div>
+          <div className='mobile-footer-menu'>
+            <Acordeon
+              data={arcodeonData}
+              activeIndex={activeIndex}
+              setActiveIndex={setActiveIndex}
+            />
           </div>
         </div>
         <div className='final'>ARCHIVED 222</div>

@@ -9,7 +9,6 @@ footer {
 }
 
 .desktop-footer {
-  border-top: 1px solid var(--text-color);
   width: 100%;
   padding: 50px;
   background: none;
@@ -27,7 +26,6 @@ footer {
 
 .desktop-footer-logo {
   display: flex;
-  margin-bottom: 10px;
   background: none;
   flex-direction: column;
   align-items: flex-start;
@@ -53,25 +51,6 @@ footer {
 .desktop-footer-icon i:hover {
   transform: scale(1.2);
   display: inline-block;
-}
-
-.suscribirse {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  color: var(--text-color);
-  text-align: end;
-}
-
-.suscribirse h3 {
-  font-size: 20px;
-  color: var(--text-color);
-}
-
-.suscribirse p {
-  font-size: 13px;
-  color: var(--text-color);
-  margin-bottom: 10px;
 }
 
 .final {
@@ -163,6 +142,15 @@ footer {
   font-weight: 800;
 }
 
+.desktop-footer-menu {
+  display: flex;
+  gap: 100px;
+}
+
+.mobile-footer-menu{
+  display: none;
+}
+
 @media (max-width: 768px) {
   .desktop-footer {
     display: flex;
@@ -214,4 +202,33 @@ footer {
   .footer-menu{
     align-items: center;
   }
+
+  .desktop-footer-menu{
+    display: none;
+  }
+
+  .mobile-footer-menu {
+    display: block;
+    width: 70%;
+  }
+
+  .footer-acordeon {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .footer-acordeon a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 12px;
+  }
+
+  .footer-acordeon a:hover {
+    text-decoration: underline;
+  }
 }
+
+
