@@ -70,7 +70,7 @@ export function Footer() {
               <i className='bi bi-arrow-clockwise' />
               <h3>CAMBIOS Y DEVOLUCIONES</h3>
               <p>
-                Mira las condiciones <a>aqui</a>
+                Mira las condiciones <Link to='/shipping-policy'>aqui</Link>
               </p>
             </article>
             <article

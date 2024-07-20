@@ -1,5 +1,6 @@
 import { useContext, useRef } from 'react';
 import { CartContext } from '../../context/CarritoContext';
+import { motion, useMotionValue, useDragControls } from 'framer-motion';
 import './TalleSelectionOverlay.css';
 import { Boton } from '../Boton/Boton';
 
@@ -8,6 +9,8 @@ export default function TalleSelectionOverlay() {
     useContext(CartContext);
 
   const overlayRef = useRef(null);
+  const y = useMotionValue(0);
+  const controls = useDragControls();
 
   const handleClickOutside = (event) => {
     if (overlayRef.current && overlayRef.current === event.target) {
@@ -22,17 +25,43 @@ export default function TalleSelectionOverlay() {
     }
   };
 
+  const handleDragEnd = () => {
+    if (y.get() >= 100) {
+      setOverlayTalles(false);
+    }
+  };
+
   return (
-    <div
-      className={
-        overlayTalles
-          ? 'overlay-container mostrar-talles'
-          : 'overlay-container ocultar-talles'
-      }
-      onClick={handleClickOutside}
+    <motion.div
+      className={`overlay-container ${
+        overlayTalles ? 'mostrar-talles' : 'ocultar-talles'
+      }`}
       ref={overlayRef}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: overlayTalles ? 1 : 0 }}
+      onClick={handleClickOutside}
     >
-      <div className='overlay-talle'>
+      <motion.div
+        className='overlay-talle'
+        initial={{ y: '100%' }}
+        animate={{ y: overlayTalles ? '0%' : '100%' }}
+        transition={{ ease: 'easeInOut' }}
+        style={{ y }}
+        drag='y'
+        dragControls={controls}
+        dragConstraints={{ top: 0, bottom: 0 }}
+        dragElastic={{ top: 0, bottom: 0.5 }}
+        onDragEnd={handleDragEnd}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className='overlay-handle'>
+          <button
+            onPointerDown={(e) => {
+              controls.start(e);
+            }}
+            className='handle-button'
+          ></button>
+        </div>
         <p>Seleccione un talle</p>
         <ul className='overlay-talle-list'>
           {['S', 'M', 'L', 'XL', 'XXL'].map((talle) => (
@@ -43,15 +72,13 @@ export default function TalleSelectionOverlay() {
                 desactivado={
                   selectedProduct[`cant_${talle.toLowerCase()}`] === 0
                 }
-                onClick={() => {
-                  handleAddToCart(talle);
-                }}
+                onClick={() => handleAddToCart(talle)}
                 value={talle}
               />
             </li>
           ))}
         </ul>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
