@@ -15,7 +15,7 @@ export default function PedidoFormUser({ pedido }) {
 
   const secondLineVariants = {
     initial: { width: 0, originX: 0 },
-    animate: { width: '100%', transition: { duration: 1 } },
+    animate: { width: '100%', transition: { duration: 1, delay: 1 } },
   };
 
   const codSegVariants = {
