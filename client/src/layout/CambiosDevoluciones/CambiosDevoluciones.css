@@ -1,0 +1,32 @@
+.devoluciones-container{
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+    height: 80vh;
+}
+
+.devoluciones-container h1{
+    color: var(--text-color);
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.devoluciones-container section{
+    font-size: 15px;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.devoluciones-container p {
+    font-size: 12px;
+    color: var(--text-color);
+    text-align: center;
+}
