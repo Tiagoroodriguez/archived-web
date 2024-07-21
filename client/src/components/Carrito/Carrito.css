@@ -38,8 +38,9 @@
     overflow-y: auto;
     height: 100%;
     gap: 5px;
-    
+    padding-top: 20px;  
 }
+
 .cart-item-p {
     color: var(--text-color);
     font-size: 11px;

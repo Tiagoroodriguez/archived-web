@@ -44,6 +44,8 @@
 .point button p {
     text-align: center;
     color: var(--text-color);
+    font-size: 12px;
+    padding-top: 5px;
 }
 
 .line {

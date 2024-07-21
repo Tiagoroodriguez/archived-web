@@ -83,16 +83,6 @@ export default function Carrito() {
           <h2 className='descripcion-final-texto'>
             Total: {formatPrice(getCartTotal())}
           </h2>
-
-          {/*<Boton
-            type='sudmit'
-            textBoton='Vaciar carrito'
-            onClick={() => {
-              clearCart();
-            }}
-            secundario={true}
-            value={'vaciar'}
-          />*/}
         </div>
       ) : (
         ''
@@ -103,7 +93,9 @@ export default function Carrito() {
             type='sudmit'
             textBoton='Iniciar compra'
             desactivado={cartItems.length === 0 ? true : false}
-            onClick={() => null}
+            onClick={() => {
+              setShowCart(false);
+            }}
           />
         </Link>
       </div>
