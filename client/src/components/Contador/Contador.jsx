@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import './Contador.css';
 
 export default function Contador({ targetDate }) {
@@ -31,7 +32,12 @@ export default function Contador({ targetDate }) {
   }, [timeLeft]);
 
   return (
-    <div className='hero-contador contador'>
+    <motion.div
+      initial={{ opacity: 0, y: '100%' }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, delay: 1, ease: 'easeInOut' }}
+      className='hero-contador contador'
+    >
       <div className='contador-container'>
         <span className='contador-tiempo'>{timeLeft.days}</span>
         <span className='contador-texto'>Días</span>
@@ -51,6 +57,6 @@ export default function Contador({ targetDate }) {
         <span className='contador-tiempo'>{timeLeft.seconds}</span>
         <span className='contador-texto'>Segundos</span>
       </div>
-    </div>
+    </motion.div>
   );
 }
