@@ -4,6 +4,7 @@ import { formatPrice } from '../../utils/formatePrice';
 
 export default function CartSection() {
   const { cartItems, getCartTotal } = useContext(CartContext);
+
   return (
     <section className='carrito-section'>
       <header className='header-carrito'>
@@ -24,11 +25,13 @@ export default function CartSection() {
                 />
               </div>
               <div className='info-producto checkout-info-cart'>
-                <p className='info-producto-nombre'>{item.nombre}</p>
-                <p className='info-producto-talle'>{`${item.quantity} x Talle: ${item.talle}`}</p>
-                <p className='info-producto-precio'>{`$${
-                  item.precio * item.quantity
-                }`}</p>
+                <p className='info-producto-nombre'>
+                  {item.categoria} {item.nombre}
+                </p>
+                <p className='info-producto-talle'>{`Talle: ${item.talle} x ${item.quantity}`}</p>
+                <p className='info-producto-precio'>
+                  {formatPrice(item.precio * item.quantity)}
+                </p>
               </div>
             </div>
           </div>

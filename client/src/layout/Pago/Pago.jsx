@@ -29,7 +29,6 @@ export default function Pago() {
   };
   const handlePago = () => {
     const prodts = getCartItems();
-    console.log(prodts);
   };
 
   useEffect(() => {

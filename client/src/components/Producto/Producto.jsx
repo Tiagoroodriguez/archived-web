@@ -101,16 +101,20 @@ export function Producto({ producto }) {
             : 'producto-informacion producto-ocultar'
         }
       >
-        <ul className='overlay-talle-list'>
+        <ul className='talles-boton-container'>
           {['S', 'M', 'L', 'XL'].map((talle) => (
             <li key={talle}>
-              <Boton
-                textBoton={talle}
-                terceario
-                value={talle}
-                desactivado={producto[`cant_${talle.toLowerCase()}`] === 0}
+              <button
+                className={
+                  producto[`cant_${talle.toLowerCase()}`] === 0
+                    ? 'talle-boton-desactivado'
+                    : 'talle-boton'
+                }
+                disabled={producto[`cant_${talle.toLowerCase()}`] === 0}
                 onClick={() => handleAddToCart(talle)}
-              />
+              >
+                {talle}
+              </button>
             </li>
           ))}
         </ul>
