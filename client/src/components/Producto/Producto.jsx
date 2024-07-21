@@ -56,7 +56,11 @@ export function Producto({ producto }) {
           <div>
             <img
               className={stock === 0 ? 'producto-imagen-agotado' : ''}
-              src={`/images/productos/small/${producto.nombre}.webp`}
+              src={
+                hover
+                  ? `/images/productos/big/2-${producto.nombre}.webp`
+                  : `/images/productos/small/${producto.nombre}.webp`
+              }
               alt={`imagen del producto ${producto.nombre}`}
               decoding='async'
               loading='lazy'

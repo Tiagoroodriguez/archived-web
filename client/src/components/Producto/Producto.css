@@ -131,7 +131,7 @@ a{
   color: var(--text-color);
   cursor: pointer;
   font-size: 15px;
-  font-weight: 700;
+
 }
 
 .talle-boton:hover{
@@ -145,5 +145,5 @@ a{
   opacity: 60%;
   cursor: not-allowed;
   font-size: 15px;
-  font-weight: 700;
+
 }
