@@ -32,6 +32,7 @@ import PoliticasPrivacidad from './layout/Politicas/PoliticasPrivacidad';
 import Terminos from './layout/Politicas/Terminos';
 import CambiosDevoluciones from './layout/CambiosDevoluciones/CambiosDevoluciones';
 import PoliticasEnvio from './layout/PoliticasEnvio/PoliticasEnvio';
+import { NotFound } from './layout/Not Found/NotFound';
 
 const Background = styled.div`
   position: fixed;
@@ -64,6 +65,16 @@ function App() {
                           <Inicio />
                           <Footer />
                         </Layout>
+                      }
+                    />
+                    <Route
+                      path='*'
+                      element={
+                        <>
+                          <Header />
+                          <NotFound />
+                          <Footer />
+                        </>
                       }
                     />
                     <Route
