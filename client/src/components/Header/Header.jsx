@@ -6,6 +6,7 @@ import './Header.css';
 import Carrito from '../Carrito/Carrito';
 import { CartContext } from '../../context/CarritoContext';
 import DropDown from '../DropDown/DropDown';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 
 function Header({ anuncio }) {
   const { isAuthenticated, user } = useAuth();
@@ -13,9 +14,12 @@ function Header({ anuncio }) {
   const [clicked, setClicked] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
+  const [hidden, setHidden] = useState(false);
   const timerRef = useRef(null); // Referencia para el temporizador
 
   const { cartItems, showCart, setShowCart } = useContext(CartContext);
+
+  const { scrollY } = useScroll();
 
   const toggleCart = () => {
     setShowCart(!showCart);
@@ -42,6 +46,15 @@ function Header({ anuncio }) {
     setDropdown(false); // Cerramos el dropdown al hacer clic en un ítem
   };
 
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const previous = scrollY.getPrevious();
+    if (latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
+
   const dataHeader = [
     {
       title: 'Colecciones',
@@ -61,202 +74,214 @@ function Header({ anuncio }) {
   return (
     <>
       <header className='header-container'>
-        <nav className='nav-container'>
-          <div className='nav-link'>
-            <ul className={clicked ? 'nav-bar active links' : 'nav-bar links'}>
-              <li>
-                <Link
-                  to='/tienda?categoria=all'
-                  onClick={() => {
-                    setClicked(false);
-                    setShowCart(false);
-                  }}
-                >
-                  Shop
-                </Link>
-              </li>
-              <li
-                className='dropdown'
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+        <motion.nav
+          variants={{
+            visible: { y: 0 },
+            hidden: { y: '-100%' },
+          }}
+          animate={hidden ? 'hidden' : 'visible'}
+          transition={{ duration: 0.35, ease: 'easeInOut' }}
+          className='nav'
+        >
+          <div className='nav-container'>
+            <div className='nav-link'>
+              <ul
+                className={clicked ? 'nav-bar active links' : 'nav-bar links'}
               >
-                <Link
-                  to='#'
-                  className='dropdown-toggle'
+                <li>
+                  <Link
+                    to='/tienda?categoria=all'
+                    onClick={() => {
+                      setClicked(false);
+                      setShowCart(false);
+                    }}
+                  >
+                    Shop
+                  </Link>
+                </li>
+                <li
+                  className='dropdown'
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
-                  Collections <i className='bi bi-chevron-down'></i>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to='/faq'
-                  onClick={() => {
-                    setClicked(false);
-                    setShowCart(false);
-                  }}
-                >
-                  Faq's
-                </Link>
-              </li>
+                  <Link
+                    to='#'
+                    className='dropdown-toggle'
+                  >
+                    Collections <i className='bi bi-chevron-down'></i>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to='/faq'
+                    onClick={() => {
+                      setClicked(false);
+                      setShowCart(false);
+                    }}
+                  >
+                    Faq's
+                  </Link>
+                </li>
 
-              <li className='dropdown-container'>
-                <DropDown
-                  data={dataHeader}
-                  activeIndex={activeIndex}
-                  setActiveIndex={setActiveIndex}
-                />
-              </li>
-              {isAuthenticated ? (
-                <>
-                  <li className='mobile-cuenta mobile-cuenta-primero'>
-                    <Link
-                      to={`/perfil/${user.id}`}
-                      onClick={() => {
-                        setClicked(false);
-                        setShowCart(false);
-                      }}
-                    >
-                      Hola {user ? user.nombre : ''}
-                    </Link>
-                  </li>
-                  <li className='mobile-cuenta'>
-                    <Link
-                      to='/contacto'
-                      onClick={() => {
-                        setClicked(false);
-                        setShowCart(false);
-                      }}
-                    >
-                      contact
-                    </Link>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className='mobile-cuenta mobile-cuenta-primero'>
-                    <Link
-                      to='/login'
-                      onClick={() => {
-                        setClicked(false);
-                        setShowCart(false);
-                      }}
-                    >
-                      Log in
-                    </Link>
-                  </li>
-                  <li className='mobile-cuenta'>
-                    <Link
-                      to='/contacto'
-                      onClick={() => {
-                        setClicked(false);
-                        setShowCart(false);
-                      }}
-                    >
-                      contact
-                    </Link>
-                  </li>
-                </>
-              )}
-            </ul>
+                <li className='dropdown-container'>
+                  <DropDown
+                    data={dataHeader}
+                    activeIndex={activeIndex}
+                    setActiveIndex={setActiveIndex}
+                  />
+                </li>
+                {isAuthenticated ? (
+                  <>
+                    <li className='mobile-cuenta mobile-cuenta-primero'>
+                      <Link
+                        to={`/perfil/${user.id}`}
+                        onClick={() => {
+                          setClicked(false);
+                          setShowCart(false);
+                        }}
+                      >
+                        Hola {user ? user.nombre : ''}
+                      </Link>
+                    </li>
+                    <li className='mobile-cuenta'>
+                      <Link
+                        to='/contacto'
+                        onClick={() => {
+                          setClicked(false);
+                          setShowCart(false);
+                        }}
+                      >
+                        contact
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className='mobile-cuenta mobile-cuenta-primero'>
+                      <Link
+                        to='/login'
+                        onClick={() => {
+                          setClicked(false);
+                          setShowCart(false);
+                        }}
+                      >
+                        Log in
+                      </Link>
+                    </li>
+                    <li className='mobile-cuenta'>
+                      <Link
+                        to='/contacto'
+                        onClick={() => {
+                          setClicked(false);
+                          setShowCart(false);
+                        }}
+                      >
+                        contact
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ul>
+            </div>
+
+            <div
+              className='mobile'
+              onClick={handleClick}
+            >
+              <i className={clicked ? 'bi bi-x-lg' : 'bi bi-list'} />
+            </div>
+
+            <div className='nav-logo'>
+              <LogoTexto />
+            </div>
+
+            <button
+              onClick={toggleCart}
+              className='boton-carrito-mobile'
+            >
+              <i className='bi bi-bag'>({cartItems.length})</i>
+            </button>
+
+            <div className='nav-cuenta'>
+              <ul className='nav-bar cuenta'>
+                {isAuthenticated ? (
+                  <>
+                    <li>
+                      <Link
+                        to={`/perfil/${user.id}`}
+                        onClick={() => {
+                          setClicked(false);
+                          setShowCart(false);
+                        }}
+                      >
+                        Hola {user ? user.nombre : ''}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to='/contacto'
+                        onClick={() => {
+                          setClicked(false);
+                          setShowCart(false);
+                        }}
+                      >
+                        contact
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link
+                        to='/contacto'
+                        onClick={() => {
+                          setClicked(false);
+                          setShowCart(false);
+                        }}
+                      >
+                        contact
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to='/login'
+                        onClick={() => {
+                          setClicked(false);
+                          setShowCart(false);
+                        }}
+                      >
+                        Log in
+                      </Link>
+                    </li>
+                  </>
+                )}
+                <li>
+                  <button
+                    onClick={toggleCart}
+                    className='boton-carrito'
+                  >
+                    <i className='bi bi-bag'>({cartItems.length})</i>
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
-
           <div
-            className='mobile'
-            onClick={handleClick}
+            className={`announcement-container ${
+              anuncio ? 'display-anuncio' : 'ocultar-anuncio'
+            }`}
           >
-            <i className={clicked ? 'bi bi-x-lg' : 'bi bi-list'} />
+            <div className='announcement-messages'>
+              <p>3 CUOTAS SIN INTERES</p>
+              <p>ENVIO GRATIS SUPERANDO LOS $120.000</p>
+              <p>10% OFF PAGANDO CON TRANSFERENCIA</p>
+              <p>3 CUOTAS SIN INTERES</p>
+            </div>
           </div>
-
-          <div className='nav-logo'>
-            <LogoTexto />
-          </div>
-
-          <button
-            onClick={toggleCart}
-            className='boton-carrito-mobile'
-          >
-            <i className='bi bi-bag'>({cartItems.length})</i>
-          </button>
-
-          <div className='nav-cuenta'>
-            <ul className='nav-bar cuenta'>
-              {isAuthenticated ? (
-                <>
-                  <li>
-                    <Link
-                      to={`/perfil/${user.id}`}
-                      onClick={() => {
-                        setClicked(false);
-                        setShowCart(false);
-                      }}
-                    >
-                      Hola {user ? user.nombre : ''}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to='/contacto'
-                      onClick={() => {
-                        setClicked(false);
-                        setShowCart(false);
-                      }}
-                    >
-                      contact
-                    </Link>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li>
-                    <Link
-                      to='/contacto'
-                      onClick={() => {
-                        setClicked(false);
-                        setShowCart(false);
-                      }}
-                    >
-                      contact
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to='/login'
-                      onClick={() => {
-                        setClicked(false);
-                        setShowCart(false);
-                      }}
-                    >
-                      Log in
-                    </Link>
-                  </li>
-                </>
-              )}
-              <li>
-                <button
-                  onClick={toggleCart}
-                  className='boton-carrito'
-                >
-                  <i className='bi bi-bag'>({cartItems.length})</i>
-                </button>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        </motion.nav>
 
         <div className={`header-cart-container ${showCart ? 'show' : ''}`}>
           <Carrito />
-        </div>
-        <div
-          className={`announcement-container ${
-            anuncio ? 'display-anuncio' : 'ocultar-anuncio'
-          }`}
-        >
-          <div className='announcement-messages'>
-            <p>3 CUOTAS SIN INTERES</p>
-            <p>ENVIO GRATIS SUPERANDO LOS $120.000</p>
-            <p>10% OFF PAGANDO CON TRANSFERENCIA</p>
-            <p>3 CUOTAS SIN INTERES</p>
-          </div>
         </div>
 
         {dropdown && (
