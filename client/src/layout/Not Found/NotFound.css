@@ -5,12 +5,31 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+    padding: 10px;
 }
 
-.container-404 span {
-    font-size: 80px;
+.text-404 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+    gap: 1rem;
+    text-align: center;
 }
-.container-404 p {
-    text-transform: uppercase;
-    color: var(--color-texto);
+
+.text-404 h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-color);
+
 }
+
+.text-404 p {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-color);
+    opacity: 60%;
+}
+
+.text-404 a {
+    width: 250px;}
