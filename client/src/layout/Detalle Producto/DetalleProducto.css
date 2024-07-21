@@ -204,8 +204,13 @@
         scroll-snap-type: x mandatory;
     }
 
+    .img-container {
+        height: 100%;
+    }
+
     .img {
         width: 100%;
+        height: 100%;
         object-fit: cover;
         overflow:unset;
         scroll-snap-align: center;

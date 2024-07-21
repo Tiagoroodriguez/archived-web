@@ -31,6 +31,7 @@ import Faq from './layout/Faq/Faq';
 import PoliticasPrivacidad from './layout/Politicas/PoliticasPrivacidad';
 import Terminos from './layout/Politicas/Terminos';
 import CambiosDevoluciones from './layout/CambiosDevoluciones/CambiosDevoluciones';
+import PoliticasEnvio from './layout/PoliticasEnvio/PoliticasEnvio';
 
 const Background = styled.div`
   position: fixed;
@@ -219,11 +220,22 @@ function App() {
                     />
 
                     <Route
-                      path='/shipping-policy'
+                      path='/returns-exchanges'
                       element={
                         <Layout>
                           <Header />
                           <CambiosDevoluciones />
+                          <Footer />
+                        </Layout>
+                      }
+                    />
+
+                    <Route
+                      path='/shipping-policy'
+                      element={
+                        <Layout>
+                          <Header />
+                          <PoliticasEnvio />
                           <Footer />
                         </Layout>
                       }
