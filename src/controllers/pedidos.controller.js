@@ -2,22 +2,79 @@ import Cliente from '../models/cliente.model.js';
 import Direccion from '../models/direccion.model.js';
 import Pedido from '../models/pedido.model.js';
 import mongoose from 'mongoose';
+import Producto from '../models/product.model.js';
+import Discount from '../models/descuento.model.js';
+import Coupon from '../models/cupones.model.js';
+
+// Función para calcular el precio con descuento
+const calcularPrecioConDescuento = (precio, descuento) => {
+  return precio - precio * (descuento / 100);
+};
+
+// Función para aplicar descuentos a los productos
+const aplicarDescuentosAProductos = async (productos) => {
+  const descuentos = await Discount.find();
+  let total = 0;
+  let totalConDescuento = 0;
+
+  const productosConDescuento = await Promise.all(
+    productos.map(async (item) => {
+      const producto = await Producto.findById(item.product_id);
+      let precioConDescuento = producto.precio;
+
+      const descuentoProducto = descuentos.find(
+        (descuento) => descuento.product_id.toString() === item.product_id
+      );
+      if (descuentoProducto) {
+        precioConDescuento = calcularPrecioConDescuento(
+          precioConDescuento,
+          descuentoProducto.discount_percentage
+        );
+      }
+
+      total += producto.precio * item.cantidad;
+      totalConDescuento += precioConDescuento * item.cantidad;
+
+      return { ...item, precio_con_descuento: precioConDescuento };
+    })
+  );
+
+  return { productosConDescuento, total, totalConDescuento };
+};
+
+// Función para aplicar cupones a un pedido
+const aplicarCuponAPedido = async (totalConDescuento, codigoCupon) => {
+  if (!codigoCupon) return totalConDescuento;
+
+  const cupon = await Coupon.findOne({ code: codigoCupon });
+  if (!cupon || cupon.used_count >= cupon.max_uses) {
+    throw new Error('Cupón inválido o expirado');
+  }
+
+  const currentDate = new Date();
+  if (currentDate < cupon.valid_from || currentDate > cupon.valid_until) {
+    throw new Error('Cupón inválido o expirado');
+  }
+
+  cupon.used_count += 1;
+  await cupon.save();
+
+  return calcularPrecioConDescuento(
+    totalConDescuento,
+    cupon.discount_percentage
+  );
+};
 
 export const createPedido = async (req, res) => {
   try {
     const {
-      // Datos del pedido
       numero_pedido,
       user,
-
-      // Datos del cliente de envío
       nombre_envio,
       apellido_envio,
       documento_envio,
       email_envio,
       telefono_envio,
-
-      // Datos de envío
       direccion_envio,
       numero_direccion_envio,
       departamento_envio,
@@ -25,15 +82,11 @@ export const createPedido = async (req, res) => {
       ciudad_envio,
       provincia_envio,
       codigo_postal_envio,
-
-      // Datos del cliente de facturación
       nombre_facturacion,
       apellido_facturacion,
       documento_facturacion,
       email_facturacion,
       telefono_facturacion,
-
-      // Datos de facturación
       direccion_facturacion,
       numero_direccion_facturacion,
       departamento_facturacion,
@@ -41,12 +94,10 @@ export const createPedido = async (req, res) => {
       ciudad_facturacion,
       provincia_facturacion,
       codigo_postal_facturacion,
-
-      // Productos
       productos,
+      codigoCupon,
     } = req.body;
 
-    // Validar que todos los campos requeridos están presentes
     if (
       !direccion_facturacion ||
       !numero_direccion_facturacion ||
@@ -67,7 +118,6 @@ export const createPedido = async (req, res) => {
         .json({ message: 'Complete los campos obligatorios' });
     }
 
-    // Verificar si el pedido ya existe
     const existingPedido = await Pedido.findOne({
       numero_pedido: numero_pedido,
     });
@@ -75,7 +125,6 @@ export const createPedido = async (req, res) => {
       return res.json(existingPedido);
     }
 
-    // Buscar o crear el cliente de facturación
     let clienteFacturacion = await Cliente.findOne({
       documento: documento_facturacion,
     });
@@ -90,7 +139,6 @@ export const createPedido = async (req, res) => {
       clienteFacturacion = await clienteFacturacion.save();
     }
 
-    // Crear la dirección de facturación
     const direccionFacturacion = new Direccion({
       direccion: direccion_facturacion,
       numero: numero_direccion_facturacion,
@@ -105,7 +153,6 @@ export const createPedido = async (req, res) => {
 
     let clienteEnvio, savedDireccionEnvio;
 
-    // Si se proporciona información de envío, buscar o crear el cliente de envío
     if (documento_envio) {
       clienteEnvio = await Cliente.findOne({ documento: documento_envio });
       if (!clienteEnvio) {
@@ -119,7 +166,6 @@ export const createPedido = async (req, res) => {
         clienteEnvio = await clienteEnvio.save();
       }
 
-      // Crear la dirección de envío
       const direccionEnvio = new Direccion({
         direccion: direccion_envio,
         numero: numero_direccion_envio,
@@ -133,7 +179,14 @@ export const createPedido = async (req, res) => {
       savedDireccionEnvio = await direccionEnvio.save();
     }
 
-    // Crear un nuevo documento de pedido
+    const { productosConDescuento, total, totalConDescuento } =
+      await aplicarDescuentosAProductos(productos);
+
+    const totalConCupon = await aplicarCuponAPedido(
+      totalConDescuento,
+      codigoCupon
+    );
+
     const newPedido = new Pedido({
       numero_pedido,
       cliente_facturacion: clienteFacturacion._id,
@@ -142,7 +195,10 @@ export const createPedido = async (req, res) => {
       direccion_envio: savedDireccionEnvio
         ? savedDireccionEnvio._id
         : undefined,
-      productos,
+      productos: productosConDescuento,
+      cupon: codigoCupon,
+      total,
+      total_con_descuento: totalConCupon,
       user: user ? user : undefined,
     });
 
