@@ -180,7 +180,7 @@ function Header({ anuncio }) {
                           setShowCart(false);
                         }}
                       >
-                        contact
+                        search
                       </Link>
                     </li>
                   </>
@@ -212,6 +212,17 @@ function Header({ anuncio }) {
                   <>
                     <li>
                       <Link
+                        to='/contacto'
+                        onClick={() => {
+                          setClicked(false);
+                          setShowCart(false);
+                        }}
+                      >
+                        <i className='bi bi-search' />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
                         to={
                           user.rol === 'admin'
                             ? `/administration`
@@ -225,21 +236,10 @@ function Header({ anuncio }) {
                         Hola {user ? user.nombre : ''}
                       </Link>
                     </li>
-                    <li>
-                      <Link
-                        to='/contacto'
-                        onClick={() => {
-                          setClicked(false);
-                          setShowCart(false);
-                        }}
-                      >
-                        contact
-                      </Link>
-                    </li>
                   </>
                 ) : (
                   <>
-                    <li>
+                    <li className='menu-icon'>
                       <Link
                         to='/contacto'
                         onClick={() => {
@@ -247,10 +247,10 @@ function Header({ anuncio }) {
                           setShowCart(false);
                         }}
                       >
-                        contact
+                        <i className='bi bi-search' />
                       </Link>
                     </li>
-                    <li>
+                    <li className='menu-icon-persona'>
                       <Link
                         to='/login'
                         onClick={() => {
@@ -258,7 +258,7 @@ function Header({ anuncio }) {
                           setShowCart(false);
                         }}
                       >
-                        Log in
+                        <i className='bi bi-person' />
                       </Link>
                     </li>
                   </>
