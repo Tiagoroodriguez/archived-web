@@ -14,6 +14,13 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    precio_con_descuento: {
+      type: Number,
+    },
+    discount: {
+      type: Number,
+      default: 0,
+    },
     cant_s: {
       type: Number,
     },

@@ -1,4 +1,5 @@
 import Product from '../models/product.model.js';
+import Discount from '../models/descuento.model.js';
 
 export const getProducts = async (req, res) => {
   try {
@@ -14,9 +15,36 @@ export const getProducts = async (req, res) => {
     }
 
     const products = await query;
-    res.json(products);
+
+    // Obtener los descuentos actuales
+    const discounts = await Discount.find({
+      start_date: { $lte: new Date() },
+      end_date: { $gte: new Date() },
+      active: true,
+    });
+
+    // Aplicar descuentos a los productos
+    const productsWithDiscounts = products.map((product) => {
+      const discount = discounts.find(
+        (discount) => discount.product_id.toString() === product._id.toString()
+      );
+      if (discount) {
+        const discountAmount =
+          product.precio * (discount.discount_percentage / 100);
+        product.precio_con_descuento = product.precio - discountAmount;
+        product.discount = discount.discount_percentage; // Añadir el porcentaje de descuento al producto
+      } else {
+        product.precio_con_descuento = product.precio;
+        product.discount = 0; // Si no hay descuento, el porcentaje es 0
+      }
+      return product;
+    });
+
+    res.json(productsWithDiscounts);
   } catch (error) {
-    return res.status(500).json({ message: 'Algo salió mal' });
+    return res
+      .status(500)
+      .json({ message: 'Algo salió mal', error: error.message });
   }
 };
 

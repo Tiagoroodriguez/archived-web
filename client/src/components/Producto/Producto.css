@@ -39,7 +39,7 @@ a{
 
 /*--------------------------------------------------------------------------------------------*/
 
-.descuento-container {
+.stock-container {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;  /* Esto centra el contenido verticalmente */
@@ -51,7 +51,7 @@ a{
   height: 100%;  /* Asegúrate de que el contenedor tenga altura para centrar verticalmente */
 }
 
-.descuento {
+.stock {
   padding: 10px;
   color: var(--bg-color);
   background: var(--primary-color);
@@ -61,7 +61,28 @@ a{
   font-weight: 700;
 }
 
+.descuento-container{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;  /* Esto centra el contenido verticalmente */
+  position: absolute;
+  padding: 10px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;  /* Asegúrate de que el contenedor tenga altura para centrar verticalmente */
+}
 
+.descuento {
+  padding: 10px;
+  color: var(--bg-color);
+  background: var(--secondary-color);
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+
+}
 
 /*--------------------------------------------------------------------------------------------*/
 
@@ -83,6 +104,12 @@ a{
 .precio-texto {
   font-size: 12px;
   font-weight: 700;
+}
+
+.precio-texto p span {
+  opacity: 60%;
+  text-decoration: line-through;
+  padding-right: 10px;
 }
 
 /*--------------------------------------------------------------------------------------------*/
