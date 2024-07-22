@@ -3,6 +3,7 @@ import { LogoTexto } from '../LogoTexto/LogoTexto';
 import './Footer.css';
 import { Link } from 'react-router-dom';
 import Acordeon from '../Acordeon/Arcodeon';
+import Input from '../Input/Input';
 
 export function Footer() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -123,7 +124,6 @@ export function Footer() {
           <div className='desktop-footer-redes'>
             <div className='desktop-footer-logo'>
               <LogoTexto />
-              <p>help@archived.com</p>
             </div>
           </div>
           <div className='desktop-footer-menu'>
@@ -150,6 +150,11 @@ export function Footer() {
               activeIndex={activeIndex}
               setActiveIndex={setActiveIndex}
             />
+          </div>
+          <div className='footer-mail'>
+            <h3>Unite a la familia</h3>
+            <p>Obten un 10% de descuento en tu primera compra</p>
+            <Input label='Correo electronico' />
           </div>
         </div>
         <div className='final'>ARCHIVED 222</div>
