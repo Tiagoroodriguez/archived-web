@@ -64,6 +64,17 @@ const pedidoSchema = new mongoose.Schema(
       type: String,
       default: 'pendiente',
     },
+    cupon: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Coupon',
+    },
+    total: {
+      type: Number,
+      required: true,
+    },
+    total_con_descuento: {
+      type: Number,
+    },
   },
   {
     timestamps: true,
