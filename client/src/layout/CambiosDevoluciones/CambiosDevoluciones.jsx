@@ -3,7 +3,7 @@ import './CambiosDevoluciones.css';
 export default function CambiosDevoluciones() {
   return (
     <main className='devoluciones-container'>
-      <h1>Politicas de devolucions</h1>
+      <h1>Políticas de devolucion</h1>
       <p>
         Si no estas conforme con nuestro producto, podes solicitar un reitegro o
         cambio del mismo de la siguiente forma:
