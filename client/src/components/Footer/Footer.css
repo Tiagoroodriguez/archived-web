@@ -210,7 +210,7 @@ footer {
 
   .mobile-footer-menu {
     display: block;
-    width: 70%;
+    width: 100%;
   }
 
   .footer-acordeon {
@@ -230,6 +230,27 @@ footer {
   .footer-acordeon a:hover {
     text-decoration: underline;
   }
+
+  .footer-mail h3{
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.footer-mail{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.footer-mail h3{
+  font-size: 15px;
+  color: var(--text-color); 
+}
+
+.footer-mail p{
+  font-size: 12px;
+  color: var(--text-color); 
 }
 
 
