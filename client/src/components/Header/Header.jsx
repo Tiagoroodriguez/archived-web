@@ -134,7 +134,11 @@ function Header({ anuncio }) {
                   <>
                     <li className='mobile-cuenta mobile-cuenta-primero'>
                       <Link
-                        to={`/perfil/${user.id}`}
+                        to={
+                          user.rol === 'admin'
+                            ? `/administration`
+                            : `/perfil/${user.id}`
+                        }
                         onClick={() => {
                           setClicked(false);
                           setShowCart(false);
@@ -208,7 +212,11 @@ function Header({ anuncio }) {
                   <>
                     <li>
                       <Link
-                        to={`/perfil/${user.id}`}
+                        to={
+                          user.rol === 'admin'
+                            ? `/administration`
+                            : `/perfil/${user.id}`
+                        }
                         onClick={() => {
                           setClicked(false);
                           setShowCart(false);

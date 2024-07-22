@@ -33,6 +33,10 @@ import Terminos from './layout/Politicas/Terminos';
 import CambiosDevoluciones from './layout/CambiosDevoluciones/CambiosDevoluciones';
 import PoliticasEnvio from './layout/PoliticasEnvio/PoliticasEnvio';
 import { NotFound } from './layout/Not Found/NotFound';
+import Administracion from './layout/Administracion/Administracion';
+import AdminPedidos from './layout/Administracion/AdminPedidos';
+import Sidebar from './components/Sidebar/Sidebar';
+import AdminProductos from './layout/Administracion/AdminProductos';
 
 const Background = styled.div`
   position: fixed;
@@ -184,6 +188,38 @@ function App() {
                           <Header />
                           <PagoSuccess />
                           <Footer />
+                        </Layout>
+                      }
+                    />
+
+                    <Route
+                      path='/administration'
+                      element={
+                        <Layout>
+                          <Administracion />
+                        </Layout>
+                      }
+                    />
+
+                    <Route
+                      path='/administration/orders'
+                      element={
+                        <Layout>
+                          <div className='admin-container'>
+                            <Sidebar pedidosNav />
+                            <AdminPedidos />
+                          </div>
+                        </Layout>
+                      }
+                    />
+                    <Route
+                      path='/administration/products'
+                      element={
+                        <Layout>
+                          <div className='admin-container'>
+                            <Sidebar productsNav />
+                            <AdminProductos />
+                          </div>
                         </Layout>
                       }
                     />
