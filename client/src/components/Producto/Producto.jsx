@@ -66,9 +66,16 @@ export function Producto({ producto }) {
               loading='lazy'
             />
           </div>
-          {stock === 0 ? (
+          {producto.discount > 0 ? (
             <div className='descuento-container'>
-              <span className='descuento'>Agotado</span>
+              <span className='descuento'>{producto.discount}% OFF</span>
+            </div>
+          ) : (
+            ''
+          )}
+          {stock === 0 ? (
+            <div className='stock-container'>
+              <span className='stock'>Agotado</span>
             </div>
           ) : (
             ''
@@ -95,7 +102,16 @@ export function Producto({ producto }) {
           </button>
         </div>
 
-        <div className='precio-texto'>{formatPrice(producto.precio)}</div>
+        <div className='precio-texto'>
+          {producto.discount ? (
+            <p>
+              <span>{formatPrice(producto.precio)} </span>{' '}
+              {formatPrice(producto.precio_con_descuento)}
+            </p>
+          ) : (
+            formatPrice(producto.precio)
+          )}
+        </div>
       </div>
 
       <div
