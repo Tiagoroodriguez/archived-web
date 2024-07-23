@@ -158,11 +158,13 @@ a{
   color: var(--text-color);
   cursor: pointer;
   font-size: 15px;
-
+  height: 35px;
+  width: 50%;
+  transition: all .3s ease;
 }
 
 .talle-boton:hover{
-  text-decoration: underline;
+  border-bottom: 1px solid var(--text-color);
 }
 
 .talle-boton-desactivado{
