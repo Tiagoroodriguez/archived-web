@@ -87,6 +87,64 @@ export default function AdminProductos() {
             />
           </div>
         </div>
+        <div className='producto-talle-container'>
+          <div className='producto-talle'>
+            <h3>Medidas talle S</h3>
+            <Input
+              label='Ancho'
+              type='number'
+            />
+            <Input
+              label='Largo'
+              type='number'
+            />
+          </div>
+          <div className='producto-talle'>
+            <h3>Medidas talle M</h3>
+            <Input
+              label='Ancho'
+              type='number'
+            />
+            <Input
+              label='Largo'
+              type='number'
+            />
+          </div>
+          <div className='producto-talle'>
+            <h3>Medidas talle L</h3>
+            <Input
+              label='Ancho'
+              type='number'
+            />
+            <Input
+              label='Largo'
+              type='number'
+            />
+          </div>
+          <div className='producto-talle'>
+            <h3>Medidas talle XL</h3>
+            <Input
+              label='Ancho'
+              type='number'
+            />
+            <Input
+              label='Largo'
+              type='number'
+            />
+          </div>
+        </div>
+        <div className='admin-producto-imagen'>
+          <label>Imagen de preview 1:</label>
+          <input
+            type='file'
+            accept='image/webp, image/jpg'
+          />
+          <label>Imagen de preview 2:</label>
+          <input
+            type='file'
+            accept='image/webp, image/jpg'
+          />
+        </div>
       </form>
     </main>
   );

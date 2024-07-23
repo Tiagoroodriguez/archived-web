@@ -15,6 +15,7 @@ function Header({ anuncio }) {
   const [dropdown, setDropdown] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const [hidden, setHidden] = useState(false);
+  const [hiddenSearch, setHiddenSearch] = useState(true);
   const timerRef = useRef(null); // Referencia para el temporizador
 
   const { cartItems, showCart, setShowCart } = useContext(CartContext);
@@ -27,6 +28,10 @@ function Header({ anuncio }) {
 
   const handleClick = () => {
     setClicked(!clicked);
+  };
+
+  const handleSearch = () => {
+    setHiddenSearch(!hiddenSearch);
   };
 
   const handleMouseEnter = () => {
@@ -147,17 +152,6 @@ function Header({ anuncio }) {
                         Hola {user ? user.nombre : ''}
                       </Link>
                     </li>
-                    <li className='mobile-cuenta'>
-                      <Link
-                        to='/contacto'
-                        onClick={() => {
-                          setClicked(false);
-                          setShowCart(false);
-                        }}
-                      >
-                        contact
-                      </Link>
-                    </li>
                   </>
                 ) : (
                   <>
@@ -170,17 +164,6 @@ function Header({ anuncio }) {
                         }}
                       >
                         Log in
-                      </Link>
-                    </li>
-                    <li className='mobile-cuenta'>
-                      <Link
-                        to='/contacto'
-                        onClick={() => {
-                          setClicked(false);
-                          setShowCart(false);
-                        }}
-                      >
-                        search
                       </Link>
                     </li>
                   </>
@@ -204,6 +187,16 @@ function Header({ anuncio }) {
               className='boton-carrito-mobile'
             >
               <i className='bi bi-bag'>({cartItems.length})</i>
+            </button>
+            <button
+              className='search-mobile'
+              onClick={() => {
+                handleSearch();
+                setClicked(false);
+                setShowCart(false);
+              }}
+            >
+              <i className='bi bi-search' />
             </button>
 
             <div className='nav-cuenta'>
@@ -241,8 +234,8 @@ function Header({ anuncio }) {
                   <>
                     <li className='menu-icon'>
                       <Link
-                        to='/contacto'
                         onClick={() => {
+                          handleSearch();
                           setClicked(false);
                           setShowCart(false);
                         }}
@@ -370,6 +363,18 @@ function Header({ anuncio }) {
           </ul>
         )}
       </header>
+      <motion.div
+        variants={{ visibleSearch: { y: 0 }, hiddenSearch: { y: '-100%' } }}
+        animate={hiddenSearch ? 'hiddenSearch' : 'visibleSearch'}
+        transition={{ duration: 0.35, ease: 'easeInOut' }}
+        className='header-search-container'
+      >
+        <input
+          type='text'
+          placeholder='Buscar...'
+        ></input>
+        <i className='bi bi-search' />
+      </motion.div>
     </>
   );
 }

@@ -82,7 +82,7 @@ export function Footer() {
               <i className='bi bi-truck' />
               <h3>ENVIOS SEGUROS A TODA ARGENTINA</h3>
               <p>
-                Click <Link to='/shipping-policy'>aqui</Link> para más
+                Click <Link to='/shipping-policy'>aquí</Link> para más
                 información
               </p>
             </article>
@@ -152,7 +152,6 @@ export function Footer() {
             />
           </div>
           <div className='footer-mail'>
-            <h3>Unite a la familia</h3>
             <p>Obten un 10% de descuento en tu primera compra</p>
             <Input label='Correo electronico' />
           </div>
