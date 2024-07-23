@@ -13,6 +13,7 @@
     padding: 5px;
     width: 100%;
     overflow-x: clip;
+    z-index: 1000;
   }
 
   .display-anuncio{
@@ -50,7 +51,7 @@
     justify-content: space-between;
     padding: 5px 50px;
     border-bottom: 1px solid var(--text-color);
-
+    z-index: 1000;
     background: var(--bg-color);
     
 }
@@ -288,7 +289,7 @@
   padding: 10px 50px;
   background: var(--bg-color);
   z-index: 1;
-  position: relative;
+  position: sticky;
 }
 
 .header-search-container input {

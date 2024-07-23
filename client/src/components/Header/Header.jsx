@@ -279,6 +279,18 @@ function Header({ anuncio }) {
               <p>3 CUOTAS SIN INTERES</p>
             </div>
           </div>
+          <motion.div
+            variants={{ visibleSearch: { y: 0 }, hiddenSearch: { y: '-150%' } }}
+            animate={hiddenSearch ? 'hiddenSearch' : 'visibleSearch'}
+            transition={{ duration: 0.35, ease: 'easeInOut' }}
+            className='header-search-container'
+          >
+            <input
+              type='text'
+              placeholder='Buscar...'
+            ></input>
+            <i className='bi bi-search' />
+          </motion.div>
         </motion.nav>
 
         <div className={`header-cart-container ${showCart ? 'show' : ''}`}>
@@ -363,18 +375,6 @@ function Header({ anuncio }) {
           </ul>
         )}
       </header>
-      <motion.div
-        variants={{ visibleSearch: { y: 0 }, hiddenSearch: { y: '-100%' } }}
-        animate={hiddenSearch ? 'hiddenSearch' : 'visibleSearch'}
-        transition={{ duration: 0.35, ease: 'easeInOut' }}
-        className='header-search-container'
-      >
-        <input
-          type='text'
-          placeholder='Buscar...'
-        ></input>
-        <i className='bi bi-search' />
-      </motion.div>
     </>
   );
 }
