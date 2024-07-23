@@ -134,9 +134,8 @@
 .admin-add-producto {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 25px;
 }
-
 .admin-add-producto h2{
     color: var(--text-color);
     font-size: 15px;
@@ -162,4 +161,30 @@
     font-size: 12px;
     width: 100%;
     text-align: end;
+}
+
+.producto-talle-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 25px;
+}
+
+.producto-talle{
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #1a1f251f;
+    border-radius: 10px;
+}
+
+.producto-talle h3 {
+    font-size: 12px;
+    width: 100%;
+    text-align: end;
+}
+
+.admin-producto-imagen {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
