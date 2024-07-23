@@ -18,10 +18,10 @@ footer {
   align-items: center;
 }
 
-.footer-redes {
+.desktop-footer-redes {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .desktop-footer-logo {
@@ -32,26 +32,24 @@ footer {
   gap: 5px;
 }
 
-.desktop-footer-logo p {
-  color: var(--text-color);
-  font-size: 13px;
-  margin: 0;
-}
-
-.desktop-footer-redes {
+.desktop-footer-redes-icon {
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  color: var(--text-color);
+  font-size: 15px;
 }
 
-.desktop-footer-icon i {
-  color: var(--text-color);
+.desktop-footer-redes-icon i {
+  cursor: pointer;
   transition: all .3s ease;
 }
 
-.desktop-footer-icon i:hover {
-  transform: scale(1.2);
-  display: inline-block;
+.desktop-footer-redes-icon i:hover {
+  color: var(--primary-color);
+  transform: scale(1.1);
 }
+
 
 .final {
   background: var(--text-color);
@@ -125,7 +123,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-size: 12px;
+  font-size: 11px;
   gap: 10px;
   color: var(--text-color);
 }
@@ -133,6 +131,7 @@ footer {
 .footer-menu a{
   color: var(--text-color);
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .footer-menu a:hover{
@@ -140,7 +139,7 @@ footer {
 }
 
 .footer-menu span {
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .desktop-footer-menu {
@@ -244,13 +243,22 @@ footer {
 }
 
 .footer-mail h3{
-  font-size: 15px;
+  font-size: 12px;
+  text-transform: uppercase;
   color: var(--text-color); 
 }
 
 .footer-mail p{
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-color); 
+}
+
+.footer-mail input {
+  background: none;
+  border: 1px solid var(--text-color);
+  padding: 5px;
+  font-size: 11px;
+  outline: none;
 }
 
 

@@ -125,6 +125,12 @@ export function Footer() {
             <div className='desktop-footer-logo'>
               <LogoTexto />
             </div>
+            <div className='desktop-footer-redes-icon'>
+              <i className='bi bi-instagram' />
+              <i className='bi bi-twitter' />
+              <i className='bi bi-tiktok' />
+              <i className='bi bi-youtube' />
+            </div>
           </div>
           <div className='desktop-footer-menu'>
             <div className='footer-menu'>
@@ -152,8 +158,9 @@ export function Footer() {
             />
           </div>
           <div className='footer-mail'>
+            <h3>Unite a la familia</h3>
             <p>Obten un 10% de descuento en tu primera compra</p>
-            <Input label='Correo electronico' />
+            <input placeholder='Correo electronico' />
           </div>
         </div>
         <div className='final'>ARCHIVED 222</div>
