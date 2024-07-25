@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from 'react';
+import { useState, useContext, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LogoTexto } from '../LogoTexto/LogoTexto';
 import { useAuth } from '../../context/AuthContext';
@@ -6,7 +6,12 @@ import './Header.css';
 import Carrito from '../Carrito/Carrito';
 import { CartContext } from '../../context/CarritoContext';
 import DropDown from '../DropDown/DropDown';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  useAnimation,
+} from 'framer-motion';
 
 function Header({ anuncio }) {
   const { isAuthenticated, user } = useAuth();
@@ -59,6 +64,40 @@ function Header({ anuncio }) {
       setHidden(false);
     }
   });
+
+  const announcementVariants = {
+    animate: {
+      x: [0, '-100%', 0],
+      transition: {
+        x: {
+          repeat: Infinity,
+          repeatType: 'loop',
+          duration: 20,
+          ease: 'linear',
+        },
+      },
+    },
+  };
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const startScrolling = async () => {
+      while (true) {
+        await controls.start({
+          x: [0, -1000], // Ajustar el valor de -1000 al ancho de su contenedor.
+          transition: {
+            x: {
+              repeat: Infinity,
+              repeatType: 'loop',
+              ease: 'linear',
+              duration: 20, // Ajustar la duración según sea necesario.
+            },
+          },
+        });
+      }
+    };
+    startScrolling();
+  }, [controls]);
 
   const dataHeader = [
     {
@@ -272,14 +311,18 @@ function Header({ anuncio }) {
               anuncio ? 'display-anuncio' : 'ocultar-anuncio'
             }`}
           >
-            <div className='announcement-messages'>
+            <motion.div
+              className='announcement-messages'
+              animate={controls}
+            >
               <p>3 CUOTAS SIN INTERES</p>
               <p>ENVIO GRATIS SUPERANDO LOS $120.000</p>
               <p>10% OFF PAGANDO CON TRANSFERENCIA</p>
               <p>3 CUOTAS SIN INTERES</p>
-            </div>
+            </motion.div>
           </div>
-          <motion.div
+
+          {/*<motion.div
             variants={{ visibleSearch: { y: 0 }, hiddenSearch: { y: '-150%' } }}
             animate={hiddenSearch ? 'hiddenSearch' : 'visibleSearch'}
             transition={{ duration: 0.35, ease: 'easeInOut' }}
@@ -290,7 +333,7 @@ function Header({ anuncio }) {
               placeholder='Buscar...'
             ></input>
             <i className='bi bi-search' />
-          </motion.div>
+          </motion.div>*/}
         </motion.nav>
 
         <div className={`header-cart-container ${showCart ? 'show' : ''}`}>

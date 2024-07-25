@@ -8,36 +8,33 @@
 /*------------------------------------------------------------------------------------------*/
 
 .announcement-container {
-    background: var(--text-color);
-    color: var(--bg-color);
-    padding: 5px;
-    width: 100%;
-    overflow-x: clip;
-    z-index: 1000;
-  }
+  background: var(--text-color);
+  color: var(--bg-color);
+  padding: 5px;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1000;
+}
 
-  .display-anuncio{
-    display: block;
-  }
+.display-anuncio {
+  display: block;
+}
 
-  .ocultar-anuncio{
-    display: none;
-  }
-  .announcement-messages{
-    display: flex;
-    width: 400%;
-    animation: slide 50s infinite linear;
-  }
-  .announcement-messages p {
-    width: 100%;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 10px;
-  }
+.ocultar-anuncio {
+  display: none;
+}
 
-  @keyframes slide {
-    0% {margin-left: 0%;}
-    100% {margin-left: -400%;}
+.announcement-messages {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+}
+
+.announcement-messages p {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 10px;
+  margin-right: 2rem;
 }
 /*------------------------------------------------------------------------------------------*/
 .nav {
@@ -195,6 +192,7 @@
     width: 100%;
     height: 500px;
     left: 0;
+    top: 51px;
     background-color: var(--bg-color);
     border-bottom: 1px solid var(--text-color);
     z-index: 1;
@@ -204,6 +202,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
+    z-index: 1000;
   }
 
   
