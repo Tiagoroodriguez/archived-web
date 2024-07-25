@@ -3,22 +3,22 @@
   }
   
   .flicking-container {
-    height: 90vh;
+    height: auto;
     display: flex;
     align-items: center;
   }
   
   .slider-item {
     position: relative;
-    width: 250px;
-    height: 90vh;
+    width: 300px;
+    height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: lightgray;
     box-sizing: border-box;
     font-size: 20px;
-    margin-inline: 5px;
+    margin-inline: 2px;
     cursor: pointer;
     transition: all .4s ease;
     overflow: hidden;
