@@ -43,6 +43,16 @@
     align-items: center;
 }
 
+.detalle-producto-acordeon{
+    line-height: 1.4;
+}
+
+.detalle-producto-acordeon a{
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 768px) {
     .faq-section{
         padding-inline: 20px;

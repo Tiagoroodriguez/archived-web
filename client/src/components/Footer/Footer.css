@@ -158,6 +158,7 @@ footer {
     align-items: center;
     gap: 40px;
     overflow: clip;
+    padding-inline: 10px;
   }
 
   .desktop-footer-logo {
