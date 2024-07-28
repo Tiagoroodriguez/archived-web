@@ -293,7 +293,7 @@
     }
 
     .mobile-cuenta-primero {
-        margin-top: 40px;
+        margin-top: 20px;
     }
 
     .nav-bar {
@@ -303,7 +303,7 @@
       align-items: flex-start;
       position: fixed;
       gap: 0;
-      top: 51px;
+      top: 50px;
       left: -250px;
       width: 250px;
       height: 100vh;
