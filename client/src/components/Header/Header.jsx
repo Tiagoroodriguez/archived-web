@@ -16,7 +16,7 @@ function Header({ anuncioOn }) {
   const [dropdown, setDropdown] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const [hidden, setHidden] = useState(false);
-  const [hiddenSearch, setHiddenSearch] = useState(true);
+  const [hiddenSearch, setHiddenSearch] = useState(false);
   const timerRef = useRef(null); // Referencia para el temporizador
 
   const { cartItems, showCart, setShowCart } = useContext(CartContext);
@@ -29,10 +29,6 @@ function Header({ anuncioOn }) {
 
   const handleClick = () => {
     setClicked(!clicked);
-  };
-
-  const handleSearch = () => {
-    setHiddenSearch(!hiddenSearch);
   };
 
   const handleMouseEnter = () => {
@@ -56,6 +52,7 @@ function Header({ anuncioOn }) {
     const previous = scrollY.getPrevious();
     if (latest > previous && latest > 150) {
       setHidden(true);
+      setHiddenSearch(false);
     } else {
       setHidden(false);
     }
@@ -192,7 +189,7 @@ function Header({ anuncioOn }) {
             <button
               className='search-mobile'
               onClick={() => {
-                handleSearch();
+                setHiddenSearch(!hiddenSearch);
                 setClicked(false);
                 setShowCart(false);
               }}
@@ -236,7 +233,7 @@ function Header({ anuncioOn }) {
                     <li className='menu-icon'>
                       <Link
                         onClick={() => {
-                          handleSearch();
+                          setHiddenSearch(!hiddenSearch);
                           setClicked(false);
                           setShowCart(false);
                         }}
@@ -269,9 +266,9 @@ function Header({ anuncioOn }) {
             </div>
           </div>
 
-          {/*<motion.div
+          <motion.div
             variants={{ visibleSearch: { y: 0 }, hiddenSearch: { y: '-150%' } }}
-            animate={hiddenSearch ? 'hiddenSearch' : 'visibleSearch'}
+            animate={hiddenSearch ? 'visibleSearch' : 'hiddenSearch'}
             transition={{ duration: 0.35, ease: 'easeInOut' }}
             className='header-search-container'
           >
@@ -280,7 +277,8 @@ function Header({ anuncioOn }) {
               placeholder='Buscar...'
             ></input>
             <i className='bi bi-search' />
-          </motion.div>*/}
+          </motion.div>
+
           {anuncioOn ? <AnuncioBarra /> : null}
         </motion.nav>
 

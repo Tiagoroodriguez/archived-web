@@ -257,7 +257,9 @@
   padding: 10px 50px;
   background: var(--bg-color);
   z-index: 1;
-  position: sticky;
+  position: absolute;
+  top: 50px;
+  width: 100%;
 }
 
 .header-search-container input {
