@@ -8,15 +8,31 @@
 }
 
 .contacto-texto-container {
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center;
-    text-transform: uppercase;
     display: flex;
+    flex-direction: column;
     align-items: center;
     color: var(--text-color);
     padding: 20px;
+    gap: 10px;
 }
+
+.contacto-texto-container h1 {
+    color: var(--text-color);
+    display: flex;
+    gap: 5px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.contacto-texto-container p {
+    color: var(--text-color);
+    display: flex;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 60%;
+}
+
 
 .datos-container {
     display: flex;
