@@ -34,7 +34,14 @@ export function Contacto() {
         className='contacto'
       >
         <div className='contacto-texto-container'>
-          <p>Contactate con nosotros</p>
+          <h1>
+            <i className='bi bi-envelope' />
+            Contáctanos
+          </h1>
+          <p>
+            Déjanos tu mensaje y nos pondremos en contacto contigo a la
+            brevedad.
+          </p>
         </div>
 
         <div className='datos-container'>
