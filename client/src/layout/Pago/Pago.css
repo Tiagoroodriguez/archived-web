@@ -88,7 +88,7 @@
 @media (max-width: 768px) {
     .pago-section{
         width: 100%;
-        padding-inline: 20px;
+        padding-inline: 10px;
     }
 
     .pago-table-container, .form-pago{
