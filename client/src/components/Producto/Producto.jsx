@@ -27,11 +27,8 @@ export function Producto({ producto }) {
   };
 
   const handleAddToCart = (talle) => {
-    setSelectedProduct(producto);
-    if (selectedProduct && talle) {
-      addToCart(selectedProduct, talle);
-      setOverlayTalles(false);
-    }
+    addToCart(producto, talle);
+    setOverlayTalles(false);
   };
 
   useEffect(() => {

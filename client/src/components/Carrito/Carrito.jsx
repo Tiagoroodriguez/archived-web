@@ -52,9 +52,15 @@ export default function Carrito() {
               </div>
               <div className='info-producto'>
                 <p className='info-producto-nombre'>{`${item.categoria} ${item.nombre}`}</p>
-                <p className='info-producto-precio'>
-                  {formatPrice(item.precio)}
-                </p>
+                {item.discount > 0 ? (
+                  <p className='info-producto-precio'>
+                    {formatPrice(item.precio_con_descuento)}
+                  </p>
+                ) : (
+                  <p className='info-producto-precio'>
+                    {formatPrice(item.precio)}
+                  </p>
+                )}
                 <p className='info-producto-talle'>{item.talle}</p>
                 <div className='botones-producto'>
                   <button

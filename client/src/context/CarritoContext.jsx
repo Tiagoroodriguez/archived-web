@@ -14,7 +14,6 @@ export const CartProvider = ({ children }) => {
       : []
   );
 
-  // Utilizamos este estado para manejar cuando el carrito fue modificado por última vez
   const [lastUpdated, setLastUpdated] = useState(
     localStorage.getItem('cartTime')
       ? parseInt(localStorage.getItem('cartTime'), 10)
@@ -26,7 +25,6 @@ export const CartProvider = ({ children }) => {
       const now = new Date().getTime();
       const time = 5 * 60 * 60 * 1000;
 
-      // Verificar si el carrito tiene elementos antes de ejecutar la limpieza
       if (cartItems.length > 0 && lastUpdated && now - lastUpdated > time) {
         clearCart();
         localStorage.removeItem('cartItems');
@@ -34,7 +32,7 @@ export const CartProvider = ({ children }) => {
       }
     }, 1000);
 
-    return () => clearInterval(interval); // Limpiar el intervalo cuando el componente se desmonta
+    return () => clearInterval(interval);
   }, [cartItems, lastUpdated]);
 
   useEffect(() => {
@@ -42,24 +40,28 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('cartTime', lastUpdated ? lastUpdated.toString() : '');
   }, [cartItems, lastUpdated]);
 
-  const { updateProductStock } = useProduct(); // Use the updateProductStock function from ProductContext
+  const { updateProductStock } = useProduct();
 
   const addToCart = async (item, talle) => {
-    const itemWithSize = { ...item, talle };
-    const itemKey = `${item._id}-${talle}`; // Clave única combinando ID y talle
+    // Generar una clave única basada en el ID del producto y el talle seleccionado
+    const itemKey = `${item._id}-${talle}`;
 
     // Verificar si hay stock del talle seleccionado
     const stockAvailable = checkStock(item, talle);
 
     if (!stockAvailable) {
-      // Si no hay stock, mostrar un toast de error
       toast.error('No hay stock disponible de este talle.');
       return;
     }
 
+    // Determinar el precio aplicable (precio normal o con descuento)
+    const precioAplicable = item.precio_con_descuento || item.precio;
+
+    // Buscar si el ítem ya está en el carrito usando la clave única
     const isItemInCart = cartItems.find((cartItem) => cartItem.key === itemKey);
 
     if (isItemInCart) {
+      // Si el ítem ya está en el carrito, aumentar la cantidad
       setCartItems(
         cartItems.map((cartItem) =>
           cartItem.key === itemKey
@@ -68,13 +70,17 @@ export const CartProvider = ({ children }) => {
         )
       );
     } else {
+      // Si el ítem no está en el carrito, agregarlo con la clave única y la cantidad inicial
       setCartItems([
         ...cartItems,
-        { ...itemWithSize, quantity: 1, key: itemKey },
+        { ...item, precio: precioAplicable, quantity: 1, talle, key: itemKey },
       ]);
     }
-    // Restar del stock
+
+    // Actualizar el stock del producto
     await updateProductStock(item._id, talle, 1);
+
+    // Actualizar la última vez que se modificó el carrito
     setLastUpdated(new Date().getTime());
     toast.success('Producto agregado al carrito');
   };
@@ -150,10 +156,10 @@ export const CartProvider = ({ children }) => {
   };
 
   const getCartTotal = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.precio * item.quantity,
-      0
-    ); // calculate the total price of the items in the cart
+    return cartItems.reduce((total, item) => {
+      const precioAplicable = item.precio_con_descuento || item.precio;
+      return total + precioAplicable * item.quantity;
+    }, 0); // calcular el precio total de los elementos en el carrito
   };
 
   const getCartItems = () => {
