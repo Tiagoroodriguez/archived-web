@@ -65,7 +65,7 @@ function App() {
                       path='/'
                       element={
                         <Layout>
-                          <Header anuncio />
+                          <Header anuncioOn />
                           <Inicio />
                           <Footer />
                         </Layout>
@@ -309,7 +309,7 @@ function App() {
       </ProductProvider>
       <Toaster
         richColors
-        position='top-left'
+        position='bottom-left'
         expand={false}
       />
     </AuthProvider>
