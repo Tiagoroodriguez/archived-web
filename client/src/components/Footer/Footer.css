@@ -205,13 +205,17 @@ footer {
     align-items: center;
   }
 
-  .desktop-footer-menu{
+  .footer-menu{
     display: none;
   }
 
   .mobile-footer-menu {
     display: block;
     width: 100%;
+  }
+
+  .mobile-footer-menu button {
+    font-weight: 700;
   }
 
   .footer-acordeon {
