@@ -132,23 +132,21 @@ export function Footer() {
               <i className='bi bi-youtube' />
             </div>
           </div>
-          <div className='desktop-footer-menu'>
-            <div className='footer-menu'>
-              <span>BRAND</span>
-              <Link to='/tienda'>Store</Link>
-              <Link to='/'>About us</Link>
-            </div>
-            <div className='footer-menu'>
-              <span>BORING STUFF</span>
-              <Link to='/privacy-policy'>Politicas de privacidad</Link>
-              <Link to='/terms-of-service'>Terminos y condiciones</Link>
-            </div>
+          <div className='footer-menu'>
+            <span>BRAND</span>
+            <Link to='/tienda'>Store</Link>
+            <Link to='/'>About us</Link>
+          </div>
+          <div className='footer-menu'>
+            <span>BORING STUFF</span>
+            <Link to='/privacy-policy'>Politicas de privacidad</Link>
+            <Link to='/terms-of-service'>Terminos y condiciones</Link>
+          </div>
 
-            <div className='footer-menu'>
-              <span>SUPPORT</span>
-              <Link to='/faq'>Faq's</Link>
-              <Link to='/contacto'>Contacto</Link>
-            </div>
+          <div className='footer-menu'>
+            <span>SUPPORT</span>
+            <Link to='/faq'>Faq's</Link>
+            <Link to='/contacto'>Contacto</Link>
           </div>
           <div className='mobile-footer-menu'>
             <Acordeon
