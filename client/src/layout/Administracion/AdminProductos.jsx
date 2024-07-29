@@ -1,28 +1,65 @@
 import { useEffect, useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
-import { useNavigate } from 'react-router-dom';
-import Input from '../../components/Input/Input';
+//import { useNavigate } from 'react-router-dom';
+//import Input from '../../components/Input/Input';
 import Select from '../../components/Select/Select';
+import { Boton } from '../../components/Boton/Boton';
+import Input from '../../components/Input/Input';
 
 export default function AdminProductos() {
   const { user } = useAuth();
 
-  const [categoria, setCategoria] = useState('');
+  const [producto, setProducto] = useState({
+    nombre: '',
+    categoria: '',
+    precio: '',
+    descripcion: '',
+    imagenes: ['', '', '', ''],
+    talles: {
+      S: 0,
+      M: 0,
+      L: 0,
+      XL: 0,
+      XXL: 0,
+    },
+  });
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProducto((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleTalleChange = (e) => {
+    const { name, value } = e.target;
+    setProducto((prev) => ({
+      ...prev,
+      talles: {
+        ...prev.talles,
+        [name]: Number(value),
+      },
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Aquí iría la lógica para enviar el formulario o manejar los datos
+    console.log('Producto añadido:', producto);
+  };
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
-      const fetchPedidos = async () => {
-        if (user.rol != 'admin') {
-          navigate('/');
-        }
-      };
-      fetchPedidos();
+      if (user.rol != 'admin') {
+        navigate('/');
+      }
     }
   }, [user]);
+  const [categoria, setCategoria] = useState('');
 
   const handleEstadoChange = async (nuevaCategoria) => {
     setCategoria(nuevaCategoria);
@@ -38,114 +75,81 @@ export default function AdminProductos() {
   if (!user) {
     return <div className='pedido-load'>Cargando...</div>;
   }
+
   return (
-    <main className='admin-productos'>
-      <h1>Administracion de productos</h1>
-      <form className='admin-add-producto'>
-        <h2>Agregar producto</h2>
-        <div className='producto-info-container'>
-          {' '}
-          <div className='producto-input-container'>
-            <h3>Descripcion</h3>
-            <Input
-              label='Nombre'
-              type='text'
-            />
-            <Input
-              label='Precio'
-              type='number'
-            />
-            <Input
-              label='Descripcion'
-              type='text'
-            />
-            <Select
-              labelText='Categoria'
-              value={categoria}
-              onChange={handleEstadoChange}
-              texto='Selecciona una categoria'
-              data={categorias}
-            />
+    <>
+      <main className='admin-productos'>
+        <section className='detalle-container-admin'>
+          <div className='img-container-admin'>
+            {producto.imagenes.map((index) => (
+              <div
+                key={index}
+                className='img-file'
+              >
+                <input type='file' />
+              </div>
+            ))}
           </div>
-          <div className='producto-input-container'>
-            <h3>Stock</h3>
-            <Input
-              label='Cantidad S'
-              type='text'
+
+          <form
+            className='informacion-container-admin'
+            onSubmit={handleSubmit}
+          >
+            <div className='informacion-dp'>
+              <Input
+                label='Nombre del producto'
+                type='text'
+                value={producto.nombre}
+                onChange={handleChange}
+              />
+
+              <Select
+                labelText='Categoría'
+                onChange={handleEstadoChange}
+                value={categoria}
+                data={categorias}
+              />
+
+              <Input
+                label='Precio'
+                type='number'
+                value={producto.precio}
+                onChange={handleChange}
+              />
+
+              <textarea
+                name='descripcion'
+                placeholder='Descripción del producto'
+                value={producto.descripcion}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className='talles-admin'>
+              <span className='talle-seleccionado'>Stock:</span>
+              <div className='talles-container-admin'>
+                {['S', 'M', 'L', 'XL', 'XXL'].map((talle) => (
+                  <Input
+                    type='number'
+                    label={talle}
+                    value={producto.talles[talle]}
+                    onChange={handleTalleChange}
+                    min='0'
+                    required
+                    key={talle}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <Boton
+              type='submit'
+              textBoton='Agregar Producto'
             />
-            <Input
-              label='Cantidad M'
-              type='text'
-            />
-            <Input
-              label='Cantidad L'
-              type='text'
-            />
-            <Input
-              label='Cantidad XL'
-              type='text'
-            />
-          </div>
-        </div>
-        <div className='producto-talle-container'>
-          <div className='producto-talle'>
-            <h3>Medidas talle S</h3>
-            <Input
-              label='Ancho'
-              type='number'
-            />
-            <Input
-              label='Largo'
-              type='number'
-            />
-          </div>
-          <div className='producto-talle'>
-            <h3>Medidas talle M</h3>
-            <Input
-              label='Ancho'
-              type='number'
-            />
-            <Input
-              label='Largo'
-              type='number'
-            />
-          </div>
-          <div className='producto-talle'>
-            <h3>Medidas talle L</h3>
-            <Input
-              label='Ancho'
-              type='number'
-            />
-            <Input
-              label='Largo'
-              type='number'
-            />
-          </div>
-          <div className='producto-talle'>
-            <h3>Medidas talle XL</h3>
-            <Input
-              label='Ancho'
-              type='number'
-            />
-            <Input
-              label='Largo'
-              type='number'
-            />
-          </div>
-        </div>
-        <div className='admin-producto-imagen'>
-          <label>Imagen de preview 1:</label>
-          <input
-            type='file'
-            accept='image/webp, image/jpg'
-          />
-          <label>Imagen de preview 2:</label>
-          <input
-            type='file'
-            accept='image/webp, image/jpg'
-          />
-        </div>
-      </form>
-    </main>
+          </form>
+        </section>
+      </main>
+    </>
   );
 }
