@@ -1,9 +1,21 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CartContext } from '../../context/CarritoContext';
 import { formatPrice } from '../../utils/formatePrice';
+import Acordeon from '../Acordeon/Arcodeon';
 
 export default function CartSection() {
   const { cartItems, getCartTotal } = useContext(CartContext);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const data = [
+    {
+      title: '¿Tenes un cupon de descuento?',
+      content: (
+        <div className='cupo-container'>
+          <input placeholder='Ingrese tu codigo'></input>
+        </div>
+      ),
+    },
+  ];
 
   return (
     <section className='carrito-section'>
@@ -36,6 +48,13 @@ export default function CartSection() {
             </div>
           </div>
         ))}
+      </div>
+      <div className='cupo-descuento-container'>
+        <Acordeon
+          data={data}
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+        />
       </div>
       <div className='descripcion-final-checkout'>
         <div className='line-costo' />
