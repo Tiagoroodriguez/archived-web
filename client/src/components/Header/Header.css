@@ -260,6 +260,7 @@
   position: absolute;
   top: 50px;
   width: 100%;
+  border-bottom: 1px solid var(--text-color);
 }
 
 .header-search-container input {
@@ -275,8 +276,44 @@
 .header-search-container i {
   position: absolute;
   left: 50px;
-  bottom: 12px;
+  top: 15px;
 }
+
+/*------------------------------------------------------------------------------------------*/
+
+.search-result-container{
+  padding: 5px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.search-result-container ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.search-message {
+  font-size: 12px;
+  color: var(--text-color);
+  padding: 5px 25px;
+  text-transform: uppercase;
+}
+
+.search-result-container ul li a{ 
+  color: var(--text-color);
+}
+
+.search-result-container ul li a:hover{ 
+  text-decoration: underline;
+}
+
+
+
 /*------------------------------------------------------------------------------------------*/
 
 @media screen and (max-width: 769px) {
