@@ -4,7 +4,7 @@ import Select from '../../components/Select/Select';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import Invoice from '../../components/FacturaPDF/Invoice'; // Asegúrate de importar tu componente Invoice
 import { usePedido } from '../../context/PedidosContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function PedidoFormAdmin({ pedido, id, estado, setEstado }) {
   const { updatePedido, getPedido } = usePedido();
@@ -47,7 +47,14 @@ export default function PedidoFormAdmin({ pedido, id, estado, setEstado }) {
 
   return (
     <div className='pedido-form-container'>
-      <h2 className='pedido-form-header'>{`Pedido número: ${pedido.numero_pedido}`}</h2>
+      <header>
+        <Link to='/administration/orders'>
+          <i className='bi bi-chevron-left' />
+          Volver
+        </Link>
+        <h2 className='pedido-form-header'>{`Pedido número: ${pedido.numero_pedido}`}</h2>
+      </header>
+
       {pedido ? (
         <div>
           <div className='pedido-section'>
