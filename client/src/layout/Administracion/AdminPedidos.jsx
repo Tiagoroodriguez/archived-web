@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Sidebar from '../../components/Sidebar/Sidebar';
+
 import { useAuth } from '../../context/AuthContext';
 import { usePedido } from '../../context/PedidosContext';
 import { Link, useNavigate } from 'react-router-dom';
@@ -23,7 +23,7 @@ export default function AdminPedidos() {
   );
 
   useEffect(() => {
-    if (initialLoad && user) {
+    if (!initialLoad && user) {
       const fetchPedidos = async () => {
         if (user.rol === 'admin') {
           await getPedidos();
@@ -50,7 +50,7 @@ export default function AdminPedidos() {
             <div className='pedidos-container'>
               {pedidosPendientes.map((pedido) => (
                 <Link
-                  to={`/pedido/${pedido._id}`}
+                  to={`/administration/order/${pedido._id}`}
                   key={pedido._id}
                 >
                   <OrderCard pedido={pedido} />
@@ -63,7 +63,7 @@ export default function AdminPedidos() {
             <div className='pedidos-container'>
               {pedidosEnviados.map((pedido) => (
                 <Link
-                  to={`/pedido/${pedido._id}`}
+                  to={`/administration/order/${pedido._id}`}
                   key={pedido._id}
                 >
                   <OrderCard pedido={pedido} />
@@ -76,7 +76,7 @@ export default function AdminPedidos() {
             <div className='pedidos-container'>
               {pedidosEntregados.map((pedido) => (
                 <Link
-                  to={`/pedido/${pedido._id}`}
+                  to={`/administration/order/${pedido._id}`}
                   key={pedido._id}
                 >
                   <OrderCard pedido={pedido} />

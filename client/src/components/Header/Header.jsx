@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from 'react';
+import { useState, useContext, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LogoTexto } from '../LogoTexto/LogoTexto';
 import { useAuth } from '../../context/AuthContext';
@@ -8,6 +8,7 @@ import { CartContext } from '../../context/CarritoContext';
 import DropDown from '../DropDown/DropDown';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import AnuncioBarra from '../AnuncioBarra/AnuncioBarra';
+import { useSearch } from '../../context/SearchContext';
 
 function Header({ anuncioOn }) {
   const { isAuthenticated, user } = useAuth();
@@ -73,6 +74,18 @@ function Header({ anuncioOn }) {
       ),
     },
   ];
+
+  const [query, setQuery] = useState('');
+  const { searchPages, searchProducts, loading, error, debouncedSearch } =
+    useSearch();
+
+  useEffect(() => {
+    if (query.trim() === '') {
+      debouncedSearch('');
+    } else {
+      debouncedSearch(query);
+    }
+  }, [query, debouncedSearch]);
 
   return (
     <>
@@ -201,10 +214,10 @@ function Header({ anuncioOn }) {
               <ul className='nav-bar cuenta'>
                 {isAuthenticated ? (
                   <>
-                    <li>
+                    <li className='menu-icon'>
                       <Link
-                        to='/contacto'
                         onClick={() => {
+                          setHiddenSearch(!hiddenSearch);
                           setClicked(false);
                           setShowCart(false);
                         }}
@@ -275,8 +288,55 @@ function Header({ anuncioOn }) {
             <input
               type='text'
               placeholder='Buscar...'
-            ></input>
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+
             <i className='bi bi-search' />
+
+            {loading && <p className='search-message'>Loading...</p>}
+            {error && (
+              <p className='search-message'>No se encontraron resultados</p>
+            )}
+
+            {searchPages.length > 0 || searchProducts.length > 0 ? (
+              <div className='search-result-container'>
+                {searchPages ? (
+                  <ul>
+                    {searchPages.map((page) => (
+                      <li key={page.url}>
+                        <Link
+                          to={page.url}
+                          onClick={() => {
+                            setQuery('');
+                            setHiddenSearch(false);
+                          }}
+                        >
+                          {page.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+                {searchProducts ? (
+                  <ul>
+                    {searchProducts.map((product) => (
+                      <li key={product._id}>
+                        <Link
+                          to={`/detalle-producto/${product._id}`}
+                          onClick={() => {
+                            setQuery('');
+                            setHiddenSearch(false);
+                          }}
+                        >
+                          {product.nombre}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+            ) : null}
           </motion.div>
 
           {anuncioOn ? <AnuncioBarra /> : null}

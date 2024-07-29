@@ -8,6 +8,7 @@ import productRoutes from './routes/products.route.js';
 import mercadopagoRoutes from './routes/mercadopago.route.js';
 import pedidosRoutes from './routes/pedidos.route.js';
 import discountCouponRoutes from './routes/discountCoupon.route.js';
+import searchRoutes from './routes/search.router.js';
 
 const app = express();
 
@@ -21,13 +22,11 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin
-      // (like mobile apps or curl requests)
+      // Permitir solicitudes sin origen (como aplicaciones móviles o curl)
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
         const msg =
-          'The CORS policy for this site does not ' +
-          'allow access from the specified Origin.';
+          'The CORS policy for this site does not allow access from the specified Origin.';
         return callback(new Error(msg), false);
       }
       return callback(null, true);
@@ -45,5 +44,6 @@ app.use('/api', productRoutes);
 app.use('/api', mercadopagoRoutes);
 app.use('/api', pedidosRoutes);
 app.use('/api', discountCouponRoutes);
+app.use('/api', searchRoutes);
 
 export default app;

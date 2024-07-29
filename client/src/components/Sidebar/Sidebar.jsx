@@ -7,7 +7,7 @@ export default function Sidebar({ pedidosNav, productsNav, analiticNav }) {
   const { getPedidos, pedidos } = usePedido();
   const [initialLoad, setInitialLoad] = useState(true);
   useEffect(() => {
-    if (initialLoad) {
+    if (!initialLoad) {
       const fetchPedidos = async () => {
         await getPedidos();
         setInitialLoad(false);

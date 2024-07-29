@@ -1,7 +1,7 @@
 .wrapper {
     width: 100%;
     background:var(--text-color);
-    max-width: 1536px;
+    
     margin-inline: auto;
     position: relative;
     height: 20px;
@@ -66,4 +66,11 @@
   
   .item8 {
     animation-delay: calc(30s / 8 * (8 - 8) * -1);
+  }
+
+  @media screen and (max-width: 768px) {
+    .wrapper {
+      max-width: 1536px;
+    }
+    
   }
