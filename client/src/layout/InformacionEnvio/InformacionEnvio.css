@@ -169,6 +169,27 @@
     padding-inline: 20px;
 }
 
+.cupo-descuento-container{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+.cupo-descuento-container i {
+    color: var(--bg-color);
+}
+
+.cupo-container{
+    background: var(--primary-color);
+}
+
+.cupo-container input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 10px;
+}
 /*---------------------------------------------------------------------------------------------*/
 
 .line-costo {
@@ -186,6 +207,7 @@
     justify-content: center;
     align-items: center;
 }
+
 
 /*---------------------------------------------------------------------------------------------*/
 
