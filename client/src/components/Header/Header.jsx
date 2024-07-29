@@ -329,7 +329,7 @@ function Header({ anuncioOn }) {
                             setHiddenSearch(false);
                           }}
                         >
-                          {product.nombre}
+                          {`${product.categoria} ${product.nombre}`}
                         </Link>
                       </li>
                     ))}
