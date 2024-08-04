@@ -158,7 +158,10 @@ export function Footer() {
           <div className='footer-mail'>
             <h3>Unite a la familia</h3>
             <p>Obten un 10% de descuento en tu primera compra</p>
-            <input placeholder='Correo electronico' />
+            <form>
+              <input placeholder='Correo electronico' />
+              <button>Enviar</button>
+            </form>
           </div>
         </div>
         <div className='final'>ARCHIVED 222</div>
