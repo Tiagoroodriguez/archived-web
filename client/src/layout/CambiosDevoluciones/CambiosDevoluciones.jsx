@@ -1,8 +1,21 @@
+import { Helmet } from 'react-helmet';
 import './CambiosDevoluciones.css';
 
 export default function CambiosDevoluciones() {
   return (
     <main className='devoluciones-container'>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Politicas de devolucion | Archived</title>
+        <meta
+          name='description'
+          content='Pagina de Politicas de devolucion'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/returns-exchanges'
+        />
+      </Helmet>
       <h1>Políticas de devolucion</h1>
       <p>
         Si no estas conforme con nuestro producto, podes solicitar un reitegro o

@@ -9,6 +9,7 @@ import './DetalleProducto.css';
 import Acordeon from '../../components/Acordeon/Arcodeon';
 import { formatPrice } from '../../utils/formatePrice';
 import Recomendaciones from '../../components/Recomendaciones/Recomendaciones';
+import { Helmet } from 'react-helmet';
 
 export function DetalleProducto() {
   const [producto, setProducto] = useState(null);
@@ -108,6 +109,20 @@ export function DetalleProducto() {
     <main>
       {producto ? (
         <>
+          <Helmet>
+            <meta charSet='utf-8' />
+            <title>
+              {producto.categoria} {producto.nombre} | Archived
+            </title>
+            <meta
+              name='description'
+              content={`Pagina de ${producto.categoria} ${producto.nombre}`}
+            />
+            <link
+              rel='canonical'
+              href={`http://archived.com.ar/detalle-producto ${producto._id}`}
+            />
+          </Helmet>
           <section className='detalle-container'>
             <div className='img-container'>
               {Array.from({ length: 4 }).map((_, index) => (
