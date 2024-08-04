@@ -18,7 +18,7 @@ export const SearchProvider = ({ children }) => {
     if (!query) {
       setSearchPages([]); // Limpiar los resultados si la query está vacía
       setProductsSearch([]);
-      console.log('query vacía');
+
       return;
     }
 
