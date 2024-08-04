@@ -1,8 +1,21 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 export default function Terminos() {
   return (
     <main className='politicas-container'>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Terminos y condiciones | Archived</title>
+        <meta
+          name='description'
+          content='Pagina de terminos y condiciones'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/terms-of-service'
+        />
+      </Helmet>
       <h1>Terminos y condiciones</h1>
       <section>
         <p>

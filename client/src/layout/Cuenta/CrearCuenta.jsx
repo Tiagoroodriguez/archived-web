@@ -8,6 +8,7 @@ import { LogoTexto } from '../../components/LogoTexto/LogoTexto';
 import Input from '../../components/Input/Input';
 
 import './CrearCuenta.css';
+import { Helmet } from 'react-helmet';
 
 export function CrearCuenta() {
   const {
@@ -30,6 +31,18 @@ export function CrearCuenta() {
 
   return (
     <div className='cuenta-container'>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Sing in | Archived</title>
+        <meta
+          name='description'
+          content='Pagina para crear una cuenta'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/register'
+        />
+      </Helmet>
       <aside>
         <div className='aside-img-container'>
           <img src='/images/cuenta.webp' />

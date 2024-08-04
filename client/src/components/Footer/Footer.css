@@ -259,12 +259,33 @@ footer {
   color: var(--text-color); 
 }
 
+.footer-mail form {
+  width: 100%;
+  display: flex;
+}
+.footer-mail button {
+  background: var(--primary-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 5px;
+  font-size: 11px;
+  cursor: pointer;
+  outline: none;
+  width: 30%;
+  transition: all .3s ease;
+}
+
+.footer-mail button:hover {
+  background: var(--secondary-color);
+}
+
 .footer-mail input {
   background: none;
   border: 1px solid var(--text-color);
   padding: 5px;
   font-size: 11px;
   outline: none;
+  width: 70%;
 }
 
 

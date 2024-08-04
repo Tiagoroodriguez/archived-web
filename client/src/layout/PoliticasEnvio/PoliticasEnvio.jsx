@@ -1,6 +1,20 @@
+import { Helmet } from 'react-helmet';
+
 export default function PoliticasEnvio() {
   return (
     <main className='devoluciones-container'>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Politicas de envio | Archived</title>
+        <meta
+          name='description'
+          content='Pagina de politicas de envio'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/shipping-policy'
+        />
+      </Helmet>
       <h1>Politicas de envio</h1>
       <p>
         Nada más realizar la compra recibirás un email de confirmación y nuestro

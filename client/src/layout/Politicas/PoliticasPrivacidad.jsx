@@ -1,7 +1,20 @@
+import { Helmet } from 'react-helmet';
 import './PoliticasPrivacidad.css';
 export default function PoliticasPrivacidad() {
   return (
     <main className='politicas-container'>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Politicas de privacidad | Archived</title>
+        <meta
+          name='description'
+          content='Pagina de politicas de privacidad'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/privacy-policy'
+        />
+      </Helmet>
       <h1>Políticas de privacidad</h1>
       <p>
         Archived (en adelante, “Archived” o “Nosotros”) se encuentra

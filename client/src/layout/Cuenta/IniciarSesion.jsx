@@ -8,6 +8,7 @@ import { Boton } from '../../components/Boton/Boton';
 import Input from '../../components/Input/Input';
 
 import './IniciarSesion.css';
+import { Helmet } from 'react-helmet';
 
 export function IniciarSesion() {
   const {
@@ -30,6 +31,18 @@ export function IniciarSesion() {
 
   return (
     <div className='cuenta-container'>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Login | Archived</title>
+        <meta
+          name='description'
+          content='Pagina de inicio de sesion'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/login'
+        />
+      </Helmet>
       <main>
         <LogoTexto />
         <form

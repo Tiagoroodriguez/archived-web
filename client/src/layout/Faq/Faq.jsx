@@ -3,6 +3,7 @@ import Acordeon from '../../components/Acordeon/Arcodeon';
 import { Contacto } from '../Contacto/Contacto';
 import './Faq.css';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 export default function Faq() {
   const [activeIndexEnvio, setActiveIndexEnvio] = useState(null);
@@ -181,6 +182,18 @@ export default function Faq() {
 
   return (
     <main className='faq-container'>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Faq's | Archived</title>
+        <meta
+          name='description'
+          content='Pagina de preguntas frecuentes'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/faq'
+        />
+      </Helmet>
       <h1>FAQ's</h1>
       <section className='faq-section'>
         <article className='faq-article'>

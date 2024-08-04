@@ -6,6 +6,7 @@ import { Boton } from '../../components/Boton/Boton';
 import { useFilters } from '../../hooks/useFilter';
 import { useLocation } from 'react-router-dom';
 import { ProductoEsqueleto } from '../../components/ProductoEsqueleto/ProductoEsqueleto';
+import { Helmet } from 'react-helmet';
 
 export function Tienda() {
   const { getProducts, products } = useProduct();
@@ -46,6 +47,18 @@ export function Tienda() {
 
   return (
     <main>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Tienda | Archived</title>
+        <meta
+          name='description'
+          content='Tienda oficial de Archived'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/tienda'
+        />
+      </Helmet>
       <section className='tienda'>
         <nav className='tienda-filtros'>
           <Boton

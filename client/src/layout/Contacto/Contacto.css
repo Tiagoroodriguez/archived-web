@@ -63,11 +63,17 @@
 
 @media (max-width: 768px) {
     .datos-container {
-        width: 80%;
+        width: 100%;
+        padding: 10px;
     }
 
     .contacto {
         justify-content: flex-start;
         margin-top: 60px;
+    }
+
+    .contacto-texto-container {
+        padding-inline: 10px;
+        text-align: center;
     }
 }

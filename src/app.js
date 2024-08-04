@@ -9,6 +9,7 @@ import mercadopagoRoutes from './routes/mercadopago.route.js';
 import pedidosRoutes from './routes/pedidos.route.js';
 import discountCouponRoutes from './routes/discountCoupon.route.js';
 import searchRoutes from './routes/search.router.js';
+import subscriberRoutes from './routes/subscriber.route.js';
 
 const app = express();
 
@@ -45,5 +46,6 @@ app.use('/api', mercadopagoRoutes);
 app.use('/api', pedidosRoutes);
 app.use('/api', discountCouponRoutes);
 app.use('/api', searchRoutes);
+app.use('/api', subscriberRoutes);
 
 export default app;

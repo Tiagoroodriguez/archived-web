@@ -4,6 +4,7 @@ import Input from '../../components/Input/Input';
 import { usePedido } from '../../context/PedidosContext';
 import { toast } from 'sonner';
 import './Contacto.css';
+import { Helmet } from 'react-helmet';
 
 export function Contacto() {
   const { sendEmail } = usePedido();
