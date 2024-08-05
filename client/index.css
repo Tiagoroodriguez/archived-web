@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   font-family: Helvetica, "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+  
 }
 :root {
   /*#fff7f0
@@ -16,3 +17,7 @@
   --secondary-color: #68767F;
   
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
