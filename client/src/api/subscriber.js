@@ -5,3 +5,5 @@ export const checkSubscriptionRequest = (email) =>
 
 export const subscribeRequest = ({ email, nombre }) =>
   axios.post('/subscribe', { email, nombre });
+
+export const getSuscriptoresRequest = () => axios.get('/subscribers');

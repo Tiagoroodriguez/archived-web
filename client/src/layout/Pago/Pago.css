@@ -1,5 +1,6 @@
 .pago-table-container {
     padding: 25px 50px;
+    border-collapse: initial;
 }
 
 .pago-table-body {
@@ -77,6 +78,7 @@
 .informacion-pago h1 {
     color: var(--text-color);
     font-size: 15px;
+    font-weight: 700;
 }
 
 .pago-mobile-acordeon {

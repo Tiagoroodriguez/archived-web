@@ -11,11 +11,25 @@
   border: none;
   border-bottom: 1px solid var(--text-color);
   transition: all .3s ease;
+  padding: 0;
+  font-size: 14px;
+}
+
+.input:focus{
+  border-bottom: 1px solid var(--text-color) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.input select:focus{
+  border-bottom: 1px solid var(--text-color) !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .input-container input:focus {
   color: var(--text-color);
-  outline: none;
+
 }
 
 .input-container input:-webkit-autofill,

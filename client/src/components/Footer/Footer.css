@@ -139,7 +139,8 @@ footer {
 }
 
 .footer-menu span {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 12px;
 }
 
 .desktop-footer-menu {
@@ -250,6 +251,7 @@ footer {
 
 .footer-mail h3{
   font-size: 12px;
+  font-weight: 700;
   text-transform: uppercase;
   color: var(--text-color); 
 }
@@ -286,6 +288,10 @@ footer {
   font-size: 11px;
   outline: none;
   width: 70%;
+}
+
+.footer-mail input:focus{
+  box-shadow: none;
 }
 
 
