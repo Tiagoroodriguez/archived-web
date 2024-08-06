@@ -32,7 +32,7 @@
 .informacion-container, .informacion-container-esqueleto {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
     width: 30%;
     height: max-content;
     position: sticky;
@@ -49,7 +49,6 @@
     font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 10px;
 }
 
 .precio-producto {

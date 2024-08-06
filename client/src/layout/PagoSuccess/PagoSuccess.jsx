@@ -44,12 +44,21 @@ const PagoSuccess = () => {
         precio: item.unit_price,
         talle: item.description,
       }));
+
+      const pedidoTotal = orderItems.reduce(
+        (acc, item) => acc + item.unit_price * item.quantity,
+        0
+      );
+
+      console.log(formattedOrderItems);
       const completeOrder = {
         ...envioInfo,
         numero_pedido: merchantOrderId,
         productos: formattedOrderItems,
+        total: pedidoTotal,
         user: user ? user.id : undefined,
       };
+      console.log(completeOrder);
       setPedido(completeOrder);
       createPedido(completeOrder); // Crear el pedido cuando la información esté completa
       setPedidoCreated(true); // Marcar que el pedido ha sido creado

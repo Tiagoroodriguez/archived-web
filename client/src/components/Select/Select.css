@@ -11,10 +11,14 @@
     background: transparent;
     border: none;
     border-bottom: 1px solid var(--text-color);
+    padding: 0;
+    font-size: 14px;
 }
 
 .select-input:focus {
     outline: none;
+    box-shadow: none;
+    border-bottom: 1px solid var(--text-color);
 }
   
 .select-label {
