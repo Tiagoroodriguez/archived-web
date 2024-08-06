@@ -96,6 +96,7 @@ export const createPedido = async (req, res) => {
       codigo_postal_facturacion,
       productos,
       codigoCupon,
+      total,
     } = req.body;
 
     if (
@@ -110,6 +111,7 @@ export const createPedido = async (req, res) => {
       !email_facturacion ||
       !telefono_facturacion ||
       !productos ||
+      !total ||
       !Array.isArray(productos) ||
       productos.length === 0
     ) {
@@ -179,13 +181,13 @@ export const createPedido = async (req, res) => {
       savedDireccionEnvio = await direccionEnvio.save();
     }
 
-    const { productosConDescuento, total, totalConDescuento } =
-      await aplicarDescuentosAProductos(productos);
+    //const { productosConDescuento, total, totalConDescuento } =
+    //  await aplicarDescuentosAProductos(productos);
 
-    const totalConCupon = await aplicarCuponAPedido(
+    /*const totalConCupon = await aplicarCuponAPedido(
       totalConDescuento,
       codigoCupon
-    );
+    );*/
 
     const newPedido = new Pedido({
       numero_pedido,
@@ -195,10 +197,10 @@ export const createPedido = async (req, res) => {
       direccion_envio: savedDireccionEnvio
         ? savedDireccionEnvio._id
         : undefined,
-      productos: productosConDescuento,
-      cupon: codigoCupon,
-      total,
-      total_con_descuento: totalConCupon,
+      productos: productos,
+      cupon: codigoCupon ? codigoCupon : undefined,
+      total: total,
+      //total_con_descuento: totalConCupon,
       user: user ? user : undefined,
     });
 

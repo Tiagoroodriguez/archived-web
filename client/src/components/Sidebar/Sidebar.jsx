@@ -3,7 +3,12 @@ import { LogoTexto } from '../LogoTexto/LogoTexto';
 import { NavLink } from 'react-router-dom';
 import { usePedido } from '../../context/PedidosContext';
 
-export default function Sidebar({ pedidosNav, productsNav, analiticNav }) {
+export default function Sidebar({
+  inicioNav,
+  pedidosNav,
+  productsNav,
+  analiticNav,
+}) {
   const { getPedidos, pedidos } = usePedido();
   const [initialLoad, setInitialLoad] = useState(true);
   useEffect(() => {
@@ -22,9 +27,9 @@ export default function Sidebar({ pedidosNav, productsNav, analiticNav }) {
           <LogoTexto />
         </div>
         <ul>
-          <li>
+          <li className={inicioNav ? 'active-nav' : ''}>
             <i className='bi bi-house' />
-            <NavLink to='/'>Inicio</NavLink>
+            <NavLink to='/administration'>Inicio</NavLink>
           </li>
           <li className={pedidosNav ? 'active-nav' : ''}>
             <i className='bi bi-cart' />
