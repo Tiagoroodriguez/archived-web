@@ -21,7 +21,7 @@ export default function Sidebar({
     }
   }, [initialLoad, getPedidos]);
   return (
-    <asaide className='admin-menu'>
+    <aside className='admin-menu'>
       <nav>
         <div>
           <LogoTexto />
@@ -47,6 +47,6 @@ export default function Sidebar({
           </li>
         </ul>
       </nav>
-    </asaide>
+    </aside>
   );
 }
