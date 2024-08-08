@@ -13,6 +13,7 @@ export function Producto({ producto }) {
     setSelectedProduct,
     selectedProduct,
     addToCart,
+    setShowCart,
   } = useContext(CartContext);
 
   const [hover, setHover] = useState(false);
@@ -29,6 +30,7 @@ export function Producto({ producto }) {
   const handleAddToCart = (talle) => {
     addToCart(producto, talle);
     setOverlayTalles(false);
+    setShowCart(true);
   };
 
   useEffect(() => {

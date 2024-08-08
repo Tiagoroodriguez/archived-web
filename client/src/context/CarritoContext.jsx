@@ -8,6 +8,7 @@ export const CartProvider = ({ children }) => {
   const [overlayTalles, setOverlayTalles] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [coupon, setCoupon] = useState(null);
   const [cartItems, setCartItems] = useState(
     localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
@@ -155,13 +156,19 @@ export const CartProvider = ({ children }) => {
     setCartItems([]); // set the cart items to an empty array
   };
 
-  const getCartTotal = () => {
-    return cartItems.reduce((total, item) => {
+  const getCartTotal = (coupon) => {
+    const subtotal = cartItems.reduce((total, item) => {
       const precioAplicable = item.precio_con_descuento || item.precio;
       return total + precioAplicable * item.quantity;
-    }, 0); // calcular el precio total de los elementos en el carrito
-  };
+    }, 0);
 
+    if (coupon) {
+      const descuento = subtotal * (coupon.discount_percentage / 100);
+      return subtotal - descuento;
+    }
+
+    return subtotal; // retorna el total sin descuento si no hay cupón
+  };
   const getCartItems = () => {
     const cartItemsWithInfo = cartItems.map((item) => {
       return {
@@ -193,6 +200,8 @@ export const CartProvider = ({ children }) => {
         setSelectedProduct,
         showCart,
         setShowCart,
+        coupon,
+        setCoupon,
       }}
     >
       {children}
