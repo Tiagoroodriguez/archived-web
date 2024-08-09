@@ -91,11 +91,12 @@
 
 .table-footer h2 {
     font-size: 15px;
+    font-weight: 700;
 }
 
 .table-footer p {
     font-size: 12px;
-    padding-top: 10px;
+
 }
 
 .table-boton-container {

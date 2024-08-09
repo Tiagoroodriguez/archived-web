@@ -14,8 +14,6 @@ export default function CartSection() {
   };
 
   const handleRedeemCoupon = async () => {
-    console.log(couponCode);
-    console.log(`/coupon/${couponCode}`);
     try {
       const response = await getCouponRequest(couponCode);
       setCoupon(response.data);

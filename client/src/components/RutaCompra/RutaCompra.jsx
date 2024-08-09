@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-
+import { getCouponRequest } from '../../api/coupon';
 import { CartContext } from '../../context/CarritoContext';
 import Acordeon from '../../components/Acordeon/Arcodeon';
 
@@ -12,7 +12,8 @@ export default function RutaCompra({
   detalleCompra,
 }) {
   const [activeIndex, setActiveIndex] = useState(null);
-  const { cartItems, getCartTotal } = useContext(CartContext);
+  const { cartItems, getCartTotal, coupon, setCoupon } =
+    useContext(CartContext);
 
   const estilosCarrito = carrito ? 'focus' : '';
   const estilosInformacion = informacion ? 'focus' : '';
@@ -20,6 +21,24 @@ export default function RutaCompra({
 
   const iconoCarrito = informacion || pago ? 'bi bi-check-lg' : 'bi bi-cart4';
   const iconoInformacion = pago ? 'bi bi-check-lg' : 'bi bi-truck';
+
+  const [couponCode, setCouponCode] = useState('');
+  const [error, setError] = useState('');
+
+  const handleCouponChange = (e) => {
+    setCouponCode(e.target.value);
+  };
+
+  const handleRedeemCoupon = async () => {
+    try {
+      const response = await getCouponRequest(couponCode);
+      setCoupon(response.data);
+      setError('');
+      setCouponCode('');
+    } catch (error) {
+      setError('Cupón no encontrado');
+    }
+  };
 
   const data = [
     {
@@ -51,6 +70,28 @@ export default function RutaCompra({
             ))}
           </div>
           <div className='descripcion-final-checkout'>
+            <div className='cupo-descuento-container'>
+              <div>
+                <input
+                  placeholder={
+                    coupon
+                      ? `${coupon.code} - ${coupon.discount_percentage}% OFF`
+                      : 'Código de cupón'
+                  }
+                  value={couponCode}
+                  onChange={handleCouponChange}
+                  disabled={coupon ? true : false}
+                />
+                <button
+                  onClick={handleRedeemCoupon}
+                  disabled={coupon ? true : false}
+                >
+                  Canjear
+                </button>
+              </div>
+
+              {error && <p className='error-coupon'>{error}</p>}
+            </div>
             <div className='line-costo' />
             <div>
               <p>Subtotal</p>
