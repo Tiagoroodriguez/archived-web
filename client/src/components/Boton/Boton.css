@@ -19,12 +19,13 @@
   font-weight: 500;
 }
 
-.primario:focus {
+/*.primario:focus {
   background: var(--bg-color);
   border: 1px solid var(--primary-color);
   color: var(--text-color);
-  /*box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem var(--primary-color), .125rem .125rem 1rem var(--secondary-color);*/
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem var(--primary-color), .125rem .125rem 1rem var(--secondary-color);
 }
+*/
 
 .primario:hover {
   background: var(--bg-color);

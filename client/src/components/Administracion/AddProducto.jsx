@@ -1,13 +1,26 @@
+import { useState } from 'react';
+import { Boton } from '../Boton/Boton';
+
 export default function AddProducto({ onClick }) {
+  const [paso, setPaso] = useState(1);
+
+  const handlePaso = () => {
+    setPaso(paso + 1);
+  };
+
+  const handleVolverPaso = () => {
+    setPaso(paso - 1);
+  };
+
   return (
     <div className='add-producto-container'>
       <section className='add-producto-form-container'>
         <header className='add-producto-form-header'>
           <h1>
             <i className='bi bi-archive-fill' />
-            Add product
+            Añadir producto
           </h1>
-          <p>Add a new product to your store.</p>
+          <p>Agrega un nuevo producto a tu tienda.</p>
           <button
             className='boton-salir'
             onClick={onClick}
@@ -21,50 +34,142 @@ export default function AddProducto({ onClick }) {
             <p>General</p>
           </div>
           <div className='line-producto' />
-          <div className='add-producto-status-nodo'>
+          <div
+            className={
+              paso === 2 || paso == 3
+                ? 'add-producto-status-nodo focus'
+                : 'add-producto-status-nodo'
+            }
+          >
             <span>02</span>
-            <p>Pricing</p>
+            <p>Stock</p>
           </div>
           <div className='line-producto' />
-          <div className='add-producto-status-nodo'>
+          <div
+            className={
+              paso == 3
+                ? 'add-producto-status-nodo focus'
+                : 'add-producto-status-nodo'
+            }
+          >
             <span>03</span>
-            <p>Files</p>
+            <p>Archivos</p>
           </div>
         </div>
         <form className='add-producto-form'>
-          <div className='add-producto-info-container'>
-            <label>Name:</label>
-            <input
-              type='text'
-              placeholder='Product name'
-            />
-            <p>Give your product a short and clear name.</p>
-          </div>
+          {paso === 1 && (
+            <>
+              <div className='add-producto-info-container'>
+                <label>Nombre:</label>
+                <input
+                  type='text'
+                  placeholder='Nombre del producto'
+                />
+                <p>Dale a tu producto un nombre corto y claro.</p>
+              </div>
+              <div className='add-producto-info-container'>
+                <label>Precio:</label>
+                <input
+                  type='number'
+                  placeholder='Precio del producto'
+                />
+                <p>Ingresa el valor sin , ni .</p>
+              </div>
+              <div className='add-producto-info-container'>
+                <label>Categoria:</label>
+                <select>
+                  <option value=''>Selecciona una categoria</option>
+                  <option value='remera'>Remera</option>
+                  <option value='buzo'>Buzo</option>
+                  <option value='pantalon'>Pantalon</option>
+                  <option value='campera'>Campera</option>
+                  <option value='short'>Short</option>
+                </select>
 
-          <div className='add-producto-info-container'>
-            <label>Category:</label>
-            <select>
-              <option value=''>Select category</option>
-              <option value='remera'>Remera</option>
-              <option value='buzo'>Buzo</option>
-              <option value='pantalon'>Pantalon</option>
-              <option value='campera'>Campera</option>
-              <option value='short'>Short</option>
-            </select>
+                <p>Selecciona la categoria de tu producto.</p>
+              </div>
+              <div className='add-producto-info-container'>
+                <label>Coleccion:</label>
+                <select>
+                  <option value=''>Selecciona la coleccion</option>
+                  <option value='casa-campo'>Casa de campo</option>
+                  <option value='archived'>Archived</option>
+                  <option value='none'>None</option>
+                </select>
 
-            <p>Select product category.</p>
-          </div>
+                <p>Selecciona la categoria de tu producto.</p>
+              </div>
+              <div className='add-producto-info-container'>
+                <label>Descripcion:</label>
+                <textarea placeholder='Descripcion del producto'></textarea>
+                <p>Dale a tu producto una descripcion corta y clara.</p>
+              </div>
+            </>
+          )}
 
-          <div className='add-producto-info-container'>
-            <label>Description:</label>
-            <textarea placeholder='Product description'></textarea>
-            <p>Give your product a short and clear description.</p>
-          </div>
+          {paso === 2 && (
+            <>
+              <div className='add-producto-info-container'>
+                <label>Cantidad:</label>
+                <input
+                  type='text'
+                  placeholder='Nombre del producto'
+                />
+                <p>Dale a tu producto un nombre corto y claro.</p>
+              </div>
+              <div className='add-producto-info-container'>
+                <label>Precio:</label>
+                <input
+                  type='number'
+                  placeholder='Precio del producto'
+                />
+                <p>Ingresa el valor sin , ni .</p>
+              </div>
+              <div className='add-producto-info-container'>
+                <label>Categoria:</label>
+                <select>
+                  <option value=''>Selecciona una categoria</option>
+                  <option value='remera'>Remera</option>
+                  <option value='buzo'>Buzo</option>
+                  <option value='pantalon'>Pantalon</option>
+                  <option value='campera'>Campera</option>
+                  <option value='short'>Short</option>
+                </select>
 
-          <button type='submit'>
-            Next step <i className='bi bi-arrow-right-short' />
-          </button>
+                <p>Selecciona la categoria de tu producto.</p>
+              </div>
+              <div className='add-producto-info-container'>
+                <label>Coleccion:</label>
+                <select>
+                  <option value=''>Selecciona la coleccion</option>
+                  <option value='casa-campo'>Casa de campo</option>
+                  <option value='archived'>Archived</option>
+                  <option value='none'>None</option>
+                </select>
+
+                <p>Selecciona la categoria de tu producto.</p>
+              </div>
+              <div className='add-producto-info-container'>
+                <label>Descripcion:</label>
+                <textarea placeholder='Descripcion del producto'></textarea>
+                <p>Dale a tu producto una descripcion corta y clara.</p>
+              </div>
+            </>
+          )}
         </form>
+        <div className='add-producto-button-container'>
+          <Boton
+            secundario
+            textBoton='Volver'
+            value='Volver'
+            onClick={handleVolverPaso}
+          />
+          <Boton
+            textBoton='Continuar'
+            onClick={handlePaso}
+          />
+          {paso === 0 && onClick()}
+        </div>
       </section>
     </div>
   );
