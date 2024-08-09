@@ -28,7 +28,7 @@ export default function Sidebar({
         </div>
         <ul>
           <li className={inicioNav ? 'active-nav' : ''}>
-            <i className='bi bi-house' />
+            <i className='bi bi-columns-gap' />
             <NavLink to='/administration'>Inicio</NavLink>
           </li>
           <li className={pedidosNav ? 'active-nav' : ''}>

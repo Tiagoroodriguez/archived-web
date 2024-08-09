@@ -274,6 +274,11 @@
   font-size: 12px;
 }
 
+.header-search-container input:focus {
+  box-shadow: none;
+  border: none;
+}
+
 .header-search-container i {
   position: absolute;
   left: 50px;
