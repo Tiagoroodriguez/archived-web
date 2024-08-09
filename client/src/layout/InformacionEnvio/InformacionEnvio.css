@@ -44,8 +44,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-block: 30px;
-    gap: 20px;
+    padding-block: 20px;
+
 }
 
 /*---------------------------------------------------------------------------------------------*/
@@ -152,7 +152,8 @@
 }
 
 .carrito-section h1{
-    font-size: 20px;
+    font-size: 15px;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
@@ -167,6 +168,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding-inline: 20px;
+    width: 100%;
 }
 
 .cupo-descuento-container{
@@ -265,7 +267,7 @@
     width: 100%;
     background: var(--bg-color);
     opacity: 5%;
-    margin-block: 10px;
+    margin-top: 20px;
 }
 
 
@@ -295,5 +297,18 @@
 
     .form-datos-envio {
         padding: 0;
+    }
+
+    .descripcion-final-checkout div {
+        padding-inline: 10px;
+    }
+
+    .cupo-descuento-container div {
+        padding-top: 20px;
+        padding-inline: 0;
+    }
+
+    .cart-item-container-checkout {
+        padding: 0 10px;
     }
 }
