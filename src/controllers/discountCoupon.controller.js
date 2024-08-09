@@ -7,12 +7,10 @@ export const getDiscounts = async (req, res) => {
     const discounts = await Discount.find().populate('product_id');
     res.json(discounts);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: 'Error al obtener los descuentos',
-        error: error.message,
-      });
+    res.status(500).json({
+      message: 'Error al obtener los descuentos',
+      error: error.message,
+    });
   }
 };
 
@@ -48,12 +46,10 @@ export const updateDiscount = async (req, res) => {
     }
     res.json(updatedDiscount);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: 'Error al actualizar el descuento',
-        error: error.message,
-      });
+    res.status(500).json({
+      message: 'Error al actualizar el descuento',
+      error: error.message,
+    });
   }
 };
 
@@ -66,12 +62,10 @@ export const deleteDiscount = async (req, res) => {
     }
     res.sendStatus(204);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: 'Error al eliminar el descuento',
-        error: error.message,
-      });
+    res.status(500).json({
+      message: 'Error al eliminar el descuento',
+      error: error.message,
+    });
   }
 };
 
@@ -84,6 +78,22 @@ export const getCoupons = async (req, res) => {
     res
       .status(500)
       .json({ message: 'Error al obtener cupones', error: error.message });
+  }
+};
+
+export const getCouponByCode = async (req, res) => {
+  const { code } = req.params;
+  try {
+    const coupon = await Coupon.findOne({ code });
+    if (coupon) {
+      res.json(coupon);
+    } else {
+      res.status(404).json({ message: 'Cupón no encontrado' });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: 'Error al buscar el cupón', error: error.message });
   }
 };
 

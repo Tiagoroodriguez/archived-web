@@ -9,7 +9,7 @@ import { useAuth } from '../../context/AuthContext';
 
 const PagoSuccess = () => {
   const { getOrder } = useContext(MercadoPagoContext);
-  const { clearCartLocally } = useContext(CartContext);
+  const { clearCartLocally, getCartTotal, coupon } = useContext(CartContext);
   const { user } = useAuth();
   const {
     envioInfo,
@@ -45,20 +45,17 @@ const PagoSuccess = () => {
         talle: item.description,
       }));
 
-      const pedidoTotal = orderItems.reduce(
-        (acc, item) => acc + item.unit_price * item.quantity,
-        0
-      );
+      const pedidoTotal = coupon ? getCartTotal(coupon) : pedidoTotal;
 
-      console.log(formattedOrderItems);
       const completeOrder = {
         ...envioInfo,
         numero_pedido: merchantOrderId,
         productos: formattedOrderItems,
         total: pedidoTotal,
         user: user ? user.id : undefined,
+        coupon: coupon ? coupon.id : undefined,
       };
-      console.log(completeOrder);
+
       setPedido(completeOrder);
       createPedido(completeOrder); // Crear el pedido cuando la información esté completa
       setPedidoCreated(true); // Marcar que el pedido ha sido creado
@@ -106,6 +103,7 @@ const PagoSuccess = () => {
     isPedidoCreated,
     setPedidoCreated,
     user,
+    getCartTotal,
   ]);
 
   return (

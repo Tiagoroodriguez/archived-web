@@ -8,6 +8,7 @@ import {
   createCoupon,
   updateCoupon,
   deleteCoupon,
+  getCouponByCode,
 } from '../controllers/discountCoupon.controller.js';
 
 const router = Router();
@@ -20,6 +21,7 @@ router.delete('/discount/:id', deleteDiscount);
 
 // Rutas para cupones
 router.get('/coupons', getCoupons);
+router.get('/coupon/:code', getCouponByCode);
 router.post('/coupon', createCoupon);
 router.put('/coupon/:id', updateCoupon);
 router.delete('/coupon/:id', deleteCoupon);

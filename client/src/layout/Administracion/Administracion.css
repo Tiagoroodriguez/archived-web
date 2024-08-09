@@ -69,12 +69,11 @@
 .admin-menu nav ul li span{
     display: flex;
     justify-content: center;
-    align-items: center;
     color: var(--text-color);
     background: var(--bg-color);
     border-radius: 100%;
-    height: 20px;
-    width: 20px;
+    height: 21px;
+    width: 21px;
     text-align: center;
     font-weight: 700;
 }
@@ -149,6 +148,7 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
+    position: relative;
 }
 
 .admin-productos h1 {
@@ -160,7 +160,8 @@
 .admin-productos section {
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap: 10px;
+    justify-content: center;
 }
 
 .admin-productos-header {
@@ -185,6 +186,5 @@
     var(--tw-shadow, 0 0 #0000);
     font-size: 15px;
     padding: 5px 10px;
-    border-radius: 5px;
 }
 
