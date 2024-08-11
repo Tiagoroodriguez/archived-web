@@ -38,6 +38,7 @@ import AdminPedidos from './layout/Administracion/AdminPedidos';
 import Sidebar from './components/Sidebar/Sidebar';
 import AdminProductos from './layout/Administracion/AdminProductos';
 import { SearchProvider } from './context/SearchContext';
+import { Analytics } from '@vercel/analytics/react';
 
 const Background = styled.div`
   position: fixed;
@@ -61,6 +62,7 @@ function App() {
               <PedidoProvider>
                 <SearchProvider>
                   <Background />
+                  <Analytics />
                   <BrowserRouter>
                     <Routes>
                       <Route
