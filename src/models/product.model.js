@@ -10,6 +10,10 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    coleccion: {
+      type: String,
+      required: true,
+    },
     precio: {
       type: Number,
       required: true,
@@ -35,6 +39,14 @@ const productSchema = new mongoose.Schema(
     },
     cant_xxl: {
       type: Number,
+    },
+    ventas: {
+      type: Number,
+      default: 0,
+    },
+    descripcion: {
+      type: String,
+      required: true,
     },
   },
   {
