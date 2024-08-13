@@ -17,7 +17,7 @@ router.get('/products/:limit?/:categoria?', getProducts);
 
 router.get('/product/:id', getProduct);
 
-router.post('/product', authRequired, checkRoleAuth, createProduct);
+router.post('/product', createProduct);
 
 router.delete('/product/:id', authRequired, checkRoleAuth, deleteProduct);
 

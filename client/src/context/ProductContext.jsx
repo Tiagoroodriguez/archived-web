@@ -21,7 +21,8 @@ export function ProductProvider({ children }) {
 
   const createProduct = async (product) => {
     const res = await createProductRequest(product);
-    console.log(res);
+    console.log(res.data);
+    setProducts([...products, res.data]);
   };
 
   const getProducts = async (limit = null, categoria = null) => {

@@ -1,15 +1,122 @@
 import { useState } from 'react';
 import { Boton } from '../Boton/Boton';
+import { useProduct } from '../../context/ProductContext';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // Estilos por defecto
+import axios from '../../api/axios.js';
 
 export default function AddProducto({ onClick }) {
-  const [paso, setPaso] = useState(1);
+  const modules = {
+    toolbar: [
+      // Quita las opciones de header
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'], // Formatos permitidos
+      [
+        { list: 'ordered' },
+        { list: 'bullet' },
+        { indent: '-1' },
+        { indent: '+1' },
+      ],
+      // ['link', 'image'],
+      [{ align: [] }],
+      //[{ color: [] }, { background: [] }],
+      ['clean'],
+    ],
+  };
+  const formats = [
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'indent',
+    'link',
+    'image',
+    'align',
+    'color',
+    'background',
+  ];
 
-  const handlePaso = () => {
-    setPaso(paso + 1);
+  const [file, setFile] = useState(null);
+  const [imageUrl, setImageUrl] = useState('');
+
+  const { createProduct } = useProduct();
+  const [paso, setPaso] = useState(1);
+  const [producto, setProducto] = useState({
+    nombre: '',
+    precio: '',
+    categoria: '',
+    coleccion: '',
+    descripcion: '',
+    cant_s: 0,
+    cant_m: 0,
+    cant_l: 0,
+    cant_xl: 0,
+    cant_xxl: 0,
+  });
+
+  const [descripcion, setDescripcion] = useState('');
+
+  const handleDescripcionChange = (content) => {
+    setDescripcion(content);
+  };
+  const handlePaso = () => setPaso(paso + 1);
+  const handleVolverPaso = () => setPaso(paso - 1);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProducto({ ...producto, [name]: value });
   };
 
-  const handleVolverPaso = () => {
-    setPaso(paso - 1);
+  const handleSubmit = async () => {
+    try {
+      const productoConDescripcion = {
+        ...producto,
+        descripcion: descripcion, // Asigna la descripción desde el estado de Quill
+      };
+      console.log(productoConDescripcion);
+      await createProduct(productoConDescripcion);
+      setProducto({
+        nombre: '',
+        precio: '',
+        categoria: '',
+        coleccion: '',
+        descripcion: '',
+        cant_s: 0,
+        cant_m: 0,
+        cant_l: 0,
+        cant_xl: 0,
+        cant_xxl: 0,
+      });
+      setDescripcion(''); // Limpia la descripción después de guardar el producto
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleSubmitFiles = async () => {
+    const formData = new FormData();
+    formData.append('myFile', file);
+
+    try {
+      const response = await axios.post('/upload', formData, {
+        withCredentials: true, // Para enviar cookies si es necesario
+        headers: {
+          'Content-Type': 'multipart/form-data', // Asegúrate de configurar el tipo de contenido correctamente
+        },
+      });
+
+      // Aquí puedes asumir que la respuesta contiene la URL de la imagen subida
+      const uploadedImageUrl = response.data.fileUrl; // Ajusta según la respuesta de tu API
+      setImageUrl(uploadedImageUrl); // Actualiza el estado con la URL de la imagen
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -64,6 +171,9 @@ export default function AddProducto({ onClick }) {
                 <input
                   type='text'
                   placeholder='Nombre del producto'
+                  value={producto.nombre}
+                  onChange={handleChange}
+                  name='nombre'
                 />
                 <p>Dale a tu producto un nombre corto y claro.</p>
               </div>
@@ -72,12 +182,19 @@ export default function AddProducto({ onClick }) {
                 <input
                   type='number'
                   placeholder='Precio del producto'
+                  value={producto.precio}
+                  onChange={handleChange}
+                  name='precio'
                 />
                 <p>Ingresa el valor sin , ni .</p>
               </div>
               <div className='add-producto-info-container'>
                 <label>Categoria:</label>
-                <select>
+                <select
+                  name='categoria'
+                  value={producto.categoria}
+                  onChange={handleChange}
+                >
                   <option value=''>Selecciona una categoria</option>
                   <option value='remera'>Remera</option>
                   <option value='buzo'>Buzo</option>
@@ -90,7 +207,11 @@ export default function AddProducto({ onClick }) {
               </div>
               <div className='add-producto-info-container'>
                 <label>Coleccion:</label>
-                <select>
+                <select
+                  name='coleccion'
+                  value={producto.coleccion}
+                  onChange={handleChange}
+                >
                   <option value=''>Selecciona la coleccion</option>
                   <option value='casa-campo'>Casa de campo</option>
                   <option value='archived'>Archived</option>
@@ -101,8 +222,20 @@ export default function AddProducto({ onClick }) {
               </div>
               <div className='add-producto-info-container'>
                 <label>Descripcion:</label>
-                <textarea placeholder='Descripcion del producto'></textarea>
+                <ReactQuill
+                  value={descripcion}
+                  onChange={handleDescripcionChange}
+                  modules={modules}
+                  formats={formats}
+                />
+                {/*<textarea
+                  placeholder='Descripcion del producto'
+                  name='descripcion'
+                  value={producto.descripcion}
+                  onChange={handleChange}
+                />
                 <p>Dale a tu producto una descripcion corta y clara.</p>
+                */}
               </div>
             </>
           )}
@@ -110,51 +243,83 @@ export default function AddProducto({ onClick }) {
           {paso === 2 && (
             <>
               <div className='add-producto-info-container'>
-                <label>Cantidad:</label>
-                <input
-                  type='text'
-                  placeholder='Nombre del producto'
-                />
-                <p>Dale a tu producto un nombre corto y claro.</p>
-              </div>
-              <div className='add-producto-info-container'>
-                <label>Precio:</label>
+                <label>Cantidad S:</label>
                 <input
                   type='number'
-                  placeholder='Precio del producto'
+                  placeholder='Cantidad de productos en talle S'
+                  name='cant_s'
+                  value={producto.cant_s}
+                  onChange={handleChange}
                 />
-                <p>Ingresa el valor sin , ni .</p>
               </div>
               <div className='add-producto-info-container'>
-                <label>Categoria:</label>
-                <select>
-                  <option value=''>Selecciona una categoria</option>
-                  <option value='remera'>Remera</option>
-                  <option value='buzo'>Buzo</option>
-                  <option value='pantalon'>Pantalon</option>
-                  <option value='campera'>Campera</option>
-                  <option value='short'>Short</option>
-                </select>
-
-                <p>Selecciona la categoria de tu producto.</p>
+                <label>Cantidad M:</label>
+                <input
+                  type='number'
+                  placeholder='Cantidad de productos en talle M'
+                  name='cant_m'
+                  value={producto.cant_m}
+                  onChange={handleChange}
+                />
               </div>
               <div className='add-producto-info-container'>
-                <label>Coleccion:</label>
-                <select>
-                  <option value=''>Selecciona la coleccion</option>
-                  <option value='casa-campo'>Casa de campo</option>
-                  <option value='archived'>Archived</option>
-                  <option value='none'>None</option>
-                </select>
-
-                <p>Selecciona la categoria de tu producto.</p>
+                <label>Cantidad L:</label>
+                <input
+                  type='number'
+                  placeholder='Cantidad de productos en talle L'
+                  name='cant_l'
+                  value={producto.cant_l}
+                  onChange={handleChange}
+                />
               </div>
               <div className='add-producto-info-container'>
-                <label>Descripcion:</label>
-                <textarea placeholder='Descripcion del producto'></textarea>
-                <p>Dale a tu producto una descripcion corta y clara.</p>
+                <label>Cantidad XL:</label>
+                <input
+                  type='number'
+                  placeholder='Cantidad de productos en talle XL'
+                  name='cant_xl'
+                  value={producto.cant_xl}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className='add-producto-info-container'>
+                <label>Cantidad XXL:</label>
+                <input
+                  type='number'
+                  placeholder='Cantidad de productos en talle XXL'
+                  name='cant_xxl'
+                  value={producto.cant_xxl}
+                  onChange={handleChange}
+                />
               </div>
             </>
+          )}
+
+          {paso === 3 && (
+            <div>
+              <div onSubmit={(e) => e.preventDefault()}>
+                <input
+                  type='file'
+                  onChange={handleFileChange}
+                />
+                <button
+                  type='button'
+                  onClick={handleSubmitFiles}
+                >
+                  Subir Imagen
+                </button>
+              </div>
+              {imageUrl && (
+                <div>
+                  <p>Vista previa:</p>
+                  <img
+                    src={imageUrl}
+                    alt='Imagen subida'
+                    style={{ width: '100%', height: 'auto', marginTop: '10px' }}
+                  />
+                </div>
+              )}
+            </div>
           )}
         </form>
         <div className='add-producto-button-container'>
@@ -164,10 +329,19 @@ export default function AddProducto({ onClick }) {
             value='Volver'
             onClick={handleVolverPaso}
           />
-          <Boton
-            textBoton='Continuar'
-            onClick={handlePaso}
-          />
+          {paso < 3 && (
+            <Boton
+              textBoton='Continuar'
+              onClick={handlePaso}
+            />
+          )}
+          {paso === 3 && (
+            <Boton
+              textBoton='Guardar'
+              onClick={handleSubmit}
+            />
+          )}
+
           {paso === 0 && onClick()}
         </div>
       </section>

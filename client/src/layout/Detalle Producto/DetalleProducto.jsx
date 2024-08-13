@@ -68,23 +68,15 @@ export function DetalleProducto() {
   const anteriorImagen = () => {
     setImagenSeleccionada((prevIndice) => (prevIndice - 1 + 4) % 4);
   };
+  console.log(producto);
 
+  const descripcion = producto ? producto.descripcion : '';
   const arcodeonData = [
     {
       title: 'Detalles de producto',
       content: (
         <div className='detalle-producto-acordeon'>
-          <p>Straight loose fit shorts.</p>
-
-          <p>Grey/black color.</p>
-
-          <p>100% heavy cotton fabric.</p>
-
-          <p>Zipper closure with Cold engraved on button.</p>
-
-          <p>Tool pockets and hammer loop.</p>
-
-          <p>Logo embroidered on back.</p>
+          <div dangerouslySetInnerHTML={{ __html: descripcion }} />
         </div>
       ),
       icon: 'bi bi-file-earmark-text',

@@ -53,6 +53,8 @@ export const createProduct = async (req, res) => {
     const {
       nombre,
       categoria,
+      coleccion,
+      descripcion,
       precio,
       cant_s,
       cant_m,
@@ -64,6 +66,8 @@ export const createProduct = async (req, res) => {
     const newProduct = new Product({
       nombre,
       categoria,
+      coleccion,
+      descripcion,
       precio,
       cant_s,
       cant_m,
