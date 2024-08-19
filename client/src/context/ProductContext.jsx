@@ -4,6 +4,7 @@ import {
   getProductsRequest,
   getProductRequest,
   updateProductStockRequest,
+  deleteProductsRequest,
 } from '../api/products';
 
 const ProductContext = createContext();
@@ -59,6 +60,15 @@ export function ProductProvider({ children }) {
     }
   };
 
+  const deleteProduct = async (id) => {
+    try {
+      await deleteProductsRequest(id);
+      setProducts(products.filter((product) => product._id !== id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -67,6 +77,7 @@ export function ProductProvider({ children }) {
         getProducts,
         getProduct,
         updateProductStock,
+        deleteProduct,
       }}
     >
       {children}
