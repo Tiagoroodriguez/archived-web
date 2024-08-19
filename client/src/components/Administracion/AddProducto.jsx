@@ -4,6 +4,7 @@ import { useProduct } from '../../context/ProductContext';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Estilos por defecto
 import axios from '../../api/axios.js';
+import { toast } from 'sonner';
 
 export default function AddProducto({ onClick }) {
   const modules = {
@@ -120,6 +121,7 @@ export default function AddProducto({ onClick }) {
         cant_xl: 0,
         cant_xxl: 0,
       });
+      toast.success('Producto creado con éxito');
 
       setDescripcion(''); // Limpia la descripción después de guardar el producto
       setImageUrls({
@@ -133,6 +135,7 @@ export default function AddProducto({ onClick }) {
       setPaso(1);
     } catch (error) {
       console.error('Error:', error);
+      toast.error('Error al crear el producto');
     }
   };
 
@@ -416,7 +419,7 @@ export default function AddProducto({ onClick }) {
                     <div className='img-product-container'>
                       {imageUrls.img_big_4 ? (
                         <img
-                          src={imageUrls.img_big_1}
+                          src={imageUrls.img_big_4}
                           alt='Imagen 4'
                         />
                       ) : (
