@@ -61,6 +61,12 @@ export const createProduct = async (req, res) => {
       cant_l,
       cant_xl,
       cant_xxl,
+      img_big_1,
+      img_big_2,
+      img_big_3,
+      img_big_4,
+      img_small_1,
+      img_small_2,
     } = req.body;
 
     const newProduct = new Product({
@@ -74,6 +80,12 @@ export const createProduct = async (req, res) => {
       cant_l,
       cant_xl,
       cant_xxl,
+      img_big_1,
+      img_big_2,
+      img_big_3,
+      img_big_4,
+      img_small_1,
+      img_small_2,
     });
 
     const savedProduct = await newProduct.save();

@@ -38,8 +38,15 @@ export default function AddProducto({ onClick }) {
     'background',
   ];
 
-  const [file, setFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrls, setImageUrls] = useState({
+    img_small_1: '',
+    img_small_2: '',
+    img_big_1: '',
+    img_big_2: '',
+    img_big_3: '',
+    img_big_4: '',
+  });
+  const [descripcion, setDescripcion] = useState('');
 
   const { createProduct } = useProduct();
   const [paso, setPaso] = useState(1);
@@ -56,8 +63,6 @@ export default function AddProducto({ onClick }) {
     cant_xxl: 0,
   });
 
-  const [descripcion, setDescripcion] = useState('');
-
   const handleDescripcionChange = (content) => {
     setDescripcion(content);
   };
@@ -69,14 +74,40 @@ export default function AddProducto({ onClick }) {
     setProducto({ ...producto, [name]: value });
   };
 
+  const handleImageUpload = async (e, folder, key) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('folder', folder);
+
+    try {
+      const res = await axios.post('/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      if (res.data.imageUrl) {
+        setImageUrls((prev) => ({
+          ...prev,
+          [key]: res.data.imageUrl,
+        }));
+      } else {
+        console.error('No se recibió URL de la imagen');
+      }
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
+  };
   const handleSubmit = async () => {
     try {
-      const productoConDescripcion = {
+      const productoConImagenes = {
         ...producto,
-        descripcion: descripcion, // Asigna la descripción desde el estado de Quill
+        descripcion: descripcion,
+        ...imageUrls, // Agrega las URLs de las imágenes al producto
       };
-      console.log(productoConDescripcion);
-      await createProduct(productoConDescripcion);
+
+      await createProduct(productoConImagenes);
       setProducto({
         nombre: '',
         precio: '',
@@ -89,31 +120,17 @@ export default function AddProducto({ onClick }) {
         cant_xl: 0,
         cant_xxl: 0,
       });
+
       setDescripcion(''); // Limpia la descripción después de guardar el producto
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
-  const handleSubmitFiles = async () => {
-    const formData = new FormData();
-    formData.append('myFile', file);
-
-    try {
-      const response = await axios.post('/upload', formData, {
-        withCredentials: true, // Para enviar cookies si es necesario
-        headers: {
-          'Content-Type': 'multipart/form-data', // Asegúrate de configurar el tipo de contenido correctamente
-        },
+      setImageUrls({
+        img_small_1: '',
+        img_small_2: '',
+        img_big_1: '',
+        img_big_2: '',
+        img_big_3: '',
+        img_big_4: '',
       });
-
-      // Aquí puedes asumir que la respuesta contiene la URL de la imagen subida
-      const uploadedImageUrl = response.data.fileUrl; // Ajusta según la respuesta de tu API
-      setImageUrl(uploadedImageUrl); // Actualiza el estado con la URL de la imagen
+      setPaso(1);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -296,29 +313,125 @@ export default function AddProducto({ onClick }) {
           )}
 
           {paso === 3 && (
-            <div>
-              <div onSubmit={(e) => e.preventDefault()}>
-                <input
-                  type='file'
-                  onChange={handleFileChange}
-                />
-                <button
-                  type='button'
-                  onClick={handleSubmitFiles}
-                >
-                  Subir Imagen
-                </button>
-              </div>
-              {imageUrl && (
-                <div>
-                  <p>Vista previa:</p>
-                  <img
-                    src={imageUrl}
-                    alt='Imagen subida'
-                    style={{ width: '100%', height: 'auto', marginTop: '10px' }}
-                  />
+            <div className='add-product-img-container'>
+              <div className='add-producto-imagen-container'>
+                <h2>Imagenes de previsualizacion del producto</h2>
+                <div className='img-productos-card'>
+                  <div>
+                    <div className='img-product-container'>
+                      {imageUrls.img_small_1 ? (
+                        <img
+                          src={imageUrls.img_small_1}
+                          alt='Imagen 1'
+                        />
+                      ) : (
+                        <input
+                          type='file'
+                          onChange={(e) =>
+                            handleImageUpload(e, 'small', 'img_small_1')
+                          }
+                        />
+                      )}
+                    </div>
+                    <label>Product card image 1 (frente)</label>
+                  </div>
+                  <div>
+                    <div className='img-product-container'>
+                      {imageUrls.img_small_2 ? (
+                        <img
+                          src={imageUrls.img_small_2}
+                          alt='Imagen 2'
+                        />
+                      ) : (
+                        <input
+                          type='file'
+                          onChange={(e) =>
+                            handleImageUpload(e, 'small', 'img_small_2')
+                          }
+                        />
+                      )}
+                    </div>
+                    <label>Product card image 2 (espalda)</label>
+                  </div>
                 </div>
-              )}
+              </div>
+              <div className='add-producto-imagen-container'>
+                <h2>Imagenes de detalle del producto</h2>
+                <div className='img-productos-detalle'>
+                  <div>
+                    <div className='img-product-container'>
+                      {imageUrls.img_big_1 ? (
+                        <img
+                          src={imageUrls.img_big_1}
+                          alt='Imagen 1'
+                        />
+                      ) : (
+                        <input
+                          type='file'
+                          onChange={(e) =>
+                            handleImageUpload(e, 'big', 'img_big_1')
+                          }
+                        />
+                      )}
+                    </div>
+                    <label>Product detail image 1</label>
+                  </div>
+                  <div>
+                    <div className='img-product-container'>
+                      {imageUrls.img_big_2 ? (
+                        <img
+                          src={imageUrls.img_big_2}
+                          alt='Imagen 2'
+                        />
+                      ) : (
+                        <input
+                          type='file'
+                          onChange={(e) =>
+                            handleImageUpload(e, 'big', 'img_big_2')
+                          }
+                        />
+                      )}
+                    </div>
+                    <label>Product detail image 2</label>
+                  </div>
+                  <div>
+                    <div className='img-product-container'>
+                      {imageUrls.img_big_3 ? (
+                        <img
+                          src={imageUrls.img_big_3}
+                          alt='Imagen 3'
+                        />
+                      ) : (
+                        <input
+                          type='file'
+                          onChange={(e) =>
+                            handleImageUpload(e, 'big', 'img_big_3')
+                          }
+                        />
+                      )}
+                    </div>
+                    <label>Product detail image 3</label>
+                  </div>
+                  <div>
+                    <div className='img-product-container'>
+                      {imageUrls.img_big_4 ? (
+                        <img
+                          src={imageUrls.img_big_1}
+                          alt='Imagen 4'
+                        />
+                      ) : (
+                        <input
+                          type='file'
+                          onChange={(e) =>
+                            handleImageUpload(e, 'big', 'img_big_4')
+                          }
+                        />
+                      )}
+                    </div>
+                    <label>Product detail image 4</label>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </form>

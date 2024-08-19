@@ -48,6 +48,29 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    img_small_1: {
+      type: String,
+      required: true,
+    },
+    img_small_2: {
+      type: String,
+    },
+    img_big_1: {
+      type: String,
+      required: true,
+    },
+    img_big_2: {
+      type: String,
+      required: true,
+    },
+    img_big_3: {
+      type: String,
+      required: true,
+    },
+    img_big_4: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

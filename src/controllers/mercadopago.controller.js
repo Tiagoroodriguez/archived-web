@@ -26,9 +26,9 @@ export const createOrder = async (req, res) => {
       notification_url:
         'https://fbd5-138-204-152-207.ngrok-free.app/api/webhook',
       back_urls: {
-        success: 'http://archived.com.ar/checkout/pago/success',
-        failure: 'http://archived.com.ar/checkout/pago',
-        pending: 'http://archived.com.ar/pending',
+        success: 'http://localhost:5173/checkout/pago/success',
+        failure: 'http://localhost:5173/checkout/pago',
+        pending: 'http://localhost:5173/pending',
       },
 
       auto_return: 'approved',
