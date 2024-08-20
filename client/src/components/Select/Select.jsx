@@ -32,6 +32,7 @@ export default function Select({ labelText, value, onChange, texto, data }) {
           </option>
         ))}
       </select>
+      <i className='bi bi-chevron-down' />
     </div>
   );
 }
