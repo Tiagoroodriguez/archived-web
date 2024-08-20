@@ -4,11 +4,15 @@ import { formateText } from '../../utils/formateText';
 import './ComponentesAdmin.css';
 import { useProduct } from '../../context/ProductContext';
 import { toast } from 'sonner';
+import EditProduct from './EditProduct';
+import AddProductoStock from './AddStockProducto';
 
 export default function TablaProductos({ productos }) {
   const [hoveredProductId, setHoveredProductId] = useState(null);
   const [aviso, setAviso] = useState(false);
   const [productId, setProductId] = useState('');
+  const [editProduct, setEditProduct] = useState(false);
+  const [addStock, setAddStock] = useState(false);
   const { deleteProduct } = useProduct();
 
   const handleMouseEnter = (productId) => {
@@ -52,17 +56,35 @@ export default function TablaProductos({ productos }) {
           </div>
         </div>
       )}
+      {editProduct && (
+        <EditProduct
+          onClick={() => {
+            setEditProduct(false);
+          }}
+          id={productId}
+        />
+      )}
+      {addStock && (
+        <AddProductoStock
+          onClick={() => setAddStock(false)}
+          id={productId}
+        />
+      )}
       <table className='tabla-productos-container'>
         <thead className='tabla-productos-header'>
-          <tr className='tabla-productos-item'>Producto</tr>
-          {/*<tr className='tabla-productos-item'>Descripcion</tr>*/}
-          <tr className='tabla-productos-item center flex justify-center'>
-            Precio
+          <tr>
+            <th className='tabla-productos-item flex justify-start'>
+              Producto
+            </th>
+            {/*<tr className='tabla-productos-item'>Descripcion</tr>*/}
+            <th className='tabla-productos-item center flex justify-center'>
+              Precio
+            </th>
+            <th className='tabla-productos-item center flex justify-center'>
+              Stock
+            </th>
+            <th className='tabla-productos-item flex justify-end'>Acciones</th>
           </tr>
-          <tr className='tabla-productos-item center flex justify-center'>
-            Stock
-          </tr>
-          <tr className='tabla-productos-item flex justify-end'>Acciones</tr>
         </thead>
         <tbody className='tabla-productos-body'>
           {productos.map((producto) => (
@@ -104,10 +126,22 @@ export default function TablaProductos({ productos }) {
                 )}
               </td>
               <td className='tabla-productos-item flex justify-end'>
-                <button className='tabla-producto-add'>
+                <button
+                  className='tabla-producto-add'
+                  onClick={() => {
+                    setProductId(producto._id);
+                    setAddStock(true);
+                  }}
+                >
                   <i className='bi bi-plus-circle' />
                 </button>
-                <button className='tabla-producto-edit'>
+                <button
+                  className='tabla-producto-edit'
+                  onClick={() => {
+                    setProductId(producto._id);
+                    setEditProduct(true);
+                  }}
+                >
                   <i className='bi bi-pencil-square' />
                 </button>
                 <button

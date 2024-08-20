@@ -84,17 +84,21 @@ export default function AdminProductos() {
       <section>
         <header className='admin-productos-header'>
           <h2>Listado de productos</h2>
+        </header>
+        <div className='admin-productos-action'>
+          <div>
+            <Select
+              labelText='Categoria'
+              value={categoria} // Estado controlado en el componente padre
+              onChange={handleCategoriaChange} // Función para actualizar el estado en el componente padre
+              texto='Todos los productos'
+              data={categorias}
+            />
+          </div>
           <button onClick={handdleViewAddProducto}>
             <i className='bi bi-plus-circle' /> Agregar producto
           </button>
-        </header>
-        <Select
-          labelText='Categoria'
-          value={categoria} // Estado controlado en el componente padre
-          onChange={handleCategoriaChange} // Función para actualizar el estado en el componente padre
-          texto='Seleccione una categoira'
-          data={categorias}
-        />
+        </div>
         <TablaProductos productos={productos()} />
       </section>
       {viewAddProducto && <AddProducto onClick={handdleViewAddProducto} />}

@@ -161,7 +161,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    justify-content: center;
+    justify-content: space-around;;
 }
 
 .admin-productos-header {
@@ -177,7 +177,7 @@
     color: var(--text-color);
 }
 
-.admin-productos-header button{
+.admin-productos-action button{
     background: #EFF6FF;
     color: #1D4ED8;
     box-shadow:
@@ -186,5 +186,20 @@
     var(--tw-shadow, 0 0 #0000);
     font-size: 15px;
     padding: 5px 10px;
+    width: 200px;
+    transition: all .3s ease;
+}
+
+
+.admin-productos-action {
+    display: flex;
+    gap: 0%;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.admin-productos-action div {
+    width: 200px;
 }
 

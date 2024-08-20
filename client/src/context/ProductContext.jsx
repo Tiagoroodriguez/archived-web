@@ -5,6 +5,7 @@ import {
   getProductRequest,
   updateProductStockRequest,
   deleteProductsRequest,
+  updateProductRequest,
 } from '../api/products';
 
 const ProductContext = createContext();
@@ -52,6 +53,14 @@ export function ProductProvider({ children }) {
     }
   };
 
+  const updateProduct = async (product) => {
+    try {
+      await updateProductRequest(product);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const updateProductStock = async (id, talle, quantity) => {
     try {
       await updateProductStockRequest(id, talle, quantity);
@@ -78,6 +87,7 @@ export function ProductProvider({ children }) {
         getProduct,
         updateProductStock,
         deleteProduct,
+        updateProduct,
       }}
     >
       {children}
