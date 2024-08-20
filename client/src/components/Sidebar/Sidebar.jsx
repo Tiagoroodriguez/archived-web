@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { LogoTexto } from '../LogoTexto/LogoTexto';
 import { NavLink } from 'react-router-dom';
 import { usePedido } from '../../context/PedidosContext';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Sidebar({
   inicioNav,
@@ -10,6 +11,7 @@ export default function Sidebar({
   analiticNav,
 }) {
   const { getPedidos, pedidos } = usePedido();
+  const { logout } = useAuth();
   const [initialLoad, setInitialLoad] = useState(true);
   useEffect(() => {
     if (!initialLoad) {
@@ -44,6 +46,10 @@ export default function Sidebar({
           <li className={analiticNav ? 'active-nav' : ''}>
             <i className='bi bi-graph-up' />
             <NavLink>Analiticas</NavLink>
+          </li>
+          <li onClick={() => logout()}>
+            <i className='bi bi-box-arrow-left' />
+            <NavLink>Logout</NavLink>
           </li>
         </ul>
       </nav>
