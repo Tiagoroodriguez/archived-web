@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { useAuth } from '../../context/AuthContext';
 
 import { Boton } from '../../components/Boton/Boton';
@@ -8,7 +10,7 @@ import { LogoTexto } from '../../components/LogoTexto/LogoTexto';
 import Input from '../../components/Input/Input';
 
 import './CrearCuenta.css';
-import { Helmet } from 'react-helmet';
+import { subscribeRequest } from '../../api/subscriber';
 
 export function CrearCuenta() {
   const {
@@ -19,7 +21,20 @@ export function CrearCuenta() {
 
   const { singup, isAuthenticated, errors: registerErrors } = useAuth();
 
+  const [captcha, setCaptcha] = useState(false);
+  const [terminos, setTerminos] = useState(false);
+  const [sub, setSub] = useState(false);
+  const [email, setEmail] = useState('');
+
   const navigate = useNavigate();
+
+  const handleTerminos = () => {
+    setTerminos(!terminos);
+  };
+
+  const handleSub = () => {
+    setSub(!sub);
+  };
 
   useEffect(() => {
     if (isAuthenticated) navigate('/');
@@ -27,7 +42,21 @@ export function CrearCuenta() {
 
   const onSubmit = handleSubmit(async (values) => {
     singup(values);
+    if (sub) {
+      try {
+        await subscribeRequest({ email });
+        localStorage.setItem('isSubscribed', 'true');
+      } catch (error) {
+        console.error('Error subscribing', error);
+      }
+    }
   });
+
+  console.log(email);
+
+  const onChange = () => {
+    setCaptcha(true);
+  };
 
   return (
     <div className='cuenta-container'>
@@ -95,6 +124,7 @@ export function CrearCuenta() {
               placeholder='ejemplo@gmail.com'
               label='Correo electronico'
               ternaria={register('email', { required: true })}
+              onChange={(e) => setEmail(e.target.value)}
             />
             {errors.email && (
               <p className='error'>El correo electrónico es requerido</p>
@@ -110,8 +140,38 @@ export function CrearCuenta() {
               <p className='error'>La contraseña es requerida</p>
             )}
 
+            <div className='condiciones-container'>
+              <div>
+                <input
+                  type='checkbox'
+                  onClick={handleTerminos}
+                />
+                <label>
+                  Acepto los{' '}
+                  <Link to='/terms-of-service'>términos y condiciones</Link> y
+                  la <Link to='/privacy-policy'>política de privacidad</Link>
+                </label>
+              </div>
+
+              <div>
+                <input
+                  type='checkbox'
+                  onClick={handleSub}
+                />
+                <label>Quiero recibir ofertas y promociones exclusivas</label>
+              </div>
+            </div>
+
+            <div className='captcha'>
+              <ReCAPTCHA
+                sitekey={import.meta.env.VITE_RECAPTCHA_KEY}
+                onChange={onChange}
+              />
+            </div>
+
             <Boton
-              type='sudmit'
+              type='submit'
+              desactivado={!terminos || !captcha}
               textBoton='Crear cuenta'
             />
           </div>

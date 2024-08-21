@@ -108,6 +108,46 @@
 
 /*--------------------------------------------------------------------------------------------------*/
 
+.condiciones-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.condiciones-container div {
+    font-size: 12px;
+    color: var(--text-color);
+}
+
+.condiciones-container div label {
+    margin-left: 5px;
+}
+
+.condiciones-container div label a{
+    text-decoration: underline;
+}
+
+
+.condiciones-container div input[type="checkbox"]{
+    color: var(--primary-color);
+    box-shadow: none;
+}
+
+.condiciones-container div label a:hover{
+    color: var(--primary-color);
+}
+
+/*--------------------------------------------------------------------------------------------------*/
+
+.captcha {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 12px;
+}
+
+/*--------------------------------------------------------------------------------------------------*/
+
 @media (max-width: 768px) {
     .cuenta-texto-container, .cuenta-datos-container{
         padding-inline: 20px;
