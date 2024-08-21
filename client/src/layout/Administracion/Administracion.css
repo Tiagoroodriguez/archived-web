@@ -6,7 +6,7 @@
 }
 /*SIDEBARD-------------------------------------------------------------------------------------------------------------*/
 .admin-menu{
-    width: 20%;
+    width: 240px;
     min-height: 100vh;
     height: auto;
     background-color: var(--text-color);
@@ -31,11 +31,10 @@
     color: var(--bg-color);
     width: 100%;
     padding-bottom: 20px;
-
 }
 
 .admin-menu nav ul li {
-    padding: 0 50px;
+    padding: 0 20px;
     display: flex;
     gap: 10px;
     font-size: 15px;
@@ -80,7 +79,7 @@
 /*Inicio ADMIN---------------------------------------------------------------------------------------------------------------*/
 
 .admin-inicio{
-    width: 80%;
+    width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -105,7 +104,7 @@
 /*Pedidos ADMIN------------------------------------------------------------------------------------------------------------*/
 
 .admin-pedidos {
-    width: 80%;
+    width: 100%;
     height: 100vh;
     padding: 20px;
     overflow-y: auto;
@@ -142,7 +141,7 @@
 /*Productos ADMIN------------------------------------------------------------------------------------------------------------*/
 
 .admin-productos{
-    width: 80%;
+    width: 100%;
     height: 100vh;
     overflow-y: auto;    
     display: flex;
@@ -203,3 +202,8 @@
     width: 200px;
 }
 
+/*Newsletter ----------------------------------------------------------------------------------------------*/
+
+.admin-newsletter{
+    width: 100%;
+}

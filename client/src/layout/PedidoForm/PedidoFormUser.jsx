@@ -161,7 +161,7 @@ export default function PedidoFormUser({ pedido }) {
           <tbody>
             {pedido.productos.map((item) => (
               <tr
-                key={item.key}
+                key={item._id}
                 className='cart-table-cuerpo'
               >
                 <td className='cart-table-cuerpo-item cart-table-product'>
@@ -193,15 +193,18 @@ export default function PedidoFormUser({ pedido }) {
       <section className='pedido-user-informacion-cliente'>
         <h3>Cliente</h3>
         <div>
-          <p>{pedido.cliente_envio.nombre}</p>
-          <p>{pedido.cliente_envio.apellido}</p>
+          <p>
+            {pedido.cliente_envio.nombre} {pedido.cliente_envio.apellido}
+          </p>
           <p>{pedido.cliente_envio.email}</p>
+          <p>{pedido.cliente_envio.telefono}</p>
         </div>
 
         <h3>Direccion de envio</h3>
         <div>
           <p>
-            {pedido.direccion_envio.direccion} {pedido.direccion_envio.numero}
+            {pedido.direccion_envio.direccion} {pedido.direccion_envio.numero},{' '}
+            {pedido.direccion_envio.ciudad}, {pedido.direccion_envio.provincia}{' '}
           </p>
           {pedido.direccion_envio.departamento ? (
             <p>{pedido.direccion_envio.departamento}</p>
