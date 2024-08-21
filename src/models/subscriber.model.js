@@ -1,11 +1,6 @@
 import mongoose from 'mongoose';
 
 const subscriberSchema = new mongoose.Schema({
-  nombre: {
-    type: String,
-    required: true,
-  },
-
   email: {
     type: String,
     required: true,

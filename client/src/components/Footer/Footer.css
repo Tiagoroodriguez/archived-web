@@ -50,6 +50,11 @@ footer {
   transform: scale(1.1);
 }
 
+.desktop-footer-redes-icon a i:hover {
+  display: inline-block;
+  color: var(--primary-color);
+  transform: scale(1.1);
+}
 
 .final {
   background: var(--text-color);
@@ -261,7 +266,7 @@ footer {
   color: var(--text-color); 
 }
 
-.footer-mail form {
+.footer-mail div {
   width: 100%;
   display: flex;
 }
