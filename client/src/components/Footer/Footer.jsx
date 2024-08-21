@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
-import { LogoTexto } from '../LogoTexto/LogoTexto';
-import './Footer.css';
 import { Link } from 'react-router-dom';
+import { LogoTexto } from '../LogoTexto/LogoTexto';
 import Acordeon from '../Acordeon/Arcodeon';
-import Input from '../Input/Input';
+
+import './Footer.css';
+import { subscribeRequest } from '../../api/subscriber';
+import { toast } from 'sonner';
 
 export function Footer() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeIndex, setActiveIndex] = useState(null);
+  const [email, setEmail] = useState('');
 
   const handleButtonClick = (index) => {
     setCurrentIndex(index);
@@ -45,6 +48,25 @@ export function Footer() {
       icon: '',
     },
   ];
+
+  const handleSubscribe = async () => {
+    if (!email) {
+      toast.error('Por favor, complete el campo');
+      return;
+    }
+    try {
+      await subscribeRequest({ email });
+      localStorage.setItem('isSubscribed', 'true');
+      setEmail('');
+      toast.success('Suscripto correctamente');
+    } catch (error) {
+      console.error('Error subscribing', error);
+
+      if (error.response.status === 400) {
+        toast.error('Email ya suscripto');
+      }
+    }
+  };
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768; // Cambia este valor según tus necesidades de detección de dispositivos móviles
@@ -126,7 +148,14 @@ export function Footer() {
               <LogoTexto />
             </div>
             <div className='desktop-footer-redes-icon'>
-              <i className='bi bi-instagram' />
+              <a
+                href='https://www.instagram.com/archived.ar/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <i className='bi bi-instagram' />
+              </a>
+
               <i className='bi bi-twitter' />
               <i className='bi bi-tiktok' />
               <i className='bi bi-youtube' />
@@ -158,10 +187,14 @@ export function Footer() {
           <div className='footer-mail'>
             <h3>Unite a la familia</h3>
             <p>Obten un 10% de descuento en tu primera compra</p>
-            <form>
-              <input placeholder='Correo electronico' />
-              <button>Enviar</button>
-            </form>
+            <div>
+              <input
+                placeholder='Correo electronico'
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+              <button onClick={handleSubscribe}>Enviar</button>
+            </div>
           </div>
         </div>
         <div className='final'>ARCHIVED 222</div>

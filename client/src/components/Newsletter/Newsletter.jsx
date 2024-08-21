@@ -12,15 +12,14 @@ import { toast } from 'sonner';
 export default function Newsletter() {
   const [newsletterVisible, setNewsletterVisible] = useState(false);
   const [email, setEmail] = useState('');
-  const [nombre, setNombre] = useState('');
 
   const handleSubscribe = async () => {
-    if (!email || !nombre) {
-      toast.error('Por favor, complete ambos campos');
+    if (!email) {
+      toast.error('Por favor, complete el campo');
       return;
     }
     try {
-      await subscribeRequest({ email, nombre });
+      await subscribeRequest({ email });
       localStorage.setItem('isSubscribed', 'true');
       setNewsletterVisible(false);
       toast.success('Suscripto correctamente');
@@ -87,11 +86,6 @@ export default function Newsletter() {
                 Se el primero en enterarte de nuestros proximos lanzamientos
               </p>
               <div className='newsletter-inputs'>
-                <Input
-                  type='text'
-                  label='Nombre'
-                  onChange={(e) => setNombre(e.target.value)}
-                />
                 <Input
                   type='email'
                   label='Correo electrónico'
