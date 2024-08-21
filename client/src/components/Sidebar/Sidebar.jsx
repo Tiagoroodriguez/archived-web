@@ -9,6 +9,7 @@ export default function Sidebar({
   pedidosNav,
   productsNav,
   analiticNav,
+  newsletterNav,
 }) {
   const { getPedidos, pedidos } = usePedido();
   const { logout } = useAuth();
@@ -46,6 +47,10 @@ export default function Sidebar({
           <li className={analiticNav ? 'active-nav' : ''}>
             <i className='bi bi-graph-up' />
             <NavLink>Analiticas</NavLink>
+          </li>
+          <li className={newsletterNav ? 'active-nav' : ''}>
+            <i className='bi bi-envelope-at' />
+            <NavLink to='/administration/newsletter'>Newsletter</NavLink>
           </li>
           <li onClick={() => logout()}>
             <i className='bi bi-box-arrow-left' />

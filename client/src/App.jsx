@@ -39,6 +39,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import AdminProductos from './layout/Administracion/AdminProductos';
 import { SearchProvider } from './context/SearchContext';
 import { Analytics } from '@vercel/analytics/react';
+import AdminNewsletter from './layout/Administracion/AdminNewsletter';
 
 const Background = styled.div`
   position: fixed;
@@ -239,6 +240,20 @@ function App() {
                               <div className='admin-container'>
                                 <Sidebar productsNav />
                                 <AdminProductos />
+                              </div>
+                            </Layout>
+                          }
+                        />
+                      </Route>
+
+                      <Route element={<ProteccionRutas />}>
+                        <Route
+                          path='/administration/newsletter'
+                          element={
+                            <Layout>
+                              <div className='admin-container'>
+                                <Sidebar newsletterNav />
+                                <AdminNewsletter />
                               </div>
                             </Layout>
                           }

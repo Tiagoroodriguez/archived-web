@@ -30,13 +30,15 @@
 }
 
 .perfil-title{
-    font-size: 2rem;
+    font-size: 20px;
+    font-weight: 700;
     color: var(--text-color);
+    text-transform: uppercase;
 }
 
 .perfil-p {
-    margin-top: 5px;
     font-size: 15px;
+    opacity: 60%;
 }
 
 .pedidos-container{
