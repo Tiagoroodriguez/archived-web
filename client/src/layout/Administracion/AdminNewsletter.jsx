@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
+import { getSuscriptoresRequest } from '../../api/subscriber';
 
 export default function AdminNewsletter() {
   const modules = {
@@ -35,12 +36,31 @@ export default function AdminNewsletter() {
   ];
 
   const [descripcion, setDescripcion] = useState('');
+  const [initaliLoad, setInitialLoad] = useState(true);
+  const [suscriptores, setSuscriptores] = useState([]);
   const handleDescripcionChange = (content) => {
     setDescripcion(content);
   };
+
+  useEffect(() => {
+    if (initaliLoad) {
+      setInitialLoad(false);
+      const FechtSubscribe = async () => {
+        try {
+          const response = await getSuscriptoresRequest();
+
+          setSuscriptores(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      FechtSubscribe();
+    }
+  }, [initaliLoad, suscriptores]);
+
   return (
     <div className='admin-newsletter'>
-      <h1>NewSletter</h1>
+      <h3>NewSletter</h3>
       <section>
         <h2>Crear Newsletter</h2>
         <form>
@@ -60,6 +80,16 @@ export default function AdminNewsletter() {
 
           <button type='submit'>Crear</button>
         </form>
+      </section>
+      <section>
+        <h2>Lista de suscriptores</h2>
+        <ul>
+          {suscriptores.map((suscriptor) => (
+            <li key={suscriptor._id}>
+              <p>{suscriptor.email}</p>
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   );
