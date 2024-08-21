@@ -17,9 +17,9 @@ const MySlider = () => {
       <div className='overlay'>
         <div>
           <Boton
-            textBoton='View'
+            textBoton='SHOP'
             secundario
-            value='view'
+            value='shop'
           />
         </div>
       </div>
