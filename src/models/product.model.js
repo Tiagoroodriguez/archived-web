@@ -23,7 +23,6 @@ const productSchema = new mongoose.Schema(
     },
     discount: {
       type: Number,
-      default: 0,
     },
     cant_s: {
       type: Number,

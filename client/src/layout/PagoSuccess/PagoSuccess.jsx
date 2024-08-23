@@ -17,7 +17,6 @@ const PagoSuccess = () => {
     createPedido,
     isPedidoCreated,
     setPedidoCreated,
-    sendEmail,
   } = usePedido();
   const [searchParams] = useSearchParams();
   const [orderItems, setOrderItems] = useState([]);
@@ -45,54 +44,24 @@ const PagoSuccess = () => {
         talle: item.description,
       }));
 
-      const pedidoTotal = coupon ? getCartTotal(coupon) : pedidoTotal;
+      const pedidoTotal = formattedOrderItems.reduce(
+        (total, item) => total + item.precio * item.cantidad,
+        0
+      );
 
       const completeOrder = {
         ...envioInfo,
-        numero_pedido: merchantOrderId,
+        codigo_pago: merchantOrderId,
+        estado_pago: 'Aprobado',
+        tipo_pago: 'Mercado Pago',
         productos: formattedOrderItems,
         total: pedidoTotal,
         user: user ? user.id : undefined,
         coupon: coupon ? coupon.id : undefined,
       };
-
       setPedido(completeOrder);
       createPedido(completeOrder); // Crear el pedido cuando la información esté completa
       setPedidoCreated(true); // Marcar que el pedido ha sido creado
-      // Enviar correo de confirmación
-      const to = envioInfo.email_facturacion; // Asegúrate de que el email del usuario esté disponible
-      const subject = 'Compra confirmada';
-      const html = `
-      <div style="font-family: Arial, sans-serif; color: #1A1F25; width: auto; padding: 20px; text-align: center;">
-          <h1 style="color: #1A1F25; margin:0">Compra confirmada con éxito</h1>
-          <p>Gracias por tu compra. Aquí están los detalles de tu pedido:</p>
-        <p><strong>Número de pedido:</strong> ${merchantOrderId}</p>
-        <table style="width: 100%; border-collapse: collapse; margin-block: 20px;">
-          <thead>
-            <tr>
-              <th style="border: 1px solid #ddd; padding: 8px;">Producto</th>
-              <th style="border: 1px solid #ddd; padding: 8px;">Cantidad</th>
-              <th style="border: 1px solid #ddd; padding: 8px;">Precio</th>
-            </tr>
-          </thead>
-          <tbody style="text-align: center;">
-            ${orderItems
-              .map(
-                (item) => `
-              <tr>
-                <td style="border: 1px solid #ddd; padding: 8px;">${item.title}</td>
-                <td style="border: 1px solid #ddd; padding: 8px;">${item.quantity}</td>
-                <td style="border: 1px solid #ddd; padding: 8px;">${item.unit_price}</td>
-              </tr>
-            `
-              )
-              .join('')}
-          </tbody>
-        </table>
-      </div>
-    `;
-      sendEmail(to, subject, html); // Llamada a la función de envío de correo
-      //console.log('Pedido:', completeOrder);
     }
   }, [
     envioInfo,

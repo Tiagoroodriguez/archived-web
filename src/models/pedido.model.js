@@ -1,10 +1,12 @@
 import mongoose from 'mongoose';
+import Counter from './counter.model.js';
 
 const pedidoSchema = new mongoose.Schema(
   {
     numero_pedido: {
       type: String,
       required: true,
+      unique: true,
     },
     cliente_facturacion: {
       type: mongoose.Schema.Types.ObjectId,
@@ -60,9 +62,22 @@ const pedidoSchema = new mongoose.Schema(
       ref: 'User',
       required: false,
     },
-    estado: {
+    estado_envio: {
       type: String,
-      default: 'pendiente',
+      default: 'Pendiente',
+    },
+    estado_pago: {
+      type: String,
+      default: 'Pendiente',
+    },
+    codigo_pago: {
+      type: String,
+    },
+    tipo_pago: {
+      type: String,
+    },
+    codigo_seguimiento: {
+      type: String,
     },
     cupon: {
       type: mongoose.Schema.Types.ObjectId,
