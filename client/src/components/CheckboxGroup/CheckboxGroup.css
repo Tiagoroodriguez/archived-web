@@ -8,6 +8,12 @@
 .checkboxgroup-item input {
     margin-right: 10px;
     cursor: pointer;
+    color: var(--text-color);
+}
+
+.checkboxgroup-item input:focus{
+    box-shadow: none;
+
 }
 
 .checkboxgroup-item label {

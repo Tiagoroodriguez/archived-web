@@ -20,7 +20,7 @@ export default function Pago() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const paymentOptions = ['Mercado Pago', 'Efectivo'];
+  const paymentOptions = ['Mercado pago', 'Transferencia bancaria'];
   const navigate = useNavigate();
 
   const handleMercadoPago = () => {
@@ -83,7 +83,7 @@ export default function Pago() {
                       <>
                         <p className='pago-tabla-titulo'>Enviar a:</p>
                         <p className='pago-tabla-contenido'>
-                          {envioInfo.direccion_envio} -
+                          {envioInfo.direccion_envio} - {''}
                           {envioInfo.numero_direccion_envio}
                         </p>
                       </>
@@ -129,9 +129,9 @@ export default function Pago() {
               ) : (
                 <Boton
                   textBoton={
-                    selectedPaymentMethod === 'Efectivo'
-                      ? 'Pagar en Efectivo'
-                      : 'Pagar con Mercado Pago'
+                    selectedPaymentMethod === 'Transferencia Bancaria'
+                      ? 'Pagar por transferencia'
+                      : 'Pagar con mercado pago'
                   }
                   onClick={
                     selectedPaymentMethod === 'Efectivo'

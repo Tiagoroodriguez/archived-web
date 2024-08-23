@@ -23,6 +23,7 @@ export const createDiscount = async (req, res) => {
       start_date,
       end_date,
     });
+
     const savedDiscount = await newDiscount.save();
     res.json(savedDiscount);
   } catch (error) {
