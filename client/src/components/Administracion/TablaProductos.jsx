@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import EditProduct from './EditProduct';
 import AddProductoStock from './AddStockProducto';
 import { Badge } from '@tremor/react';
+import Descuentos from './Descuentos';
 
 export default function TablaProductos({ productos }) {
   const [hoveredProductId, setHoveredProductId] = useState(null);
@@ -14,6 +15,7 @@ export default function TablaProductos({ productos }) {
   const [productId, setProductId] = useState('');
   const [editProduct, setEditProduct] = useState(false);
   const [addStock, setAddStock] = useState(false);
+  const [descuentos, setDescuentos] = useState(false);
   const [categoria, setCategoria] = useState('all');
   const [buscador, setBuscador] = useState('');
   const { deleteProduct } = useProduct();
@@ -99,6 +101,12 @@ export default function TablaProductos({ productos }) {
           id={productId}
         />
       )}
+      {descuentos && (
+        <Descuentos
+          onClick={() => setDescuentos(false)}
+          id={productId}
+        />
+      )}
       <table className='tabla-productos-container'>
         <header className='tabla-header'>
           <div className='tabla-header-title'>
@@ -154,12 +162,25 @@ export default function TablaProductos({ productos }) {
                 </p>
               </td>
               <td className='tabla-productos-item flex justify-center'>
-                {formatPrice(producto.precio)}
+                {producto.discount > 0 ? (
+                  <p>
+                    <span className='opacity-60 line-through'>
+                      {formatPrice(producto.precio)}
+                    </span>{' '}
+                    {formatPrice(producto.precio_con_descuento)}
+                  </p>
+                ) : (
+                  <p>{formatPrice(producto.precio)}</p>
+                )}
               </td>
               <td
                 className='tabla-productos-item tabla-productos-stock flex justify-center'
                 onMouseEnter={() => handleMouseEnter(producto._id)}
                 onMouseLeave={handleMouseLeave}
+                onClick={() => {
+                  setProductId(producto._id);
+                  setAddStock(true);
+                }}
               >
                 {producto.cant_s +
                   producto.cant_m +
@@ -181,10 +202,10 @@ export default function TablaProductos({ productos }) {
                   className='tabla-producto-add'
                   onClick={() => {
                     setProductId(producto._id);
-                    setAddStock(true);
+                    setDescuentos(true);
                   }}
                 >
-                  <i className='bi bi-plus-circle' />
+                  <i className='bi bi-tag' />
                 </button>
                 <button
                   className='tabla-producto-edit'
