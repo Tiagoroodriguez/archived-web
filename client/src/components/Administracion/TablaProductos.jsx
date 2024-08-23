@@ -6,6 +6,7 @@ import { useProduct } from '../../context/ProductContext';
 import { toast } from 'sonner';
 import EditProduct from './EditProduct';
 import AddProductoStock from './AddStockProducto';
+import { Badge } from '@tremor/react';
 
 export default function TablaProductos({ productos }) {
   const [hoveredProductId, setHoveredProductId] = useState(null);
@@ -13,6 +14,8 @@ export default function TablaProductos({ productos }) {
   const [productId, setProductId] = useState('');
   const [editProduct, setEditProduct] = useState(false);
   const [addStock, setAddStock] = useState(false);
+  const [categoria, setCategoria] = useState('all');
+  const [buscador, setBuscador] = useState('');
   const { deleteProduct } = useProduct();
 
   const handleMouseEnter = (productId) => {
@@ -27,10 +30,36 @@ export default function TablaProductos({ productos }) {
     setAviso(!aviso);
   };
 
+  const handleCategoriaChange = (newCategoria) => {
+    setCategoria(newCategoria);
+  };
+
+  const handleBuscadorChange = (e) => {
+    setBuscador(e.target.value);
+  };
+
   const eliminar = async () => {
     handleAvisoChange();
     await deleteProduct(productId);
     toast.success('Producto eliminado con exito');
+  };
+
+  const filtro = () => {
+    if (categoria === 'all' || !categoria) {
+      return productos;
+    } else {
+      return productos.filter((producto) => producto.categoria === categoria);
+    }
+  };
+
+  const productosFiltradosNombre = () => {
+    if (buscador === '') {
+      return filtro();
+    } else {
+      return filtro().filter((producto) =>
+        producto.nombre.toLowerCase().includes(buscador.toLowerCase())
+      );
+    }
   };
 
   return (
@@ -71,12 +100,35 @@ export default function TablaProductos({ productos }) {
         />
       )}
       <table className='tabla-productos-container'>
+        <header className='tabla-header'>
+          <div className='tabla-header-title'>
+            <h2>Productos</h2>
+            <Badge size='xs'>{productos.length} productos</Badge>
+          </div>
+          <div className='tabla-header-actions'>
+            <div className='tabla-header-search'>
+              <input
+                type='text'
+                placeholder='Buscar producto'
+                onChange={handleBuscadorChange}
+              />
+              <i className='bi bi-search' />
+            </div>
+            <select
+              value={categoria}
+              onChange={(e) => handleCategoriaChange(e.target.value)}
+            >
+              <option value='all'>Filtrar por</option>
+              <option value='remera'>Remera Overzise</option>
+              <option value='remera'>Remera Boxi</option>
+              <option value='buzo'>Buzo</option>
+              <option value='pantalon'>Pantalon</option>
+            </select>
+          </div>
+        </header>
         <thead className='tabla-productos-header'>
           <tr>
-            <th className='tabla-productos-item flex justify-start'>
-              Producto
-            </th>
-            {/*<tr className='tabla-productos-item'>Descripcion</tr>*/}
+            <th className='tabla-productos-item flex justify-start'>Nombre</th>
             <th className='tabla-productos-item center flex justify-center'>
               Precio
             </th>
@@ -87,7 +139,7 @@ export default function TablaProductos({ productos }) {
           </tr>
         </thead>
         <tbody className='tabla-productos-body'>
-          {productos.map((producto) => (
+          {productosFiltradosNombre().map((producto) => (
             <tr key={producto._id}>
               <td className='tabla-productos-item tabla-productos-item-detalle'>
                 <picture>
@@ -101,7 +153,6 @@ export default function TablaProductos({ productos }) {
                   {formateText(producto.nombre)}
                 </p>
               </td>
-              {/*<td className='tabla-productos-item'>{producto.descripcion}</td>*/}
               <td className='tabla-productos-item flex justify-center'>
                 {formatPrice(producto.precio)}
               </td>

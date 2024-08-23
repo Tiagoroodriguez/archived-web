@@ -61,6 +61,7 @@ export default function AdminNewsletter() {
   return (
     <div className='admin-newsletter'>
       <h3>NewSletter</h3>
+
       <section>
         <h2>Crear Newsletter</h2>
         <form>
