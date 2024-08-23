@@ -20,10 +20,10 @@ export function Inicio() {
           href='http://archived.com.ar/'
         />
       </Helmet>
-      <Newsletter />
+      {/*<Newsletter />*/}
       <main>
         <HeroSection />
-        <Novedades
+        {/*<Novedades
           cantidad='4'
           categoria='buzo'
           titulo={'New in | Hoodies & Sweatshirts'}
@@ -34,7 +34,7 @@ export function Inicio() {
           categoria='remera'
           titulo={'New in | T-Shirts & Tops'}
         />
-        <MySlider />
+        <MySlider />*/}
       </main>
     </>
   );
