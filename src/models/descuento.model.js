@@ -11,6 +11,7 @@ const discountSchema = new mongoose.Schema({
     required: true,
     min: 0,
     max: 100,
+    default: 0,
   },
   start_date: {
     type: Date,
