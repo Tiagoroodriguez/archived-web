@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1039.7 260.3">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        isolation: isolate;
+      }
+      .cls-1, .cls-2, .cls-3, .cls-5 {
+        fill: #1d1d1b;
+      }
+      .cls-1, .cls-2, .cls-5 {
+        font-family: AppleGaramondLight,'Apple Garamond Light';
+        font-size: 355px;
+        letter-spacing: 0.02em; /* Ajuste de letter-spacing */
+      }
+      .cls-3 {
+        font-family: ArialMT, Arial;
+        font-size: 71px;
+      }
+      .cls-6 {
+        fill: none;
+      }
+      .cls-7 {
+        clip-path: url(#clippath-1);
+      }
+      .cls-8 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-6" x="-535.9" y="-1247.9" width="2034.8" height="2877.5"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-6" x="-535.9" y="-1247.9" width="2034.8" height="2877.5"/>
+    </clipPath>
+  </defs>
+  <g>
+    <g id="Capa_1">
+      <g id="Capa_1-2" data-name="Capa_1">
+        <g class="cls-8">
+          <g>
+            <g class="cls-4">
+              <text class="cls-2" transform="translate(17.4 251.1)">
+                <tspan x="0" y="0">Ar</tspan>
+              </text>
+              <text class="cls-2" transform="translate(260.3 251.1)">
+                <tspan x="0" y="0">c</tspan>
+              </text>
+              <text class="cls-2" transform="translate(376.7 251.1)">
+                <tspan x="0" y="0">h</tspan>
+              </text>
+              <text class="cls-1" transform="translate(527.2 251.1)">
+                <tspan x="0" y="0">i</tspan>
+              </text>
+              <text class="cls-2" transform="translate(586.9 251.1)">
+                <tspan x="0" y="0">ve</tspan>
+              </text>
+              <text class="cls-5" transform="translate(833.6 251.1)">
+                <tspan x="0" y="0">d</tspan>
+              </text>
+            </g>
+            <g class="cls-7">
+              <g class="cls-4">
+                <text class="cls-3" transform="translate(979 55.1) scale(1) skewX(-10)">
+                  <tspan x="0" y="0">®</tspan>
+                </text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

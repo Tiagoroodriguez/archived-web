@@ -1,23 +1,9 @@
-@font-face {
-    font-family: 'AppleGaramond';
-    src: url('/font/AppleGaramond-Light.ttf') format('truetype');
-}
+
 
 .logo {
+    padding: 11px;
+    text-align: center;
     display: flex;
-    color: var(--text-color);
-    background: none;
     justify-content: center;
-}
-.text {
-    font-family: 'AppleGaramond', serif;
-    font-size: 35px;
-    background: none;
-}
-.r {
-    font-family: 'AppleGaramond', serif;
-    font-size: 10px;
-    position: relative;
-    top: 5px;
-    background: none;
+    align-items: center;
 }

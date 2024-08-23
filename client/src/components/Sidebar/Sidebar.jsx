@@ -26,8 +26,8 @@ export default function Sidebar({
   return (
     <aside className='admin-menu'>
       <nav>
-        <div>
-          <LogoTexto />
+        <div className='sidebar-logo'>
+          <LogoTexto blanco />
         </div>
         <ul>
           <li className={inicioNav ? 'active-nav' : ''}>
