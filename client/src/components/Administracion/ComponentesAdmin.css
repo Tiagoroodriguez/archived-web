@@ -6,15 +6,86 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.tabla-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+
+.tabla-header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.tabla-header-search {
+    display: flex;
+    position: relative;
+    width: 250px;
+    align-items: center;
+}
+
+.tabla-header-search input {
+    width: 100%;
+    height: 35px;
+    background: none;
+    border: 1px solid var(--secondary-color);
+    padding: 5px;
+    font-size: 15px;
+    margin-block: 10px;
+}  
+
+.tabla-header-search i {
+    font-size: 20px;
+    color: var(--text-color);
+    position: absolute;
+    right: 8px;
+    top: 13px;
+}
+
+.tabla-header-search input:focus {
+    box-shadow: none;
+    border: 1px solid var(--text-color);
+}
+
+.tabla-header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.tabla-header-actions select {
+    height: 35px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    width: 250px;
+    border: 1px solid var(--secondary-color);
+    margin-block: 10px;
+    
+}
+
+.tabla-header-actions select option {
+    font-size: 15px;
+}
+
+.tabla-header-actions select:focus {
+    box-shadow: none;
+    border: 1px solid var(--text-color);
+}
+
 
 .tabla-productos-header{
     display: flex;
     width:  100%;
+    background: #20313d0a;
     justify-content: space-between;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--text-color);
-    border-bottom: 1px solid #bdbdbd9f;
+    border-block: 1px solid #bdbdbd9f;
     padding: 10px;
 }
 
@@ -179,7 +250,7 @@
 
 .add-producto-container {
     background: rgba(0, 0, 0, 0.205);
-    width: 80%;
+    width: calc(100% - 240px);
     height: 100%;
     position: fixed;
     top: 0;
