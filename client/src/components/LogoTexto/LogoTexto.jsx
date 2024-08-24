@@ -9,14 +9,14 @@ export function LogoTexto({ blanco }) {
     >
       {blanco ? (
         <img
-          src='/svg/archived-blanco.svg'
+          src='/svg/logo_archived_negro.svg'
           alt='Logo de Archived'
           width='120'
           height='120'
         />
       ) : (
         <img
-          src='/svg/archived.svg'
+          src='/svg/logo_archived_negro.svg'
           alt='Logo de Archived'
           width='120'
           height='120'

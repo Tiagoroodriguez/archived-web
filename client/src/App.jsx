@@ -70,7 +70,7 @@ function App() {
                         path='/'
                         element={
                           <Layout>
-                            {/*<Header anuncioOn />*/}
+                            <Header />
                             <Inicio />
                             {/*<Footer />*/}
                           </Layout>
