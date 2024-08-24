@@ -7,7 +7,10 @@ import {
   deleteProductsRequest,
   updateProductRequest,
 } from '../api/products';
-import { createDiscountRequest } from '../api/descuentos';
+import {
+  createDiscountRequest,
+  deleteDiscountRequest,
+} from '../api/descuentos';
 
 const ProductContext = createContext();
 
@@ -88,6 +91,14 @@ export function ProductProvider({ children }) {
     }
   };
 
+  const deleteDiscount = async (id) => {
+    try {
+      await deleteDiscountRequest(id);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -99,6 +110,7 @@ export function ProductProvider({ children }) {
         deleteProduct,
         updateProduct,
         createDiscount,
+        deleteDiscount,
       }}
     >
       {children}

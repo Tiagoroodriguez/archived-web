@@ -12,37 +12,6 @@ const calcularPrecioConDescuento = (precio, descuento) => {
   return precio - precio * (descuento / 100);
 };
 
-// Función para aplicar descuentos a los productos
-const aplicarDescuentosAProductos = async (productos) => {
-  const descuentos = await Discount.find();
-  let total = 0;
-  let totalConDescuento = 0;
-
-  const productosConDescuento = await Promise.all(
-    productos.map(async (item) => {
-      const producto = await Producto.findById(item.product_id);
-      let precioConDescuento = producto.precio;
-
-      const descuentoProducto = descuentos.find(
-        (descuento) => descuento.product_id.toString() === item.product_id
-      );
-      if (descuentoProducto) {
-        precioConDescuento = calcularPrecioConDescuento(
-          precioConDescuento,
-          descuentoProducto.discount_percentage
-        );
-      }
-
-      total += producto.precio * item.cantidad;
-      totalConDescuento += precioConDescuento * item.cantidad;
-
-      return { ...item, precio_con_descuento: precioConDescuento };
-    })
-  );
-
-  return { productosConDescuento, total, totalConDescuento };
-};
-
 // Función para aplicar cupones a un pedido
 const aplicarCuponAPedido = async (totalConDescuento, codigoCupon) => {
   if (!codigoCupon) return totalConDescuento;
