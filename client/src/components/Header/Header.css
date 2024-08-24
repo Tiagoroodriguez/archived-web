@@ -328,7 +328,7 @@
         flex-direction: column;
     }
     .nav-container {
-        padding-inline: 10px;
+        padding: 10px;
         display: flex;
         width: 100%;
     }
@@ -342,6 +342,7 @@
     }
 
     .nav-bar {
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
