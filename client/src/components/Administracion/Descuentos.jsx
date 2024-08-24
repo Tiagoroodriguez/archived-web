@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Boton } from '../Boton/Boton';
 import { useProduct } from '../../context/ProductContext';
-import 'react-quill/dist/quill.snow.css'; // Estilos por defecto
+import 'react-quill/dist/quill.snow.css';
 import { toast } from 'sonner';
+import { formatDate } from '../../utils/formatDate';
 
 export default function Descuentos({ onClick, id }) {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -13,7 +14,7 @@ export default function Descuentos({ onClick, id }) {
     start_date: '',
     end_date: '',
   });
-  const { createDiscount, getProduct } = useProduct();
+  const { createDiscount, getProduct, deleteDiscount } = useProduct();
 
   const handleInputChange = (e) => {
     setDiscount({
@@ -21,9 +22,16 @@ export default function Descuentos({ onClick, id }) {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = async () => {
     await createDiscount(discount);
     toast.success('Descuento creado con exito');
+    onClick();
+  };
+
+  const handleDeleteDiscount = async (id) => {
+    await deleteDiscount(id);
+    toast.success('Descuento eliminado con exito');
     onClick();
   };
 
@@ -35,7 +43,7 @@ export default function Descuentos({ onClick, id }) {
       setInitialLoad(false);
     }
   }, [initialLoad, getProduct, id]);
-  console.log(producto);
+
   return (
     <div className='add-producto-container'>
       <section className='add-producto-form-container'>
@@ -61,6 +69,8 @@ export default function Descuentos({ onClick, id }) {
               placeholder='Agregar descuento'
               name='discount_percentage'
               onChange={handleInputChange}
+              disabled={producto.discount}
+              className={producto.discount ? 'disabled' : ''}
             />
           </div>
           <div className='add-producto-info-container'>
@@ -71,6 +81,8 @@ export default function Descuentos({ onClick, id }) {
               onChange={(e) =>
                 setDiscount({ ...discount, start_date: e.target.value })
               }
+              disabled={producto.discount}
+              className={producto.discount ? 'disabled' : ''}
             />
           </div>
           <div className='add-producto-info-container'>
@@ -81,8 +93,31 @@ export default function Descuentos({ onClick, id }) {
               onChange={(e) =>
                 setDiscount({ ...discount, end_date: e.target.value })
               }
+              disabled={producto.discount}
+              className={producto.discount ? 'disabled' : ''}
             />
           </div>
+          {producto.discount
+            ? producto.discount.discount_percentage > 0 && (
+                <div className='descuento-mensaje'>
+                  <p>
+                    Actualmente el producto tiene un descuento del{' '}
+                    <strong>{producto.discount.discount_percentage}%</strong>
+                  </p>
+                  <p>
+                    Activo desde el{' '}
+                    <strong>{formatDate(producto.discount.start_date)}</strong>{' '}
+                    hasta{' '}
+                    <strong>{formatDate(producto.discount.end_date)}</strong>
+                  </p>
+                  <button
+                    onClick={() => handleDeleteDiscount(producto.discount.id)}
+                  >
+                    <i className='bi bi-trash' /> Eliminar descuento
+                  </button>
+                </div>
+              )
+            : ''}
         </form>
         <div className='add-producto-button-container'>
           <Boton
@@ -94,6 +129,7 @@ export default function Descuentos({ onClick, id }) {
           <Boton
             textBoton='Crear descuento'
             onClick={handleSubmit}
+            desactivado={producto.discount}
           />
         </div>
       </section>

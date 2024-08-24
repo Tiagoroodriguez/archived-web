@@ -487,3 +487,36 @@
     overflow: auto;
     justify-content: flex-start;
 }
+
+/*Descuento de productos--------------------------------------------------------------*/
+
+.disabled {
+    opacity: 60%;
+    cursor: not-allowed;
+}
+
+.descuento-mensaje {
+    font-size: 12px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #0000003a;
+    border-radius: 5px;
+}
+
+.descuento-mensaje button {
+    background: rgb(182, 33, 33);
+    color: var(--bg-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.descuento-mensaje button:hover {
+    background: var(--bg-color);
+    color: var(--primary-color);
+}

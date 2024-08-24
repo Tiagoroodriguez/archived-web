@@ -98,13 +98,45 @@ export const createProduct = async (req, res) => {
 export const getProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    if (!product) return res.status(404).json({ message: 'Product not found' });
-    res.json(product);
+    if (!product)
+      return res.status(404).json({ message: 'Producto no encontrado' });
+
+    // Obtener los descuentos actuales para este producto
+    const discounts = await Discount.find({
+      start_date: { $lte: new Date() },
+      end_date: { $gte: new Date() },
+      active: true,
+      product_id: product._id,
+    });
+
+    if (discounts.length > 0) {
+      const discount = discounts[0];
+      const discountAmount =
+        product.precio * (discount.discount_percentage / 100);
+
+      // Crear la respuesta con los datos del producto y el descuento
+      const productWithDiscount = {
+        ...product.toObject(), // Convertir el documento de Mongoose a un objeto plano
+        precio_con_descuento: product.precio - discountAmount,
+        discount: {
+          id: discount._id,
+          discount_percentage: discount.discount_percentage,
+          start_date: discount.start_date,
+          end_date: discount.end_date,
+        },
+      };
+
+      return res.json(productWithDiscount);
+    } else {
+      // Si no hay descuento, retornar solo el producto
+      return res.json(product);
+    }
   } catch (error) {
-    return res.status(404).json({ message: 'Producto no encontrado' });
+    return res
+      .status(500)
+      .json({ message: 'Algo salió mal', error: error.message });
   }
 };
-
 export const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
