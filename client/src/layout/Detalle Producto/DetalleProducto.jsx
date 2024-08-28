@@ -68,7 +68,6 @@ export function DetalleProducto() {
   const anteriorImagen = () => {
     setImagenSeleccionada((prevIndice) => (prevIndice - 1 + 4) % 4);
   };
-  console.log(producto);
 
   const descripcion = producto ? producto.descripcion : '';
   const arcodeonData = [

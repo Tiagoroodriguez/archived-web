@@ -60,6 +60,7 @@ export const PedidoProvider = ({ children }) => {
   const [provinciaEnvio, setProvinciaEnvio] = useState('');
   const [provinciaFacturacion, setProvinciaFacturacion] = useState('');
   const [selectedMetodoEnvio, setSelectedMetodoEnvio] = useState('');
+  const [couponPedido, setCouponPedido] = useState([]);
   const [mismaDireccion, setMismaDireccion] = useState(true);
   const [codigoPostal, setCodigoPostal] = useState(false);
   const [isPedidoCreated, setPedidoCreated] = useState(false);
@@ -73,6 +74,8 @@ export const PedidoProvider = ({ children }) => {
   const createPedido = async (pedido) => {
     try {
       const res = await createPedidoRequest(pedido);
+      setPedido(res.data);
+
       return res.data;
     } catch (error) {
       console.error(error);
@@ -191,6 +194,8 @@ export const PedidoProvider = ({ children }) => {
         setPedidoCreated,
         sendEmail,
         getRecommendations,
+        couponPedido,
+        setCouponPedido,
       }}
     >
       {children}

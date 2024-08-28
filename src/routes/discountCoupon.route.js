@@ -9,12 +9,14 @@ import {
   updateCoupon,
   deleteCoupon,
   getCouponByCode,
+  getDiscount,
 } from '../controllers/discountCoupon.controller.js';
 
 const router = Router();
 
 // Rutas para descuentos
 router.get('/discounts', getDiscounts);
+router.get('/discount/:producId', getDiscount);
 router.post('/discount', createDiscount);
 router.put('/discount/:id', updateDiscount);
 router.delete('/discount/:id', deleteDiscount);

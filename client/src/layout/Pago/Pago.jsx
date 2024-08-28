@@ -14,8 +14,8 @@ import { useEffect } from 'react';
 
 export default function Pago() {
   const { createOrder } = useContext(MercadoPagoContext);
-  const { getCartItems, cartItems } = useContext(CartContext);
-  const { envioInfo, selectedMetodoEnvio } = usePedido();
+  const { getCartItems, cartItems, coupon } = useContext(CartContext);
+  const { envioInfo, setEnvioInfo, selectedMetodoEnvio } = usePedido();
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -24,11 +24,22 @@ export default function Pago() {
   const navigate = useNavigate();
 
   const handleMercadoPago = () => {
-    createOrder(getCartItems());
-    setLoading(true);
+    if (coupon.code !== undefined) {
+      createOrder(getCartItems(coupon));
+      setEnvioInfo({
+        ...envioInfo,
+        coupon: coupon._id,
+      });
+      setLoading(true);
+    } else {
+      createOrder(getCartItems());
+      setLoading(true);
+    }
   };
+
   const handlePago = () => {
-    const prodts = getCartItems();
+    const products = getCartItems();
+    console.log(products);
   };
 
   useEffect(() => {

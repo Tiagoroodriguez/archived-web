@@ -122,7 +122,6 @@ export default function InformacionEnvio() {
 
     if (envioData) {
       navigate('/checkout/pago');
-      console.log('Informacion: ', envioData);
     } else {
       console.error('Error al registrar el envio');
     }

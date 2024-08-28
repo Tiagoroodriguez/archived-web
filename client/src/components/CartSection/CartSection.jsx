@@ -2,10 +2,12 @@ import { useContext, useState } from 'react';
 import { CartContext } from '../../context/CarritoContext';
 import { formatPrice } from '../../utils/formatePrice';
 import { getCouponRequest } from '../../api/coupon';
+import { usePedido } from '../../context/PedidosContext';
 
 export default function CartSection() {
   const { cartItems, getCartTotal, coupon, setCoupon } =
     useContext(CartContext);
+  const { setCouponPedido } = usePedido();
   const [couponCode, setCouponCode] = useState('');
   const [error, setError] = useState('');
 
@@ -15,15 +17,19 @@ export default function CartSection() {
 
   const handleRedeemCoupon = async () => {
     try {
-      const response = await getCouponRequest(couponCode);
-      setCoupon(response.data);
+      const cupon = await getCouponRequest(couponCode);
+      if (cupon.data.max_uses <= cupon.data.used_count) {
+        setError('Cupón no disponible');
+        return;
+      }
+      setCoupon(cupon.data);
+      setCouponPedido(cupon.data);
       setError('');
       setCouponCode('');
     } catch (error) {
       setError('Cupón no encontrado');
     }
   };
-
   return (
     <section className='carrito-section'>
       <header className='header-carrito'>
@@ -60,20 +66,21 @@ export default function CartSection() {
         <div>
           <input
             placeholder={
-              coupon
+              coupon.code
                 ? `${coupon.code} - ${coupon.discount_percentage}% OFF`
                 : 'Código de cupón'
             }
             value={couponCode}
             onChange={handleCouponChange}
-            disabled={coupon ? true : false}
+            disabled={coupon.code ? true : false}
           />
           <button
             onClick={handleRedeemCoupon}
-            disabled={coupon ? true : false}
+            disabled={coupon.code ? true : false}
           >
             Canjear
           </button>
+          <button onClick={() => setCoupon([])}>resetear</button>
         </div>
 
         {error && <p className='error-coupon'>{error}</p>}
@@ -83,7 +90,7 @@ export default function CartSection() {
         <div className='line-costo' />
         <div>
           <p>Subtotal:</p>
-          {coupon ? (
+          {coupon.code ? (
             <p className='total-descuento-container'>
               <span className='total-descuento'>
                 {formatPrice(getCartTotal())}
@@ -103,7 +110,7 @@ export default function CartSection() {
         <div>
           <h1>Total:</h1>
           <h1>
-            {coupon
+            {coupon.code
               ? formatPrice(getCartTotal(coupon))
               : formatPrice(getCartTotal())}
           </h1>
