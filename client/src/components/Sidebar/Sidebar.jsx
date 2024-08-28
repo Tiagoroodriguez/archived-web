@@ -3,6 +3,7 @@ import { LogoTexto } from '../LogoTexto/LogoTexto';
 import { NavLink } from 'react-router-dom';
 import { usePedido } from '../../context/PedidosContext';
 import { useAuth } from '../../context/AuthContext';
+import { Badge } from '@tremor/react';
 
 export default function Sidebar({
   inicioNav,
@@ -37,7 +38,13 @@ export default function Sidebar({
           <li className={pedidosNav ? 'active-nav' : ''}>
             <i className='bi bi-cart' />
             <NavLink to='/administration/orders'>
-              Pedidos <span>{pedidos.length}</span>
+              Pedidos{' '}
+              <Badge
+                size='xs'
+                color='green'
+              >
+                {pedidos.length}
+              </Badge>
             </NavLink>
           </li>
           <li className={productsNav ? 'active-nav' : ''}>
