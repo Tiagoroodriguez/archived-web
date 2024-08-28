@@ -9,7 +9,7 @@ export function LogoTexto({ blanco }) {
     >
       {blanco ? (
         <img
-          src='/svg/logo_archived_negro.svg'
+          src='/svg/logo_archived_blanco.svg'
           alt='Logo de Archived'
           width='120'
           height='120'

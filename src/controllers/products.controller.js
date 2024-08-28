@@ -208,8 +208,23 @@ export const updateProductStock = async (req, res) => {
     }
 
     // Guardar los cambios en el producto
-    const updatedProduct = await product.save();
-    res.json(updatedProduct);
+    try {
+      // Usar findByIdAndUpdate para modificar solo el stock y evitar problemas de validación
+      const updatedProduct = await Product.findByIdAndUpdate(
+        id,
+        { $inc: { [`cant_${talle.toLowerCase()}`]: -quantity } },
+        { new: true, runValidators: false }
+      );
+
+      if (!updatedProduct) {
+        return res.status(404).json({ message: 'Producto no encontrado' });
+      }
+
+      res.json(updatedProduct);
+    } catch (error) {
+      console.error('Error al actualizar el stock:', error);
+      return res.status(500).json({ message: 'Algo salió mal' });
+    }
   } catch (error) {
     console.error('Error al actualizar el stock:', error);
     return res.status(500).json({ message: 'Algo salió mal' });

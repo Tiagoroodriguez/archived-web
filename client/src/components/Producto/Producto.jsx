@@ -43,7 +43,7 @@ export function Producto({ producto }) {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  console.log(producto);
+
   return (
     <article
       className='container'

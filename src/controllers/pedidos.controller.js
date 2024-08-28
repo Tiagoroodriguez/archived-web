@@ -8,22 +8,21 @@ import Coupon from '../models/cupones.model.js';
 import { sendMail } from './email.controller.js';
 
 // Función para calcular el precio con descuento
-const calcularPrecioConDescuento = (precio, descuento) => {
-  return precio - precio * (descuento / 100);
+const calcularPrecioOrginal = (precio, descuento) => {
+  return precio + precio * (descuento / 100);
 };
 
 // Función para aplicar cupones a un pedido
 const aplicarCuponAPedido = async (totalConDescuento, codigoCupon) => {
   if (!codigoCupon) return totalConDescuento;
-
-  const cupon = await Coupon.findOne({ code: codigoCupon });
-  if (!cupon || cupon.used_count >= cupon.max_uses) {
-    throw new Error('Cupón inválido o expirado');
+  const cupon = await Coupon.findOne({ _id: codigoCupon });
+  if (!cupon || cupon.max_uses <= cupon.used_count) {
+    throw new Error('Cupón inválido o expirado por uso');
   }
 
   const currentDate = new Date();
   if (currentDate < cupon.valid_from || currentDate > cupon.valid_until) {
-    throw new Error('Cupón inválido o expirado');
+    throw new Error('Cupón inválido o expirado por fecha');
   }
 
   // Restar un uso al cupón
@@ -31,10 +30,7 @@ const aplicarCuponAPedido = async (totalConDescuento, codigoCupon) => {
   await cupon.save();
 
   // Calcular el precio final con el descuento del cupón
-  return calcularPrecioConDescuento(
-    totalConDescuento,
-    cupon.discount_percentage
-  );
+  return calcularPrecioOrginal(totalConDescuento, cupon.discount_percentage);
 };
 
 const getNextOrderNumber = async () => {
@@ -57,8 +53,9 @@ const getNextOrderNumber = async () => {
 export const createPedido = async (req, res) => {
   try {
     const {
-      codigo_pago,
+      numero_pago,
       tipo_pago,
+      estado_pago,
       user,
       nombre_envio,
       apellido_envio,
@@ -85,8 +82,8 @@ export const createPedido = async (req, res) => {
       provincia_facturacion,
       codigo_postal_facturacion,
       productos,
-      codigoCupon,
-      total: totalPedido,
+      coupon,
+      totalPagado,
     } = req.body;
 
     if (
@@ -100,7 +97,8 @@ export const createPedido = async (req, res) => {
       !email_facturacion ||
       !telefono_facturacion ||
       !productos ||
-      !totalPedido ||
+      //!totalPagado ||
+      !numero_pago ||
       !Array.isArray(productos) ||
       productos.length === 0
     ) {
@@ -172,10 +170,87 @@ export const createPedido = async (req, res) => {
       savedDireccionEnvio = await direccionEnvio.save();
     }
 
-    /*const totalConCupon = await aplicarCuponAPedido(
-      totalConDescuento,
-      codigoCupon
-    );*/
+    const formatProduct = async (product) => {
+      const productData = await Producto.findById(product.producto_id);
+
+      const discounts = await Discount.find({
+        product_id: product.producto_id,
+      });
+
+      let productWithDiscount = null;
+
+      if (discounts.length > 0) {
+        const discount = discounts[0];
+        const discountAmount =
+          productData.precio * (discount.discount_percentage / 100);
+
+        // Crear la respuesta con los datos del producto y el descuento
+        productWithDiscount = {
+          ...productData.toObject(), // Convertir el documento de Mongoose a un objeto plano
+          precio_con_descuento: productData.precio - discountAmount,
+          discount: {
+            id: discount._id,
+            discount_percentage: discount.discount_percentage,
+            start_date: discount.start_date,
+            end_date: discount.end_date,
+          },
+        };
+      }
+
+      const porductsData = productWithDiscount || productData.toObject();
+
+      return {
+        producto_id: product.producto_id,
+        nombre: porductsData.nombre,
+        cantidad: product.cantidad,
+        talle: product.talle,
+        categoria: porductsData.categoria,
+        precio: porductsData.precio,
+        precio_con_descuento: porductsData.discount
+          ? porductsData.precio_con_descuento
+          : undefined,
+      };
+    };
+
+    const productosFormateados = await Promise.all(
+      productos.map(formatProduct)
+    );
+
+    const totalSinDescuento = productosFormateados.reduce(
+      (acc, item) => acc + item.precio * item.cantidad,
+      0
+    );
+
+    const cupon = async () => {
+      if (!coupon) return undefined;
+
+      const cuponData = await Coupon.findById(coupon);
+      if (!cuponData || cuponData.max_uses <= cuponData.used_count) {
+        throw new Error('Cupón inválido o expirado por uso');
+      }
+
+      const currentDate = new Date();
+      if (
+        currentDate < cuponData.valid_from ||
+        currentDate > cuponData.valid_until
+      ) {
+        throw new Error('Cupón inválido o expirado por fecha');
+      }
+
+      // Restar un uso al cupón
+      cuponData.used_count += 1;
+      await cuponData.save();
+
+      return {
+        discount_percentage: cuponData.discount_percentage,
+        code: cuponData.code,
+      };
+    };
+
+    // Ejecutar la función cupon y manejar su resultado
+    const cuponResult = await cupon();
+
+    console.log(cuponResult);
 
     const newPedido = new Pedido({
       numero_pedido: numero_pedido,
@@ -185,12 +260,15 @@ export const createPedido = async (req, res) => {
       direccion_envio: savedDireccionEnvio
         ? savedDireccionEnvio._id
         : undefined,
-      productos: productos,
-      cupon: codigoCupon ? codigoCupon : undefined,
-      total: totalPedido,
-      /*total_con_descuento: totalConCupon,*/
-      codigo_pago: codigo_pago ? codigo_pago : undefined,
+      productos: productosFormateados,
+      coupon: cuponResult
+        ? `${cuponResult.code} - ${cuponResult.discount_percentage}`
+        : undefined,
+      total: coupon ? totalSinDescuento : totalPagado,
+      total_con_descuento: coupon ? totalPagado : undefined,
+      numero_pago: numero_pago ? numero_pago : undefined,
       tipo_pago: tipo_pago,
+      estado_pago: estado_pago,
       user: user ? user : undefined,
     });
 
@@ -346,7 +424,7 @@ export const createPedido = async (req, res) => {
                                   <tr class="tabla-header" style="background: #2d333b56; border: 1px solid #f2f2f2; width: 100%;">
                                     <td class="inicio" style="font-family: sans-serif; font-size: 14px; vertical-align: top; text-align: start; padding: 10px; width: calc(100% / 3);" width="calc(100% / 3)" valign="top" align="start">Total:</td>
                                     <td class="medio" style="font-family: sans-serif; font-size: 14px; vertical-align: top; text-align: center; padding: 10px; width: calc(100% / 3);" width="calc(100% / 3)" valign="top" align="center"></td>
-                                    <td class="final" style="font-family: sans-serif; font-size: 14px; vertical-align: top; text-align: end; padding: 10px; width: calc(100% / 3);" width="calc(100% / 3)" valign="top" align="end">$${totalPedido}</td>
+                                    <td class="final" style="font-family: sans-serif; font-size: 14px; vertical-align: top; text-align: end; padding: 10px; width: calc(100% / 3);" width="calc(100% / 3)" valign="top" align="end">$${totalPagado}</td>
                                   </tr>
                                   </tbody>
                                 </table>

@@ -14,6 +14,25 @@ export const getDiscounts = async (req, res) => {
   }
 };
 
+export const getDiscount = async (req, res) => {
+  const { producId } = req.params;
+  try {
+    const discount = await Discount.find({ product_id: producId }).populate(
+      'product_id'
+    );
+    if (discount) {
+      res.json(discount);
+    } else {
+      res.status(404).json({ message: 'Descuento no encontrado' });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error al obtener el descuento',
+      error: error.message,
+    });
+  }
+};
+
 export const createDiscount = async (req, res) => {
   try {
     const { product_id, discount_percentage, start_date, end_date } = req.body;

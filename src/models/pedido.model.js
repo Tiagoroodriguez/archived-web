@@ -43,13 +43,21 @@ const pedidoSchema = new mongoose.Schema(
           type: Number,
           required: true,
         },
+        talle: {
+          type: String,
+          required: true,
+        },
+        categoria: {
+          type: String,
+          required: true,
+        },
         precio: {
           type: Number,
           required: true,
         },
-        talle: {
-          type: String,
-          required: true,
+        precio_con_descuento: {
+          type: Number,
+          default: 0,
         },
       },
     ],
@@ -70,7 +78,7 @@ const pedidoSchema = new mongoose.Schema(
       type: String,
       default: 'Pendiente',
     },
-    codigo_pago: {
+    numero_pago: {
       type: String,
     },
     tipo_pago: {
@@ -79,9 +87,8 @@ const pedidoSchema = new mongoose.Schema(
     codigo_seguimiento: {
       type: String,
     },
-    cupon: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Coupon',
+    coupon: {
+      type: String,
     },
     total: {
       type: Number,

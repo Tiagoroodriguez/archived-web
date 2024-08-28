@@ -92,10 +92,9 @@ export function Tienda() {
         </nav>
         {filteredProducts.length === 0 ? (
           <section className='productos-container'>
-            <ProductoEsqueleto />
-            <ProductoEsqueleto />
-            <ProductoEsqueleto />
-            <ProductoEsqueleto />
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+              <ProductoEsqueleto key={item} />
+            ))}
           </section>
         ) : (
           <section className='productos-container'>
