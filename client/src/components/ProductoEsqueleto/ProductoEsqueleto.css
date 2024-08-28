@@ -15,14 +15,14 @@
 }
 
 .nombre-texto-esqueleto{
-    width: 90%;
+    width: 80%;
     height: 20px;
     border-radius: 5px;
 }
 
 .precio-texto-esqueleto {
-    width: 70%;
-    height: 20px;
+    width: 50%;
+    height: 15px;
     border-radius: 5px;
 }
 
