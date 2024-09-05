@@ -12,6 +12,7 @@ import { CheckboxGroup } from '../../components/CheckboxGroup/CheckboxGroup';
 import Select from '../../components/Select/Select';
 import './InformacionEnvio.css';
 import CartSection from '../../components/CartSection/CartSection';
+import { Helmet } from 'react-helmet';
 
 export default function InformacionEnvio() {
   const paymentOptions = ['Andreani - $2000', 'Retirar en el local - Gratis'];
@@ -199,6 +200,18 @@ export default function InformacionEnvio() {
 
   return (
     <main className='checkout'>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Checkout - Información | Archived</title>
+        <meta
+          name='description'
+          content='Seccion de informacion por compra de archived'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/checkout/entrega'
+        />
+      </Helmet>
       <section className='informacion-section'>
         <LogoTexto />
         <RutaCompra

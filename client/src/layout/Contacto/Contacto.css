@@ -55,11 +55,14 @@
     border: solid 1px var(--secondary-color);
     background: none;
     padding: 10px;
+    font-size: 12px;
+    transition: border 0.3s ease; 
 }
 
 .contenido:focus {
     outline: none;
     border: solid 1px var(--text-color);
+    box-shadow: none;
 }
 
 @media (max-width: 768px) {
