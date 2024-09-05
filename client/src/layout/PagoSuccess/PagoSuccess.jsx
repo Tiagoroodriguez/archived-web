@@ -28,7 +28,7 @@ const PagoSuccess = () => {
       fetchOrderItems();
     }
   }, [getOrder, merchantOrderId, orderItems.length]);
-  console.log(envioInfo);
+
   useEffect(() => {
     if (orderItems.length && envioInfo && !isPedidoCreated) {
       const formattedOrderItems = orderItems.map((item) => ({
@@ -44,9 +44,6 @@ const PagoSuccess = () => {
         0
       );
 
-      console.log('Formatted Order Items:', formattedOrderItems);
-      console.log('Pedido Total Calculated:', pedidoTotal);
-
       const completeOrder = {
         ...envioInfo,
         numero_pago: merchantOrderId,
@@ -57,7 +54,6 @@ const PagoSuccess = () => {
         user: user ? user.id : undefined,
       };
 
-      console.log('Complete Order:', completeOrder);
       createPedido(completeOrder); // Crear el pedido cuando la información esté completa
       setPedidoCreated(true); // Marcar que el pedido ha sido creado
     }

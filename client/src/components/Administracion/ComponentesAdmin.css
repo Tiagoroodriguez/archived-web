@@ -105,6 +105,7 @@
 }
 
 .tabla-productos-body tr{
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -142,12 +143,12 @@
 .detalle-cantidad{
     background: var(--bg-color);
     color: var(--text-color);
-    border: 1px solid #e0e0e0;
+    border: 1px solid #00000013;
     padding: 5px 10px;
     border-radius: 5px;
     position: absolute;
-    top: -40px;
-    right: 15px;
+    top: -35px;
+    right: 35px;
     
 }
 
@@ -518,5 +519,100 @@
 
 .descuento-mensaje button:hover {
     background: var(--bg-color);
+    color: var(--primary-color);
+}
+
+/*Pedido Form --------------------------------------------------------------------------------------------------*/
+
+.pedido-form-info-container{
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pedido-form-data-title {
+    font-weight: 700;
+    color: var(--text-color);
+    opacity: 80%;
+}
+
+.pedido-form-data-content {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.pedido-form-info-container ul {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.pedido-form-tabla {
+    width: 100%;
+    border: 1px solid #00000013;
+}
+
+.pedido-form-tabla thead {
+    border-bottom: 1px solid #00000013;
+}
+
+.pedido-form-tabla tfoot {
+    border-top: 1px solid #00000013;
+}
+
+.pedido-form-tabla thead tr, .pedido-form-tabla tbody tr, .pedido-form-tabla tfoot tr{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+
+.pedido-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: white;
+    padding: 10px;
+    gap: 10px;
+
+    overflow: auto;
+    justify-content: flex-start;
+}
+
+
+.pedido-form-input {
+    border: 1px solid #d7d7d7;
+    width: 100%;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 5px;
+    box-shadow: none;
+    height: 35px;
+    transition: border .3s ease;
+    margin-top: 10px;
+}
+
+.pedido-form-input:focus {
+    box-shadow: none;
+    border: 1px solid var(--text-color);
+}
+
+.pedido-form-button {
+    border: none;
+    width: 40%;
+    height: 35px;
+    color: var(--bg-color);
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: all .3s ease;
+}
+
+.pedido-form-button:hover {
+    border: 1px solid var(--primary-color);
+    background: none;
     color: var(--primary-color);
 }

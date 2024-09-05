@@ -11,6 +11,7 @@ import { CheckboxGroup } from '../../components/CheckboxGroup/CheckboxGroup';
 import { usePedido } from '../../context/PedidosContext';
 import CartSection from '../../components/CartSection/CartSection';
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 export default function Pago() {
   const { createOrder } = useContext(MercadoPagoContext);
@@ -20,7 +21,7 @@ export default function Pago() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const paymentOptions = ['Mercado pago', 'Transferencia bancaria'];
+  const paymentOptions = ['Mercado pago'];
   const navigate = useNavigate();
 
   const handleMercadoPago = () => {
@@ -56,6 +57,18 @@ export default function Pago() {
 
   return (
     <>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Checkout - Pago | Archived</title>
+        <meta
+          name='description'
+          content='Seccion de pago por compra de archived'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/checkout/pago'
+        />
+      </Helmet>
       <main className='pago'>
         <section className='pago-section'>
           <LogoTexto />
@@ -122,6 +135,7 @@ export default function Pago() {
                 onSelectionChange={setSelectedPaymentMethod}
                 selectedOption={selectedPaymentMethod}
               />
+              <p className='opacity-[60%] text-xs'>Próximamente más métodos</p>
             </div>
             <div className='checkout-actions'>
               <Link to='/checkout/entrega'>

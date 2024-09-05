@@ -3,6 +3,7 @@ import { Boton } from '../Boton/Boton';
 import { useProduct } from '../../context/ProductContext';
 import 'react-quill/dist/quill.snow.css'; // Estilos por defecto
 import { toast } from 'sonner';
+import { motion } from 'framer-motion';
 
 export default function AddProductoStock({ onClick, id }) {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -21,7 +22,7 @@ export default function AddProductoStock({ onClick, id }) {
     const { name, value } = e.target;
     setProducto({ ...producto, [name]: value });
   };
-  console.log(producto);
+
   const handleUpdate = async () => {
     try {
       await updateProduct(producto);
@@ -49,9 +50,22 @@ export default function AddProductoStock({ onClick, id }) {
     }
   }, [initialLoad, getProduct, id]);
 
+  const variants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0 },
+  };
+
   return (
     <div className='add-producto-container'>
-      <section className='add-producto-form-container'>
+      <motion.section
+        className='add-producto-form-container'
+        initial='hidden'
+        animate='visible'
+        exit='exit'
+        variants={variants}
+        transition={{ duration: 0.3 }}
+      >
         <header className='add-producto-form-header'>
           <h1>
             <i className='bi bi-archive-fill' />
@@ -130,7 +144,7 @@ export default function AddProductoStock({ onClick, id }) {
             onClick={handleUpdate}
           />
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }

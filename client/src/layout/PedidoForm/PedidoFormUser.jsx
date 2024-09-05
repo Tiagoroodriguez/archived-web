@@ -43,19 +43,21 @@ export default function PedidoFormUser({ pedido }) {
         <div className='pedido-estados'>
           <div
             className={`pedido-estado ${
-              pedido.estado === 'pendiente' ? 'estado-actual' : ''
+              pedido.estado_envio === 'Pendiente' ? 'estado-actual' : ''
             }`}
           >
             <i
               className={`bi bi-clock ${
-                pedido.estado === 'enviado' || pedido.estado === 'entregado'
+                pedido.estado_envio === 'Enviado' ||
+                pedido.estado_envio === 'Entregado'
                   ? 'estado-actual'
                   : ''
               }`}
             />
             <span
               className={
-                pedido.estado === 'enviado' || pedido.estado === 'entregado'
+                pedido.estado_envio === 'Enviado' ||
+                pedido.estado_envio === 'Entregado'
                   ? 'estado-actual'
                   : ''
               }
@@ -69,7 +71,8 @@ export default function PedidoFormUser({ pedido }) {
               variants={firstLineVariants}
               initial='initial'
               animate={
-                pedido.estado === 'enviado' || pedido.estado === 'entregado'
+                pedido.estado_envio === 'Enviado' ||
+                pedido.estado_envio === 'Entregado'
                   ? 'animate'
                   : 'initial'
               }
@@ -78,21 +81,24 @@ export default function PedidoFormUser({ pedido }) {
 
           <div
             className={`pedido-estado ${
-              pedido.estado === 'enviado' || pedido.estado === 'entregado'
+              pedido.estado_envio === 'Enviado' ||
+              pedido.estado_envio === 'Entregado'
                 ? 'estado-actual'
                 : ''
             }`}
           >
             <i
               className={`bi bi-archive ${
-                pedido.estado === 'enviado' || pedido.estado === 'entregado'
+                pedido.estado_envio === 'Enviado' ||
+                pedido.estado_envio === 'Entregado'
                   ? 'estado-actual'
                   : ''
               }`}
             />
             <span
               className={
-                pedido.estado === 'enviado' || pedido.estado === 'entregado'
+                pedido.estado_envio === 'Enviado' ||
+                pedido.estado_envio === 'Entregado'
                   ? 'estado-actual'
                   : ''
               }
@@ -105,27 +111,31 @@ export default function PedidoFormUser({ pedido }) {
               className='pedido-line'
               variants={secondLineVariants}
               initial='initial'
-              animate={pedido.estado === 'entregado' ? 'animate' : 'initial'}
+              animate={
+                pedido.estado_envio === 'Entregado' ? 'animate' : 'initial'
+              }
             />
           </div>
           <div
             className={`pedido-estado ${
-              pedido.estado === 'entregado' ? 'estado-actual' : ''
+              pedido.estado_envio === 'Entregado' ? 'estado-actual' : ''
             }`}
           >
             <i
               className={`bi bi-check2-circle ${
-                pedido.estado === 'entregado' ? 'estado-actual' : ''
+                pedido.estado_envio === 'Entregado' ? 'estado-actual' : ''
               }`}
             />
             <span
-              className={pedido.estado === 'entregado' ? 'estado-actual' : ''}
+              className={
+                pedido.estado_envio === 'Entregado' ? 'estado-actual' : ''
+              }
             >
               Entregado
             </span>
           </div>
         </div>
-        {pedido.estado === 'enviado' ? (
+        {pedido.codigo_seguimiento && pedido.estado_envio === 'Enviado' ? (
           <motion.div
             className='pedido-user-cod-seg'
             variants={codSegVariants}
@@ -134,7 +144,7 @@ export default function PedidoFormUser({ pedido }) {
           >
             <p>
               <i className='bi bi-truck' />
-              Codigo de seguimiento: <span>1asdas31225a456gfas</span>
+              Codigo de seguimiento: <span>{pedido.codigo_seguimiento}</span>
             </p>
           </motion.div>
         ) : (

@@ -4,6 +4,7 @@ import './Perfil.css';
 import { useEffect, useState } from 'react';
 import OrderCard from '../../components/OrderCard/OrderCard';
 import { useAuth } from '../../context/AuthContext';
+import { Helmet } from 'react-helmet';
 
 function Perfil() {
   const { getPedidoUser, pedidoUser } = usePedido();
@@ -29,15 +30,29 @@ function Perfil() {
 
   return (
     <main className='perfil-main-container'>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Perfil | Archived</title>
+        <meta
+          name='description'
+          content='Perfil de usuario'
+        />
+        <link
+          rel='canonical'
+          href={`http://archived.com.ar/perfil/${user._id}`}
+        />
+      </Helmet>
       <div className='perfil-header'>
-        <h1 className='perfil-title'>Tu cuenta</h1>
+        <h1 className='perfil-title'>
+          Hola {user.nombre} {user.apellido}!
+        </h1>
         <Link
           to='/'
           onClick={() => {
             logout();
           }}
         >
-          Logout
+          <i className='bi bi-box-arrow-left' /> Salir
         </Link>
       </div>
       <p className='perfil-p'>Conoce el estado de tus pedidos</p>

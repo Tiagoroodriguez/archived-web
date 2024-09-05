@@ -29,7 +29,7 @@ export default function HeroSection() {
         </div>*/}
 
         <div className='hero-contador'>
-          <Contador targetDate='2024-09-22T23:59:59' />
+          <Contador targetDate='2024-09-23T20:00:00' />
         </div>
       </div>
     </section>

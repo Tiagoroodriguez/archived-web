@@ -8,6 +8,7 @@ import EditProduct from './EditProduct';
 import AddProductoStock from './AddStockProducto';
 import { Badge } from '@tremor/react';
 import Descuentos from './Descuentos';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function TablaProductos({ productos }) {
   const [hoveredProductId, setHoveredProductId] = useState(null);
@@ -64,49 +65,63 @@ export default function TablaProductos({ productos }) {
     }
   };
 
+  const variants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0 },
+  };
+
   return (
     <>
-      {aviso && (
-        <div className='product-aviso'>
-          <div>
-            <p>¿Estás seguro que deseas eliminar este producto?</p>
-            <div>
-              <button
-                onClick={handleAvisoChange}
-                className='cancelar'
-              >
-                Cancelar
-              </button>
-              <button
-                className='eliminar'
-                onClick={eliminar}
-              >
-                Eliminar
-              </button>
-            </div>
+      <AnimatePresence>
+        {aviso && (
+          <div className='product-aviso'>
+            <motion.div
+              initial='hidden'
+              animate='visible'
+              exit='exit'
+              variants={variants}
+              transition={{ duration: 0.3 }}
+            >
+              <p>¿Estás seguro que deseas eliminar este producto?</p>
+              <div>
+                <button
+                  onClick={handleAvisoChange}
+                  className='cancelar'
+                >
+                  Cancelar
+                </button>
+                <button
+                  className='eliminar'
+                  onClick={eliminar}
+                >
+                  Eliminar
+                </button>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      )}
-      {editProduct && (
-        <EditProduct
-          onClick={() => {
-            setEditProduct(false);
-          }}
-          id={productId}
-        />
-      )}
-      {addStock && (
-        <AddProductoStock
-          onClick={() => setAddStock(false)}
-          id={productId}
-        />
-      )}
-      {descuentos && (
-        <Descuentos
-          onClick={() => setDescuentos(false)}
-          id={productId}
-        />
-      )}
+        )}
+        {editProduct && (
+          <EditProduct
+            onClick={() => {
+              setEditProduct(false);
+            }}
+            id={productId}
+          />
+        )}
+        {addStock && (
+          <AddProductoStock
+            onClick={() => setAddStock(false)}
+            id={productId}
+          />
+        )}
+        {descuentos && (
+          <Descuentos
+            onClick={() => setDescuentos(false)}
+            id={productId}
+          />
+        )}
+      </AnimatePresence>
       <table className='tabla-productos-container'>
         <header className='tabla-header'>
           <div className='tabla-header-title'>

@@ -250,8 +250,6 @@ export const createPedido = async (req, res) => {
     // Ejecutar la función cupon y manejar su resultado
     const cuponResult = await cupon();
 
-    console.log(cuponResult);
-
     const newPedido = new Pedido({
       numero_pedido: numero_pedido,
       cliente_facturacion: clienteFacturacion._id,

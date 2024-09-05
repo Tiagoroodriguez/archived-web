@@ -4,6 +4,7 @@ import { useProduct } from '../../context/ProductContext';
 import 'react-quill/dist/quill.snow.css';
 import { toast } from 'sonner';
 import { formatDate } from '../../utils/formatDate';
+import { motion } from 'framer-motion';
 
 export default function Descuentos({ onClick, id }) {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -44,9 +45,22 @@ export default function Descuentos({ onClick, id }) {
     }
   }, [initialLoad, getProduct, id]);
 
+  const variants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0 },
+  };
+
   return (
     <div className='add-producto-container'>
-      <section className='add-producto-form-container'>
+      <motion.section
+        className='add-producto-form-container'
+        initial='hidden'
+        animate='visible'
+        exit='exit'
+        variants={variants}
+        transition={{ duration: 0.3 }}
+      >
         <header className='add-producto-form-header'>
           <h1>
             <i className='bi bi-tag-fill' />
@@ -132,7 +146,7 @@ export default function Descuentos({ onClick, id }) {
             desactivado={producto.discount}
           />
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }

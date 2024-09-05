@@ -14,6 +14,7 @@ import discountCouponRoutes from './routes/discountCoupon.route.js';
 import searchRoutes from './routes/search.router.js';
 import subscriberRoutes from './routes/subscriber.route.js';
 import fileRoutes from './routes/files.routes.js';
+import emailRouters from './routes/email.router.js';
 
 const app = express();
 
@@ -48,6 +49,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use(express.urlencoded({ extended: true }));
 
 // Middleware para establecer el tipo de contenido manualmente (si es necesario)
 app.use((req, res, next) => {
@@ -66,5 +68,6 @@ app.use('/api', discountCouponRoutes);
 app.use('/api', searchRoutes);
 app.use('/api', subscriberRoutes);
 app.use('/api', fileRoutes);
+app.use('/api', emailRouters);
 
 export default app;

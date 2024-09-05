@@ -30,6 +30,18 @@ export function Contacto() {
 
   return (
     <section>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Contacto | Archived</title>
+        <meta
+          name='description'
+          content='Pagina de contacto'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/contacto'
+        />
+      </Helmet>
       <form
         onSubmit={onSubmit}
         className='contacto'

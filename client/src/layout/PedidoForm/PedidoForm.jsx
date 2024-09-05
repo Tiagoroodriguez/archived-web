@@ -32,6 +32,8 @@ export default function PedidoForm() {
     return <div className='pedido-load'>Cargando...</div>;
   }
 
+  console.log(pedido.codigo_seguimiento);
+
   return (
     <>
       {user.rol === 'admin' ? (

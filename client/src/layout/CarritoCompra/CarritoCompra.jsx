@@ -6,6 +6,7 @@ import RutaCompra from '../../components/RutaCompra/RutaCompra';
 
 import './CarritoCompra.css';
 import { formatPrice } from '../../utils/formatePrice';
+import { Helmet } from 'react-helmet';
 
 export default function CarritoCompra() {
   const { cartItems, addToCart, removeFromCart, getCartTotal } =
@@ -20,6 +21,18 @@ export default function CarritoCompra() {
 
   return (
     <main className='carritolayout-container'>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Checkout | Archived</title>
+        <meta
+          name='description'
+          content='Seccion de checkout por compra de archived'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/checkout'
+        />
+      </Helmet>
       <RutaCompra
         carrito={true}
         detalleCompra={false}
