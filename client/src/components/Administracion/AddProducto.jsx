@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Estilos por defecto
 import axios from '../../api/axios.js';
 import { toast } from 'sonner';
+import { motion } from 'framer-motion';
 
 export default function AddProducto({ onClick }) {
   const modules = {
@@ -100,6 +101,7 @@ export default function AddProducto({ onClick }) {
       console.error('Error uploading image:', error);
     }
   };
+
   const handleSubmit = async () => {
     try {
       const productoConImagenes = {
@@ -139,9 +141,22 @@ export default function AddProducto({ onClick }) {
     }
   };
 
+  const variants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0 },
+  };
+
   return (
     <div className='add-producto-container'>
-      <section className='add-producto-form-container'>
+      <motion.section
+        className='add-producto-form-container'
+        initial='hidden'
+        animate='visible'
+        exit='exit'
+        variants={variants}
+        transition={{ duration: 0.3 }}
+      >
         <header className='add-producto-form-header'>
           <h1>
             <i className='bi bi-archive-fill' />
@@ -460,7 +475,7 @@ export default function AddProducto({ onClick }) {
 
           {paso === 0 && onClick()}
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }

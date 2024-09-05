@@ -5,18 +5,12 @@ import { useAuth } from '../../context/AuthContext';
 import './Administracion.css';
 import Sidebar from '../../components/Sidebar/Sidebar';
 
-import { useProduct } from '../../context/ProductContext';
-import { getSuscriptoresRequest } from '../../api/subscriber';
-
-import { Analytics } from '@vercel/analytics/react';
+import { Helmet } from 'react-helmet';
 
 export default function Administracion() {
   const { getPedidos, pedidos } = usePedido();
-  const { getProducts, products } = useProduct();
   const { user } = useAuth();
   const [initialLoad, setInitialLoad] = useState(true);
-  const [suscriptores, setSuscriptores] = useState([]);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,9 +18,6 @@ export default function Administracion() {
       const fetchInicial = async () => {
         if (user.rol === 'admin') {
           await getPedidos();
-          await getProducts();
-          const res = await getSuscriptoresRequest();
-          setSuscriptores(res.data);
           setInitialLoad(false);
         } else {
           navigate('/');
@@ -35,7 +26,7 @@ export default function Administracion() {
       };
       fetchInicial();
     }
-  }, [user, initialLoad, getPedidos, getProducts, navigate]);
+  }, [user, initialLoad, getPedidos, navigate]);
 
   if (!user) {
     return <div className='pedido-load'>Cargando...</div>;
@@ -43,6 +34,18 @@ export default function Administracion() {
 
   return (
     <div className='admin-container'>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Inicio | Administracion</title>
+        <meta
+          name='description'
+          content='Pagina de administracion'
+        />
+        <link
+          rel='canonical'
+          href='http://archived.com.ar/administration'
+        />
+      </Helmet>
       <Sidebar
         pedidos={pedidos}
         inicioNav

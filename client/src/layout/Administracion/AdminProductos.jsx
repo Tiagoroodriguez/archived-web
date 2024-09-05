@@ -5,6 +5,7 @@ import { useProduct } from '../../context/ProductContext';
 import TablaProductos from '../../components/Administracion/TablaProductos';
 import { Helmet } from 'react-helmet';
 import AddProducto from '../../components/Administracion/AddProducto';
+import { AnimatePresence } from 'framer-motion';
 
 export default function AdminProductos() {
   const { user } = useAuth();
@@ -61,7 +62,9 @@ export default function AdminProductos() {
 
         <TablaProductos productos={products} />
       </section>
-      {viewAddProducto && <AddProducto onClick={handdleViewAddProducto} />}
+      <AnimatePresence>
+        {viewAddProducto && <AddProducto onClick={handdleViewAddProducto} />}
+      </AnimatePresence>
     </main>
   );
 }
