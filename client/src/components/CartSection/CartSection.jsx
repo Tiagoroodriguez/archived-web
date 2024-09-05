@@ -80,7 +80,6 @@ export default function CartSection() {
           >
             Canjear
           </button>
-          <button onClick={() => setCoupon([])}>resetear</button>
         </div>
 
         {error && <p className='error-coupon'>{error}</p>}

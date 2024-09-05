@@ -1,7 +1,17 @@
 import './OrderCard.css';
 import { formatDate } from '../../utils/formatDate';
+import { Badge } from '@tremor/react';
 
 export default function OrderCard({ pedido, admin }) {
+  const color = (estado) => {
+    if (estado === 'Pendiente') {
+      return 'yellow';
+    } else if (estado === 'Enviado') {
+      return 'blue';
+    } else if (estado === 'Entregado') {
+      return 'green';
+    } else return 'red';
+  };
   return (
     <article className='order-card'>
       {admin && pedido.direccion_envio ? (
@@ -45,9 +55,8 @@ export default function OrderCard({ pedido, admin }) {
         ) : (
           ''
         )}
-        <p>
-          <span className={`status ${pedido.estado}`}>{pedido.estado}</span>
-        </p>
+        <Badge color={color(pedido.estado_envio)}>{pedido.estado_envio}</Badge>
+
         {admin ? (
           <p>
             <strong>Cliente:</strong>
