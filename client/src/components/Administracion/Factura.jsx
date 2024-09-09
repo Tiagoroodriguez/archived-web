@@ -82,6 +82,10 @@ export default function Factura({ pedido }) {
               <p className='text-[medium]'>
                 {pedido.cliente_facturacion.telefono}
               </p>
+              <h3 className='text-[black] text-[small] font-semibold'>
+                Correo electronico:
+              </h3>
+              <p className='text-[medium]'>{pedido.cliente_facturacion.mail}</p>
             </td>
           </tr>
         </tbody>
