@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { usePedido } from '../../context/PedidosContext';
 import { formatDate } from '../../utils/formatDate';
 import { Badge } from '@tremor/react';
 import { formatPrice } from '../../utils/formatePrice';
 import { toast } from 'sonner';
+import { useReactToPrint } from 'react-to-print';
+import Factura from './Factura';
 
 export default function PedidoForm({ id, onClick }) {
   const { getPedido, pedido, updatePedido } = usePedido();
@@ -69,6 +71,12 @@ export default function PedidoForm({ id, onClick }) {
     toast.success('Codigo de seguimiento cargado!');
   };
 
+  const contentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => contentRef.current,
+    documentTitle: `Factura #${pedido.numero_pedido}`,
+  });
+
   if (!pedido) {
     return <div className='pedido-load'>Cargando...</div>;
   }
@@ -76,7 +84,7 @@ export default function PedidoForm({ id, onClick }) {
   return (
     <div className='add-producto-container'>
       <motion.section
-        className='add-producto-form-container'
+        className='flex flex-col justify-between add-producto-form-container'
         initial='hidden'
         animate='visible'
         exit='exit'
@@ -85,7 +93,12 @@ export default function PedidoForm({ id, onClick }) {
       >
         {pedido && pedido.numero_pedido ? (
           <>
-            {' '}
+            <div className='hidden'>
+              <div ref={contentRef}>
+                <Factura pedido={pedido} />
+              </div>
+            </div>
+
             <header className='add-producto-form-header'>
               <h1>
                 <i className='bi bi-clipboard2-fill' />
@@ -199,7 +212,7 @@ export default function PedidoForm({ id, onClick }) {
                         value={pedido.codigo_seguimiento}
                       />
                       <button
-                        className='pedido-form-button'
+                        className='w-[40%] pedido-form-button'
                         onClick={handleUpdatePedido}
                       >
                         Guardar
@@ -323,6 +336,12 @@ export default function PedidoForm({ id, onClick }) {
                 </table>
               </div>
             </div>
+            <button
+              className='w-full pedido-form-button'
+              onClick={handlePrint}
+            >
+              Generar factura
+            </button>
           </>
         ) : (
           <div>Cargando...</div>

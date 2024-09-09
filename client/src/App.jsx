@@ -40,6 +40,7 @@ import AdminProductos from './layout/Administracion/AdminProductos';
 import { SearchProvider } from './context/SearchContext';
 import { Analytics } from '@vercel/analytics/react';
 import AdminNewsletter from './layout/Administracion/AdminNewsletter';
+import Factura from './components/Administracion/Factura';
 
 const Background = styled.div`
   position: fixed;
@@ -277,6 +278,14 @@ function App() {
                             <Header />
                             <PedidoForm />
                             <Footer />
+                          </Layout>
+                        }
+                      />
+                      <Route
+                        path='/dev'
+                        element={
+                          <Layout>
+                            <Factura />
                           </Layout>
                         }
                       />

@@ -177,12 +177,14 @@ export default function PedidoFormUser({ pedido }) {
                 <td className='cart-table-cuerpo-item cart-table-product'>
                   <div className='img-producto cart-table-product-item'>
                     <img
-                      src={`/images/productos/small/${item.nombre}.webp`}
+                      src={item.img_small_1}
                       alt={`imagen del producto ${item.nombre}`}
                     />
                   </div>
                   <div className='table-info-producto cart-table-product-item'>
-                    <p className='info-producto-nombre'>{item.nombre}</p>
+                    <p className='info-producto-nombre'>
+                      {item.categoria} {item.nombre}
+                    </p>
                     <p className='info-producto-talle'>{item.talle}</p>
                     <p className='info-producto-precio'>
                       {formatPrice(item.precio)}
