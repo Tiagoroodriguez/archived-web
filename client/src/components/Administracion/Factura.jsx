@@ -1,6 +1,12 @@
-import { formatDate } from '../../utils/formatDate';
+import { formatDateSpanish } from '../../utils/formatDateSpanish';
+import { formatPrice } from '../../utils/formatePrice';
 
 export default function Factura({ pedido }) {
+  const totalPedido = pedido.productos.reduce((acc, producto) => {
+    return producto.precio_con_descuento
+      ? acc + producto.precio_con_descuento * producto.cantidad
+      : acc + producto.precio * producto.cantidad;
+  }, 0);
   return (
     <div
       style={{
@@ -29,7 +35,7 @@ export default function Factura({ pedido }) {
             <h2 className='text-[black] text-[small]'>
               Fecha de emision:{' '}
               <span className='font-semibold text-[medium]'>
-                {formatDate(pedido.fecha)}
+                {formatDateSpanish(pedido.fecha)}
               </span>
             </h2>
           </tr>
@@ -107,39 +113,76 @@ export default function Factura({ pedido }) {
         </thead>
         <tbody className='flex w-full items-center justify-between text-[small]'>
           <tr className='w-full flex items-start border-r flex-col'>
-            <td className='p-[5px] border-b w-full text-start'>Producto 1</td>
-            <td className='p-[5px] border-b w-full text-start'>Producto 2</td>
-            <td className='p-[5px] border-b w-full text-start'>Producto 3</td>
+            {pedido.productos.map((producto) => (
+              <td
+                className='p-[5px] border-y w-full text-start'
+                key={producto.id}
+              >
+                {producto.categoria} {producto.nombre} - Talle: {producto.talle}
+              </td>
+            ))}
           </tr>
           <tr className='w-full flex items-center border-r flex-col'>
-            <td className='p-[5px] border-b w-full text-center'>1</td>
-            <td className='p-[5px] border-b w-full text-center'>1</td>
-            <td className='p-[5px] border-b w-full text-center'>1</td>
+            {pedido.productos.map((producto) => (
+              <td
+                className='p-[5px] border-y w-full text-center'
+                key={producto.id}
+              >
+                {producto.cantidad}
+              </td>
+            ))}
           </tr>
           <tr className='w-full flex items-center border-r flex-col'>
-            <td className='p-[5px] border-b w-full text-center'>$1000</td>
-            <td className='p-[5px] border-b w-full text-center'>$1000</td>
-            <td className='p-[5px] border-b w-full text-center'>$1000</td>
+            {pedido.productos.map((producto) => (
+              <td
+                className='p-[5px] border-y w-full text-center'
+                key={producto.id}
+              >
+                {producto.precio_con_descuento
+                  ? formatPrice(producto.precio_con_descuento)
+                  : formatPrice(producto.precio)}
+              </td>
+            ))}
           </tr>
           <tr className='w-full flex items-end flex-col'>
-            <td className='p-[5px] border-b w-full text-end'>$1000</td>
-            <td className='p-[5px] border-b w-full text-end'>$1000</td>
-            <td className='p-[5px] border-b w-full text-end'>$1000</td>
+            {pedido.productos.map((producto) => (
+              <td
+                className='p-[5px] border-y w-full text-end'
+                key={producto.id}
+              >
+                {producto.precio_con_descuento
+                  ? formatPrice(
+                      producto.precio_con_descuento * producto.cantidad
+                    )
+                  : formatPrice(producto.precio * producto.cantidad)}
+              </td>
+            ))}
           </tr>
         </tbody>
         <tfoot className='flex border w-full text-[small] p-[5px] '>
           <tr className='flex flex-col justify-end w-full'>
             <td className='font-semibold border-b w-full text-end'>
               SubTotal:{' '}
-              <span className='font-normal w-[100px] inline-block'>$30000</span>
+              <span className='font-normal w-[100px] inline-block'>
+                {formatPrice(totalPedido)}
+              </span>
             </td>
             <td className='font-semibold border-b w-full text-end'>
               Descuento:{' '}
-              <span className='font-normal w-[100px] inline-block'>$0</span>
+              <span className='font-normal w-[100px] inline-block'>
+                {pedido.total_con_descuento
+                  ? formatPrice(totalPedido - pedido.total_con_descuento)
+                  : '$0.00'}
+              </span>
             </td>
             <td className='font-semibold w-full text-end'>
               Total:{' '}
-              <span className='font-normal w-[100px] inline-block'>$30000</span>
+              <span className='font-normal w-[100px] inline-block'>
+                {' '}
+                {pedido.total_con_descuento
+                  ? formatPrice(pedido.total_con_descuento)
+                  : formatPrice(pedido.total)}
+              </span>
             </td>
           </tr>
         </tfoot>
