@@ -1,16 +1,18 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePedido } from '../../context/PedidosContext';
-import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import './Administracion.css';
 import Sidebar from '../../components/Sidebar/Sidebar';
-
+import { AreaChart, Card } from '@tremor/react';
 import { Helmet } from 'react-helmet';
+import './Administracion.css';
 
 export default function Administracion() {
   const { getPedidos, pedidos } = usePedido();
   const { user } = useAuth();
   const [initialLoad, setInitialLoad] = useState(true);
+  const [chartData, setChartData] = useState([]);
+  const [datas, setDatas] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +29,44 @@ export default function Administracion() {
       fetchInicial();
     }
   }, [user, initialLoad, getPedidos, navigate]);
+
+  useEffect(() => {
+    if (pedidos.length > 0) {
+      const gananciasPorMes = pedidos.reduce((acc, pedido) => {
+        const mes = new Date(pedido.fecha).getMonth() + 1; // Obtener el mes del pedido
+        const año = new Date(pedido.fecha).getFullYear(); // Obtener el año del pedido
+        const key = `${año}-${mes.toString().padStart(2, '0')}`; // Crear una clave en formato YYYY-MM
+
+        if (!acc[key]) {
+          acc[key] = 0;
+        }
+
+        acc[key] += pedido.total; // Sumar la ganancia del pedido al mes correspondiente
+
+        return acc;
+      }, {});
+
+      // Convertir el objeto a un array de datos para el gráfico
+      const datosGrafico = Object.entries(gananciasPorMes).map(
+        ([fecha, total]) => ({
+          date: fecha,
+          revenue: total,
+        })
+      );
+
+      setChartData(datosGrafico);
+    }
+  }, [pedidos]);
+
+  const currencyFormatter = (number) =>
+    `$${Intl.NumberFormat('us').format(number)}`;
+
+  const payload = datas?.payload?.[0];
+  const value = payload?.value;
+
+  const formattedValue = payload
+    ? currencyFormatter(value)
+    : currencyFormatter(chartData[chartData.length - 1]?.revenue || 0);
 
   if (!user) {
     return <div className='pedido-load'>Cargando...</div>;
@@ -50,14 +90,47 @@ export default function Administracion() {
         pedidos={pedidos}
         inicioNav
       />
-      <main className='admin-inicio'>
-        <div className='relative h-full w-full bg-white'>
-          <div className='absolute h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]'>
-            <div className='admin-card-container'>
-              <h1>Panel de administración</h1>
-            </div>
-          </div>
-        </div>
+      <main className='admin-inicio '>
+        <header>
+          <h1>Bienvenido a la administracion</h1>
+          <p>Aqui podras ver un resumen pedidos y productos</p>
+        </header>
+        <section className='flex gap-3'>
+          <Card className='mx-auto'>
+            <p className='text-sm text-gray-700 dark:text-gray-300'>
+              Ganancias del mes
+            </p>
+            <p className='mt-2 text-xl font-semibold text-gray-900 dark:text-gray-50'>
+              {formattedValue}
+            </p>
+
+            <AreaChart
+              data={chartData}
+              index='date'
+              categories={['revenue']}
+              showLegend={false}
+              showYAxis={false}
+              startEndOnly={true}
+              className='-mb-2 mt-8 h-48'
+              tooltipCallback={(props) => {
+                if (props.active) {
+                  setDatas((prev) => {
+                    if (prev?.label === props.label) return prev;
+                    return props;
+                  });
+                } else {
+                  setDatas(null);
+                }
+                return null;
+              }}
+            />
+          </Card>
+          <Card>
+            <p className='text-sm text-gray-700 dark:text-gray-300'>
+              Productos más vendidos
+            </p>
+          </Card>
+        </section>
       </main>
     </div>
   );
