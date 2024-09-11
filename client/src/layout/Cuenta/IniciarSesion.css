@@ -31,3 +31,25 @@
     text-decoration: underline;
 }
 
+.input-recuperar:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid var(--primary-color);
+}
+
+.boton-salir-recuperar {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+}
+
+.boton-recuperar {
+    border: 1px solid var(--primary-color);
+    transition: all .3s ease;
+}
+
+.boton-recuperar:hover {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}

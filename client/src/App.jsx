@@ -41,6 +41,7 @@ import { SearchProvider } from './context/SearchContext';
 import { Analytics } from '@vercel/analytics/react';
 import AdminNewsletter from './layout/Administracion/AdminNewsletter';
 import Factura from './components/Administracion/Factura';
+import RecuperarCuenta from './layout/Cuenta/RecuperarCuenta';
 
 const Background = styled.div`
   position: fixed;
@@ -95,6 +96,18 @@ function App() {
                           </Layout>
                         }
                       />
+
+                      <Route
+                        path='/reset/:token'
+                        element={
+                          <Layout>
+                            <Header />
+                            <RecuperarCuenta />
+                            <Footer />
+                          </Layout>
+                        }
+                      />
+
                       <Route
                         path='/register'
                         element={
@@ -120,17 +133,6 @@ function App() {
                           <Layout>
                             <Header />
                             <DetalleProducto />
-                            <Footer />
-                          </Layout>
-                        }
-                      />
-
-                      <Route
-                        path='/guia-de-talles'
-                        element={
-                          <Layout>
-                            <Header />
-                            <GuiaTalles />
                             <Footer />
                           </Layout>
                         }

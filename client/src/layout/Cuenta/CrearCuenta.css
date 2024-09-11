@@ -26,11 +26,12 @@
 
 /*--------------------------------------------------------------------------------------------------*/
 .aside-img-container {
-    width: 100%;
+    height: 100%;
 }
 
 .aside-img-container img {
     object-fit: cover;
+    height: 100%;
     width: 100%;
 }
 

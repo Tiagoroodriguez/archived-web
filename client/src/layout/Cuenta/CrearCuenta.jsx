@@ -52,8 +52,6 @@ export function CrearCuenta() {
     }
   });
 
-  console.log(email);
-
   const onChange = () => {
     setCaptcha(true);
   };
