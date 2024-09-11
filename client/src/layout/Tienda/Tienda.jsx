@@ -83,11 +83,11 @@ export function Tienda() {
             value='buzo'
           />
           <Boton
-            textBoton='ACCESORIOS'
+            textBoton='PANTALONES'
             terceario={true}
-            onClick={() => handleChangeFilter('buzo')}
+            onClick={() => handleChangeFilter('pantalon')}
             selected={filters.categoria}
-            value='buzo'
+            value='pantalon'
           />
         </nav>
         {filteredProducts.length === 0 ? (

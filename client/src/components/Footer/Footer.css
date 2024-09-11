@@ -180,7 +180,6 @@ footer {
     flex-direction: row;
     gap: 20px;
     width: 100%;
-    overflow-x: hidden;
     padding: 0;
     padding-top: 50px;
   }
@@ -245,6 +244,26 @@ footer {
   .footer-mail h3{
     width: 100%;
     text-align: center;
+  }
+
+  .footer-mail {
+    width: 60%;
+    text-align: center;
+  }
+
+  .footer-mail div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .footer-mail div button{
+    height: 35px;
+    margin-top: 5px;
+  }
+
+  .footer-mail div button, .footer-mail div input {
+    width: 100%;
   }
 }
 

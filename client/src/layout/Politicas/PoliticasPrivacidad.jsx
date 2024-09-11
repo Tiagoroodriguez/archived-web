@@ -21,7 +21,7 @@ export default function PoliticasPrivacidad() {
         comprometido con la confidencialidad, seguridad y protección de los
         datos personales. Es por ello que damos a conocer la siguiente Política
         de Privacidad en relación con los datos personales recabados a través
-        del sitio https://archived.com/ (en adelante, el “Sitio”).
+        del sitio https://archived.com.ar/ (en adelante, el “Sitio”).
       </p>
 
       <section>
@@ -32,7 +32,7 @@ export default function PoliticasPrivacidad() {
           servicios, actividades o de organizaciones vinculadas con Archived se
           rigen por sus propias políticas de privacidad, por lo que invitamos a
           los Usuarios a visitarlas a efectos de informarse sobre las
-          condiciones de tratamiento específicas aplicables a tales casos
+          condiciones de tratamiento específicas aplicables a tales casos.
         </p>
       </section>
       <section>
@@ -97,7 +97,7 @@ export default function PoliticasPrivacidad() {
           satisfacer los pedidos, solicitudes o requerimientos. Con este
           propósito, necesitaremos procesar los datos que el Usuario haya
           proporcionado a través de formularios web, mensajes de correo
-          electrónico o aplicaciones
+          electrónico o aplicaciones.
         </p>
       </section>
       <section>
@@ -109,7 +109,7 @@ export default function PoliticasPrivacidad() {
           para cumplir con obligaciones legales. Sin embargo, en caso de llevar
           a cabo tales transferencias, Archived cumplirá y hará cumplir a sus
           destinatarios todos los requisitos determinados por la legislación
-          argentina sobre protección de datos personales
+          argentina sobre protección de datos personales.
         </p>
       </section>
 
@@ -120,7 +120,7 @@ export default function PoliticasPrivacidad() {
           de edad. Cuando corresponda, Archived indicará específicamente a los
           menores que no brinden sus datos personales y/o tomará medidas
           razonables para obtener el consentimiento de los padres, tutor o
-          representante legal para la entrega de los datos personales
+          representante legal para la entrega de los datos personales.
         </p>
       </section>
 

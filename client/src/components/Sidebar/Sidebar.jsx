@@ -51,13 +51,13 @@ export default function Sidebar({
             <i className='bi bi-box' />
             <NavLink to='/administration/products'>Productos</NavLink>
           </li>
-          <li className={analiticNav ? 'active-nav' : ''}>
-            <i className='bi bi-graph-up' />
-            <NavLink>Analiticas</NavLink>
-          </li>
           <li className={newsletterNav ? 'active-nav' : ''}>
             <i className='bi bi-envelope-at' />
             <NavLink to='/administration/newsletter'>Newsletter</NavLink>
+          </li>
+          <li className={analiticNav ? 'active-nav' : ''}>
+            <i className='bi bi-graph-up' />
+            <NavLink>Analiticas</NavLink>
           </li>
           <li onClick={() => logout()}>
             <i className='bi bi-box-arrow-left' />

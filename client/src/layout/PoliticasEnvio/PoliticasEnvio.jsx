@@ -5,7 +5,7 @@ export default function PoliticasEnvio() {
     <main className='devoluciones-container'>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Politicas de envio | Archived</title>
+        <title>Políticas de envío | Archived</title>
         <meta
           name='description'
           content='Pagina de politicas de envio'
@@ -15,7 +15,7 @@ export default function PoliticasEnvio() {
           href='http://archived.com.ar/shipping-policy'
         />
       </Helmet>
-      <h1>Politicas de envio</h1>
+      <h1>Políticas de envío</h1>
       <p>
         Nada más realizar la compra recibirás un email de confirmación y nuestro
         equipo se pondrá manos a la obra para que recibas tu pedido lo antes
