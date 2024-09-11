@@ -140,6 +140,7 @@ export const createPedido = async (req, res) => {
       codigo_postal: codigo_postal_facturacion,
       cliente: clienteFacturacion._id,
     });
+
     const savedDireccionFacturacion = await direccionFacturacion.save();
 
     let clienteEnvio, savedDireccionEnvio;
@@ -272,6 +273,17 @@ export const createPedido = async (req, res) => {
 
     const savedPedido = await newPedido.save();
     res.json(savedPedido);
+
+    // Actualizar la propiedad de ventas de cada producto
+    await Promise.all(
+      productos.map(async (product) => {
+        await Producto.findByIdAndUpdate(
+          product.producto_id,
+          { $inc: { ventas: 1 } },
+          { new: true }
+        );
+      })
+    );
 
     // Enviar mail de confirmación al usuario
     const to = email_facturacion; // Asegúrate de que el email del usuario esté disponible
