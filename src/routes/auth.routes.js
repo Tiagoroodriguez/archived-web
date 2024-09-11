@@ -5,6 +5,8 @@ import {
   profile,
   register,
   verifyToken,
+  solicitarRecuperacion,
+  recuperarPassword,
 } from '../controllers/auth.controller.js';
 import { authRequired } from '../middlewares/validateToken.js';
 import { validateShema } from '../middlewares/validator.middleware.js';
@@ -21,5 +23,9 @@ router.post('/logout', logout);
 router.get('/verify', verifyToken);
 
 router.get('/profile', authRequired, profile);
+
+router.post('/solicitar-recuperacion', solicitarRecuperacion);
+
+router.post('/restablecer', recuperarPassword);
 
 export default router;
