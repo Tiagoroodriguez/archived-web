@@ -288,11 +288,26 @@ table[class='body'] .article {
               </tr>
             </thead>
             <tbody>
-              {suscriptores10.map((suscriptor) => (
-                <tr key={suscriptor._id}>
-                  <td>{suscriptor.email}</td>
-                </tr>
-              ))}
+              {suscriptores ? (
+                <>
+                  {suscriptores10.map((suscriptor) => (
+                    <tr key={suscriptor._id}>
+                      <td>{suscriptor.email}</td>
+                    </tr>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {Array.from({ length: 10 }).map((_, index) => (
+                    <tr
+                      className='skeleton-table'
+                      key={index}
+                    >
+                      <td className='skeleton-item'></td>
+                    </tr>
+                  ))}
+                </>
+              )}
             </tbody>
           </table>
         </section>
