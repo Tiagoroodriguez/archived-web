@@ -104,7 +104,7 @@ export default function Terminos() {
         <h3>Responsabilidad del Usuario</h3>
         <p>
           El Usuario es responsable de toda afirmación y/o expresión y/o acto
-          realizado en el Sitio
+          realizado en el Sitio.
         </p>
         <p>
           El Usuario es exclusivamente responsable por los daños y perjuicios
@@ -115,7 +115,7 @@ export default function Terminos() {
         <p>
           En caso de que la información o los datos suministrados por el Usuario
           no sean verdaderos, éste será responsable por los daños que este hecho
-          pudiese ocasionar.{' '}
+          pudiese ocasionar.
         </p>
         <p>
           El Usuario asume la responsabilidad por el uso indebido o inadecuado
@@ -148,13 +148,13 @@ export default function Terminos() {
         <p>
           Las publicaciones podrán incluir textos descriptivos, gráficos,
           fotografías y otros contenidos y condiciones relacionados con el
-          producto o servicio.{' '}
+          producto o servicio.
         </p>
         <p>
           En todos los casos se informará el stock disponible de los
           productos/servicios. El producto o servicio ofrecido debe ser
           exactamente igual al descrito en cuanto a sus condiciones y
-          características relevantes.{' '}
+          características relevantes.
         </p>
         <p>
           Los precios de los productos y servicios publicados están expresados
@@ -208,7 +208,7 @@ export default function Terminos() {
           exclusivo criterio. Las promociones podrán consistir en cuotas,
           descuentos, reintegros, cupones de descuento, entre otros. Dichas
           promociones podrán ser exclusivas para determinados medios de pago o
-          para ciertos grupos de Usuarios
+          para ciertos grupos de Usuarios.
         </p>
         <p>
           Las condiciones, plazos y características serán establecidas por
@@ -236,7 +236,7 @@ export default function Terminos() {
           o de débito (según corresponda) dentro de las 48 (cuarenta y ocho)
           horas de haber sido devuelto el producto o anulado el servicio. Todos
           los gastos que genere el reintegro de las sumas serán asumidos en su
-          totalidad por el Sitio
+          totalidad por el Sitio.
         </p>
       </section>
       <section>
@@ -295,7 +295,7 @@ export default function Terminos() {
         <p>
           El Usuario no podrá imputar responsabilidad alguna a Archived, ni
           exigir pago por lucro cesante, en virtud de perjuicios resultantes de
-          dificultades técnicas o fallas en los sistemas o en Internet
+          dificultades técnicas o fallas en los sistemas o en Internet.
         </p>
       </section>
       <section>
@@ -356,7 +356,7 @@ export default function Terminos() {
           Usuarios o terceros por sus actividades en el Sitio, por la violación
           de cualquier disposición legal o derechos de tercero o por su
           incumplimiento de los Términos y Condiciones y demás políticas que se
-          entienden incorporadas al presente.{' '}
+          entienden incorporadas al presente.
         </p>
         <p>
           En caso de que Archived, sus filiales, directivos, administradores,
@@ -367,7 +367,7 @@ export default function Terminos() {
           vigente, el Usuario deberá reembolsar la cantidad que se hubiere
           abonado por tal motivo, incluyendo honorarios de abogados, en un plazo
           de treinta días de recibida la notificación que se lo indique, sin
-          perjuicio de las acciones de responsabilidad que correspondan
+          perjuicio de las acciones de responsabilidad que correspondan.
         </p>
       </section>
       <section>
@@ -400,7 +400,7 @@ export default function Terminos() {
         <h3> Información de contacto</h3>
         <p>
           En caso de consultas, los Usuarios deberán contactarse con el servicio
-          de atención al cliente por [WhastApp] a [+54 9 15 3572-571717]
+          de atención al cliente por [WhastApp] a [+54 9 15 3572-571717].
         </p>
         <h4></h4>
         <p>Última revisión: [15] de [Julio] de 2024</p>

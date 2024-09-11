@@ -11,15 +11,13 @@ export function LogoTexto({ blanco }) {
         <img
           src='/svg/logo_archived_blanco.svg'
           alt='Logo de Archived'
-          width='120'
-          height='120'
+          style={{ width: '120px', height: '30px' }}
         />
       ) : (
         <img
           src='/svg/logo_archived_negro.svg'
           alt='Logo de Archived'
-          width='120'
-          height='120'
+          style={{ width: '120px', height: '30px' }}
         />
       )}
     </Link>

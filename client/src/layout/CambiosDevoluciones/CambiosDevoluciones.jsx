@@ -6,7 +6,7 @@ export default function CambiosDevoluciones() {
     <main className='devoluciones-container'>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Politicas de devolucion | Archived</title>
+        <title>Políticas de devolución | Archived</title>
         <meta
           name='description'
           content='Pagina de Politicas de devolucion'
@@ -16,18 +16,18 @@ export default function CambiosDevoluciones() {
           href='http://archived.com.ar/returns-exchanges'
         />
       </Helmet>
-      <h1>Políticas de devolucion</h1>
+      <h1>Políticas de devolución</h1>
       <p>
         Si no estas conforme con nuestro producto, podes solicitar un reitegro o
         cambio del mismo de la siguiente forma:
       </p>
       <p>
         Tenes que comunicarte a nuestro <strong>WHATSAPP</strong> para cordinar
-        el cambio a traves de la logistica
+        el cambio a traves de la logistica.
       </p>
       <p>
         Las devoluciones/cambios solo pueden ser realizadas durante los 15 dias
-        siguietes a la compra
+        siguietes a la compra.
       </p>
     </main>
   );
