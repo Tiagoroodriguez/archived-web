@@ -42,6 +42,7 @@ import { Analytics } from '@vercel/analytics/react';
 import AdminNewsletter from './layout/Administracion/AdminNewsletter';
 import Factura from './components/Administracion/Factura';
 import RecuperarCuenta from './layout/Cuenta/RecuperarCuenta';
+import CasaCampo from './layout/Colecciones/CasaCampo';
 
 const Background = styled.div`
   position: fixed;
@@ -330,6 +331,17 @@ function App() {
                           <Layout>
                             <Header />
                             <PoliticasEnvio />
+                            <Footer />
+                          </Layout>
+                        }
+                      />
+
+                      <Route
+                        path='/coleccion/casa-de-campo'
+                        element={
+                          <Layout>
+                            <Header />
+                            <CasaCampo />
                             <Footer />
                           </Layout>
                         }

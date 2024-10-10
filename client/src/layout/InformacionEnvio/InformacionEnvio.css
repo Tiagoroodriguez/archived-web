@@ -278,6 +278,26 @@
     align-items: center;
 }
 
+.input-radio:checked {
+    background-color: var(--primary-color);
+    box-shadow: none;
+}
+.input-radio:active {
+    background-color: var(--primary-color);
+    box-shadow: none;
+}
+.input-radio:checked:hover {
+    background-color: var(--primary-color);
+    box-shadow: none;
+}
+.input-radio:focus {
+    background-color: var(--primary-color);
+    box-shadow: none;
+}
+.input-radio:hover {
+    background-color: transparent;
+    box-shadow: none;
+}
 
 /*---------------------------------------------------------------------------------------------*/
 

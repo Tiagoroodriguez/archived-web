@@ -280,6 +280,7 @@ function Header({ anuncioOn }) {
           </div>
 
           <motion.div
+            initial={{ y: '-150%' }}
             variants={{ visibleSearch: { y: 0 }, hiddenSearch: { y: '-150%' } }}
             animate={hiddenSearch ? 'visibleSearch' : 'hiddenSearch'}
             transition={{ duration: 0.35, ease: 'easeInOut' }}
@@ -354,7 +355,7 @@ function Header({ anuncioOn }) {
           >
             <li className='coleccion-img-container'>
               <Link
-                to='/'
+                to='/coleccion/casa-de-campo'
                 onClick={() => {
                   setClicked(false);
                   setDropdown(false);

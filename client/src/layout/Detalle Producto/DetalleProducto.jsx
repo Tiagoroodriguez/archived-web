@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { CartContext } from '../../context/CarritoContext';
-
+//import { calculateShipment } from '../../api/envio';
+import axios from '../../api/axios';
 import { Boton } from '../../components/Boton/Boton';
 import { useProduct } from '../../context/ProductContext';
 
@@ -10,12 +11,16 @@ import Acordeon from '../../components/Acordeon/Arcodeon';
 import { formatPrice } from '../../utils/formatePrice';
 import Recomendaciones from '../../components/Recomendaciones/Recomendaciones';
 import { Helmet } from 'react-helmet';
+import Input from '../../components/Input/Input';
 
 export function DetalleProducto() {
   const [producto, setProducto] = useState(null);
   const [talleSeleccionado, setTalleSeleccionado] = useState('');
+  const [zipCode, setZipCode] = useState('');
   const [imagenSeleccionada, setImagenSeleccionada] = useState(0);
   const [modalImagenAbierta, setModalImagenAbierta] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [envio, setEnvio] = useState(null);
   const [activeIndex, setActiveIndex] = useState(null);
 
   const { getProduct } = useProduct();
@@ -69,10 +74,33 @@ export function DetalleProducto() {
     setImagenSeleccionada((prevIndice) => (prevIndice - 1 + 4) % 4);
   };
 
+  const handdleCalcularEnvio = async () => {
+    if (zipCode === '5986') {
+      setEnvio({ price: 0 });
+      return;
+    }
+    if (zipCode && !loading) {
+      setLoading(true);
+      const weight = 200; // 200 gramos
+      try {
+        const res = await axios.post('/calculate-shipping', {
+          zipCode,
+          weight,
+        });
+        setEnvio(res.data);
+        console.log('Costo de envío:', res);
+      } catch (error) {
+        console.error('Error calculando envío:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
   const descripcion = producto ? producto.descripcion : '';
   const arcodeonData = [
     {
-      title: 'Detalles de producto',
+      title: 'Detalles del producto',
       content: (
         <div className='detalle-producto-acordeon'>
           <div dangerouslySetInnerHTML={{ __html: descripcion }} />
@@ -86,10 +114,70 @@ export function DetalleProducto() {
       icon: 'bi bi-tag',
     },
     {
-      title: 'Envios',
+      title: 'Envíos',
       content: (
-        <div className='detalle-producto-acordeon'>
-          <p>Realizamos envios gratis a todo el pais.</p>
+        <div className='detalle-producto-acordeon bg-none'>
+          {envio ? (
+            <div>
+              {envio.price === 0 ? (
+                <>
+                  <div className='w-full flex justify-between items-center mb-2'>
+                    <p>Envío a domicilio</p>
+                    <button
+                      className='cambiar-cp-boton'
+                      onClick={() => setEnvio(null)}
+                    >
+                      Cambiar CP
+                    </button>
+                  </div>
+                  <div className='w-full flex justify-between items-center border p-2 rounded-[5px]'>
+                    <div>
+                      <p className='text-xs'>
+                        <strong>Envío gratis</strong>
+                      </p>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className='w-full flex justify-between items-center mb-2'>
+                    <p>Envío a domicilio</p>
+                    <button
+                      className='cambiar-cp-boton'
+                      onClick={() => setEnvio(null)}
+                    >
+                      Cambiar CP
+                    </button>
+                  </div>
+                  <div className='w-full flex justify-between items-center border p-2 rounded-[5px]'>
+                    <div>
+                      <p className='text-xs'>Envió estándar por ShipNow</p>
+                      <p className='text-xs opacity-[60%]'>
+                        El pedido llega entre 14/10 y 16/10
+                      </p>
+                    </div>
+                    <p className='text-[15px]'>
+                      <strong>{formatPrice(envio.price)}</strong>
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+          ) : (
+            <div className='w-full'>
+              <Input
+                label='Codigo postal'
+                onChange={(e) => setZipCode(e.target.value)}
+                value={zipCode}
+              />
+              <Boton
+                textBoton='Calcular'
+                load={loading}
+                desactivado={loading}
+                onClick={handdleCalcularEnvio}
+              />
+            </div>
+          )}
         </div>
       ),
       icon: 'bi bi-truck',
