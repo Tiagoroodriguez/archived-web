@@ -363,7 +363,7 @@ function Header({ anuncioOn }) {
                 }}
               >
                 <picture>
-                  <img src='/images/colecciones/collecion-1.jpg' />
+                  <img src='/images/colecciones/casa_de_campo.webp' />
                 </picture>
                 <p className='coleccion-nombre'>Casa de campo</p>
               </Link>
