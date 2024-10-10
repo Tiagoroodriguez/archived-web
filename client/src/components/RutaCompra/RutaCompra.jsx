@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { getCouponRequest } from '../../api/coupon';
 import { CartContext } from '../../context/CarritoContext';
 import Acordeon from '../../components/Acordeon/Arcodeon';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import './RutaCompra.css';
 
@@ -14,13 +15,6 @@ export default function RutaCompra({
   const [activeIndex, setActiveIndex] = useState(null);
   const { cartItems, getCartTotal, coupon, setCoupon } =
     useContext(CartContext);
-
-  const estilosCarrito = carrito ? 'focus' : '';
-  const estilosInformacion = informacion ? 'focus' : '';
-  const estilosPago = pago ? 'focus' : '';
-
-  const iconoCarrito = informacion || pago ? 'bi bi-check-lg' : 'bi bi-cart4';
-  const iconoInformacion = pago ? 'bi bi-check-lg' : 'bi bi-truck';
 
   const [couponCode, setCouponCode] = useState('');
   const [error, setError] = useState('');
@@ -38,6 +32,15 @@ export default function RutaCompra({
     } catch (error) {
       setError('Cupón no encontrado');
     }
+  };
+  const firstLineVariants = {
+    initial: { width: 0, originX: 0 },
+    animate: { width: '100%', transition: { duration: 1 } },
+  };
+
+  const secondLineVariants = {
+    initial: { width: 0, originX: 0 },
+    animate: { width: '100%', transition: { duration: 1, delay: 1 } },
   };
 
   const data = [
@@ -112,35 +115,60 @@ export default function RutaCompra({
   ];
   return (
     <>
-      <div className='superior'>
-        <ul>
-          <li className='point'>
-            <button className={estilosCarrito}>
-              <div>
-                <i className={iconoCarrito}></i>
-              </div>
-              <p>Carrito</p>
-            </button>
-          </li>
-          <li className='line'></li>
-          <li className='point'>
-            <button className={estilosInformacion}>
-              <div>
-                <i className={iconoInformacion}></i>
-              </div>
-              <p>Entrega</p>
-            </button>
-          </li>
-          <li className='line'></li>
-          <li className='point'>
-            <button className={estilosPago}>
-              <div>
-                <i className='bi bi-credit-card'></i>
-              </div>
-              <p>Pago</p>
-            </button>
-          </li>
-        </ul>
+      <div className='pedido-estados'>
+        <div className={`pedido-estado ${carrito ? 'estado-actual' : ''}`}>
+          <i
+            className={`bi bi-cart text-lg ${
+              pago || informacion ? 'estado-actual' : ''
+            }`}
+          />
+          <span className={informacion || pago ? 'estado-actual' : ''}>
+            Carrito
+          </span>
+        </div>
+        <div className='pedido-line-div'>
+          <AnimatePresence>
+            <motion.div
+              className='pedido-line'
+              variants={firstLineVariants}
+              initial='initial'
+              animate={informacion || pago ? 'animate' : 'initial'}
+            />
+          </AnimatePresence>
+        </div>
+
+        <div
+          className={`pedido-estado ${
+            informacion || pago ? 'estado-actual' : ''
+          }`}
+        >
+          <i
+            className={`bi bi-truck text-lg ${
+              informacion || pago ? 'estado-actual' : ''
+            }`}
+          />
+          <span className={informacion || pago ? 'estado-actual' : ''}>
+            Información
+          </span>
+        </div>
+        <div className='pedido-line-div'>
+          <AnimatePresence>
+            <motion.div
+              className='pedido-line'
+              variants={secondLineVariants}
+              initial='initial'
+              animate={pago ? 'animate' : 'initial'}
+            />
+          </AnimatePresence>
+        </div>
+        <div className={`pedido-estado ${pago ? 'estado-actual' : ''}`}>
+          <i
+            className={`bi bi-credit-card text-lg ${
+              pago ? 'estado-actual' : ''
+            }`}
+          />
+          <span className={pago ? 'estado-actual' : ''}>Pago</span>
+        </div>
       </div>
       {detalleCompra ? (
         <div className='pago-mobile-acordeon'>

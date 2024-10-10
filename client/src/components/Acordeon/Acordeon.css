@@ -43,7 +43,6 @@
 
 .acordeon-item-desc {
     border-top: none;
-    background: var(--bg-color);
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.3s ease;

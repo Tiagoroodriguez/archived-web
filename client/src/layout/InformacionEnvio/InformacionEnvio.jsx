@@ -10,15 +10,20 @@ import RutaCompra from '../../components/RutaCompra/RutaCompra';
 import { provincias } from '../../../public/json/provincias.json';
 import { CheckboxGroup } from '../../components/CheckboxGroup/CheckboxGroup';
 import Select from '../../components/Select/Select';
+import axios from '../../api/axios';
 import './InformacionEnvio.css';
 import CartSection from '../../components/CartSection/CartSection';
 import { Helmet } from 'react-helmet';
+import { formatPrice } from '../../utils/formatePrice';
 
 export default function InformacionEnvio() {
   const paymentOptions = ['Andreani - $2000', 'Retirar en el local - Gratis'];
   const navigate = useNavigate();
 
   const [codigoPostalError, setCodigoPostalError] = useState('');
+  const [zipCode, setZipCode] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [envio, setEnvio] = useState(null);
 
   const {
     register,
@@ -45,19 +50,10 @@ export default function InformacionEnvio() {
     setProvinciaFacturacion,
   } = usePedido();
 
-  const handleCodigoPostal = () => {
-    const codigoPostalValue = getValues('codigo_postal_envio');
-    if (!codigoPostalValue) {
-      setCodigoPostalError('Por favor ingrese un código postal.');
-      return;
-    }
-    setCodigoPostal(true);
-    setCodigoPostalError('');
-  };
-
   const handleCambiarCodigoPostal = () => {
     setCodigoPostal(false);
     setSelectedMetodoEnvio('');
+    setEnvio(null);
   };
 
   const handleProvinciaEnvioChange = (newValue) => {
@@ -66,6 +62,29 @@ export default function InformacionEnvio() {
 
   const handleProvinciaFacturacionChange = (newValue) => {
     setProvinciaFacturacion(newValue);
+  };
+
+  const handdleCalcularEnvio = async () => {
+    if (zipCode === '5986') {
+      setEnvio({ price: 0 });
+      return;
+    }
+    if (zipCode && !loading) {
+      setLoading(true);
+      const weight = 200; // 200 gramos
+      try {
+        const res = await axios.post('/calculate-shipping', {
+          zipCode,
+          weight,
+        });
+        setEnvio(res.data);
+        console.log('Costo de envío:', res);
+      } catch (error) {
+        console.error('Error calculando envío:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
   };
 
   const onSubmit = handleSubmit(async (data) => {
@@ -214,10 +233,12 @@ export default function InformacionEnvio() {
       </Helmet>
       <section className='informacion-section'>
         <LogoTexto />
-        <RutaCompra
-          informacion
-          detalleCompra
-        />
+        <div className='w-full pr-[35px] pl-[35px]'>
+          <RutaCompra
+            informacion
+            detalleCompra
+          />
+        </div>
 
         <form
           className='form-datos-envio'
@@ -239,7 +260,7 @@ export default function InformacionEnvio() {
             )}
           </div>
 
-          {!codigoPostal && (
+          {!envio && (
             <div className='informacion-datos'>
               <p className='informacion-datos-p'>Entrega</p>
               <Input
@@ -250,6 +271,7 @@ export default function InformacionEnvio() {
                   required: 'El código postal es requerido',
                 })}
                 value={getValues('codigo_postal_envio')}
+                onChange={(e) => setZipCode(e.target.value)}
               />
               {errors.codigo_postal_envio && (
                 <p className='error'>{errors.codigo_postal_envio.message}</p>
@@ -267,24 +289,79 @@ export default function InformacionEnvio() {
                 </Link>
                 <Boton
                   textBoton='Calcular'
-                  onClick={handleCodigoPostal}
+                  onClick={handdleCalcularEnvio}
                   type={'button'}
                 />
               </div>
             </div>
           )}
 
-          {codigoPostal && (
+          {envio && (
             <div className='informacion-datos'>
               <p className='informacion-datos-p'>
                 Seleccione el método de entrega
               </p>
 
-              <CheckboxGroup
-                options={paymentOptions}
-                selectedOption={selectedMetodoEnvio} // Estado controlado en el componente padre
-                onSelectionChange={setSelectedMetodoEnvio} // Función para actualizar el estado en el componente padre
-              />
+              <div className='flex flex-col gap-2'>
+                <div className='w-full border rounded-lg p-5 flex justify-between items-center'>
+                  <div>
+                    <div className='flex'>
+                      <input
+                        type='radio'
+                        id='shipnow'
+                        checked={selectedMetodoEnvio === 'Andreani - $2000'}
+                        onChange={() =>
+                          setSelectedMetodoEnvio('Andreani - $2000')
+                        }
+                        className='input-radio mr-2'
+                      />
+                      <label
+                        htmlFor='shipnow'
+                        className='text-[12px]'
+                      >
+                        Envío a domicilio
+                      </label>
+                    </div>
+                    <p className='text-xs opacity-[60%]'>
+                      El pedido llega entre 14/10 y 16/10
+                    </p>
+                  </div>
+                  <p className='text-[15px]'>
+                    {zipCode === '5986' ? (
+                      <strong>Gratis</strong>
+                    ) : (
+                      <strong>{formatPrice(envio.price)}</strong>
+                    )}
+                  </p>
+                </div>
+                <div className='w-full border rounded-lg p-5 flex justify-between items-center'>
+                  <div>
+                    <label
+                      htmlFor='retiro'
+                      className='text-[12px]'
+                    >
+                      <input
+                        type='radio'
+                        id='retiro'
+                        checked={
+                          selectedMetodoEnvio === 'Retirar en el local - Gratis'
+                        }
+                        onChange={() =>
+                          setSelectedMetodoEnvio('Retirar en el local - Gratis')
+                        }
+                        className='input-radio mr-2'
+                      />
+                      Retiro en el local
+                    </label>
+                    <p className='text-xs opacity-[60%]'>
+                      25 de febrero 1481, Oncativo, Córdoba, Argentina
+                    </p>
+                  </div>
+                  <p className='text-[15px]'>
+                    <strong>Gratis</strong>
+                  </p>
+                </div>
+              </div>
 
               <div className='informacion-boton-cambio'>
                 <button

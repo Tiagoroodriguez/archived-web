@@ -185,7 +185,17 @@
     color: var(--text-color);
     font-size: 12px;
   }
+/*-------------------------------------------------------------*/
 
+  .cambiar-cp-boton{
+    transition: all .3s ease;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #00000000;
+  }
+
+  .cambiar-cp-boton:hover{
+    border-bottom: 1px solid #000000;
+  }
 /*-------------------------------------------------------------*/
 @media (max-width: 768px) {
     .detalle-container {
