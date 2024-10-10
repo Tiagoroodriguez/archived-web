@@ -8,22 +8,19 @@ import { LogoTexto } from '../../components/LogoTexto/LogoTexto';
 import { Boton } from '../../components/Boton/Boton';
 import RutaCompra from '../../components/RutaCompra/RutaCompra';
 import { provincias } from '../../../public/json/provincias.json';
-import { CheckboxGroup } from '../../components/CheckboxGroup/CheckboxGroup';
 import Select from '../../components/Select/Select';
 import axios from '../../api/axios';
 import './InformacionEnvio.css';
 import CartSection from '../../components/CartSection/CartSection';
 import { Helmet } from 'react-helmet';
 import { formatPrice } from '../../utils/formatePrice';
+import { formatDate } from '../../utils/formatDate';
 
 export default function InformacionEnvio() {
-  const paymentOptions = ['Andreani - $2000', 'Retirar en el local - Gratis'];
   const navigate = useNavigate();
-
   const [codigoPostalError, setCodigoPostalError] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [loading, setLoading] = useState(false);
-  const [envio, setEnvio] = useState(null);
 
   const {
     register,
@@ -44,16 +41,16 @@ export default function InformacionEnvio() {
     setMismaDireccion,
     provinciaEnvio,
     setProvinciaEnvio,
-    codigoPostal,
-    setCodigoPostal,
     provinciaFacturacion,
     setProvinciaFacturacion,
+    costoEnvio,
+    setCostoEnvio,
   } = usePedido();
 
   const handleCambiarCodigoPostal = () => {
-    setCodigoPostal(false);
+    setZipCode('');
     setSelectedMetodoEnvio('');
-    setEnvio(null);
+    setCostoEnvio(null);
   };
 
   const handleProvinciaEnvioChange = (newValue) => {
@@ -65,8 +62,17 @@ export default function InformacionEnvio() {
   };
 
   const handdleCalcularEnvio = async () => {
+    if (!zipCode) {
+      setCodigoPostalError('El código postal es requerido');
+      return;
+    }
+    if (zipCode.length !== 4) {
+      setCodigoPostalError('El código postal debe tener 4 dígitos');
+      return;
+    }
+    setCodigoPostalError('');
     if (zipCode === '5986') {
-      setEnvio({ price: 0 });
+      setCostoEnvio({ price: 0 });
       return;
     }
     if (zipCode && !loading) {
@@ -77,9 +83,10 @@ export default function InformacionEnvio() {
           zipCode,
           weight,
         });
-        setEnvio(res.data);
-        console.log('Costo de envío:', res);
+        setCostoEnvio(res.data);
+        console.log(res);
       } catch (error) {
+        setCodigoPostalError('No se pudo calcular el envío');
         console.error('Error calculando envío:', error);
       } finally {
         setLoading(false);
@@ -91,7 +98,7 @@ export default function InformacionEnvio() {
     let envioData;
 
     // Setear datos si tengo envio a domicilio y misma direccion de envio y facturacion
-    if (mismaDireccion && selectedMetodoEnvio === 'Andreani - $2000') {
+    if (mismaDireccion && selectedMetodoEnvio === 'Envio') {
       envioData = {
         // Datos del cliente que recibe el pedido
         ...data,
@@ -112,7 +119,7 @@ export default function InformacionEnvio() {
         codigo_postal_facturacion: data.codigo_postal_envio,
       };
     }
-    if (!mismaDireccion && selectedMetodoEnvio === 'Andreani - $2000') {
+    if (!mismaDireccion && selectedMetodoEnvio === 'Envio') {
       envioData = {
         ...data,
         email_facturacion: data.email_envio,
@@ -120,7 +127,7 @@ export default function InformacionEnvio() {
         provincia_facturacion: provinciaFacturacion,
       };
     }
-    if (selectedMetodoEnvio === 'Retirar en el local - Gratis') {
+    if (selectedMetodoEnvio === 'Retirar') {
       envioData = {
         // Datos del cliente que paga el pedido
         email_facturacion: data.email_envio,
@@ -233,7 +240,7 @@ export default function InformacionEnvio() {
       </Helmet>
       <section className='informacion-section'>
         <LogoTexto />
-        <div className='w-full pr-[35px] pl-[35px]'>
+        <div className='contenedor-ruta w-full'>
           <RutaCompra
             informacion
             detalleCompra
@@ -260,7 +267,7 @@ export default function InformacionEnvio() {
             )}
           </div>
 
-          {!envio && (
+          {!costoEnvio && (
             <div className='informacion-datos'>
               <p className='informacion-datos-p'>Entrega</p>
               <Input
@@ -296,7 +303,7 @@ export default function InformacionEnvio() {
             </div>
           )}
 
-          {envio && (
+          {costoEnvio && (
             <div className='informacion-datos'>
               <p className='informacion-datos-p'>
                 Seleccione el método de entrega
@@ -309,10 +316,8 @@ export default function InformacionEnvio() {
                       <input
                         type='radio'
                         id='shipnow'
-                        checked={selectedMetodoEnvio === 'Andreani - $2000'}
-                        onChange={() =>
-                          setSelectedMetodoEnvio('Andreani - $2000')
-                        }
+                        checked={selectedMetodoEnvio === 'Envio'}
+                        onChange={() => setSelectedMetodoEnvio('Envio')}
                         className='input-radio mr-2'
                       />
                       <label
@@ -322,15 +327,24 @@ export default function InformacionEnvio() {
                         Envío a domicilio
                       </label>
                     </div>
+
                     <p className='text-xs opacity-[60%]'>
-                      El pedido llega entre 14/10 y 16/10
+                      {zipCode === '5986' ? (
+                        <>El pedido sera enviado durante la semana</>
+                      ) : (
+                        <>
+                          El pedido llega entre{' '}
+                          {formatDate(costoEnvio.minimum_delivery)}y{' '}
+                          {formatDate(costoEnvio.maximum_delivery)}
+                        </>
+                      )}
                     </p>
                   </div>
                   <p className='text-[15px]'>
                     {zipCode === '5986' ? (
                       <strong>Gratis</strong>
                     ) : (
-                      <strong>{formatPrice(envio.price)}</strong>
+                      <strong>{formatPrice(costoEnvio.price)}</strong>
                     )}
                   </p>
                 </div>
@@ -343,12 +357,8 @@ export default function InformacionEnvio() {
                       <input
                         type='radio'
                         id='retiro'
-                        checked={
-                          selectedMetodoEnvio === 'Retirar en el local - Gratis'
-                        }
-                        onChange={() =>
-                          setSelectedMetodoEnvio('Retirar en el local - Gratis')
-                        }
+                        checked={selectedMetodoEnvio === 'Retirar'}
+                        onChange={() => setSelectedMetodoEnvio('Retirar')}
                         className='input-radio mr-2'
                       />
                       Retiro en el local
@@ -374,7 +384,7 @@ export default function InformacionEnvio() {
             </div>
           )}
 
-          {selectedMetodoEnvio === 'Andreani - $2000' && (
+          {selectedMetodoEnvio === 'Envio' && (
             <div className='informacion-datos'>
               <p className='informacion-datos-p'>Datos de envío</p>
 
@@ -677,7 +687,7 @@ export default function InformacionEnvio() {
             </div>
           )}
 
-          {selectedMetodoEnvio === 'Retirar en el local - Gratis' && (
+          {selectedMetodoEnvio === 'Retirar' && (
             <div className='informacion-datos'>
               <p className='informacion-datos-p'>Datos de facturación</p>
               <Input

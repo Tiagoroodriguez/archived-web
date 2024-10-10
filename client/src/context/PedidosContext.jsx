@@ -62,8 +62,8 @@ export const PedidoProvider = ({ children }) => {
   const [selectedMetodoEnvio, setSelectedMetodoEnvio] = useState('');
   const [couponPedido, setCouponPedido] = useState([]);
   const [mismaDireccion, setMismaDireccion] = useState(true);
-  const [codigoPostal, setCodigoPostal] = useState(false);
   const [isPedidoCreated, setPedidoCreated] = useState(false);
+  const [costoEnvio, setCostoEnvio] = useState(null);
 
   useEffect(() => {
     if (Object.keys(envioInfo).length > 0) {
@@ -172,8 +172,6 @@ export const PedidoProvider = ({ children }) => {
         setEnvioInfo,
         selectedMetodoEnvio,
         setSelectedMetodoEnvio,
-        codigoPostal,
-        setCodigoPostal,
         provinciaEnvio,
         setProvinciaEnvio,
         provinciaFacturacion,
@@ -196,6 +194,8 @@ export const PedidoProvider = ({ children }) => {
         getRecommendations,
         couponPedido,
         setCouponPedido,
+        costoEnvio,
+        setCostoEnvio,
       }}
     >
       {children}

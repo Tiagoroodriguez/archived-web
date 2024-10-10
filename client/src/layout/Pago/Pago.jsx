@@ -16,7 +16,8 @@ import { Helmet } from 'react-helmet';
 export default function Pago() {
   const { createOrder } = useContext(MercadoPagoContext);
   const { getCartItems, cartItems, coupon } = useContext(CartContext);
-  const { envioInfo, setEnvioInfo, selectedMetodoEnvio } = usePedido();
+  const { envioInfo, setEnvioInfo, selectedMetodoEnvio, costoEnvio } =
+    usePedido();
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -93,9 +94,11 @@ export default function Pago() {
                 <td className='pago-tabla-item'>
                   <div>
                     <p className='pago-tabla-titulo'>Metodo de entrega:</p>
-                    <p className='pago-tabla-contenido'>
-                      {selectedMetodoEnvio}
-                    </p>
+                    {selectedMetodoEnvio === 'Envio' ? (
+                      <p className='pago-tabla-contenido'>ShipNow</p>
+                    ) : (
+                      <p className='pago-tabla-contenido'>Reitro en local</p>
+                    )}
                   </div>
                   <Link to='/checkout/entrega'>Cambiar</Link>
                 </td>
@@ -103,12 +106,15 @@ export default function Pago() {
               <tr className='pago-tabla-fila'>
                 <td className='pago-tabla-item'>
                   <div>
-                    {selectedMetodoEnvio === 'Andreani - $2000' ? (
+                    {selectedMetodoEnvio === 'Envio' ? (
                       <>
                         <p className='pago-tabla-titulo'>Enviar a:</p>
                         <p className='pago-tabla-contenido'>
-                          {envioInfo.direccion_envio} - {''}
-                          {envioInfo.numero_direccion_envio}
+                          {envioInfo.direccion_envio}
+                          {envioInfo.numero_direccion_envio},{' '}
+                          {envioInfo.ciudad_envio} (
+                          {envioInfo.codigo_postal_envio}),{' '}
+                          {envioInfo.provincia_envio}
                         </p>
                       </>
                     ) : (

@@ -7,7 +7,7 @@ import { usePedido } from '../../context/PedidosContext';
 export default function CartSection() {
   const { cartItems, getCartTotal, coupon, setCoupon } =
     useContext(CartContext);
-  const { setCouponPedido } = usePedido();
+  const { setCouponPedido, costoEnvio, selectedMetodoEnvio } = usePedido();
   const [couponCode, setCouponCode] = useState('');
   const [error, setError] = useState('');
 
@@ -104,14 +104,28 @@ export default function CartSection() {
         </div>
         <div>
           <p>Costo de envio:</p>
-          <p>Gratis</p>
+          {selectedMetodoEnvio === 'Envio' ? (
+            <p>{formatPrice(costoEnvio.price)}</p>
+          ) : (
+            <p>{formatPrice(0)}</p>
+          )}
         </div>
         <div>
           <h1>Total:</h1>
           <h1>
-            {coupon.code
-              ? formatPrice(getCartTotal(coupon))
-              : formatPrice(getCartTotal())}
+            {coupon.code ? (
+              <>
+                {selectedMetodoEnvio === 'Envio'
+                  ? formatPrice(getCartTotal(coupon) + costoEnvio.price)
+                  : formatPrice(getCartTotal(coupon))}
+              </>
+            ) : (
+              <>
+                {selectedMetodoEnvio === 'Envio'
+                  ? formatPrice(getCartTotal() + costoEnvio.price)
+                  : formatPrice(getCartTotal())}
+              </>
+            )}
           </h1>
         </div>
       </div>

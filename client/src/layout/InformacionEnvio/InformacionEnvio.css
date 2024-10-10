@@ -299,6 +299,10 @@
     box-shadow: none;
 }
 
+.contenedor-ruta {
+    padding-inline: 35px;
+}
+
 /*---------------------------------------------------------------------------------------------*/
 
 @media screen and (max-width: 769px) {
@@ -330,5 +334,9 @@
 
     .cart-item-container-checkout {
         padding: 0 10px;
+    }
+
+    .contenedor-ruta{ 
+        padding-inline: 0;
     }
 }
