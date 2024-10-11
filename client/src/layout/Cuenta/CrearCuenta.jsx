@@ -72,7 +72,7 @@ export function CrearCuenta() {
       </Helmet>
       <aside>
         <div className='aside-img-container'>
-          <img src='/images/cuenta.webp' />
+          <img src='/images/register.jpg' />
         </div>
       </aside>
       <main>

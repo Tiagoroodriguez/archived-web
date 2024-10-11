@@ -4,9 +4,9 @@ import { createOrderRequest, getOrderRequest } from '../api/mercadopago';
 export const MercadoPagoContext = createContext();
 
 export function MercadoPagoProvider({ children }) {
-  const createOrder = useCallback(async (productos) => {
+  const createOrder = useCallback(async ({ productos, shippingCost }) => {
     try {
-      const res = await createOrderRequest(productos);
+      const res = await createOrderRequest({ productos, shippingCost });
       const initPointUrl = res.data;
       window.location.href = initPointUrl;
     } catch (error) {

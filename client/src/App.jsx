@@ -60,10 +60,10 @@ function App() {
   return (
     <AuthProvider>
       <ProductProvider>
-        <CartProvider>
-          <MercadoPagoProvider>
-            <FilterProvider>
-              <PedidoProvider>
+        <MercadoPagoProvider>
+          <FilterProvider>
+            <PedidoProvider>
+              <CartProvider>
                 <SearchProvider>
                   <Background />
                   <Analytics />
@@ -362,10 +362,10 @@ function App() {
                     </Routes>
                   </BrowserRouter>
                 </SearchProvider>
-              </PedidoProvider>
-            </FilterProvider>
-          </MercadoPagoProvider>
-        </CartProvider>
+              </CartProvider>
+            </PedidoProvider>
+          </FilterProvider>
+        </MercadoPagoProvider>
       </ProductProvider>
       <Toaster
         richColors

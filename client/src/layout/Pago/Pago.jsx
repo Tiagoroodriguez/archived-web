@@ -26,17 +26,31 @@ export default function Pago() {
   const navigate = useNavigate();
 
   const handleMercadoPago = () => {
+    // Obtener los items del carrito con o sin el cupón
+    const cartItems =
+      coupon.code !== undefined ? getCartItems(coupon) : getCartItems();
+
+    // Inicializar el objeto de parámetros para createOrder
+    const orderParams = { productos: cartItems };
+
+    // Verificar si el método de envío seleccionado es 'Envio' y agregar el costo de envío
+    if (selectedMetodoEnvio === 'Envio') {
+      orderParams.shippingCost = costoEnvio.price;
+    }
+
+    // Crear la orden pasando los parámetros adecuados
+    createOrder(orderParams);
+
+    // Actualizar la información del envío si hay un cupón
     if (coupon.code !== undefined) {
-      createOrder(getCartItems(coupon));
       setEnvioInfo({
         ...envioInfo,
         coupon: coupon._id,
       });
-      setLoading(true);
-    } else {
-      createOrder(getCartItems());
-      setLoading(true);
     }
+
+    // Establecer el estado de carga
+    setLoading(true);
   };
 
   const handlePago = () => {
