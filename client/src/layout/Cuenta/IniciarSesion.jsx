@@ -126,7 +126,7 @@ export function IniciarSesion() {
       </main>
       <aside>
         <div className='aside-img-container'>
-          <img src='/images/cuenta.webp' />
+          <img src='/images/login.jpg' />
         </div>
       </aside>
       <AnimatePresence>

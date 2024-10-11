@@ -6,7 +6,7 @@ mercadopago.configure({
 });
 
 export const createOrder = async (req, res) => {
-  const productos = req.body;
+  const { productos, shippingCost } = req.body;
 
   const arrayProducto = productos.map((producto) => {
     return {
@@ -18,6 +18,17 @@ export const createOrder = async (req, res) => {
       description: producto.talle,
     };
   });
+
+  if (shippingCost) {
+    arrayProducto.push({
+      id: 'shipping',
+      title: 'Costo de Envío',
+      unit_price: Number(shippingCost), // Asegúrate de que unit_price sea un número
+      currency_id: 'ARS',
+      quantity: 1,
+      description: 'Envío del pedido',
+    });
+  }
 
   try {
     const preferences = {
