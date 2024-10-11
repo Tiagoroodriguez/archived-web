@@ -24,12 +24,6 @@ export function Inicio() {
       <main>
         <HeroSection />
 
-        <Novedades
-          cantidad='4'
-          categoria='buzo'
-          titulo={'Casa de campo | New in'}
-        />
-        <ImgGrid />
         {/*<Novedades
           cantidad='4'
           categoria='buzo'
