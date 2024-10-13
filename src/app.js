@@ -8,6 +8,7 @@ import mime from 'mime-types';
 
 import authRoutes from './routes/auth.routes.js';
 import productRoutes from './routes/products.route.js';
+import coleccionRoutes from './routes/coleccion.route.js';
 import mercadopagoRoutes from './routes/mercadopago.route.js';
 import pedidosRoutes from './routes/pedidos.route.js';
 import discountCouponRoutes from './routes/discountCoupon.route.js';
@@ -63,6 +64,7 @@ app.use((req, res, next) => {
 
 app.use('/api', authRoutes);
 app.use('/api', productRoutes);
+app.use('/api', coleccionRoutes);
 app.use('/api', mercadopagoRoutes);
 app.use('/api', pedidosRoutes);
 app.use('/api', discountCouponRoutes);

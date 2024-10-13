@@ -20,9 +20,10 @@ export function Inicio() {
           href='http://archived.com.ar/'
         />
       </Helmet>
-      {/*<Newsletter />*/}
+      <Newsletter />
       <main>
         <HeroSection />
+        <ImgGrid />
 
         {/*<Novedades
           cantidad='4'

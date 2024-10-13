@@ -6,6 +6,7 @@ import 'react-quill/dist/quill.snow.css'; // Estilos por defecto
 import axios from '../../api/axios.js';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 export default function AddProducto({ onClick }) {
   const modules = {
@@ -48,7 +49,10 @@ export default function AddProducto({ onClick }) {
     img_big_3: '',
     img_big_4: '',
   });
+
   const [descripcion, setDescripcion] = useState('');
+  const [colecciones, setColecciones] = useState([]);
+  const [initialLoad, setInitialLoad] = useState(false);
 
   const { createProduct } = useProduct();
   const [paso, setPaso] = useState(1);
@@ -146,6 +150,21 @@ export default function AddProducto({ onClick }) {
     visible: { opacity: 1, scale: 1 },
     exit: { opacity: 0, scale: 0 },
   };
+
+  useEffect(() => {
+    if (!initialLoad) {
+      const colecciones = async () => {
+        try {
+          const res = await axios.get('/colecciones');
+          setColecciones(res.data);
+          setInitialLoad(true);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      colecciones();
+    }
+  }, [initialLoad, colecciones]);
 
   return (
     <div className='add-producto-container'>
@@ -248,9 +267,14 @@ export default function AddProducto({ onClick }) {
                   onChange={handleChange}
                 >
                   <option value=''>Selecciona la coleccion</option>
-                  <option value='casa-campo'>Casa de campo</option>
-                  <option value='archived'>Archived</option>
-                  <option value='none'>None</option>
+                  {colecciones.map((coleccion) => (
+                    <option
+                      key={coleccion._id}
+                      value={coleccion._id}
+                    >
+                      {coleccion.nombre}
+                    </option>
+                  ))}
                 </select>
 
                 <p>Selecciona la categoria de tu producto.</p>
@@ -263,14 +287,6 @@ export default function AddProducto({ onClick }) {
                   modules={modules}
                   formats={formats}
                 />
-                {/*<textarea
-                  placeholder='Descripcion del producto'
-                  name='descripcion'
-                  value={producto.descripcion}
-                  onChange={handleChange}
-                />
-                <p>Dale a tu producto una descripcion corta y clara.</p>
-                */}
               </div>
             </>
           )}
