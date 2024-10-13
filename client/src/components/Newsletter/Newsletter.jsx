@@ -99,7 +99,7 @@ export default function Newsletter() {
             </section>
           </div>
           <picture className='newsletter-imagen'>
-            <img src='/images/newsletter-imagen.jpg' />
+            <img src='/images/newsletter-imagen.webp' />
           </picture>
         </div>
       </div>

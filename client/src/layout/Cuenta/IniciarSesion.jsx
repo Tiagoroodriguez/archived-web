@@ -126,7 +126,10 @@ export function IniciarSesion() {
       </main>
       <aside>
         <div className='aside-img-container'>
-          <img src='/images/login.jpg' />
+          <img
+            src='/images/login.webp'
+            alt='Remera Steed de la colección Casa de Campo'
+          />
         </div>
       </aside>
       <AnimatePresence>

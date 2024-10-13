@@ -72,7 +72,10 @@ export function CrearCuenta() {
       </Helmet>
       <aside>
         <div className='aside-img-container'>
-          <img src='/images/register.jpg' />
+          <img
+            src='/images/register.webp'
+            alt='Buzo Roam Grace de la colección Casa de Campo'
+          />
         </div>
       </aside>
       <main>

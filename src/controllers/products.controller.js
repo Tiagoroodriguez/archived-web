@@ -1,10 +1,11 @@
 import Product from '../models/product.model.js';
+import Coleccion from '../models/coleccion.model.js';
 import Discount from '../models/descuento.model.js';
 
 export const getProducts = async (req, res) => {
   try {
     const { limit, categoria } = req.query;
-    let query = Product.find().sort({ _id: -1 });
+    let query = Product.find().sort({ _id: -1 }).populate('coleccion');
 
     if (categoria) {
       query = query.where('categoria').equals(decodeURIComponent(categoria));
@@ -53,7 +54,7 @@ export const createProduct = async (req, res) => {
     const {
       nombre,
       categoria,
-      coleccion,
+      coleccionId, // Cambiar a coleccionId
       descripcion,
       precio,
       cant_s,
@@ -69,10 +70,16 @@ export const createProduct = async (req, res) => {
       img_small_2,
     } = req.body;
 
+    // Verificar si la colección existe
+    const coleccion = await Coleccion.findById(coleccionId);
+    if (!coleccion) {
+      return res.status(404).json({ message: 'Colección no encontrada' });
+    }
+
     const newProduct = new Product({
       nombre,
       categoria,
-      coleccion,
+      coleccion: coleccionId, // Guardar la referencia de la colección
       descripcion,
       precio,
       cant_s,
@@ -91,10 +98,11 @@ export const createProduct = async (req, res) => {
     const savedProduct = await newProduct.save();
     res.json(savedProduct);
   } catch (error) {
-    return res.status(500).json({ message: 'Something went wrong' });
+    return res
+      .status(500)
+      .json({ message: 'Something went wrong', error: error.message });
   }
 };
-
 export const getProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -137,6 +145,7 @@ export const getProduct = async (req, res) => {
       .json({ message: 'Algo salió mal', error: error.message });
   }
 };
+
 export const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);

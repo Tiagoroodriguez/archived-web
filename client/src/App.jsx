@@ -75,7 +75,7 @@ function App() {
                           <Layout>
                             <Header />
                             <Inicio />
-                            {/*<Footer />*/}
+                            <Footer />
                           </Layout>
                         }
                       />

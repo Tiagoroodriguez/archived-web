@@ -31,8 +31,8 @@ export default function Faq() {
           <p>
             Puedes rastrear el estado de tu pedido iniciando sesión en tu cuenta
             en nuestra página web www.archived.com.ar. Utilizamos los servicios
-            de logística de Andreani y Correo Argentino, lo que permite un
-            seguimiento detallado y preciso de tu envío.
+            de logística de ShipNow, lo que permite un seguimiento detallado y
+            preciso de tu envío.
           </p>
         </div>
       ),
