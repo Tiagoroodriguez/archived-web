@@ -1,11 +1,16 @@
 import axios from './axios';
 
-export const getProductsRequest = (limit = null, categoria = null) => {
+export const getProductsRequest = (
+  limit = null,
+  categoria = null,
+  coleccion = null
+) => {
   let url = '/products';
   const params = {};
 
   if (limit !== null) params.limit = limit;
   if (categoria !== null) params.categoria = categoria;
+  if (coleccion !== null) params.coleccion = coleccion;
 
   return axios.get(url, { params });
 };

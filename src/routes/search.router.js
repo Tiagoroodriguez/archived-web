@@ -4,7 +4,7 @@ import Product from '../models/product.model.js';
 const router = express.Router();
 
 router.get('/search', async (req, res) => {
-  const { query } = req.query;
+  const { query, collection } = req.query;
 
   if (!query) {
     return res.status(400).json({ message: 'Query parameter is required' });
@@ -24,9 +24,11 @@ router.get('/search', async (req, res) => {
       categoria: { $regex: query, $options: 'i' },
     });
 
-    const productsByCollection = await Product.find({
-      coleccion: { $regex: query, $options: 'i' },
-    });
+    const productsByCollection = collection
+      ? await Product.find({
+          coleccion: collection,
+        })
+      : [];
 
     // Combinar todos los resultados en un solo array y eliminar duplicados
     const allProducts = [

@@ -6,14 +6,14 @@ import { Boton } from '../Boton/Boton';
 import './Novedades.css';
 import { ProductoEsqueleto } from '../ProductoEsqueleto/ProductoEsqueleto';
 
-export function Novedades({ cantidad, categoria, titulo }) {
+export function Novedades({ cantidad, categoria, coleccion, titulo }) {
   const { getProducts } = useProduct();
   const [categoryProducts, setCategoryProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await getProducts(cantidad, categoria);
+        const res = await getProducts(cantidad, categoria, coleccion);
         setCategoryProducts(res);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -45,7 +45,7 @@ export function Novedades({ cantidad, categoria, titulo }) {
         </article>
       )}
       <Link
-        to={`/tienda?categoria=${categoria}`}
+        to={`/tienda?categoria=all`}
         className='todos-productos'
       >
         <Boton

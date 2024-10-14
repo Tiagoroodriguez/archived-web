@@ -23,6 +23,11 @@ export function Inicio() {
       <Newsletter />
       <main>
         <HeroSection />
+        <Novedades
+          cantidad='4'
+          coleccion='Casa de campo'
+          titulo={'Nueva coleccion | Casa de campo'}
+        />
         <ImgGrid />
 
         {/*<Novedades
