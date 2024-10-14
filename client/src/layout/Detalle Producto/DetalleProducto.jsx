@@ -208,9 +208,7 @@ export function DetalleProducto() {
                 <img
                   key={index}
                   className='img'
-                  src={`/images/productos/big/${index + 1}-${
-                    producto.nombre
-                  }.webp`}
+                  src={producto[`img_big_${index + 1}`]}
                   alt={`imagen numero ${index + 1} del producto ${
                     producto.nombre
                   }`}
@@ -235,9 +233,7 @@ export function DetalleProducto() {
                 </button>
                 <img
                   className='imagen-pantalla-completa'
-                  src={`/images/productos/big/${imagenSeleccionada + 1}-${
-                    producto.nombre
-                  }.webp`}
+                  src={producto[`img_big_${imagenSeleccionada + 1}`]}
                   alt={`imagen numero ${imagenSeleccionada + 1} del producto ${
                     producto.nombre
                   }`}

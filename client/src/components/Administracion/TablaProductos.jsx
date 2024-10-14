@@ -167,7 +167,7 @@ export default function TablaProductos({ productos }) {
               <td className='tabla-productos-item tabla-productos-item-detalle'>
                 <picture>
                   <img
-                    src={`/images/productos/small/${producto.nombre}.webp`}
+                    src={producto.img_small_1}
                     alt={`imagen del producto ${producto.nombre}`}
                   />
                 </picture>

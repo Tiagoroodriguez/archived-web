@@ -62,18 +62,25 @@ export function Tienda() {
       <section className='tienda'>
         <nav className='tienda-filtros'>
           <Boton
-            textBoton='ALL'
+            textBoton='TODOS'
             terceario={true}
             onClick={() => handleChangeFilter('all')}
             selected={filters.categoria}
             value='all'
           />
           <Boton
-            textBoton='REMERAS'
+            textBoton='REMERAS OVERSIZE'
             terceario={true}
-            onClick={() => handleChangeFilter('remera')}
+            onClick={() => handleChangeFilter('remera oversize')}
             selected={filters.categoria}
-            value='remera'
+            value='remera oversize'
+          />
+          <Boton
+            textBoton='REMERAS BOXY'
+            terceario={true}
+            onClick={() => handleChangeFilter('remera boxy')}
+            selected={filters.categoria}
+            value='remera boxy'
           />
           <Boton
             textBoton='BUZOS & HOODIES'
@@ -81,13 +88,6 @@ export function Tienda() {
             onClick={() => handleChangeFilter('buzo')}
             selected={filters.categoria}
             value='buzo'
-          />
-          <Boton
-            textBoton='PANTALONES'
-            terceario={true}
-            onClick={() => handleChangeFilter('pantalon')}
-            selected={filters.categoria}
-            value='pantalon'
           />
         </nav>
         {filteredProducts.length === 0 ? (

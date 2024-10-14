@@ -31,11 +31,15 @@ export function ProductProvider({ children }) {
     setProducts([...products, res.data]);
   };
 
-  const getProducts = async (limit = null, categoria = null) => {
+  const getProducts = async (
+    limit = null,
+    categoria = null,
+    coleccion = null
+  ) => {
     try {
       let res;
-      if (limit !== null || categoria !== null) {
-        res = await getProductsRequest(limit, categoria);
+      if (limit !== null || categoria !== null || coleccion !== null) {
+        res = await getProductsRequest(limit, categoria, coleccion);
       } else {
         res = await getProductsRequest();
       }

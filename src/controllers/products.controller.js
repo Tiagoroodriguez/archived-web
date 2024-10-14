@@ -54,7 +54,7 @@ export const createProduct = async (req, res) => {
     const {
       nombre,
       categoria,
-      coleccionId, // Cambiar a coleccionId
+      coleccion, // Cambiar a coleccionId
       descripcion,
       precio,
       cant_s,
@@ -71,15 +71,15 @@ export const createProduct = async (req, res) => {
     } = req.body;
 
     // Verificar si la colección existe
-    const coleccion = await Coleccion.findById(coleccionId);
-    if (!coleccion) {
+    const coleccion_res = await Coleccion.findById(coleccion);
+    if (!coleccion_res) {
       return res.status(404).json({ message: 'Colección no encontrada' });
     }
 
     const newProduct = new Product({
       nombre,
       categoria,
-      coleccion: coleccionId, // Guardar la referencia de la colección
+      coleccion_res, // Guardar la referencia de la colección
       descripcion,
       precio,
       cant_s,
