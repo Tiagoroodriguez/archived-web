@@ -106,7 +106,7 @@ function Header({ anuncioOn }) {
               >
                 <li>
                   <Link
-                    to='/' // tienda?categoria=all
+                    to='/tienda?categoria=all' // tienda?categoria=all
                     onClick={() => {
                       setClicked(false);
                       setShowCart(false);
