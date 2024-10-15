@@ -3,7 +3,7 @@ import './HeroSection.css';
 
 export default function HeroSection() {
   return (
-    <section className='hero-container mb-[50px]'>
+    <section className='hero-container'>
       <picture className='hero-img-container'>
         <img
           src='images/banner_pc.webp'

@@ -45,8 +45,8 @@ export default function CartSection() {
             <div className='cart-producto'>
               <div className='img-producto'>
                 <img
-                  src={`/images/productos/small/${item.nombre}.webp`}
-                  alt={`imagen del producto ${item.nombre}`}
+                  src={item.img_small_1}
+                  alt={`imagen de ${item.categoria} ${item.nombre}`}
                 />
               </div>
               <div className='info-producto checkout-info-cart'>

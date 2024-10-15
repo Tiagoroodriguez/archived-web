@@ -60,8 +60,8 @@ export default function CarritoCompra() {
               <td className='cart-table-cuerpo-item cart-table-product'>
                 <div className='img-producto cart-table-product-item'>
                   <img
-                    src={`/images/productos/small/${item.nombre}.webp`}
-                    alt={`imagen del producto ${item.nombre}`}
+                    src={item.img_small_1}
+                    alt={`Imagen del ${item.categoria} ${item.nombre}`}
                   />
                 </div>
                 <div className='table-info-producto cart-table-product-item'>

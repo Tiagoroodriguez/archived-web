@@ -46,7 +46,7 @@ export default function Carrito() {
             <div className='cart-producto'>
               <div className='img-producto'>
                 <img
-                  src={`/images/productos/small/${item.nombre}.webp`}
+                  src={item.img_small_1}
                   alt={`imagen del producto ${item.nombre}`}
                 />
               </div>

@@ -12,6 +12,7 @@ import { formatPrice } from '../../utils/formatePrice';
 import Recomendaciones from '../../components/Recomendaciones/Recomendaciones';
 import { Helmet } from 'react-helmet';
 import Input from '../../components/Input/Input';
+import Tabla from './Tabla';
 
 export function DetalleProducto() {
   const [producto, setProducto] = useState(null);
@@ -22,6 +23,7 @@ export function DetalleProducto() {
   const [loading, setLoading] = useState(false);
   const [envio, setEnvio] = useState(null);
   const [activeIndex, setActiveIndex] = useState(null);
+  const [weight, setWeight] = useState(0);
 
   const { getProduct } = useProduct();
   const { addToCart } = useContext(CartContext);
@@ -81,14 +83,21 @@ export function DetalleProducto() {
     }
     if (zipCode && !loading) {
       setLoading(true);
-      const weight = 200; // 200 gramos
+      if (
+        producto.categoria === 'remera boxy' ||
+        producto.categoria === 'remera oversize'
+      ) {
+        setWeight(200); // 200 gramos
+      } else {
+        setWeight(416); // 416 gramos
+      }
+
       try {
         const res = await axios.post('/calculate-shipping', {
           zipCode,
           weight,
         });
         setEnvio(res.data);
-        console.log('Costo de envío:', res);
       } catch (error) {
         console.error('Error calculando envío:', error);
       } finally {
@@ -110,7 +119,21 @@ export function DetalleProducto() {
     },
     {
       title: 'Guia de talles',
-      content: <></>,
+      content: (
+        <>
+          {producto && (
+            <div>
+              <Tabla
+                producto={producto}
+                oversize={
+                  producto.categoria === 'remera oversize' ? true : false
+                }
+                boxy={producto.categoria === 'remera boxy' ? true : false}
+              />
+            </div>
+          )}
+        </>
+      ),
       icon: 'bi bi-tag',
     },
     {

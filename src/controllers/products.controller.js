@@ -105,7 +105,7 @@ export const createProduct = async (req, res) => {
 };
 export const getProduct = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).populate('coleccion');
     if (!product)
       return res.status(404).json({ message: 'Producto no encontrado' });
 

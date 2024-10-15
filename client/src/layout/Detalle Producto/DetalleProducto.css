@@ -19,6 +19,7 @@
     height: 100%;
     overflow: hidden;
     cursor: pointer;
+    object-fit: cover;
 }
 .img img {
     width: 100%; 
