@@ -26,7 +26,7 @@ export function Inicio() {
         <Novedades
           cantidad='4'
           coleccion='Casa de campo'
-          titulo={'Nueva coleccion | Casa de campo'}
+          titulo={'Nueva colección | Casa de campo'}
         />
         <ImgGrid />
 

@@ -65,7 +65,7 @@ function Header({ anuncioOn }) {
       content: (
         <ul>
           <li>
-            <Link to='/'>Casa de campo</Link>
+            <Link to='/tienda'>Casa de campo</Link>
             <Link to='/'>??? ???</Link>
             <Link to='/'>??? ???</Link>
             <Link to='/'>??? ???</Link>
@@ -355,7 +355,7 @@ function Header({ anuncioOn }) {
           >
             <li className='coleccion-img-container'>
               <Link
-                to='/coleccion/casa-de-campo'
+                to='/tienda'
                 onClick={() => {
                   setClicked(false);
                   setDropdown(false);
@@ -385,7 +385,7 @@ function Header({ anuncioOn }) {
                     <span>???</span>
                   </div>
                 </picture>
-                <p className='coleccion-nombre'>!$&%$#%/</p>
+                <p className='coleccion-nombre'>????</p>
               </Link>
             </li>
             <li className='coleccion-img-container'>
@@ -402,7 +402,7 @@ function Header({ anuncioOn }) {
                     <span>???</span>
                   </div>
                 </picture>
-                <p className='coleccion-nombre'>%$#%!!*$¡?</p>
+                <p className='coleccion-nombre'>????</p>
               </Link>
             </li>
             <li className='coleccion-img-container'>
@@ -419,7 +419,7 @@ function Header({ anuncioOn }) {
                     <span>???</span>
                   </div>
                 </picture>
-                <p className='coleccion-nombre'>*%!#$%$#</p>
+                <p className='coleccion-nombre'>????</p>
               </Link>
             </li>
           </ul>
