@@ -10,7 +10,6 @@ import { IniciarSesion } from './layout/Cuenta/IniciarSesion';
 import { CrearCuenta } from './layout/Cuenta/CrearCuenta';
 import { Tienda } from './layout/Tienda/Tienda';
 import { DetalleProducto } from './layout/Detalle Producto/DetalleProducto';
-import { GuiaTalles } from './layout/Guia Talles/GuiaTalles';
 import { Contacto } from './layout/Contacto/Contacto';
 import ProductosForm from './layout/ProductosForm/ProductosForm';
 
@@ -43,6 +42,7 @@ import AdminNewsletter from './layout/Administracion/AdminNewsletter';
 import Factura from './components/Administracion/Factura';
 import RecuperarCuenta from './layout/Cuenta/RecuperarCuenta';
 import CasaCampo from './layout/Colecciones/CasaCampo';
+import PaginaCerrada from './components/PaginaCerrada/PaginaCerrada';
 
 const Background = styled.div`
   position: fixed;
@@ -71,6 +71,14 @@ function App() {
                     <Routes>
                       <Route
                         path='/'
+                        element={
+                          <Layout>
+                            <PaginaCerrada />
+                          </Layout>
+                        }
+                      />
+                      <Route
+                        path='/inicio'
                         element={
                           <Layout>
                             <Header />
