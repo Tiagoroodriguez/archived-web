@@ -37,17 +37,15 @@ export const createOrder = async (req, res) => {
       notification_url:
         'https://fbd5-138-204-152-207.ngrok-free.app/api/webhook',
       back_urls: {
-        success: 'http://localhost:5173/checkout/pago/success',
-        failure: 'http://localhost:5173/checkout/pago',
-        pending: 'http://localhost:5173/pending',
+        success: 'https://www.archived.com.ar/checkout/pago/success',
+        failure: 'https://www.archived.com.ar/checkout/pago',
+        pending: 'https://www.archived.com.ar/pending',
       },
 
       auto_return: 'approved',
     };
 
     const result = await mercadopago.preferences.create(preferences);
-
-    console.log(result);
 
     res.status(200).json(result.response.init_point);
   } catch (error) {

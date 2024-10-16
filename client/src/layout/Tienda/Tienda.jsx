@@ -71,23 +71,23 @@ export function Tienda() {
           <Boton
             textBoton='REMERAS OVERSIZE'
             terceario={true}
-            onClick={() => handleChangeFilter('remera oversize')}
+            onClick={() => handleChangeFilter('Remera oversize')}
             selected={filters.categoria}
-            value='remera oversize'
+            value='Remera oversize'
           />
           <Boton
             textBoton='REMERAS BOXY'
             terceario={true}
-            onClick={() => handleChangeFilter('remera boxy')}
+            onClick={() => handleChangeFilter('Remera boxy')}
             selected={filters.categoria}
-            value='remera boxy'
+            value='Remera boxy'
           />
           <Boton
             textBoton='BUZOS & HOODIES'
             terceario={true}
-            onClick={() => handleChangeFilter('buzo')}
+            onClick={() => handleChangeFilter('Buzo')}
             selected={filters.categoria}
-            value='buzo'
+            value='Buzo'
           />
         </nav>
         {filteredProducts.length === 0 ? (

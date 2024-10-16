@@ -1,4 +1,8 @@
 import { Router } from 'express';
+import Users from '../models/user.model.js';
+import Cliente from '../models/cliente.model.js';
+import Direccion from '../models/direccion.model.js';
+import Coupon from '../models/cupones.model.js';
 import {
   login,
   logout,

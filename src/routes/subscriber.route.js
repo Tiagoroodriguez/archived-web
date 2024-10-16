@@ -230,4 +230,16 @@ router.delete('/unsubscribe', async (req, res) => {
   }
 });
 
+router.delete('/unsubscribe/all', async (req, res) => {
+  try {
+    await Subscriber.deleteMany({});
+
+    return res.sendStatus(204); // No Content
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: 'Error eliminando suscriptores', error });
+  }
+});
+
 export default router;

@@ -250,9 +250,9 @@ export default function AddProducto({ onClick }) {
                   onChange={handleChange}
                 >
                   <option value=''>Selecciona una categoria</option>
-                  <option value='remera oversize'>Remera oversize</option>
-                  <option value='remera boxy'>Remera boxy</option>
-                  <option value='buzo'>Buzo</option>
+                  <option value='Remera oversize'>Remera oversize</option>
+                  <option value='Remera boxy'>Remera boxy</option>
+                  <option value='Buzo'>Buzo</option>
                 </select>
 
                 <p>Selecciona la categoria de tu producto.</p>
