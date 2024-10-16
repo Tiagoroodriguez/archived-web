@@ -84,8 +84,8 @@ export function DetalleProducto() {
     if (zipCode && !loading) {
       setLoading(true);
       if (
-        producto.categoria === 'remera boxy' ||
-        producto.categoria === 'remera oversize'
+        producto.categoria === 'Remera boxy' ||
+        producto.categoria === 'Remera oversize'
       ) {
         setWeight(200); // 200 gramos
       } else {
@@ -126,9 +126,9 @@ export function DetalleProducto() {
               <Tabla
                 producto={producto}
                 oversize={
-                  producto.categoria === 'remera oversize' ? true : false
+                  producto.categoria === 'Remera oversize' ? true : false
                 }
-                boxy={producto.categoria === 'remera boxy' ? true : false}
+                boxy={producto.categoria === 'Remera boxy' ? true : false}
               />
             </div>
           )}

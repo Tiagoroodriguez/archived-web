@@ -17,14 +17,24 @@ router.get('/products/:limit?/:categoria?', getProducts);
 
 router.get('/product/:id', getProduct);
 
-router.post('/product', createProduct);
+router.post('/product', authRequired, checkRoleAuth, createProduct);
 
 router.delete('/product/:id', authRequired, checkRoleAuth, deleteProduct);
 
-router.put('/product/:id', updateProduct);
+router.put('/product/:id', authRequired, checkRoleAuth, updateProduct);
 
-router.put('/product/update-stock/:id', updateProductStock);
+router.put(
+  '/product/update-stock/:id',
+  authRequired,
+  checkRoleAuth,
+  updateProductStock
+);
 
-router.get('/recommendations/:id', getRecommendations);
+router.get(
+  '/recommendations/:id',
+  authRequired,
+  checkRoleAuth,
+  getRecommendations
+);
 
 export default router;

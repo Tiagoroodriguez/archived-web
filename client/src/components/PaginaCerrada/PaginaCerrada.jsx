@@ -40,7 +40,7 @@ export default function PaginaCerrada() {
           </div>
         </div>
       </div>
-      <section className='h-[100vh] hero-container'>
+      <section className='h-[100vh]'>
         <picture className='hero-img-container'>
           <img
             src='images/banner_pc.webp'

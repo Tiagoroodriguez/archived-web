@@ -77,7 +77,7 @@ export default function InformacionEnvio() {
     }
     if (zipCode && !loading) {
       setLoading(true);
-      const weight = 200; // 200 gramos
+      const weight = 416;
       try {
         const res = await axios.post('/calculate-shipping', {
           zipCode,
@@ -441,7 +441,7 @@ export default function InformacionEnvio() {
               )}
 
               <div className='ciudad-container'>
-                <div className='ciudad-item'>
+                <div className='ciudad-item ciudad'>
                   <Input
                     type='text'
                     label='Dirección'
@@ -455,7 +455,7 @@ export default function InformacionEnvio() {
                     <p className='error'>{errors.direccion_envio.message}</p>
                   )}
                 </div>
-                <div className='ciudad-item ciudad'>
+                <div className='ciudad-item'>
                   <Input
                     type='number'
                     label='Número'
@@ -473,7 +473,7 @@ export default function InformacionEnvio() {
                 </div>
               </div>
               <div className='ciudad-container'>
-                <div className='ciudad-item'>
+                <div className='ciudad-item ciudad'>
                   <Input
                     type='text'
                     label='Departamento (opcional)'
@@ -482,7 +482,7 @@ export default function InformacionEnvio() {
                     value={getValues('departamento_envio')}
                   />
                 </div>
-                <div className='ciudad-item ciudad'>
+                <div className='ciudad-item'>
                   <Input
                     type='text'
                     label='Piso (opcional)'
