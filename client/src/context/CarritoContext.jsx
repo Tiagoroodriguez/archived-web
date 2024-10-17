@@ -24,7 +24,7 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date().getTime();
-      const time = 5 * 60 * 60 * 1000;
+      const time = 1 * 60 * 60 * 1000;
 
       if (cartItems.length > 0 && lastUpdated && now - lastUpdated > time) {
         clearCart();
