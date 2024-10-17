@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function Tabla({ producto, oversize, boxy }) {
+export default function Tabla({ producto, oversize, boxy, buzo }) {
   const [medidas, setMedidas] = useState(null);
 
   useEffect(() => {
@@ -9,6 +9,8 @@ export default function Tabla({ producto, oversize, boxy }) {
         setMedidas(producto.coleccion.oversize_medidas[0]);
       } else if (boxy) {
         setMedidas(producto.coleccion.boxy_medidas[0]);
+      } else if (buzo) {
+        setMedidas(producto.coleccion.buzo_medidas[0]);
       } else {
         setMedidas(null);
       }
