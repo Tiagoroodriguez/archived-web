@@ -70,7 +70,7 @@ function App() {
                   <BrowserRouter>
                     <Routes>
                       <Route
-                        path='/'
+                        path='/closed'
                         element={
                           <Layout>
                             <PaginaCerrada />
@@ -78,7 +78,7 @@ function App() {
                         }
                       />
                       <Route
-                        path='/inicio'
+                        path='/'
                         element={
                           <Layout>
                             <Header />
