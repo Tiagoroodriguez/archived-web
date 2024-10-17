@@ -129,6 +129,7 @@ export function DetalleProducto() {
                   producto.categoria === 'Remera oversize' ? true : false
                 }
                 boxy={producto.categoria === 'Remera boxy' ? true : false}
+                buzo={producto.categoria === 'Buzo' ? true : false}
               />
             </div>
           )}
@@ -299,11 +300,11 @@ export function DetalleProducto() {
                     />
                   ))}
                 </div>
-                {producto[`cant_${talleSeleccionado.toLowerCase()}`] < 5 ? (
+                {/*producto[`cant_${talleSeleccionado.toLowerCase()}`] < 5 ? (
                   <span className='talles-aviso'>Quedan pocas unidades!</span>
                 ) : (
                   ''
-                )}
+                )*/}
               </div>
               <Boton
                 type='submit'
@@ -320,9 +321,9 @@ export function DetalleProducto() {
               />
             </div>
           </section>
-          <section className='detalle-container'>
+          {/*<section className='detalle-container'>
             <Recomendaciones selectedProductId={params.id} />
-          </section>
+          </section>*/}
         </>
       ) : (
         <section className='detalle-container'>
