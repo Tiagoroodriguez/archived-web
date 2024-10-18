@@ -16,11 +16,11 @@ export default function HeroSection() {
           className='hero-background hero-img-mobile'
         />
       </picture>
-      <div className='hero-content'>
+      {/*<div className='hero-content'>
         <div className='hero-contador'>
           <Contador targetDate='2024-10-17T20:00:00' />
         </div>
-      </div>
+      </div>*/}
     </section>
   );
 }
