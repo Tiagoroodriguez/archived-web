@@ -16,7 +16,7 @@ export const sendMail = async ({ to, subject, html }) => {
   try {
     const { data, error } = await resend.emails.send({
       from: 'No-reply <archived@resend.dev>',
-      to: [recipient],
+      to: [to],
       subject,
       html,
     });
