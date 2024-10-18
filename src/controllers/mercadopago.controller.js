@@ -46,6 +46,7 @@ export const createOrder = async (req, res) => {
     };
 
     const result = await mercadopago.preferences.create(preferences);
+    console.log(result);
 
     res.status(200).json(result.response.init_point);
   } catch (error) {

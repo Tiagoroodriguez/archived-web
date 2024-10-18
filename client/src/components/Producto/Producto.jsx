@@ -109,13 +109,13 @@ export function Producto({ producto }) {
         </div>
       </div>
 
-      <div
+      {/*<{/*div
         className={
           hover
             ? 'producto-informacion producto-mostrar'
             : 'producto-informacion producto-ocultar'
         }
-      >
+      >*/}
         <ul className='talles-boton-container'>
           {['S', 'M', 'L', 'XL'].map((talle) => (
             <li key={talle}>
