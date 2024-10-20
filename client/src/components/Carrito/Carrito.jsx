@@ -5,6 +5,19 @@ import { Boton } from '../../components/Boton/Boton';
 
 import './Carrito.css';
 import { formatPrice } from '../../utils/formatePrice';
+import io from 'socket.io-client';
+import { usePedido } from '../../context/PedidosContext';
+
+const socket = io('https://archived-web-1.onrender.com', {
+  withCredentials: true,
+  extraHeaders: {
+    'my-custom-header': 'abcd',
+  },
+});
+
+socket.on('connect', () => {
+  console.log(`Conectado con id: ${socket.id}`);
+});
 
 export default function Carrito() {
   const {
@@ -14,11 +27,21 @@ export default function Carrito() {
     getCartTotal,
     setShowCart,
     showCart,
+    clearCartLocally,
   } = useContext(CartContext);
+
+  const { setCostoEnvio, setSelectedMetodoEnvio } = usePedido();
 
   const toggleCart = () => {
     setShowCart(!showCart);
   };
+
+  socket.on('paymentApproved', () => {
+    clearCartLocally();
+    localStorage.removeItem('envioInfo');
+    setCostoEnvio(null);
+    setSelectedMetodoEnvio('');
+  });
 
   return (
     <div className='cart-container'>

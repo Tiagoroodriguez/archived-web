@@ -4,6 +4,7 @@ import {
   getPedido,
   getPedidos,
   getPedidoUser,
+  getPedidoNroPago,
   updatePedido,
 } from '../controllers/pedidos.controller.js';
 
@@ -18,6 +19,8 @@ router.get('/pedido/:id', getPedido);
 router.get('/pedidos', getPedidos);
 
 router.get('/pedido-user/:id', getPedidoUser);
+
+router.get('/pedido-pago/:id', getPedidoNroPago);
 
 router.put('/pedido/:id', updatePedido);
 

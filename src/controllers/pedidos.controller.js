@@ -33,7 +33,7 @@ const aplicarCuponAPedido = async (totalConDescuento, codigoCupon) => {
   return calcularPrecioOrginal(totalConDescuento, cupon.discount_percentage);
 };
 
-const getNextOrderNumber = async () => {
+export const getNextOrderNumber = async () => {
   // Obtener el último pedido creado
   const lastPedido = await Pedido.findOne().sort({ numero_pedido: -1 });
 
@@ -532,6 +532,26 @@ export const getPedidoUser = async (req, res) => {
       message: 'Error al recuperar los pedidos del usuario',
       error: error.message,
     });
+  }
+};
+
+export const getPedidoNroPago = async (req, res) => {
+  try {
+    const pedido = await Pedido.findOne({ numero_pago: req.params.id })
+      .populate('cliente_facturacion')
+      .populate('direccion_facturacion')
+      .populate('cliente_envio')
+      .populate('direccion_envio')
+      .populate('user');
+
+    if (!pedido) {
+      return res.status(404).json({ message: 'Pedido no encontrado' });
+    }
+
+    res.json(pedido);
+  } catch (error) {
+    console.error('Error al obtener el pedido:', error);
+    return res.status(500).json({ message: 'Error al obtener el pedido' });
   }
 };
 

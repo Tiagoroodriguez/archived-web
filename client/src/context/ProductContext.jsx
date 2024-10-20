@@ -71,9 +71,16 @@ export function ProductProvider({ children }) {
 
   const updateProductStock = async (id, talle, quantity) => {
     try {
-      await updateProductStockRequest(id, talle, quantity);
+      const response = await updateProductStockRequest(id, talle, quantity);
+      if (response.status !== 200) {
+        throw new Error('Error actualizando el stock');
+      }
     } catch (error) {
-      console.error(error);
+      console.error(
+        'Error actualizando el stock:',
+        error.response?.data || error.message
+      );
+      throw error; // Lanzar el error para que pueda ser manejado en addToCart
     }
   };
 

@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context/CarritoContext';
 import TalleSelectionOverlay from '../TalleSelectionOverlay/TalleSelectionOverlay';
 import { formatPrice } from '../../utils/formatePrice';
-import { Boton } from '../Boton/Boton';
 
 export function Producto({ producto }) {
   const {
@@ -109,13 +108,13 @@ export function Producto({ producto }) {
         </div>
       </div>
 
-      {/*<{/*div
+      <div
         className={
           hover
             ? 'producto-informacion producto-mostrar'
             : 'producto-informacion producto-ocultar'
         }
-      >*/}
+      >
         <ul className='talles-boton-container'>
           {['S', 'M', 'L', 'XL'].map((talle) => (
             <li key={talle}>

@@ -224,6 +224,8 @@ export default function InformacionEnvio() {
     loadEnvioInfo();
   }, [cartItems, envioInfo, navigate, setValue]);
 
+  console.log(costoEnvio);
+  console.log(zipCode);
   return (
     <main className='checkout'>
       <Helmet>
@@ -303,7 +305,7 @@ export default function InformacionEnvio() {
             </div>
           )}
 
-          {costoEnvio && (
+          {costoEnvio && zipCode && (
             <div className='informacion-datos'>
               <p className='informacion-datos-p'>
                 Seleccione el método de entrega
