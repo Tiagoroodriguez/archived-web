@@ -9,7 +9,7 @@ connectDB();
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: 'https://archived.com.ar', // Cambia esto según tu configuración del frontend
+    origin: 'https://www.archived.com.ar', // Cambia esto según tu configuración del frontend
     methods: ['GET', 'POST'],
     allowedHeaders: ['my-custom-header'],
     credentials: true,
