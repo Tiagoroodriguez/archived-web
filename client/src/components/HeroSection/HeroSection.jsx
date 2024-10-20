@@ -18,7 +18,7 @@ export default function HeroSection() {
       </picture>
       {/*<div className='hero-content'>
         <div className='hero-contador'>
-          <Contador targetDate='2024-10-13T21:00:00' />
+          <Contador targetDate='2024-10-17T20:00:00' />
         </div>
       </div>*/}
     </section>
