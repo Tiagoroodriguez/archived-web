@@ -7,7 +7,17 @@ import './Carrito.css';
 import { formatPrice } from '../../utils/formatePrice';
 import io from 'socket.io-client';
 import { usePedido } from '../../context/PedidosContext';
-import { generateUUID } from '../../utils/generateUUID';
+
+const socket = io('https://archived-web-1.onrender.com', {
+  withCredentials: true,
+  extraHeaders: {
+    'my-custom-header': 'abcd',
+  },
+});
+
+socket.on('connect', () => {
+  console.log(`Conectado con id: ${socket.id}`);
+});
 
 export default function Carrito() {
   const {
@@ -26,33 +36,13 @@ export default function Carrito() {
     setShowCart(!showCart);
   };
 
-  // Generar o recuperar el userId
-  let userId = localStorage.getItem('userId');
-  if (!userId) {
-    userId = generateUUID();
-    localStorage.setItem('userId', userId);
-  }
-
-  const socket = io('https://archived-web-1.onrender.com', {
-    withCredentials: true,
-    extraHeaders: {
-      'my-custom-header': 'abcd',
-    },
-    query: {
-      userId, // Envía el userId como parte de la consulta
-    },
-  });
-
-  socket.on('connect', () => {
-    console.log(`Conectado con id: ${socket.id}`);
-  });
-
   socket.on('paymentApproved', (data) => {
-    console.log(data.message); // Procesa el mensaje recibido
-    clearCartLocally();
-    localStorage.removeItem('envioInfo');
-    setCostoEnvio(null);
-    setSelectedMetodoEnvio('');
+    if (socket.id === data) {
+      clearCartLocally();
+      localStorage.removeItem('envioInfo');
+      setCostoEnvio(null);
+      setSelectedMetodoEnvio('');
+    }
   });
 
   return (
