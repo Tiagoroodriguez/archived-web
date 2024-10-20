@@ -8,7 +8,7 @@ import Producto from '../models/product.model.js';
 import Discount from '../models/descuento.model.js';
 import Coupon from '../models/cupones.model.js';
 import { sendMail } from './email.controller.js';
-import { io, socketId } from '../../index.js';
+import { sendSignalToUser } from '../../index.js';
 
 mercadopago.configure({
   access_token: MERCADOPAGO_ACCESS_TOKEN,
@@ -454,8 +454,11 @@ export const reciverWebhook = async (req, res) => {
     `;
 
       await sendMail({ to, subject, html });
+      const userId = 'someUserId';
 
-      io.emit('paymentApproved', socketId);
+      sendSignalToUser(userId, 'paymentApproved', {
+        message: 'Payment has been approved',
+      });
       return res.json(savedPedido);
     }
 
