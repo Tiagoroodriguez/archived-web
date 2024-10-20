@@ -11,7 +11,7 @@ export function Inicio() {
     <>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>ARCHIVED | PRÓXIMAMENTE</title>
+        <title>Archived</title>
         <meta
           name='description'
           content='Inicio de la web oficial de Archived'
