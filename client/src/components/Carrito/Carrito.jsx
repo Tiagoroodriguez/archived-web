@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CarritoContext';
 import { Boton } from '../../components/Boton/Boton';
@@ -27,40 +27,33 @@ export default function Carrito() {
   };
 
   // Generar o recuperar el userId
-  useEffect(() => {
-    let userId = localStorage.getItem('userId');
-    console.log(userId);
-    if (!userId) {
-      userId = generateUUID();
-      localStorage.setItem('userId', userId);
-    }
+  let userId = localStorage.getItem('userId');
+  if (!userId) {
+    userId = generateUUID();
+    localStorage.setItem('userId', userId);
+  }
 
-    const socket = io('https://archived-web-1.onrender.com', {
-      withCredentials: true,
-      extraHeaders: {
-        'my-custom-header': 'abcd',
-      },
-      query: {
-        userId, // Envía el userId como parte de la consulta
-      },
-    });
+  const socket = io('https://archived-web-1.onrender.com', {
+    withCredentials: true,
+    extraHeaders: {
+      'my-custom-header': 'abcd',
+    },
+    query: {
+      userId, // Envía el userId como parte de la consulta
+    },
+  });
 
-    socket.on('connect', () => {
-      console.log(`Conectado con id: ${socket.id}`);
-    });
+  socket.on('connect', () => {
+    console.log(`Conectado con id: ${socket.id}`);
+  });
 
-    socket.on('paymentApproved', (data) => {
-      console.log(data.message); // Procesa el mensaje recibido
-      clearCartLocally();
-      localStorage.removeItem('envioInfo');
-      setCostoEnvio(null);
-      setSelectedMetodoEnvio('');
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, [clearCartLocally, setCostoEnvio, setSelectedMetodoEnvio]);
+  socket.on('paymentApproved', (data) => {
+    console.log(data.message); // Procesa el mensaje recibido
+    clearCartLocally();
+    localStorage.removeItem('envioInfo');
+    setCostoEnvio(null);
+    setSelectedMetodoEnvio('');
+  });
 
   return (
     <div className='cart-container'>
