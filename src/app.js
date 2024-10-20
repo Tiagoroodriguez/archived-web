@@ -5,6 +5,7 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import mime from 'mime-types';
+//import { EventSource } from 'eventsource';
 
 import authRoutes from './routes/auth.routes.js';
 import productRoutes from './routes/products.route.js';
@@ -17,6 +18,7 @@ import subscriberRoutes from './routes/subscriber.route.js';
 import fileRoutes from './routes/files.routes.js';
 import emailRouters from './routes/email.router.js';
 import enviosRoutes from './routes/envios.routes.js';
+import sseRoutes from './routes/sse.routes.js';
 
 const app = express();
 
@@ -73,5 +75,6 @@ app.use('/api', subscriberRoutes);
 app.use('/api', fileRoutes);
 app.use('/api', emailRouters);
 app.use('/api', enviosRoutes);
+app.use('/api', sseRoutes);
 
 export default app;

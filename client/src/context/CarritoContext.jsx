@@ -24,7 +24,7 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date().getTime();
-      const time = 5 * 60 * 60 * 1000;
+      const time = 5 * 60 * 60 * 1000; // 5 horas en milisegundos
 
       if (cartItems.length > 0 && lastUpdated && now - lastUpdated > time) {
         clearCart();
@@ -44,10 +44,7 @@ export const CartProvider = ({ children }) => {
   const { updateProductStock } = useProduct();
 
   const addToCart = async (item, talle) => {
-    // Generar una clave única basada en el ID del producto y el talle seleccionado
     const itemKey = `${item._id}-${talle}`;
-
-    // Verificar si hay stock del talle seleccionado
     const stockAvailable = checkStock(item, talle);
 
     if (!stockAvailable) {
@@ -55,35 +52,43 @@ export const CartProvider = ({ children }) => {
       return;
     }
 
-    // Determinar el precio aplicable (precio normal o con descuento)
     const precioAplicable = item.precio_con_descuento || item.precio;
-
-    // Buscar si el ítem ya está en el carrito usando la clave única
     const isItemInCart = cartItems.find((cartItem) => cartItem.key === itemKey);
 
-    if (isItemInCart) {
-      // Si el ítem ya está en el carrito, aumentar la cantidad
-      setCartItems(
-        cartItems.map((cartItem) =>
-          cartItem.key === itemKey
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
-      );
-    } else {
-      // Si el ítem no está en el carrito, agregarlo con la clave única y la cantidad inicial
-      setCartItems([
-        ...cartItems,
-        { ...item, precio: precioAplicable, quantity: 1, talle, key: itemKey },
-      ]);
+    try {
+      // Intentar actualizar el stock del producto antes de modificar el carrito
+      await updateProductStock(item._id, talle, 1);
+
+      if (isItemInCart) {
+        setCartItems(
+          cartItems.map((cartItem) =>
+            cartItem.key === itemKey
+              ? { ...cartItem, quantity: cartItem.quantity + 1 }
+              : cartItem
+          )
+        );
+      } else {
+        setCartItems([
+          ...cartItems,
+          {
+            ...item,
+            precio: precioAplicable,
+            quantity: 1,
+            talle,
+            key: itemKey,
+          },
+        ]);
+      }
+
+      setLastUpdated(new Date().getTime());
+      toast.success('Producto agregado al carrito');
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        toast.error('Stock insuficiente para este producto.');
+      } else {
+        toast.error('Error al agregar el producto al carrito.');
+      }
     }
-
-    // Actualizar el stock del producto
-    await updateProductStock(item._id, talle, 1);
-
-    // Actualizar la última vez que se modificó el carrito
-    setLastUpdated(new Date().getTime());
-    toast.success('Producto agregado al carrito');
   };
 
   // Función para verificar el stock del talle seleccionado
@@ -112,7 +117,9 @@ export const CartProvider = ({ children }) => {
     }
 
     // Verificar la cantidad del mismo producto en el carrito
-    const cartItem = cartItems.find((cartItem) => cartItem._id === item._id);
+    const cartItem = cartItems.find(
+      (cartItem) => cartItem._id === item._id && cartItem.talle === talle
+    );
     const quantityInCart = cartItem ? cartItem.quantity : 0;
 
     // Comparar la cantidad en el carrito con el stock disponible
@@ -169,6 +176,7 @@ export const CartProvider = ({ children }) => {
 
     return subtotal; // retorna el total sin descuento si no hay cupón
   };
+
   const getCartItems = (coupon) => {
     const cartItemsWithInfo = cartItems.map((item) => {
       const precio = coupon

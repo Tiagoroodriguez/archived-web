@@ -9,6 +9,6 @@ const router = Router();
 
 router.post('/create-order', createOrder);
 router.get('/get-order/:id', getOrder);
-router.post('/webhook', reciverWebhook);
+router.post('/mercado-pago/webhook', reciverWebhook);
 
 export default router;

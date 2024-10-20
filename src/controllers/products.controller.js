@@ -103,6 +103,7 @@ export const createProduct = async (req, res) => {
       .json({ message: 'Something went wrong', error: error.message });
   }
 };
+
 export const getProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id).populate('coleccion');

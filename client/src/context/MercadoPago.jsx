@@ -4,15 +4,22 @@ import { createOrderRequest, getOrderRequest } from '../api/mercadopago';
 export const MercadoPagoContext = createContext();
 
 export function MercadoPagoProvider({ children }) {
-  const createOrder = useCallback(async ({ productos, shippingCost }) => {
-    try {
-      const res = await createOrderRequest({ productos, shippingCost });
-      const initPointUrl = res.data;
-      window.location.href = initPointUrl;
-    } catch (error) {
-      console.error('Error creating order:', error);
-    }
-  }, []);
+  const createOrder = useCallback(
+    async ({ productos, shippingCost, shippingDetails }) => {
+      try {
+        const res = await createOrderRequest({
+          productos,
+          shippingCost,
+          shippingDetails,
+        });
+        const initPointUrl = res.data;
+        window.open(initPointUrl, '_blank');
+      } catch (error) {
+        console.error('Error creating order:', error);
+      }
+    },
+    []
+  );
 
   const getOrder = useCallback(async (id) => {
     try {

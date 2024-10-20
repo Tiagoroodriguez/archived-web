@@ -12,6 +12,7 @@ import { usePedido } from '../../context/PedidosContext';
 import CartSection from '../../components/CartSection/CartSection';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Pago() {
   const { createOrder } = useContext(MercadoPagoContext);
@@ -21,7 +22,7 @@ export default function Pago() {
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const { user } = useAuth();
   const paymentOptions = ['Mercado pago'];
   const navigate = useNavigate();
 
@@ -36,6 +37,16 @@ export default function Pago() {
     // Verificar si el método de envío seleccionado es 'Envio' y agregar el costo de envío
     if (selectedMetodoEnvio === 'Envio') {
       orderParams.shippingCost = costoEnvio.price;
+    }
+
+    const completeOrder = {
+      ...envioInfo,
+      user: user ? user.id : undefined,
+    };
+    //console.log(completeOrder);
+
+    if (completeOrder) {
+      orderParams.shippingDetails = completeOrder;
     }
 
     // Crear la orden pasando los parámetros adecuados

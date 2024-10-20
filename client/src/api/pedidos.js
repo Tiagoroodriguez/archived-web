@@ -8,6 +8,8 @@ export const getPedidosRequest = () => axios.get('/pedidos');
 
 export const getPedidoUserRequest = (id) => axios.get(`/pedido-user/${id}`);
 
+export const getPedidoNroPagoRequest = (id) => axios.get(`/pedido-pago/${id}`);
+
 export const updatedPedidoRequest = (id, pedido) =>
   axios.put(`/pedido/${id}`, pedido);
 

@@ -23,18 +23,8 @@ router.delete('/product/:id', authRequired, checkRoleAuth, deleteProduct);
 
 router.put('/product/:id', authRequired, checkRoleAuth, updateProduct);
 
-router.put(
-  '/product/update-stock/:id',
-  authRequired,
-  checkRoleAuth,
-  updateProductStock
-);
+router.put('/product/update-stock/:id', updateProductStock);
 
-router.get(
-  '/recommendations/:id',
-  authRequired,
-  checkRoleAuth,
-  getRecommendations
-);
+router.get('/recommendations/:id', getRecommendations);
 
 export default router;
