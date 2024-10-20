@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CarritoContext';
 import { Boton } from '../../components/Boton/Boton';
@@ -7,17 +7,7 @@ import './Carrito.css';
 import { formatPrice } from '../../utils/formatePrice';
 import io from 'socket.io-client';
 import { usePedido } from '../../context/PedidosContext';
-
-const socket = io('https://archived-web-1.onrender.com', {
-  withCredentials: true,
-  extraHeaders: {
-    'my-custom-header': 'abcd',
-  },
-});
-
-socket.on('connect', () => {
-  console.log(`Conectado con id: ${socket.id}`);
-});
+import { generateUUID } from '../../utils/generateUUID';
 
 export default function Carrito() {
   const {
@@ -36,14 +26,41 @@ export default function Carrito() {
     setShowCart(!showCart);
   };
 
-  socket.on('paymentApproved', (data) => {
-    if (socket.id === data) {
+  // Generar o recuperar el userId
+  useEffect(() => {
+    let userId = localStorage.getItem('userId');
+    console.log(userId);
+    if (!userId) {
+      userId = generateUUID();
+      localStorage.setItem('userId', userId);
+    }
+
+    const socket = io('https://archived-web-1.onrender.com', {
+      withCredentials: true,
+      extraHeaders: {
+        'my-custom-header': 'abcd',
+      },
+      query: {
+        userId, // Envía el userId como parte de la consulta
+      },
+    });
+
+    socket.on('connect', () => {
+      console.log(`Conectado con id: ${socket.id}`);
+    });
+
+    socket.on('paymentApproved', (data) => {
+      console.log(data.message); // Procesa el mensaje recibido
       clearCartLocally();
       localStorage.removeItem('envioInfo');
       setCostoEnvio(null);
       setSelectedMetodoEnvio('');
-    }
-  });
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [clearCartLocally, setCostoEnvio, setSelectedMetodoEnvio]);
 
   return (
     <div className='cart-container'>
