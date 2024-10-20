@@ -16,10 +16,15 @@ const io = new SocketServer(server, {
   },
 });
 
+let socketId = '';
+
 io.on('connection', (socket) => {
   console.log(`Cliente conectado: ${socket.id}`);
+  socketId = socket.id;
+
   socket.on('disconnect', () => {
     console.log('Cliente desconectado');
+    socketId = '';
   });
 });
 
@@ -31,4 +36,4 @@ server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-export default io;
+export { io, socketId };

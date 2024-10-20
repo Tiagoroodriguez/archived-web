@@ -36,11 +36,13 @@ export default function Carrito() {
     setShowCart(!showCart);
   };
 
-  socket.on('paymentApproved', () => {
-    clearCartLocally();
-    localStorage.removeItem('envioInfo');
-    setCostoEnvio(null);
-    setSelectedMetodoEnvio('');
+  socket.on('paymentApproved', (data) => {
+    if (socket.id === data) {
+      clearCartLocally();
+      localStorage.removeItem('envioInfo');
+      setCostoEnvio(null);
+      setSelectedMetodoEnvio('');
+    }
   });
 
   return (
