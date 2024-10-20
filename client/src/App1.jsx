@@ -43,6 +43,7 @@ import Factura from './components/Administracion/Factura';
 import RecuperarCuenta from './layout/Cuenta/RecuperarCuenta';
 import CasaCampo from './layout/Colecciones/CasaCampo';
 import PaginaCerrada from './components/PaginaCerrada/PaginaCerrada';
+//import io from 'socket.io-client';
 
 const Background = styled.div`
   position: fixed;
@@ -56,6 +57,25 @@ const Background = styled.div`
   background-size: cover;
 `;
 
+/*const socket = io('http://localhost:3000', {
+  withCredentials: true,
+  extraHeaders: {
+    'my-custom-header': 'abcd',
+  },
+});
+
+socket.on('connect', () => {
+  console.log(`Conectado con id: ${socket.id}`);
+});
+
+socket.on('disconnect', () => {
+  console.log('Desconectado del servidor');
+});
+
+socket.on('producto_visitado', () => {
+  console.log(`Producto Visitado`);
+});
+*/
 function App() {
   return (
     <AuthProvider>
