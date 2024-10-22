@@ -84,7 +84,6 @@ export default function InformacionEnvio() {
           weight,
         });
         setCostoEnvio(res.data);
-        console.log(res);
       } catch (error) {
         setCodigoPostalError('No se pudo calcular el envío');
         console.error('Error calculando envío:', error);
@@ -224,8 +223,6 @@ export default function InformacionEnvio() {
     loadEnvioInfo();
   }, [cartItems, envioInfo, navigate, setValue]);
 
-  console.log(costoEnvio);
-  console.log(zipCode);
   return (
     <main className='checkout'>
       <Helmet>
@@ -305,7 +302,7 @@ export default function InformacionEnvio() {
             </div>
           )}
 
-          {costoEnvio && zipCode && (
+          {costoEnvio && (
             <div className='informacion-datos'>
               <p className='informacion-datos-p'>
                 Seleccione el método de entrega

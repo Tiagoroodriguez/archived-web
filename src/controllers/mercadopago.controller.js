@@ -8,14 +8,14 @@ import Producto from '../models/product.model.js';
 import Discount from '../models/descuento.model.js';
 import Coupon from '../models/cupones.model.js';
 import { sendMail } from './email.controller.js';
-import io from '../../index.js';
+import { sendSocketIdToClient } from '../../index.js';
 
 mercadopago.configure({
   access_token: MERCADOPAGO_ACCESS_TOKEN,
 });
 
 export const createOrder = async (req, res) => {
-  const { productos, shippingCost, shippingDetails } = req.body; // Asegúrate de que
+  const { productos, shippingCost, shippingDetails, userId } = req.body; // Asegúrate de que
 
   const arrayProducto = productos.map((producto) => {
     return {
@@ -53,6 +53,7 @@ export const createOrder = async (req, res) => {
       metadata: {
         shippingDetails, // Añade los detalles de envío aquí
         productos, // Añade los productos aquí
+        userId, // Añadir userId aquí
       },
     };
 
@@ -83,6 +84,10 @@ export const reciverWebhook = async (req, res) => {
 
       const shippingDetails = metadata.shipping_details;
       //console.log('Detalle de pedido', shippingDetails);
+
+      const userId = metadata.user_id;
+      //console.log('metadatos:', metadata);
+      //console.log('userId:', userId);
 
       // Aquí se crea el pedido usando los detalles de envío y otros datos relevantes
       const numero_pedido = await getNextOrderNumber();
@@ -455,7 +460,7 @@ export const reciverWebhook = async (req, res) => {
 
       await sendMail({ to, subject, html });
 
-      io.emit('paymentApproved', { paymentId });
+      sendSocketIdToClient(userId);
       return res.json(savedPedido);
     }
 

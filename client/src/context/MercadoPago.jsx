@@ -7,10 +7,12 @@ export function MercadoPagoProvider({ children }) {
   const createOrder = useCallback(
     async ({ productos, shippingCost, shippingDetails }) => {
       try {
+        const userId = localStorage.getItem('userId');
         const res = await createOrderRequest({
           productos,
           shippingCost,
           shippingDetails,
+          userId,
         });
         const initPointUrl = res.data;
         window.open(initPointUrl, '_blank');
