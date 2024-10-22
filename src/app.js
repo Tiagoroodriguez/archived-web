@@ -5,7 +5,6 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import mime from 'mime-types';
-//import { EventSource } from 'eventsource';
 
 import authRoutes from './routes/auth.routes.js';
 import productRoutes from './routes/products.route.js';
