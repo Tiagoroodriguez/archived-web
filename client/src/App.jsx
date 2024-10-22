@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import Layout from './components/ScrollToTop/Layout';
@@ -44,6 +43,7 @@ import Factura from './components/Administracion/Factura';
 import RecuperarCuenta from './layout/Cuenta/RecuperarCuenta';
 import CasaCampo from './layout/Colecciones/CasaCampo';
 import PaginaCerrada from './components/PaginaCerrada/PaginaCerrada';
+import AdminAnaliticas from './layout/Administracion/AdminAnaliticas';
 //import io from 'socket.io-client';
 
 const Background = styled.div`
@@ -292,6 +292,19 @@ function App() {
                           }
                         />
                       </Route>
+                      <Route element={<ProteccionRutas />}>
+                        <Route
+                          path='/administration/analytical'
+                          element={
+                            <Layout>
+                              <div className='admin-container'>
+                                <Sidebar analiticNav />
+                                <AdminAnaliticas />
+                              </div>
+                            </Layout>
+                          }
+                        />
+                      </Route>
 
                       <Route
                         path='/perfil/:id'
@@ -406,4 +419,3 @@ function App() {
 }
 
 export default App;
-

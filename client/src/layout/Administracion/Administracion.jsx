@@ -115,10 +115,7 @@ export default function Administracion() {
           href='http://archived.com.ar/administration'
         />
       </Helmet>
-      <Sidebar
-        pedidos={pedidos}
-        inicioNav
-      />
+      <Sidebar inicioNav />
       <main className='admin-inicio '>
         <header>
           <h1>Bienvenido a la administracion</h1>

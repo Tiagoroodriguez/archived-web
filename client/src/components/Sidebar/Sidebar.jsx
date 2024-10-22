@@ -57,7 +57,7 @@ export default function Sidebar({
           </li>
           <li className={analiticNav ? 'active-nav' : ''}>
             <i className='bi bi-graph-up' />
-            <NavLink>Analiticas</NavLink>
+            <NavLink to='/administration/analytical'>Analiticas</NavLink>
           </li>
           <li onClick={() => logout()}>
             <i className='bi bi-box-arrow-left' />
