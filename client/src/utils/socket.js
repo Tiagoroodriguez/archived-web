@@ -8,9 +8,8 @@ if (!userId) {
   userId = generateUUID(); // Generar un nuevo userId si no existe
   localStorage.setItem('userId', userId); // Guardar el userId en localStorage
 }
-
+// web de produccion -> https://archived-web-1.onrender.com
 const socket = io('https://archived-web-1.onrender.com', {
-  // web de produccion -> https://archived-web-1.onrender.com
   withCredentials: true,
   extraHeaders: {
     'my-custom-header': 'abcd',
