@@ -5,19 +5,8 @@ import { Boton } from '../../components/Boton/Boton';
 
 import './Carrito.css';
 import { formatPrice } from '../../utils/formatePrice';
-import io from 'socket.io-client';
+import socket from '../../utils/socket'; // Ajusta la ruta según sea necesari
 import { usePedido } from '../../context/PedidosContext';
-
-const socket = io('https://archived-web-1.onrender.com', {
-  withCredentials: true,
-  extraHeaders: {
-    'my-custom-header': 'abcd',
-  },
-});
-
-socket.on('connect', () => {
-  console.log(`Conectado con id: ${socket.id}`);
-});
 
 export default function Carrito() {
   const {
@@ -36,13 +25,30 @@ export default function Carrito() {
     setShowCart(!showCart);
   };
 
-  socket.on('paymentApproved', (data) => {
+  /*socket.on('paymentApproved', (data) => {
     if (socket.id === data) {
       clearCartLocally();
       localStorage.removeItem('envioInfo');
       setCostoEnvio(null);
       setSelectedMetodoEnvio('');
     }
+  });
+  
+
+  socket.on('mensaje', (socketId) => {
+    console.log(`Recibido socketId: ${socketId}`);
+    clearCartLocally();
+    localStorage.removeItem('envioInfo');
+    setCostoEnvio(null);
+    setSelectedMetodoEnvio('');
+  });*/
+
+  socket.on('mensaje', () => {
+    //console.log(data);
+    clearCartLocally();
+    localStorage.removeItem('envioInfo');
+    setCostoEnvio(null);
+    setSelectedMetodoEnvio('');
   });
 
   return (
