@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
   socketId = socket.id; // Asigna socketId cuando un cliente se conecta
 
   socket.emit('count', count);
-  //console.log('Clientes conectado:', count);
+  console.log('Clientes conectado:', count);
   socket.broadcast.emit('count', count);
 });
 
