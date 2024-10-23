@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import HeroSection from '../../components/HeroSection/HeroSection';
 import ImgGrid from '../../components/ImgGrid/ImgGrid';
 //import MySlider from '../../components/MySlider/MySlider';
-import Newsletter from '../../components/Newsletter/Newsletter';
+//import Newsletter from '../../components/Newsletter/Newsletter';
 import { Novedades } from '../../components/Novedades/Novedades';
 import { Helmet } from 'react-helmet';
 
@@ -21,7 +21,7 @@ export function Inicio() {
           href='http://archived.com.ar/'
         />
       </Helmet>
-      <Newsletter />
+      {/*<Newsletter />*/}
       <main>
         <HeroSection />
         <Novedades
