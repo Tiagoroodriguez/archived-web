@@ -4,18 +4,14 @@ import { sendMail } from '../controllers/email.controller.js';
 const router = Router();
 
 router.post('/send-email', async (req, res) => {
-  const { to, subject, html } = req.body;
-
-  if (!to || !subject || !html) {
-    return res.status(400).json({ message: 'Missing required fields' });
-  }
-
   try {
-    const { data } = await sendMail({ to, subject, html });
-
-    return res.json({ data });
+    const { to, subject, html } = req.body; // Extraer los datos desde el cuerpo de la solicitud
+    await sendMail({ to, subject, html }); // Llamar a la función sendMail con los datos
+    res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error sending email', error: error.message });
   }
 });
 

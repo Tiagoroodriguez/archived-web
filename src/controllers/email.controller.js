@@ -1,32 +1,30 @@
-/* OPCION RESEND- DESVENTAJA: 3000 POR MES -  VETAJAS: LO DEJA EN PRINCIPAL*/
-import { Resend } from 'resend';
-import { EMAIL_KEY } from '../config.js';
-
-const resend = new Resend(EMAIL_KEY);
+import nodemailer from 'nodemailer';
 
 export const sendMail = async ({ to, subject, html }) => {
   if (!to || !subject || !html) {
     throw new Error('Missing required fields');
   }
 
-  // Enviar solo a una dirección de correo de prueba
-  const testEmail = 'tiagorodriguez0202@gmail.com';
-  const recipient = process.env.NODE_ENV === 'development' ? testEmail : to;
-
   try {
-    const { data, error } = await resend.emails.send({
-      from: 'No-reply <archived@resend.dev>',
-      to: [to],
-      subject,
-      html,
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'archived.system.222@gmail.com',
+        pass: process.env.EMAIL_PASSWORD,
+      },
     });
 
-    if (error) {
-      throw new Error(error.message || 'Failed to send email');
-    }
+    const mailOptions = {
+      from: 'No-reply <system@archived.com.ar>',
+      to, // Enviar al correo recibido por parámetro
+      subject, // Asignar el asunto recibido por parámetro
+      html, // Usar el HTML dinámico recibido por parámetro
+    };
 
-    return { data };
+    // Usar la versión async
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent: ' + info.response);
   } catch (err) {
-    throw new Error(err.message || 'Error sending email');
+    throw new Error(err.message || 'Error al enviar el email');
   }
 };

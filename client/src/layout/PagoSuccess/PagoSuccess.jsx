@@ -26,7 +26,6 @@ const PagoSuccess = () => {
     getPedido();
   }, [payment_id, initialLoad, clearCartLocally]);
 
-  console.log(pedido);
   return (
     <div className='payment-success-container'>
       <div className='circle-check '>
