@@ -38,12 +38,12 @@ export const createOrder = async (req, res) => {
       description: 'Envío del pedido',
     });
   }
-
+  // https://archived-web-1.onrender.com
   try {
     const preferences = {
       items: arrayProducto,
       notification_url:
-        'https://archived-web-1.onrender.com/api/mercado-pago/webhook',
+        'https://e18a-138-204-152-204.ngrok-free.app/api/mercado-pago/webhook',
       back_urls: {
         success: 'https://www.archived.com.ar/checkout/pago/success',
         failure: 'https://www.archived.com.ar/checkout/pago',

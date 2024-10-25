@@ -15,12 +15,13 @@ export function Contacto() {
   const onSubmit = (e) => {
     e.preventDefault(); // Previene la redirección del formulario
 
-    const to = 'tiagorodriguez0202@gmail.com'; // Corrige el email aquí
+    const to = 'archived.system.222@gmail.com';
     const html = `
       <h1>Consulta de usuario</h1>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Mensaje:</strong> ${message}</p>
     `;
+    //const subject = `Consulta de usuario: ${subject}`;
     sendEmail(to, subject, html);
     toast.success('Mensaje enviado correctamente');
     setEmail('');

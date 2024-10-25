@@ -13,8 +13,8 @@ export const getPedidoNroPagoRequest = (id) => axios.get(`/pedido-pago/${id}`);
 export const updatedPedidoRequest = (id, pedido) =>
   axios.put(`/pedido/${id}`, pedido);
 
-export const sendMailRequest = (emailData) =>
-  axios.post('/send-email', emailData);
+export const sendMailRequest = ({ to, subject, html }) =>
+  axios.post('/send-email', { to, subject, html });
 
 export const getRecommendationsRequest = async (productId) => {
   return await axios.get(`/recommendations/${productId}`);
