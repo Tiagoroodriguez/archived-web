@@ -75,7 +75,7 @@ a{
 .descuento {
   padding: 10px;
   color: var(--bg-color);
-  background: var(--secondary-color);
+  background: rgb(134, 0, 0);
   text-align: center;
   text-transform: uppercase;
   font-size: 12px;

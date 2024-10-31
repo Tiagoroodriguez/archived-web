@@ -71,6 +71,7 @@ export default function Newsletter() {
           <button
             className='newsletter-exit-button'
             onClick={handdleClose}
+            aria-label='Cerrar newsletter'
           >
             <i className='bi bi-x-lg' />
           </button>

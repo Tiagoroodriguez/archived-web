@@ -29,6 +29,7 @@ export default function Input({ type, label, ternaria, value, onChange }) {
         {...ternaria}
         value={inputValue}
         onChange={handleInputChange}
+        id={label}
       />
       <label
         htmlFor={label}

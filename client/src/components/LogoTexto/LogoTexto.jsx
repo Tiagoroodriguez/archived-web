@@ -5,6 +5,7 @@ export function LogoTexto({ blanco }) {
   return (
     <Link
       to='/'
+      aria-label='Inicio'
       className='logo'
     >
       {blanco ? (
