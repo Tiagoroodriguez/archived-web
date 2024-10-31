@@ -195,7 +195,12 @@ export function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
               />
-              <button onClick={handleSubscribe}>Enviar</button>
+              <button
+                onClick={handleSubscribe}
+                aria-label='Suscribirse'
+              >
+                Enviar
+              </button>
             </div>
           </div>
         </div>

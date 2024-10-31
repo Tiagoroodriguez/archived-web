@@ -77,6 +77,7 @@ export default function CartSection() {
           <button
             onClick={handleRedeemCoupon}
             disabled={coupon.code ? true : false}
+            aria-label='Canjear cupon'
           >
             Canjear
           </button>

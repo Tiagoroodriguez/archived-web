@@ -196,11 +196,13 @@ function Header({ anuncioOn }) {
             <button
               onClick={toggleCart}
               className='boton-carrito-mobile'
+              aria-label='Carrito'
             >
               <i className='bi bi-bag'>({cartItems.length})</i>
             </button>
             <button
               className='search-mobile'
+              aria-label='Buscar'
               onClick={() => {
                 setHiddenSearch(!hiddenSearch);
                 setClicked(false);
@@ -261,6 +263,7 @@ function Header({ anuncioOn }) {
                           setClicked(false);
                           setShowCart(false);
                         }}
+                        aria-label='Login'
                       >
                         <i className='bi bi-person' />
                       </Link>
@@ -271,6 +274,7 @@ function Header({ anuncioOn }) {
                   <button
                     onClick={toggleCart}
                     className='boton-carrito'
+                    aria-label='Carrito'
                   >
                     <i className='bi bi-bag'>({cartItems.length})</i>
                   </button>

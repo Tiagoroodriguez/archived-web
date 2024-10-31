@@ -376,6 +376,7 @@ export default function InformacionEnvio() {
                 <button
                   type='button'
                   onClick={handleCambiarCodigoPostal}
+                  aria-label='Cambiar codigo postal'
                 >
                   Cambiar código postal
                 </button>
