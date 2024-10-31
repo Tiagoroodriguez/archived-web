@@ -93,7 +93,10 @@ export function Footer() {
               <i className='bi bi-arrow-clockwise' />
               <h3>CAMBIOS Y DEVOLUCIONES</h3>
               <p>
-                Mira las condiciones <Link to='/returns-exchanges'>aqui</Link>
+                Conoce las{' '}
+                <Link to='/returns-exchanges'>
+                  Política de devoluciones e intercambios
+                </Link>
               </p>
             </article>
             <article
@@ -104,8 +107,7 @@ export function Footer() {
               <i className='bi bi-truck' />
               <h3>ENVIOS SEGUROS A TODA ARGENTINA</h3>
               <p>
-                Click <Link to='/shipping-policy'>aquí</Link> para más
-                información
+                Conoce las <Link to='/shipping-policy'>Política de envíos</Link>
               </p>
             </article>
             <article
