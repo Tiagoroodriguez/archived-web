@@ -274,9 +274,16 @@ export function DetalleProducto() {
             <div className='informacion-container'>
               <div className='informacion-dp'>
                 <span className='nombre-producto'>{`${producto.categoria} ${producto.nombre}`}</span>
-                <span className='precio-producto'>
-                  {formatPrice(producto.precio)}
-                </span>
+                <div className='precio-texto'>
+                  {producto.discount ? (
+                    <p>
+                      <span>{formatPrice(producto.precio)} </span>{' '}
+                      {formatPrice(producto.precio_con_descuento)}
+                    </p>
+                  ) : (
+                    formatPrice(producto.precio)
+                  )}
+                </div>
               </div>
 
               <div className='division'></div>
