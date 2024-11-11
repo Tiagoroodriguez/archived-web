@@ -159,7 +159,13 @@ export function Footer() {
               </a>
 
               <i className='bi bi-twitter' />
-              <i className='bi bi-tiktok' />
+              <a
+                href='https://www.tiktok.com/@archived.arg/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <i className='bi bi-tiktok' />
+              </a>
               <i className='bi bi-youtube' />
             </div>
           </div>
