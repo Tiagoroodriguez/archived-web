@@ -10,7 +10,7 @@ export function Inicio() {
     <>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Archived</title>
+        <title>Archived | STREETWEAR CLOTHING</title>
         <meta
           name='description'
           content='Creemos en la creación de una comunidad unida por el amor a la moda y la exclusividad. Nuestra misión es ir más allá de la simple confección de ropa; buscamos construir una familia con nuestros clientes, donde cada prenda no solo se convierte en una expresión de estilo, sino también en un símbolo de pertenencia a algo único y especial.'
