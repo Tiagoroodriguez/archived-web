@@ -13,7 +13,7 @@ export function Inicio() {
         <title>Archived</title>
         <meta
           name='description'
-          content='Inicio de la web oficial de Archived'
+          content='Creemos en la creación de una comunidad unida por el amor a la moda y la exclusividad. Nuestra misión es ir más allá de la simple confección de ropa; buscamos construir una familia con nuestros clientes, donde cada prenda no solo se convierte en una expresión de estilo, sino también en un símbolo de pertenencia a algo único y especial.'
         />
         <link
           rel='canonical'

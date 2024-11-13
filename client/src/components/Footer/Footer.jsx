@@ -154,6 +154,7 @@ export function Footer() {
                 href='https://www.instagram.com/archived.ar/'
                 target='_blank'
                 rel='noopener noreferrer'
+                aria-label='Instagram'
               >
                 <i className='bi bi-instagram' />
               </a>
@@ -163,6 +164,7 @@ export function Footer() {
                 href='https://www.tiktok.com/@archived.arg/'
                 target='_blank'
                 rel='noopener noreferrer'
+                aria-label='TikTok'
               >
                 <i className='bi bi-tiktok' />
               </a>

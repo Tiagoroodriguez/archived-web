@@ -173,6 +173,7 @@ function Header({ anuncioOn }) {
                           setClicked(false);
                           setShowCart(false);
                         }}
+                        aria-label='Iniciar sesión'
                       >
                         Log in
                       </Link>
@@ -263,7 +264,7 @@ function Header({ anuncioOn }) {
                           setClicked(false);
                           setShowCart(false);
                         }}
-                        aria-label='Login'
+                        aria-label='Iniciar sesión'
                       >
                         <i className='bi bi-person' />
                       </Link>
